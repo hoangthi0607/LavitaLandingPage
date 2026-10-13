@@ -1,0 +1,57 @@
+# Dependencies and local package caches
+node_modules/
+.npm/
+.pnpm-store/
+
+# Next.js, build output and generated types
+.next/
+out/
+build/
+dist/
+.turbo/
+*.tsbuildinfo
+/next-env.d.ts
+
+# Large supplied originals and downloadable PDFs (keep on the server locally)
+/HSNL-*.pdf
+/image.png
+/public/documents/*.pdf
+
+# Environment configuration (keep the shared template)
+.env*
+!.env.example
+
+# Local HTTPS certificates, Caddy binaries and runtime state
+certificates/
+.tools/
+.runtime/
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Logs and diagnostic reports
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-debug.log*
+report.[0-9]*.json
+
+# Temporary QA artifacts and test output
+.tmp/
+coverage/
+playwright-report/
+test-results/
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# Local hosting metadata and OS files
+.vercel/
+.DS_Store
+Thumbs.db
+Desktop.ini

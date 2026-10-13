@@ -1,0 +1,20 @@
+{
+	admin 127.0.0.1:2019
+	persist_config off
+	storage file_system {
+		root .runtime/caddy
+	}
+}
+
+# Public-facing certificates are provisioned by Caddy's public ACME CA.
+# Keep npm run start running separately on HTTPS port 3000.
+lavitacons.vn {
+	reverse_proxy https://127.0.0.1:3000 {
+		header_up Host {hostport}
+		transport http {
+			tls_server_name localhost
+			tls_trust_pool file certificates/rootCA.pem
+			keepalive 4s
+		}
+	}
+}
