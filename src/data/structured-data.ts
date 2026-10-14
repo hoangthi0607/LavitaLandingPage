@@ -30,7 +30,10 @@ export const homeStructuredData = {
     },
     ...services.map((service, index) => ({
       "@type": "Service", "@id": `${site.url}/#service-${index + 1}`, name: service.title, serviceType: "Phòng cháy chữa cháy",
-      description: service.description, url: `${site.url}/#services`, provider: { "@id": organizationId },
+      description: service.description, url: `${site.url}/dich-vu/${service.slug}`, provider: { "@id": organizationId },
     })),
   ],
 };
+
+export const businessStructuredData = { "@context": homeStructuredData["@context"], "@graph": homeStructuredData["@graph"].filter(node => node["@type"] !== "WebPage") };
+export const homepageStructuredData = { "@context": homeStructuredData["@context"], "@graph": homeStructuredData["@graph"].filter(node => node["@type"] === "WebPage") };

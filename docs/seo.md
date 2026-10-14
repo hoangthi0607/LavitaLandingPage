@@ -17,15 +17,15 @@ Khi thay đổi thông tin, sửa dữ liệu trung tâm và đồng bộ số �
 
 `src/app/layout.tsx` khai báo metadata bằng API của Next.js: title, description, tên website, Open Graph, Twitter Card và chỉ dẫn `index, follow`. Origin chuẩn là **https://lavitacons.vn**; canonical của trang chủ là **https://lavitacons.vn/**. Metadata dùng origin public này cả khi xem bản build qua localhost/LAN.
 
-`src/app/robots.ts` tạo `/robots.txt`, cho phép crawler truy cập và chỉ ra sitemap. `src/app/sitemap.ts` tạo `/sitemap.xml` với trang chủ cùng ảnh công trình. Website hiện có một trang; các anchor `#services`, `#projects`, `#contact` là section, không phải URL trang riêng trong sitemap. Không tạo thời điểm sửa đổi giả mỗi lần build.
+`src/app/robots.ts` tạo `/robots.txt`, cho phép crawler truy cập và chỉ ra sitemap. `src/app/sitemap.ts` tạo `/sitemap.xml` với 15 trang chuẩn: trang chủ, danh mục dịch vụ và sáu trang chi tiết, danh mục dự án và bốn trang chi tiết, giới thiệu công ty và liên hệ. Các anchor trang chủ là section; query lọc dự án hoặc giữ ngữ cảnh liên hệ không phải trang riêng trong sitemap. Không tạo thời điểm sửa đổi giả mỗi lần build.
 
-Canonical, sitemap, URL trong schema và metadata chia sẻ phải cùng origin. Khi bổ sung trang mới, khai báo canonical của trang đó thay vì kế thừa canonical trang chủ. Việc cấu hình DNS hoặc redirect `www` thuộc phần vận hành domain; xem [hướng dẫn HTTPS public](public-https.md). [Google hướng dẫn canonical](https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls).
+Canonical, sitemap, URL trong schema và metadata chia sẻ phải cùng origin. `src/lib/metadata.ts` tạo metadata/canonical riêng theo từng route. `/du-an?dich-vu=...` dùng canonical `/du-an`; `/lien-he?dich-vu=...&du-an=...` dùng canonical `/lien-he`. BreadcrumbList theo hierarchy được render bằng `PageIntro`; Organization/WebSite/Service dùng chung ở layout và URL Service trỏ đến trang dịch vụ thật. Khi bổ sung trang mới, khai báo canonical của trang đó thay vì kế thừa canonical trang chủ. Việc cấu hình DNS hoặc redirect `www` thuộc phần vận hành domain; xem [hướng dẫn HTTPS public](public-https.md). [Google hướng dẫn canonical](https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls).
 
 ## Nội dung và structured data
 
 H1 có nội dung rõ về Lavita và phòng cháy chữa cháy, nằm ngoài trạng thái slide của carousel. Đổi slide không làm H1 biến mất hoặc trở thành `inert`. Nội dung dịch vụ và dự án vẫn có trong HTML trang; tên, mô tả, scope và liên kết hồ sơ phục vụ người đọc trước.
 
-`src/data/structured-data.ts` tạo một graph JSON-LD được render bằng native `<script type="application/ld+json">` trong Server Component `src/app/page.tsx`. Chuỗi được escape ký tự `<` trước khi đưa vào HTML.
+`src/data/structured-data.ts` tạo graph JSON-LD. Organization/WebSite/Service được render bằng native `<script type="application/ld+json">` trong Server Component `src/app/layout.tsx`; WebPage trang chủ nằm tại `src/app/page.tsx`. BreadcrumbList của các trang nội dung nằm trong `PageIntro`. Chuỗi được escape ký tự `<` trước khi đưa vào HTML.
 
 | Node | Nội dung |
 | --- | --- |
@@ -79,3 +79,5 @@ Kiểm tra HTML production có title, description, canonical, robots, H1 và JSO
 - Qua `https://lavitacons.vn`, trang chủ, `/robots.txt`, `/sitemap.xml` và `/opengraph-image` trả HTTP 200; Node xác nhận chứng chỉ được tin cậy với TLS 1.3. Bản mới đang được phục vụ qua Next.js cổng 3000 và Caddy.
 
 Công cụ và báo cáo QA nằm trong `.tmp/seo-qa*`, được Git bỏ qua và không phải dependency của website. Chưa kiểm tra Rich Results Test live của Google, chưa xác minh Search Console, chưa xác nhận trạng thái crawl/index thực tế hoặc đo Core Web Vitals ngoài thực tế. Có thể dùng [Rich Results Test](https://search.google.com/test/rich-results) cho tính năng Google hỗ trợ và [Schema Markup Validator](https://validator.schema.org/) cho graph đầy đủ; site names không nằm trong phạm vi kiểm tra của Rich Results Test.
+
+Sau khi tổ chức lại website ngày 14.10.2026, sitemap và metadata của 15 route được kiểm tra trong bản production QA riêng. Xem [kết quả kiểm tra IA](information-architecture/verification.md). Không có thao tác xác minh Search Console hoặc xác nhận Google đã crawl các URL mới trong lần chỉnh này.

@@ -93,7 +93,7 @@ Giữ bản gốc ngoài Git hoặc sao lưu riêng; `.gitignore` không xóa fi
 
 ## Phạm vi
 
-Trang chủ Lavita gồm hero, giới thiệu, dịch vụ, dự án, năng lực, huấn luyện và liên hệ. Menu responsive, slider, liên kết hồ sơ, gọi điện và email có thể sử dụng. Dự án ghi rõ phạm vi PCCC, không thể hiện Lavita là tổng thầu toàn bộ công trình. Chưa có CMS/backend, trang chi tiết hoặc biểu mẫu gửi yêu cầu. Thông tin liên hệ hiện tại lấy từ `src/data/home.ts` theo cập nhật của người dùng: hotline **0962 381 114** và địa chỉ **Số 26 - 28 Nguyễn Hoàng, Khu phố 1, Phường Bình Trưng, Thành phố Hồ Chí Minh, Việt Nam**.
+Website Lavita có trang chủ, danh mục và sáu trang dịch vụ, danh mục và bốn trang dự án, giới thiệu công ty và liên hệ. Trang chủ dẫn người đọc từ dịch vụ đến dự án phù hợp; trang liên hệ giữ lựa chọn và hỗ trợ soạn email. Menu responsive, slider, liên kết hồ sơ, gọi điện và email có thể sử dụng. Dự án ghi rõ phạm vi PCCC, không thể hiện Lavita là tổng thầu toàn bộ công trình. Chưa có CMS/backend nhận yêu cầu; người đọc tự gửi nội dung qua ứng dụng email. Thông tin liên hệ hiện tại lấy từ `src/data/home.ts` theo cập nhật của người dùng: hotline **0962 381 114** và địa chỉ **Số 26 - 28 Nguyễn Hoàng, Khu phố 1, Phường Bình Trưng, Thành phố Hồ Chí Minh, Việt Nam**.
 
 Website được phục vụ trên máy Windows qua Next.js và Caddy cho tên miền public `lavitacons.vn`; xem [hướng dẫn vận hành HTTPS](docs/public-https.md).
 
@@ -102,6 +102,10 @@ Website được phục vụ trên máy Windows qua Next.js và Caddy cho tên m
 Trang chủ có metadata, canonical `https://lavitacons.vn/`, robots/sitemap, JSON-LD và ảnh chia sẻ 1200 × 630. Dữ liệu trung tâm nằm tại `src/data/home.ts`; H1 giữ nguyên khi đổi slide. Xem [hướng dẫn SEO và Search Console](docs/seo.md) để cập nhật nội dung, xác minh domain và gửi sitemap. Chưa thực hiện xác minh Search Console hoặc kiểm tra Rich Results Test live của Google.
 
 ## Hướng dẫn thiết kế
+
+### Kiến trúc thông tin
+
+Website được tổ chức theo luồng **dịch vụ → dự án theo phạm vi PCCC → liên hệ giữ ngữ cảnh**, với hub và trang chi tiết có URL riêng. [information-architecture.md](information-architecture.md) ghi sitemap, taxonomy, navigation, quy tắc URL/query và các trường hợp chưa có dự án mẫu. Hướng dẫn [RampStack Information Architecture](docs/information-architecture/README.md) được lưu cùng nguồn/license; không cài thành runtime hoặc skill toàn cục. Các giả thuyết về người đọc và nhãn nhóm chưa được kiểm chứng bằng nghiên cứu người dùng.
 
 [DESIGN.md](DESIGN.md) ghi nhận bảng màu, typography, bố cục, CTA, responsive và khả năng tiếp cận của Lavita. Khi chỉnh giao diện, giữ thông tin theo hồ sơ và đối chiếu các quy tắc này.
 

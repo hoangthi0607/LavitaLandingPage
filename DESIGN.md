@@ -50,7 +50,7 @@ CSS trong `src/app/globals.css` là nguồn chuẩn cho các token theo vai trò
 - Nút primary: nền đỏ, chữ trắng, dẫn tới hành động tư vấn quan trọng nhất trong ngữ cảnh.
 - Nút secondary: cùng chiều cao và nhịp khoảng cách, trọng lượng nhẹ hơn; dùng cho hồ sơ hoặc hành động khám phá.
 - Liên kết nội dung có tên hành động cụ thể và dấu hiệu tương tác nhất quán. Icon dùng Lucide, không thay bằng ký tự Unicode.
-- CTA dịch vụ tạo email có subject mang tên dịch vụ được chọn; gọi điện và email dùng thông tin thật trong hồ sơ. Không tạo form gửi yêu cầu khi chưa có backend xử lý.
+- Luồng chính là chọn dịch vụ, đối chiếu dự án cùng phạm vi rồi trao đổi nhu cầu. CTA tư vấn mang slug dịch vụ/dự án vào `/lien-he`; trang này soạn email có subject/body tương ứng và mở ứng dụng email để người đọc tự gửi. Gọi điện và email dùng thông tin thật. Không báo đã gửi yêu cầu hoặc tạo backend giả.
 - Dự án có nhãn phạm vi PCCC và liên kết ghi rõ mở hồ sơ PDF. Dùng fragment `#page=` để tới trang chứng minh dự án: Đại Nhật 18, Crescent Mall 19, C2 Bình Dương 22, Pegasuite 25. Đây là số trang PDF, không phải số trang in trong tài liệu dạng trang đôi.
 - PDF khoảng 67 MB chỉ tải khi người xem chủ động mở; không nhúng toàn bộ vào trang chủ. Việc mở đúng trang phụ thuộc trình đọc PDF của trình duyệt.
 
@@ -62,7 +62,9 @@ Vùng chạm điều khiển nên đạt ít nhất 44 × 44 px. Menu mobile có
 
 Carousel không tự chạy. Người xem chủ động chọn slide bằng nút trước/sau có vùng chạm ít nhất 44 px hoặc điều hướng bàn phím; trạng thái slide hiện tại phải nhận biết được. Slide không hoạt động dùng `inert`. H1 và CTA nằm ngoài các slide để heading luôn hiển thị; hero dùng bố cục có thể giãn theo nội dung khi phóng chữ. Với `prefers-reduced-motion`, tắt chuyển động carousel, hover phóng ảnh và cuộn mượt. Nội dung vẫn hiển thị đầy đủ khi giảm chuyển động.
 
-Ảnh có kích thước hoặc khung tỷ lệ ổn định để tránh nhảy bố cục. Ảnh nội dung có alt mô tả đúng; icon trang trí ẩn khỏi trình đọc màn hình. Chỉ có một heading cấp 1 cho trang; cấp heading còn lại phản ánh cấu trúc nội dung.
+Ảnh có kích thước hoặc khung tỷ lệ ổn định để tránh nhảy bố cục. Ảnh nội dung có alt mô tả đúng; icon trang trí ẩn khỏi trình đọc màn hình. Chỉ có một heading cấp 1 cho mỗi trang; cấp heading còn lại phản ánh cấu trúc nội dung.
+
+Trang chủ ưu tiên dịch vụ và dự án trước phần giới thiệu chi tiết. `/dich-vu` nhóm sáu dịch vụ theo nhu cầu; `/du-an` lọc theo phạm vi PCCC có nguồn; trang chi tiết nối dịch vụ với đúng dự án. Header đánh dấu mục hiện tại; breadcrumb đi theo hierarchy; footer nhóm link dịch vụ và thông tin công ty. Giữ các section anchor cũ trên trang chủ để các liên kết đã chia sẻ tiếp tục dùng được. Xem [information-architecture.md](information-architecture.md) cho sơ đồ và quy tắc nội dung. Dịch vụ chưa có dự án mẫu phải có hướng đi tiếp qua hồ sơ hoặc liên hệ, không gắn nhầm dự án của nhóm khác.
 
 ## Kiểm tra trước khi bàn giao
 

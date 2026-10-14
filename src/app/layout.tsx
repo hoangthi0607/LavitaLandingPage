@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { company, site } from "@/data/home";
+import { Header } from "@/components/layout/header";
+import { Footer } from "@/components/layout/footer";
+import { businessStructuredData } from "@/data/structured-data";
 import "./globals.css";
+import "./content.css";
+import "./contact.css";
 
 const manrope = localFont({
   src: "../../public/fonts/manrope-variable.ttf",
@@ -30,5 +35,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="vi" className={manrope.variable}><body><a className="skip-link" href="#main-content">Đến nội dung chính</a>{children}</body></html>;
+  return <html lang="vi" className={manrope.variable}><body><a className="skip-link" href="#main-content">Đến nội dung chính</a><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(businessStructuredData).replace(/</g, "\\u003c") }} /><Header /><main id="main-content" tabIndex={-1}>{children}</main><Footer /></body></html>;
 }

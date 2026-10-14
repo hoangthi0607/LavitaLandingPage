@@ -6,6 +6,7 @@ import type { Swiper as SwiperInstance } from "swiper";
 import { A11y } from "swiper/modules";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { site, slides } from "@/data/home";
 import "swiper/css";
 
@@ -37,8 +38,8 @@ export function Hero() {
         <h1 id="hero-title">{site.heroHeading}</h1>
         <p>{slides[active].description}</p>
         <div className="hero-actions">
-          <a className="button button-primary" href="#contact">Tư vấn cho công trình <ArrowUpRight size={18} aria-hidden="true" /></a>
-          <a className="hero-secondary" href={slides[active].href}>Khám phá giải pháp <ArrowRight size={18} aria-hidden="true" /></a>
+          <Link className="button button-primary" href="/dich-vu">Tìm dịch vụ phù hợp <ArrowUpRight size={18} aria-hidden="true" /></Link>
+          <Link className="hero-secondary" href={slides[active].href === "/dich-vu" ? "/du-an" : slides[active].href}>{slides[active].href === "/dich-vu" ? "Xem dự án PCCC" : "Tìm hiểu dịch vụ"} <ArrowRight size={18} aria-hidden="true" /></Link>
         </div>
       </div>
       <div className="hero-bottom">
