@@ -63,6 +63,8 @@ Server này cần Node.js và bản build Next.js thông thường cùng `node_m
 
 Kiểm tra bằng `npm run typecheck` và `npm run build`. Tham khảo [Next.js: HTTPS during development](https://nextjs.org/docs/app/api-reference/cli/next#using-https-during-development).
 
+`typecheck` tạo lại kiểu route bằng `next typegen` trước khi chạy TypeScript. Cấu hình TypeScript kiểm tra mã nguồn và `.next/types`, đồng thời loại trừ cache `.next/dev` để các route cũ từ lần chạy dev trước không làm lỗi bản build sau khi đổi cấu trúc thư mục.
+
 ## Nguồn nội dung
 
 Dựa trên `HSNL- LAVITA- CHUẨN 10.07.25 (3) (1).pdf` do người dùng cung cấp, gồm 32 trang PDF dạng trang đôi:
