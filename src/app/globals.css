@@ -153,10 +153,6 @@ h3 { font-size: 1.375rem; letter-spacing: -.025em; line-height: 1.4; margin: 0; 
 .values-list li { position: relative; padding: 28px 0 28px 28px; border-bottom: 1px solid #d5c5b640; font-size: 1.1875rem; line-height: 1.65; }
 .values-list li:first-child { border-top: 1px solid #d5c5b640; }
 .values-list li::before { content: ""; position: absolute; top: 40px; left: 0; width: 6px; height: 6px; border-radius: 50%; background: #ffc493; }
-.training { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 6vw, 90px); align-items: center; }
-.training-photo { position: relative; aspect-ratio: 1.1; }
-.training-photo img { object-fit: cover; }
-.training p { color: var(--color-muted); max-width: 55ch; }
 .contact { background: var(--color-surface-soft); display: grid; grid-template-columns: 1.15fr 1fr; gap: 70px; }
 .contact>div>p { color: var(--color-muted); max-width: 45ch; }
 .contact .button { margin-top: 8px; }
@@ -208,7 +204,7 @@ h3 { font-size: 1.375rem; letter-spacing: -.025em; line-height: 1.4; margin: 0; 
   .intro-strip { grid-template-columns: 1fr 1fr; padding-top: 28px; padding-bottom: 28px; gap: 20px 32px; }
   .intro-strip>div { grid-column: 1 / -1; justify-self: start; display: flex; align-items: center; gap: 22px; }
   .intro-strip .file-note { margin: 0; }
-  .about, .services, .training, .capabilities, .contact { grid-template-columns: 1fr; gap: 36px; }
+  .about, .services, .capabilities, .contact { grid-template-columns: 1fr; gap: 36px; }
   .about-photo { aspect-ratio: 1.15; max-height: 460px; }
   .about-photo img { object-position: center 40%; }
   .services-intro .detail-link { margin-bottom: 0; }
@@ -217,7 +213,6 @@ h3 { font-size: 1.375rem; letter-spacing: -.025em; line-height: 1.4; margin: 0; 
   .project-photo { aspect-ratio: 1.15; }
   .project-info h3 { font-size: 1.125rem; }
   .project-photo>span { top: 12px; left: 12px; font-size: .6875rem; padding: 6px 10px; }
-  .training-photo { aspect-ratio: 1.3; }
   .contact address>a:first-child { padding-top: 0; }
   .footer { grid-template-columns: 1fr 1fr; gap: 28px; }
 }

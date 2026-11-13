@@ -3,7 +3,7 @@ export const site = {
   url: "https://lavitacons.vn",
   name: "Lavita",
   title: "Lavita | Thiết kế, thi công và bảo trì PCCC",
-  description: "Công ty TNHH Xây dựng Lavita cung cấp giải pháp phòng cháy chữa cháy: thiết kế, thi công, nghiệm thu, bảo trì, huấn luyện và thiết bị PCCC.",
+  description: "Công ty TNHH Xây dựng Lavita cung cấp giải pháp phòng cháy chữa cháy: thiết kế, thi công, nghiệm thu, bảo trì và thiết bị PCCC.",
   heroHeading: "Lavita – giải pháp\nphòng cháy chữa cháy",
 };
 
@@ -13,25 +13,24 @@ export const company = {
  taxCode: "0318182111", profile: "/documents/ho-so-nang-luc-lavita.pdf",
 };
 export const navigation = [
- { label: "Dịch vụ PCCC", href: "/dich-vu" }, { label: "Dự án PCCC", href: "/du-an" },
- { label: "Về Lavita", href: "/ve-lavita" }, { label: "Hồ sơ năng lực", href: company.profile }, { label: "Liên hệ", href: "/lien-he" },
+ { label: "Về Lavita", href: "/ve-lavita" }, { label: "Dịch vụ PCCC", href: "/dich-vu" }, { label: "Dự án PCCC", href: "/du-an" },
+ { label: "Hồ sơ năng lực", href: company.profile }, { label: "Liên hệ", href: "/lien-he" },
 ];
 export const slides = [
  { title: "An toàn hôm nay.\nGiá trị mai sau.", description: "Giải pháp phòng cháy chữa cháy đồng bộ — từ tư vấn thiết kế, thi công đến bảo trì công trình.", category: "LAVITA · GIẢI PHÁP PCCC", href: "/dich-vu", image: "/images/installation.webp", alt: "Hệ thống đường ống PCCC trong hồ sơ Lavita" },
  { title: "Thiết kế đúng.\nVững nền an toàn.", description: "Đồng hành cùng công trình dân dụng và công nghiệp với giải pháp phù hợp từng nhu cầu.", category: "TƯ VẤN & THIẾT KẾ", href: "/dich-vu/tu-van-thiet-ke", image: "/images/dai-nhat.webp", alt: "Phối cảnh Chung cư Đại Nhật, dự án thiết kế PCCC" },
- { title: "Chủ động bảo trì.\nBền vững vận hành.", description: "Bảo trì, sửa chữa hệ thống PCCC và huấn luyện nghiệp vụ để sẵn sàng ứng phó.", category: "BẢO TRÌ & HUẤN LUYỆN", href: "/dich-vu/bao-tri-sua-chua", image: "/images/maintenance.webp", alt: "Kiểm tra thiết bị hệ thống PCCC" },
+ { title: "Chủ động bảo trì.\nBền vững vận hành.", description: "Bảo trì, sửa chữa hệ thống PCCC để công trình vận hành an toàn.", category: "BẢO TRÌ & SỬA CHỮA", href: "/dich-vu/bao-tri-sua-chua", image: "/images/maintenance.webp", alt: "Kiểm tra thiết bị hệ thống PCCC" },
 ];
 export const services = [
  { slug: "tu-van-thiet-ke", title: "Tư vấn thiết kế", description: "Xây dựng giải pháp và thiết kế hệ thống PCCC phù hợp đặc thù công trình.", group: "trien-khai", image: "/images/dai-nhat.webp", preparation: ["Loại công trình và địa điểm", "Giai đoạn chuẩn bị hoặc thiết kế hiện tại", "Bản vẽ và nhu cầu PCCC đang có"], relatedServiceSlugs: ["thi-cong-he-thong", "tu-van-nghiem-thu"] },
  { slug: "thi-cong-he-thong", title: "Thi công hệ thống", description: "Triển khai thi công hệ thống PCCC cho công trình dân dụng và công nghiệp.", group: "trien-khai", image: "/images/installation.webp", preparation: ["Loại công trình và địa điểm", "Phạm vi hệ thống cần thi công", "Hồ sơ thiết kế và tiến độ dự kiến"], relatedServiceSlugs: ["tu-van-thiet-ke", "tu-van-nghiem-thu"] },
  { slug: "tu-van-nghiem-thu", title: "Tư vấn nghiệm thu", description: "Đồng hành trong công tác tư vấn nghiệm thu phòng cháy chữa cháy.", group: "trien-khai", image: "/images/engineer.webp", preparation: ["Loại công trình và địa điểm", "Tình trạng triển khai hệ thống PCCC", "Hồ sơ hiện có và nội dung cần trao đổi"], relatedServiceSlugs: ["thi-cong-he-thong", "bao-tri-sua-chua"] },
- { slug: "bao-tri-sua-chua", title: "Bảo trì & sửa chữa", description: "Kiểm tra, bảo trì và sửa chữa hệ thống; nạp sạc các loại bình chữa cháy.", group: "van-hanh", image: "/images/maintenance.webp", preparation: ["Loại công trình đang vận hành", "Hệ thống hoặc thiết bị cần kiểm tra", "Tình trạng hiện tại và nhu cầu bảo trì"], relatedServiceSlugs: ["dao-tao-huan-luyen", "vat-tu-thiet-bi"] },
- { slug: "dao-tao-huan-luyen", title: "Đào tạo & huấn luyện", description: "Đào tạo, tập huấn nghiệp vụ PCCC cho đội ngũ tại công trình.", group: "van-hanh", image: "/images/training.webp", preparation: ["Loại công trình và địa điểm huấn luyện", "Đội ngũ tham gia dự kiến", "Nội dung và thời gian muốn trao đổi"], relatedServiceSlugs: ["bao-tri-sua-chua", "vat-tu-thiet-bi"] },
+ { slug: "bao-tri-sua-chua", title: "Bảo trì & sửa chữa", description: "Kiểm tra, bảo trì và sửa chữa hệ thống; nạp sạc các loại bình chữa cháy.", group: "van-hanh", image: "/images/maintenance.webp", preparation: ["Loại công trình đang vận hành", "Hệ thống hoặc thiết bị cần kiểm tra", "Tình trạng hiện tại và nhu cầu bảo trì"], relatedServiceSlugs: ["vat-tu-thiet-bi"] },
  { slug: "vat-tu-thiet-bi", title: "Vật tư & thiết bị", description: "Thiết bị PCCC, báo cháy tự động, sản phẩm HVAC và vật liệu chống cháy.", group: "thiet-bi", image: "/images/installation.webp", preparation: ["Loại thiết bị hoặc vật tư cần tìm", "Thông số và số lượng nếu đã có", "Công trình sử dụng và thời gian dự kiến"], relatedServiceSlugs: ["thi-cong-he-thong", "bao-tri-sua-chua"] },
 ] as const;
 export const serviceGroups = [
  { id: "trien-khai", title: "Thiết kế & triển khai", description: "Từ chuẩn bị thiết kế đến thi công và tư vấn nghiệm thu." },
- { id: "van-hanh", title: "Vận hành & an toàn", description: "Bảo trì hệ thống và huấn luyện đội ngũ tại công trình." },
+ { id: "van-hanh", title: "Vận hành & an toàn", description: "Kiểm tra, bảo trì và sửa chữa hệ thống PCCC tại công trình." },
  { id: "thiet-bi", title: "Vật tư & thiết bị", description: "Tìm thiết bị PCCC, sản phẩm HVAC và vật liệu chống cháy." },
 ] as const;
 export const projects = [

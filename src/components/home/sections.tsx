@@ -1,7 +1,7 @@
 ﻿import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, Mail, MapPin, Phone, Plus } from "lucide-react";
-import { company, contactHref, projects, serviceGroups, services, values } from "@/data/home";
+import { company, projects, serviceGroups, services, values } from "@/data/home";
 
 function ProfileLink({ children, className = "detail-link", page }: { children: React.ReactNode; className?: string; page?: number }) {
   return <a className={className} href={`${company.profile}${page ? `#page=${page}` : ""}`} target="_blank" rel="noopener noreferrer">{children}<ArrowUpRight size={19} aria-hidden="true" /><span className="sr-only"> (PDF, mở trong tab mới)</span></a>;
@@ -60,13 +60,6 @@ export function Capabilities() {
   return <section id="capabilities" className="section capabilities" aria-labelledby="capabilities-title">
       <div><h2 id="capabilities-title">Chuyên môn.<br />Trách nhiệm.<br /><span>Niềm tin.</span></h2><p>Đội ngũ kỹ thuật, hồ sơ pháp lý và hệ thống giá trị là nền tảng để Lavita đồng hành cùng khách hàng.</p><ProfileLink className="button button-light">Xem hồ sơ năng lực</ProfileLink><span className="file-note">PDF · 67 MB</span></div>
       <ul className="values-list">{values.map(value => <li key={value}>{value}</li>)}</ul>
-    </section>;
-}
-
-export function Training() {
-  return <section id="training" className="section training" aria-labelledby="training-title">
-      <div className="training-photo"><Image src="/images/training.webp" alt="Hoạt động huấn luyện sử dụng bình chữa cháy" fill sizes="(max-width: 760px) 100vw, 50vw" /></div>
-      <div><h2 id="training-title">An toàn bắt đầu<br />từ sự chủ động.</h2><p className="lead">Đào tạo và huấn luyện nghiệp vụ PCCC — nâng cao khả năng ứng phó tại công trình.</p><p>Song hành với hệ thống kỹ thuật, Lavita cung cấp hoạt động tập huấn nghiệp vụ và dịch vụ nạp sạc bình chữa cháy.</p><Link className="detail-link" href="/dich-vu/dao-tao-huan-luyen">Tìm hiểu đào tạo & huấn luyện <ArrowRight size={19} aria-hidden="true" /></Link><Link className="detail-link" href={contactHref("bao-tri-sua-chua")}>Trao đổi về bảo trì <ArrowRight size={19} aria-hidden="true" /></Link></div>
     </section>;
 }
 

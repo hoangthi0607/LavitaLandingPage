@@ -4,7 +4,7 @@ import { PageIntro } from "@/components/content/page-intro";
 import { contactHref, serviceGroups, services } from "@/data/home";
 import { pageMetadata } from "@/lib/metadata";
 
-export const metadata = pageMetadata("Dịch vụ PCCC", "Chọn dịch vụ PCCC theo nhu cầu: thiết kế, thi công, nghiệm thu, bảo trì, huấn luyện hoặc vật tư thiết bị. Xem phạm vi và dự án phù hợp của Lavita.", "/dich-vu");
+export const metadata = pageMetadata("Dịch vụ PCCC", "Chọn dịch vụ PCCC theo nhu cầu: thiết kế, thi công, nghiệm thu, bảo trì hoặc vật tư thiết bị. Xem phạm vi và dự án phù hợp của Lavita.", "/dich-vu");
 
 export default function ServicesPage() {
   return <>
