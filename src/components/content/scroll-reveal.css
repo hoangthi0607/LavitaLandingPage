@@ -1,0 +1,27 @@
+.scroll-reveal-scope [data-scroll-reveal] {
+  transition: opacity 650ms var(--ease-out), transform 650ms var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.scroll-reveal-scope [data-scroll-reveal="pending"] {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.scroll-reveal-scope [data-scroll-reveal="visible"],
+.scroll-reveal-scope [data-scroll-reveal]:focus-within {
+  opacity: 1;
+  transform: none;
+}
+
+.scroll-reveal-scope [data-scroll-reveal]:focus-within {
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal-scope [data-scroll-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
