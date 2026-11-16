@@ -2,6 +2,8 @@
 
 ## Phạm vi và quyết định chính
 
+Cập nhật nội dung 16/11/2026: website dùng ảnh/tài liệu và mô tả trực tiếp, không hiển thị dẫn nguồn hồ sơ, số trang hoặc liên kết đối chiếu PDF. Chỉ nút tải tại `/ho-so-nang-luc` nhắc đến PDF. Tham chiếu nguồn trong tài liệu này được giữ cho biên tập nội bộ.
+
 Website có trang mô tả dịch vụ và khu vực dự án riêng. Theo yêu cầu người dùng, **dịch vụ** trình bày công ty phục vụ những gì; luồng **dự án** là **hạng mục dịch vụ → danh sách công trình đúng hạng mục → chi tiết công trình**. Trang chủ vẫn là điểm tổng quan; hồ sơ PDF là nguồn đối chiếu, không thay thế nội dung trên website.
 
 - Website: `https://lavitacons.vn`.
@@ -23,7 +25,7 @@ Các nhóm dưới đây là **suy luận từ hồ sơ doanh nghiệp và dịc
 | Người đánh giá năng lực hoặc chuẩn bị lựa chọn đối tác | Phạm vi Lavita thực hiện tại dự án, nguồn PDF, thông tin doanh nghiệp | `/du-an`, `/ve-lavita` |
 | Người đã xác định nhu cầu | Điện thoại/email và nội dung cần trao đổi | `/lien-he` |
 
-Nhiệm vụ chính là nhận diện dịch vụ, xem phạm vi thực tế, mở bằng chứng PDF, liên hệ đúng ngữ cảnh và quay lại nhóm nội dung liên quan. Header cho phép vào trực tiếp các nhóm này. Luồng xem bằng chứng có thể đi qua nhiều trang; người muốn liên hệ ngay có CTA chung, không phải hoàn tất một chuỗi bắt buộc.
+Nhiệm vụ chính là nhận diện dịch vụ, xem phạm vi thực tế, xem tài liệu và ảnh thực tế, liên hệ đúng ngữ cảnh và quay lại nhóm nội dung liên quan. Header cho phép vào trực tiếp các nhóm này. Luồng xem bằng chứng có thể đi qua nhiều trang; người muốn liên hệ ngay có CTA chung, không phải hoàn tất một chuỗi bắt buộc.
 
 Mô hình tổ chức dựa trên **nhu cầu và giai đoạn công trình**. Các nhóm dịch vụ giúp quét danh mục; phạm vi PCCC là tiêu chí tìm dự án. Tên công trình hoặc cơ cấu nhân sự không trở thành cách chia dịch vụ.
 
@@ -32,7 +34,7 @@ Mô hình tổ chức dựa trên **nhu cầu và giai đoạn công trình**. C
 | Nội dung hiện có | Nguồn và giới hạn | Cách dùng |
 | --- | --- | --- |
 | Ba dịch vụ PCCC | Tên và mô tả từ dữ liệu doanh nghiệp | Một trang mô tả đầy đủ; URL thông tin chi tiết cũ vẫn hoạt động |
-| Bốn dự án đang được giới thiệu | Chỉ là các ví dụ đã chọn từ hồ sơ, không là tổng số công trình Lavita | Danh sách theo hạng mục, bốn trang chi tiết, liên kết trang PDF |
+| Bốn dự án đang được giới thiệu | Chỉ là các ví dụ đã chọn từ hồ sơ, không là tổng số công trình Lavita | Danh sách theo hạng mục, bốn trang chi tiết, phạm vi PCCC rõ ràng |
 | Giới thiệu, năm thành lập, giá trị | Nội dung đã có trên website/hồ sơ | `/ve-lavita` và phần tổng quan trang chủ |
 | Hotline, email, địa chỉ, mã số thuế | Cập nhật hiện tại trong `company`, giữ số điện thoại và `tel:` đồng bộ | Header, footer, liên hệ và structured data |
 | Hồ sơ năng lực | Trang HTML từ dữ liệu doanh nghiệp và hồ sơ gốc | `/ho-so-nang-luc`, có mục lục và nút tải PDF khoảng 67 MB; cần giữ file trên server sau khi clone |
@@ -114,9 +116,9 @@ Secondary nav gồm breadcrumbs, bộ chuyển hạng mục trên danh sách d�
 
 Footer gom liên kết vào **Dịch vụ PCCC** (anchor tới ba mô tả trên cùng trang), **Tìm hiểu Lavita** (dự án, doanh nghiệp, liên hệ, hồ sơ) và thông tin công ty/điện thoại/email/địa chỉ. Không tạo mục privacy, tuyển dụng, tài khoản hoặc tìm kiếm khi chưa có nội dung/chức năng đó.
 
-Link bằng chứng PDF ghi rõ loại tệp và thông tin mở tab mới; nút tải hồ sơ riêng ghi dung lượng và dùng thuộc tính `download`. Điều hướng route dẫn tới trang nội dung HTML.
+Nút tải hồ sơ duy nhất ghi “Tải hồ sơ PDF” và dùng thuộc tính `download`; không còn link đối chiếu PDF ở dịch vụ hoặc dự án. Điều hướng route dẫn tới trang nội dung HTML.
 
-Từ 16/11/2026, mục Hồ sơ năng lực và CTA tổng quan dẫn tới `/ho-so-nang-luc` trong cùng tab. Trang áp dụng bố cục ảnh gốc từ PDF: đội ngũ thi công, bản scan pháp lý, bằng cấp/chứng chỉ nhân sự, cây tổ chức và ba cụm dự án theo phạm vi PCCC. Có tám ảnh tài liệu mở lớn, chuyển ảnh và phóng ngay trên web; PDF là nút tải riêng cuối trang. Các link bằng chứng PDF tại công trình vẫn mở đúng trang gốc. Không đưa trở lại các dịch vụ đã gỡ hoặc kế hoạch doanh thu.
+Từ 16/11/2026, mục Hồ sơ năng lực và CTA tổng quan dẫn tới `/ho-so-nang-luc` trong cùng tab. Trang áp dụng bố cục ảnh gốc từ PDF: đội ngũ thi công, bản scan pháp lý, bằng cấp/chứng chỉ nhân sự, cây tổ chức và ba cụm dự án theo phạm vi PCCC. Hiện có bốn bản scan pháp lý mở lớn, chuyển ảnh và phóng ngay trên web; phần bằng cấp nhân sự đang ẩn. PDF là nút tải riêng cuối trang; các trang công trình không có link đối chiếu PDF. Không đưa trở lại các dịch vụ đã gỡ hoặc kế hoạch doanh thu.
 
 ## Content types và taxonomy
 
@@ -127,7 +129,7 @@ Mục sản phẩm được dựng khung theo yêu cầu người dùng, hiện 
 | Mô tả dịch vụ | Nhãn nhóm, mô tả nhóm, nội dung ba dịch vụ | `/dich-vu`, anchor từng dịch vụ và liên hệ có ngữ cảnh |
 | Service | `slug`, `title`, `description`, `group`, `image`, `preparation`, `relatedServiceSlugs` | Mô tả tại `/dich-vu#[slug]`; giữ `/dich-vu/[slug]` cũ, không nhúng danh sách dự án |
 | Hạng mục và danh sách dự án | Hạng mục từ `services`, công trình khớp `serviceSlug` | `/du-an` chọn hạng mục; query hạng mục mở danh sách; chọn công trình mở chi tiết |
-| Project | `slug`, `serviceSlug`, `title`, `description`, `tag`, `image`, `profilePage` | `/du-an/[slug]`, scope rõ, bằng chứng PDF, liên hệ và hub lọc |
+| Project | `slug`, `serviceSlug`, `title`, `description`, `tag`, `image`, `profilePage` | `/du-an/[slug]`, scope rõ, tham chiếu nguồn nội bộ, liên hệ và hub lọc |
 | Trang doanh nghiệp | Giới thiệu, giá trị, năng lực đã có | `/ve-lavita`, dẫn dịch vụ và hồ sơ |
 | Trang liên hệ | Thông tin công ty, dịch vụ/dự án tham khảo, nội dung người đọc muốn trao đổi | `/lien-he`, gọi điện hoặc mở email do người đọc tự gửi |
 

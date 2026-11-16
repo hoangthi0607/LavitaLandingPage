@@ -119,7 +119,6 @@ h3 { font-size: 1.375rem; letter-spacing: -.025em; line-height: 1.4; margin: 0; 
 .intro-strip strong { font-weight: 650; }
 .intro-strip>p:nth-child(2) { color: var(--color-muted); font-size: .9375rem; max-width: 33ch; }
 .intro-strip>div { justify-self: end; }
-.file-note { display: block; font-size: .75rem; color: var(--color-muted); margin-top: 10px; }
 .about { display: grid; grid-template-columns: .95fr 1fr; gap: clamp(40px, 7vw, 100px); align-items: center; }
 .about-photo { position: relative; aspect-ratio: .88; max-height: 580px; }
 .about-photo img { object-fit: cover; object-position: center; }
@@ -155,13 +154,11 @@ h3 { font-size: 1.375rem; letter-spacing: -.025em; line-height: 1.4; margin: 0; 
 .project-info p { font-size: .875rem; color: var(--color-muted); margin: 0; }
 .project-link { display: inline-flex; gap: 14px; align-items: center; min-height: 44px; margin-top: 8px; font-size: .8125rem; font-weight: 600; }
 .project-link:hover { color: var(--color-brand); text-decoration: underline; }
-.project-proof { margin-left: 24px; color: var(--color-muted); font-weight: 500; }
 .project-info h3 a:hover { color: var(--color-brand); text-decoration: underline; }
 .capabilities { display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(40px, 7vw, 100px); background: var(--color-dark); color: var(--color-on-dark); }
 .capabilities h2 span { color: #ffc493; }
 .capabilities>div>p { max-width: 40ch; color: var(--color-muted-on-dark); }
 .capabilities .button { margin-top: 16px; }
-.capabilities .file-note { color: var(--color-muted-on-dark); }
 .capabilities :focus-visible { outline-color: #ffd1aa; }
 .values-list { margin: 0; padding: 0; list-style: none; }
 .values-list li { position: relative; padding: 28px 0 28px 28px; border-bottom: 1px solid #d5c5b640; font-size: 1.1875rem; line-height: 1.65; }
@@ -219,7 +216,6 @@ h3 { font-size: 1.375rem; letter-spacing: -.025em; line-height: 1.4; margin: 0; 
   .hero-controls button { width: 44px; height: 44px; }
   .intro-strip { grid-template-columns: 1fr 1fr; padding-top: 28px; padding-bottom: 28px; gap: 20px 32px; }
   .intro-strip>div { grid-column: 1 / -1; justify-self: start; display: flex; align-items: center; gap: 22px; }
-  .intro-strip .file-note { margin: 0; }
   .about, .services, .capabilities, .contact { grid-template-columns: 1fr; gap: 36px; }
   .about-photo { aspect-ratio: 1.15; max-height: 460px; }
   .about-photo img { object-position: center 40%; }
@@ -255,7 +251,6 @@ h3 { font-size: 1.375rem; letter-spacing: -.025em; line-height: 1.4; margin: 0; 
   .project-grid { grid-template-columns: 1fr; }
   .project-photo { aspect-ratio: 1.4; }
   .project-info h3 { font-size: 1.25rem; }
-  .project-proof { display: flex; margin-left: 0; }
   .values-list li { font-size: 1.0625rem; padding-block: 24px; }
   .values-list li::before { top: 34px; }
   .footer { grid-template-columns: 1fr; }

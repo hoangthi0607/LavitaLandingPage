@@ -23,7 +23,7 @@ Manrope được lưu trong `public/fonts/manrope-variable.ttf`, tải bằng `n
 | Display | Hero và heading lớn có trọng lượng rõ, dòng ngắn, xuống dòng có chủ đích; cỡ tối đa 6rem. |
 | Heading | Cùng cấp dùng cùng mức chữ; khoảng cách phía trên lớn hơn phía dưới. |
 | Body | Dễ đọc với chiều cao dòng thoáng; đoạn dài giữ độ rộng khoảng 45–75 ký tự tùy cột. |
-| Meta | Nhãn phạm vi, địa điểm và nguồn PDF nhỏ hơn body nhưng vẫn đủ tương phản. |
+| Meta | Nhãn phạm vi, địa điểm và chú thích ảnh nhỏ hơn body nhưng vẫn đủ tương phản. |
 
 Tracking của heading không nhỏ hơn `-0.04em`; không dùng monospace để tạo vẻ kỹ thuật. Kiểm tra dấu tiếng Việt, độ dài tên công trình và xuống dòng ở từng breakpoint.
 
@@ -51,12 +51,16 @@ CSS trong `src/app/globals.css` là nguồn chuẩn cho các token theo vai trò
 - Nút secondary: cùng chiều cao và nhịp khoảng cách, trọng lượng nhẹ hơn; dùng cho hồ sơ hoặc hành động khám phá.
 - Liên kết nội dung có tên hành động cụ thể và dấu hiệu tương tác nhất quán. Icon dùng Lucide, không thay bằng ký tự Unicode.
 - Luồng chính là chọn dịch vụ, đối chiếu dự án cùng phạm vi rồi trao đổi nhu cầu. CTA tư vấn mang slug dịch vụ/dự án vào `/lien-he`; trang này soạn email có subject/body tương ứng và mở ứng dụng email để người đọc tự gửi. Gọi điện và email dùng thông tin thật. Không báo đã gửi yêu cầu hoặc tạo backend giả.
-- Dự án có nhãn phạm vi PCCC và liên kết ghi rõ mở hồ sơ PDF. Dùng fragment `#page=` để tới trang chứng minh dự án: Đại Nhật 18, Crescent Mall 19, C2 Bình Dương 22, Pegasuite 25. Đây là số trang PDF, không phải số trang in trong tài liệu dạng trang đôi.
-- PDF khoảng 67 MB chỉ tải khi người xem chủ động mở; không nhúng toàn bộ vào trang chủ. Việc mở đúng trang phụ thuộc trình đọc PDF của trình duyệt.
+- Dự án có nhãn phạm vi PCCC rõ ràng. Thông tin nguồn và số trang đối chiếu chỉ lưu nội bộ trong dữ liệu/tài liệu; không hiển thị câu dẫn nguồn hoặc link PDF trên thẻ và chi tiết công trình.
+- Chỉ nút “Tải hồ sơ PDF” tại trang hồ sơ được nhắc đến định dạng PDF; không nhắc số trang, dung lượng hoặc nguồn hồ sơ ở các khu vực khác. Dung lượng khoảng 67 MB được giữ trong tên truy cập của nút tải. Không nhúng hoặc tự tải PDF.
 
 ## Responsive và khả năng tiếp cận
 
-“Hồ sơ năng lực” dẫn tới trang HTML `/ho-so-nang-luc` trong cùng tab ở header, footer và CTA tổng quan. Bố cục dùng ảnh gốc từ PDF: hero hệ thống, “Đội ngũ thi công công trình”, “Hồ sơ pháp lý”, “Bằng cấp, chứng chỉ nhân sự”, cây tổ chức và ba cụm dự án theo phạm vi PCCC. Hai tiêu đề tài liệu không có câu diễn giải bên cạnh. Nội dung, ảnh và trang nguồn tại `companyProfile` trong `src/data/home.ts`; ảnh tại `public/images/profile/`. Bản scan hiển thị đủ nội dung, không crop mất dấu/chữ; thumbnail tối ưu riêng, ảnh đầy đủ chỉ mount khi mở trình xem. Gallery là Client Component dùng native `dialog`, hỗ trợ chuyển ảnh, phóng lớn, Tab, Escape và trả focus về ảnh đã chọn; khi không có JavaScript, link mở ảnh gốc. Layout còn lại là Server Component, không thêm chuyển động. PDF tải riêng cuối trang, không tự nhúng; liên kết bằng chứng trên trang dự án vẫn giữ. Không biến kế hoạch tăng trưởng thành thành tích hoặc suy diễn hiệu lực giấy tờ.
+Cập nhật mới nhất: phần bằng cấp/chứng chỉ nhân sự trên hồ sơ đang ẩn theo yêu cầu người dùng, qua `companyProfile.showCredentials = false`. Không render tiêu đề, ảnh kỹ thuật viên, gallery hoặc mục lục tương ứng. Cây tổ chức vẫn hiển thị riêng, có heading và khoảng cách phù hợp khi khối tài liệu nhân sự bị ẩn.
+
+Nội dung công khai dùng mô tả trực tiếp, không có các câu “được giới thiệu trong hồ sơ Lavita”, “theo hồ sơ năng lực”, nhãn “trang PDF” hoặc lời dẫn nguồn tương tự, kể cả alt, metadata và footer. Trình xem tài liệu chỉ có tên và số thứ tự ảnh. Tên trang “Hồ sơ năng lực” và liên kết nội bộ đến trang này vẫn giữ.
+
+“Hồ sơ năng lực” dẫn tới trang HTML `/ho-so-nang-luc` trong cùng tab ở header, footer và CTA tổng quan. Bố cục dùng ảnh gốc từ PDF: hero hệ thống, “Đội ngũ thi công công trình”, “Hồ sơ pháp lý”, “Bằng cấp, chứng chỉ nhân sự”, cây tổ chức và ba cụm dự án theo phạm vi PCCC. Hai tiêu đề tài liệu không có câu diễn giải bên cạnh. Nội dung, ảnh và trang nguồn tại `companyProfile` trong `src/data/home.ts`; ảnh tại `public/images/profile/`. Bản scan hiển thị đủ nội dung, không crop mất dấu/chữ; thumbnail tối ưu riêng, ảnh đầy đủ chỉ mount khi mở trình xem. Gallery là Client Component dùng native `dialog`, hỗ trợ chuyển ảnh, phóng lớn, Tab, Escape và trả focus về ảnh đã chọn; khi không có JavaScript, link mở ảnh gốc. Layout còn lại là Server Component, không thêm chuyển động. PDF chỉ có nút tải riêng cuối trang; không tự nhúng hoặc đặt link đối chiếu ở dự án. Không biến kế hoạch tăng trưởng thành thành tích hoặc suy diễn hiệu lực giấy tờ.
 
 “Sản phẩm” là mục riêng sau “Dự án PCCC”, dẫn tới `/san-pham`. Trang dùng danh mục bên trái trên desktop, các lựa chọn xuống dòng trên mobile, form tìm kiếm GET và vùng danh sách. Dữ liệu tại `src/data/products.ts`; hiện chưa có sản phẩm thực tế nên hiển thị đang cập nhật, không tạo thẻ hàng/giá/ảnh/thông số giả. Bốn nhóm ban đầu là cấu trúc để bổ sung sau, không thay đổi ba dịch vụ PCCC. Liên hệ giữ nhóm sản phẩm và chỉ soạn email để người xem tự gửi. Xem [docs/products.md](docs/products.md). Header có sáu mục; CTA riêng ẩn dưới 1201 px để giữ menu thoáng, liên kết Liên hệ vẫn hiển thị.
 

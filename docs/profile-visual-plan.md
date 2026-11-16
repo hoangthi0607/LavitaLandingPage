@@ -2,6 +2,8 @@
 
 Ngày 16/11/2026. Bố cục này đã được người dùng yêu cầu áp dụng vào `/ho-so-nang-luc`, với ba tiêu đề đã chốt: **Đội ngũ thi công công trình**, **Hồ sơ pháp lý**, **Bằng cấp, chứng chỉ nhân sự**.
 
+Cập nhật sau triển khai: phần bằng cấp/chứng chỉ đang ẩn. Toàn website đã bỏ mô tả dẫn nguồn, số trang và link đối chiếu PDF; chỉ nút tải cuối trang nhắc PDF. Số trang và nguồn ảnh dưới đây dùng nội bộ, không là chú thích hiển thị cho khách truy cập. Trình xem ảnh giữ tên tài liệu và thứ tự ảnh.
+
 ## Hướng thiết kế
 
 Trang cần có cảm giác đang xem một bộ hồ sơ doanh nghiệp được biên tập cho web: thấy công trình, người thực hiện và tài liệu chứng minh ngay trên trang. Ảnh mang nội dung chính; chữ dùng để gọi tên, giải thích phạm vi và dẫn người đọc. Giữ màu đỏ/cam Lavita, Manrope và nền ivory hiện có.

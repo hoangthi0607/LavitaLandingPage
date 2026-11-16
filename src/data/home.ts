@@ -18,7 +18,7 @@ export const navigation = [
  { label: "Sản phẩm", href: "/san-pham" }, { label: "Hồ sơ năng lực", href: "/ho-so-nang-luc" }, { label: "Liên hệ", href: "/lien-he" },
 ];
 export const slides = [
- { title: "An toàn hôm nay.\nGiá trị mai sau.", description: "Giải pháp phòng cháy chữa cháy đồng bộ — từ tư vấn thiết kế, thi công đến bảo trì công trình.", category: "LAVITA · GIẢI PHÁP PCCC", href: "/dich-vu", image: "/images/installation.webp", alt: "Hệ thống đường ống PCCC trong hồ sơ Lavita" },
+ { title: "An toàn hôm nay.\nGiá trị mai sau.", description: "Giải pháp phòng cháy chữa cháy đồng bộ — từ tư vấn thiết kế, thi công đến bảo trì công trình.", category: "LAVITA · GIẢI PHÁP PCCC", href: "/dich-vu", image: "/images/installation.webp", alt: "Hệ thống đường ống PCCC" },
  { title: "Thiết kế đúng.\nVững nền an toàn.", description: "Đồng hành cùng công trình dân dụng và công nghiệp với giải pháp phù hợp từng nhu cầu.", category: "TƯ VẤN & THIẾT KẾ", href: "/dich-vu#tu-van-thiet-ke", image: "/images/dai-nhat.webp", alt: "Phối cảnh Chung cư Đại Nhật, dự án thiết kế PCCC" },
  { title: "Chủ động bảo trì.\nBền vững vận hành.", description: "Bảo trì, sửa chữa hệ thống PCCC để công trình vận hành an toàn.", category: "BẢO TRÌ & SỬA CHỮA", href: "/dich-vu#bao-tri-sua-chua", image: "/images/maintenance.webp", alt: "Kiểm tra thiết bị hệ thống PCCC" },
 ];
@@ -66,13 +66,14 @@ export const companyProfile = {
  description: "Thông tin doanh nghiệp, chuyên môn, đội ngũ và các dự án PCCC của Công ty TNHH Xây dựng Lavita.",
  heroHeading: "Hồ sơ năng lực\nLavita.",
  introduction: "Chuyên môn từ con người.\nMinh chứng qua từng công trình.",
- heroImage: { src: "/images/profile/he-thong-pccc.webp", alt: "Hệ thống đường ống PCCC trong hồ sơ năng lực Lavita", sourcePage: 21 },
+ heroImage: { src: "/images/profile/he-thong-pccc.webp", alt: "Hệ thống đường ống PCCC", sourcePage: 21 },
  founded: "2023",
  teamTitle: "Đội ngũ thi công công trình",
- teamCaption: "Đội thi công hệ thống PCCC tại Chung cư C2 Bình Dương, được giới thiệu trong hồ sơ Lavita.",
+ teamCaption: "Đội thi công hệ thống PCCC tại Chung cư C2 Bình Dương.",
  teamImage: { src: "/images/profile/doi-ngu-thi-cong-c2.webp", width: 1181, height: 664, alt: "Đội thi công hệ thống PCCC tại Chung cư C2 Bình Dương", sourcePage: 23 },
  legalTitle: "Hồ sơ pháp lý",
  credentialsTitle: "Bằng cấp, chứng chỉ nhân sự",
+ showCredentials: false,
  technicianImage: { src: "/images/profile/ky-thuat-vien-pccc.webp", width: 720, height: 1020, alt: "Kỹ thuật viên thao tác tại hệ thống PCCC", sourcePage: 10 },
  projectsTitle: "Năng lực thể hiện\nqua phạm vi PCCC.",
  sections: [
@@ -110,5 +111,4 @@ export const companyProfile = {
    { src: "/images/profile/pegasuite-kiem-tra-thiet-bi.webp", width: 556, height: 858, alt: "Kiểm tra thiết bị PCCC tại Chung cư Phương Việt – The Pegasuite", sourcePage: 25 },
   ] },
  ],
- documentNote: "Bản hồ sơ năng lực ngày 10/07/2025. Thông tin liên hệ trên website được cập nhật theo thông tin hiện tại của Lavita.",
 } as const;

@@ -48,9 +48,6 @@
 .content-project .project-photo { display: block; }
 .content-project .project-photo img { transition: transform .5s var(--ease-out); }
 .content-project .project-photo:hover img { transform: scale(1.03); }
-.project-card-actions { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px 20px; }
-.project-proof { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding-block: 8px; margin-top: 8px; color: var(--color-muted); font-size: .8125rem; }
-.project-proof:hover { color: var(--color-brand); text-decoration: underline; }
 .related-services h2 { font-size: clamp(1.75rem, 3vw, 2.625rem); }
 .related-service-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0 48px; }
 .related-service-list a { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 72px; padding: 16px 0; border-block: 1px solid var(--color-line); font-size: 1.125rem; font-weight: 650; }
@@ -110,8 +107,6 @@
   .service-directory-row { padding-block: 24px; }
   .related-service-list { grid-template-columns: 1fr; }
   .related-service-list a + a { border-top: 0; }
-  .project-card-actions { flex-direction: column; align-items: flex-start; gap: 0; }
-  .project-proof { margin-top: 0; }
   .project-filters a { padding-inline: 12px; font-size: .8125rem; }
 }
 @media (prefers-reduced-motion: reduce) {

@@ -66,7 +66,7 @@ export function DocumentGallery({ title, items, variant = "legal" }: { title: st
           else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
         }
       }}>
-      <div className="document-viewer-header"><div><h2 id={`${id}-title`}>{active?.title ?? title}</h2><p id={`${id}-status`} role="status">{active && `Ảnh ${(selected ?? 0) + 1} / ${items.length} · Hồ sơ năng lực, trang PDF ${active.sourcePage}`}</p></div><button type="button" className="document-viewer-icon" onClick={close} aria-label="Đóng ảnh"><X size={23} aria-hidden="true" /></button></div>
+      <div className="document-viewer-header"><div><h2 id={`${id}-title`}>{active?.title ?? title}</h2><p id={`${id}-status`} role="status">{active && `Ảnh ${(selected ?? 0) + 1} / ${items.length}`}</p></div><button type="button" className="document-viewer-icon" onClick={close} aria-label="Đóng ảnh"><X size={23} aria-hidden="true" /></button></div>
       <div ref={stageRef} className={`document-viewer-stage${zoomed ? " is-zoomed" : ""}`} tabIndex={0} aria-label="Vùng xem tài liệu">
         {active && !imageError && <Image key={active.src} src={active.src} alt={active.title} width={active.width} height={active.height} unoptimized loading="eager" onError={() => setImageError(true)} />}
         {imageError && <p className="document-viewer-error">Không thể tải ảnh tài liệu. Bạn có thể thử mở ảnh gốc bằng liên kết bên dưới.</p>}

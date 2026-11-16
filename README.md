@@ -101,6 +101,12 @@ Website được phục vụ trên máy Windows qua Next.js và Caddy cho tên m
 
 ## Trang hồ sơ năng lực
 
+Theo yêu cầu mới nhất, toàn website chỉ nhắc PDF ở nút **Tải hồ sơ PDF** trên `/ho-so-nang-luc`. Đã bỏ câu dẫn nguồn, số trang, ghi chú ngày bản hồ sơ, link đối chiếu trong dịch vụ/dự án và chú thích nguồn ở footer; gallery chỉ hiển thị tên và thứ tự ảnh. Các trường `sourcePage`/`profilePage` và nguồn trong tài liệu phát triển là tham chiếu nội bộ, không đưa lên giao diện. Liên kết điều hướng **Hồ sơ năng lực** vẫn dẫn tới trang HTML.
+
+Đã kiểm tra bản dọn nội dung ngày 16/11/2026: build gồm kiểm tra TypeScript thành công. Chromium đi qua 14 trang chuẩn và ba query hạng mục ở cả 1440/390 px, không tràn ngang hoặc có dẫn nguồn PDF ngoài nút tải; tên ảnh/metadata đã được rà. Trình xem tài liệu giữ chuyển ảnh/Escape/focus; CTA dự án giữ đúng ngữ cảnh liên hệ. Axe không phát hiện vi phạm WCAG A/AA trên trang hồ sơ và chi tiết Đại Nhật ở 390 px. Tệp tải trả 200 qua HEAD. Chưa kiểm tra thiết bị vật lý/trình duyệt khác. Báo cáo/ảnh ở `.tmp/pdf-copy-qa/`.
+
+Theo cập nhật mới nhất, `companyProfile.showCredentials = false` ẩn khối bằng cấp/chứng chỉ (gồm tiêu đề, ảnh kỹ thuật viên, gallery và mục lục tương ứng) ngay từ render server. Dữ liệu được giữ để có thể bật lại; cây tổ chức và hồ sơ pháp lý tiếp tục hiển thị.
+
 `/ho-so-nang-luc` áp dụng [bố cục đã chốt](docs/profile-visual-plan.md): ảnh hệ thống và đội thi công, hai album pháp lý, bốn bằng cấp/chứng chỉ nhân sự, cây tổ chức và ba cụm dự án theo phạm vi PCCC. Tiêu đề dùng đúng **Đội ngũ thi công công trình**, **Hồ sơ pháp lý**, **Bằng cấp, chứng chỉ nhân sự**. Header, footer và CTA tổng quan dẫn vào trang trong cùng tab. Nội dung/ảnh/trang nguồn nằm trong `companyProfile` tại `src/data/home.ts`; tài nguyên WebP tại `public/images/profile/` được trích từ PDF. Giữ thông tin liên hệ hiện tại trong `company` và không khôi phục dịch vụ đã gỡ.
 
 `DocumentGallery` là Client Component duy nhất của nội dung hồ sơ: thumbnail mở native `dialog`, có trước/sau, phóng lớn, ảnh gốc, Escape và trả focus về thumbnail. Bản đầy đủ không tải trước khi mở; các bản scan dùng WebP lossless để không giảm thêm chất lượng tệp trích. Khi tắt JavaScript, link mở thẳng ảnh gốc. Layout vẫn render trên server và không thêm chuyển động. PDF gốc nằm ở nút tải cuối trang; server vẫn cần `public/documents/ho-so-nang-luc-lavita.pdf`. Không gắn nhãn hiệu lực hiện tại cho tài liệu trong bản hồ sơ 10/07/2025.

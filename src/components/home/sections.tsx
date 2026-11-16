@@ -3,8 +3,7 @@ import Link from "next/link";
 import { ArrowRight, ArrowUpRight, Mail, MapPin, Phone, Plus } from "lucide-react";
 import { company, projects, serviceGroups, serviceHref, services, values } from "@/data/home";
 
-function ProfileLink({ children, className = "detail-link", page }: { children: React.ReactNode; className?: string; page?: number }) {
-  if (page) return <a className={className} href={`${company.profile}#page=${page}`} target="_blank" rel="noopener noreferrer">{children}<ArrowUpRight size={19} aria-hidden="true" /><span className="sr-only"> (PDF, mở trong tab mới)</span></a>;
+function ProfileLink({ children, className = "detail-link" }: { children: React.ReactNode; className?: string }) {
   return <Link className={className} href="/ho-so-nang-luc">{children}<ArrowRight size={19} aria-hidden="true" /></Link>;
 }
 
@@ -51,7 +50,7 @@ export function Projects() {
     <div className="project-grid">
       {projects.map(project => <article className="project-card" key={project.title}>
         <div className="project-photo"><Image src={project.image} alt={`${project.title} – ${project.tag}`} fill sizes="(max-width: 760px) 100vw, 50vw" /><span>{project.tag}</span></div>
-        <div className="project-info"><div><h3><Link href={`/du-an/${project.slug}`}>{project.title}</Link></h3><p>{project.description}</p></div><Link className="project-link" href={`/du-an/${project.slug}`}>Xem phạm vi PCCC <ArrowRight size={17} aria-hidden="true" /><span className="sr-only">: {project.title}</span></Link><ProfileLink className="project-link project-proof" page={project.profilePage}>Mở hồ sơ PDF<span className="sr-only">: {project.title}</span></ProfileLink></div>
+        <div className="project-info"><div><h3><Link href={`/du-an/${project.slug}`}>{project.title}</Link></h3><p>{project.description}</p></div><Link className="project-link" href={`/du-an/${project.slug}`}>Xem phạm vi PCCC <ArrowRight size={17} aria-hidden="true" /><span className="sr-only">: {project.title}</span></Link></div>
       </article>)}
     </div>
   </section>;

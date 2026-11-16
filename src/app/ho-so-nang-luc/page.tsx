@@ -14,7 +14,7 @@ export default function CompanyProfilePage() {
       <Image src={companyProfile.heroImage.src} alt={companyProfile.heroImage.alt} fill sizes="100vw" preload />
       <div className="profile-hero-copy"><nav className="breadcrumbs" aria-label="Đường dẫn"><ol><li><Link href="/">Trang chủ</Link></li><li><span aria-current="page">Hồ sơ năng lực</span></li></ol></nav><h1 id="profile-title">{companyProfile.heroHeading}</h1><p>{companyProfile.introduction}</p></div>
     </section>
-    <nav className="section profile-contents" aria-label="Nội dung hồ sơ năng lực">{companyProfile.sections.map(section => <a href={`#${section.id}`} key={section.id}>{section.title}<ArrowDown size={15} aria-hidden="true" /></a>)}</nav>
+    <nav className="section profile-contents" aria-label="Nội dung hồ sơ năng lực">{companyProfile.sections.filter(section => companyProfile.showCredentials || section.id !== "chuyen-mon").map(section => <a href={`#${section.id}`} key={section.id}>{section.title}<ArrowDown size={15} aria-hidden="true" /></a>)}</nav>
 
     <section id="thong-tin-doanh-nghiep" className="section profile-company" aria-labelledby="profile-company-title">
       <figure className="profile-company-photo"><Image src={companyProfile.teamImage.src} alt={companyProfile.teamImage.alt} width={companyProfile.teamImage.width} height={companyProfile.teamImage.height} sizes="(max-width: 760px) 90vw, 55vw" /></figure>
@@ -23,13 +23,15 @@ export default function CompanyProfilePage() {
 
     <section id="phap-ly" className="section profile-legal" aria-labelledby="profile-legal-title">
       <h2 id="profile-legal-title">{companyProfile.legalTitle}</h2>
-      <div className="profile-legal-groups">{companyProfile.legalDocuments.map(album => <div className="profile-legal-album" key={album.title}><DocumentGallery title={album.title} items={album.pages} /><h3>{album.title}</h3><p>Hồ sơ năng lực · trang PDF {album.pages[0].sourcePage}</p></div>)}</div>
+      <div className="profile-legal-groups">{companyProfile.legalDocuments.map(album => <div className="profile-legal-album" key={album.title}><DocumentGallery title={album.title} items={album.pages} /><h3>{album.title}</h3></div>)}</div>
     </section>
 
-    <section id="chuyen-mon" className="section profile-credentials" aria-labelledby="profile-credentials-title">
+    <section id="doi-ngu" className={`section ${companyProfile.showCredentials ? "profile-credentials" : "profile-people"}`} aria-labelledby={companyProfile.showCredentials ? "profile-credentials-title" : "profile-organization-title"}>
+      {companyProfile.showCredentials && <div id="chuyen-mon">
       <h2 id="profile-credentials-title">{companyProfile.credentialsTitle}</h2>
-      <div className="profile-credentials-layout"><figure className="profile-technician"><Image src={companyProfile.technicianImage.src} alt={companyProfile.technicianImage.alt} width={companyProfile.technicianImage.width} height={companyProfile.technicianImage.height} sizes="(max-width: 760px) 90vw, 35vw" /><figcaption>Hồ sơ năng lực · trang PDF {companyProfile.technicianImage.sourcePage}</figcaption></figure><div><DocumentGallery title={companyProfile.credentialsTitle} items={companyProfile.credentials} variant="credentials" /><p className="profile-credentials-source">Hồ sơ năng lực · trang PDF 11</p></div></div>
-      <div id="doi-ngu" className="profile-organization"><h3>Cơ cấu tổ chức</h3><div className="profile-organization-tree"><p className="profile-management">Ban giám đốc</p><ul>{companyProfile.organization.map(group => <li key={group.title}><h4>{group.title}</h4><ul>{group.roles.map(role => <li key={role}>{role}</li>)}</ul></li>)}</ul></div></div>
+      <div className="profile-credentials-layout"><figure className="profile-technician"><Image src={companyProfile.technicianImage.src} alt={companyProfile.technicianImage.alt} width={companyProfile.technicianImage.width} height={companyProfile.technicianImage.height} sizes="(max-width: 760px) 90vw, 35vw" /></figure><div><DocumentGallery title={companyProfile.credentialsTitle} items={companyProfile.credentials} variant="credentials" /></div></div>
+      </div>}
+      <div className={`profile-organization${companyProfile.showCredentials ? "" : " profile-organization-only"}`}>{companyProfile.showCredentials ? <h3>Cơ cấu tổ chức</h3> : <h2 id="profile-organization-title">Cơ cấu tổ chức</h2>}<div className="profile-organization-tree"><p className="profile-management">Ban giám đốc</p><ul>{companyProfile.organization.map(group => <li key={group.title}>{companyProfile.showCredentials ? <h4>{group.title}</h4> : <h3>{group.title}</h3>}<ul>{group.roles.map(role => <li key={role}>{role}</li>)}</ul></li>)}</ul></div></div>
     </section>
 
     <section id="du-an-tieu-bieu" className="section profile-projects" aria-labelledby="profile-projects-title">
@@ -44,6 +46,6 @@ export default function CompanyProfilePage() {
       })}</div>
     </section>
 
-    <section className="section profile-contact" aria-labelledby="profile-contact-title"><div><h2 id="profile-contact-title">Cùng trao đổi về công trình của bạn.</h2><address><a href={company.phoneHref}>{company.phone}</a><a href={`mailto:${company.email}`}>{company.email}</a></address><p>{companyProfile.documentNote}</p></div><div className="profile-contact-actions"><Link className="button button-primary" href="/lien-he">Liên hệ Lavita<ArrowRight size={18} aria-hidden="true" /></Link><a className="profile-download" href={company.profile} download="Ho-so-nang-luc-Lavita.pdf"><Download size={17} aria-hidden="true" />Tải hồ sơ PDF<span>Khoảng 67 MB</span></a></div></section>
+    <section className="section profile-contact" aria-labelledby="profile-contact-title"><div><h2 id="profile-contact-title">Cùng trao đổi về công trình của bạn.</h2><address><a href={company.phoneHref}>{company.phone}</a><a href={`mailto:${company.email}`}>{company.email}</a></address></div><div className="profile-contact-actions"><Link className="button button-primary" href="/lien-he">Liên hệ Lavita<ArrowRight size={18} aria-hidden="true" /></Link><a className="profile-download" href={company.profile} download="Ho-so-nang-luc-Lavita.pdf" aria-label="Tải hồ sơ PDF, khoảng 67 MB"><Download size={17} aria-hidden="true" />Tải hồ sơ PDF</a></div></section>
   </>;
 }
