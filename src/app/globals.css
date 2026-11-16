@@ -19,7 +19,7 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 120px; }
+html { scroll-behavior: smooth; scroll-padding-top: 128px; }
 body {
   margin: 0;
   background: var(--color-surface);
@@ -53,11 +53,16 @@ h3 { font-size: 1.375rem; letter-spacing: -.025em; line-height: 1.4; margin: 0; 
 .site-header { position: sticky; top: 0; z-index: 40; background: var(--color-surface); border-bottom: 1px solid var(--color-line); }
 .utility { display: flex; justify-content: space-between; align-items: center; padding: 0 var(--gutter); background: var(--color-surface-soft); color: var(--color-muted); font-size: .75rem; }
 .utility a { display: inline-flex; align-items: center; gap: 8px; min-height: 36px; font-weight: 650; color: var(--color-ink); font-variant-numeric: tabular-nums; }
-.navigation { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 17px var(--gutter); }
-.brand { display: inline-flex; align-items: center; gap: 10px; min-width: 0; }
-.brand img { width: 46px; height: 46px; flex-shrink: 0; object-fit: contain; }
-.brand-name { color: var(--color-brand); min-width: 0; overflow-wrap: anywhere; font-size: 1.875rem; font-weight: 800; letter-spacing: -.025em; line-height: 1; }
-.brand-name small { display: block; margin-top: 8px; font-size: .6rem; letter-spacing: -.01em; font-weight: 500; }
+.navigation { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 10px var(--gutter); }
+/* Lockup proportions from the official logo, in em of the wordmark size: circle = 2.30 × cap height,
+   circle centre level with the LAVITA wordmark, gap = 0.55 × cap height (the PNG has ~7.6% padding per side). */
+.brand { display: inline-flex; align-items: flex-start; gap: .245em; min-width: 0; font-size: 2.25rem; }
+.brand img { width: 1.952em; height: 1.952em; flex-shrink: 0; object-fit: contain; }
+.brand-name { margin-top: .453em; color: var(--color-brand); min-width: 0; overflow-wrap: anywhere; font-size: 1em; font-weight: 800; letter-spacing: -.025em; line-height: 1; }
+/* Slogan width matches the LAVITA wordmark, as in the official logo (0.257em at Manrope 500). */
+.brand-name small { display: block; margin-top: .14em; font-size: .257em; letter-spacing: -.01em; font-weight: 500; white-space: nowrap; }
+.brand-word { display: block; white-space: nowrap; }
+.brand-a { display: inline-block; width: .792em; height: .72em; margin: 0 .02em; vertical-align: baseline; }
 .desktop-nav { display: flex; align-items: center; gap: clamp(16px, 2vw, 30px); font-size: .875rem; font-weight: 600; }
 .desktop-nav a { display: inline-flex; align-items: center; min-height: 44px; }
 .desktop-nav a:hover { color: var(--color-brand); }
@@ -76,7 +81,7 @@ h3 { font-size: 1.375rem; letter-spacing: -.025em; line-height: 1.4; margin: 0; 
 .header-cta { display: inline-flex; align-items: center; justify-content: center; gap: 16px; padding: 12px 18px; min-height: 44px; background: var(--color-brand); color: white; font-size: .8125rem; font-weight: 650; }
 .header-cta:hover { background: var(--color-brand-hover); }
 .menu-toggle { display: none; width: 44px; height: 44px; flex-shrink: 0; place-items: center; border: 1px solid var(--color-line); background: transparent; color: var(--color-ink); }
-.mobile-nav { border-top: 1px solid var(--color-line); padding: 12px var(--gutter) 20px; max-height: calc(100dvh - 120px); overflow-y: auto; overscroll-behavior: contain; }
+.mobile-nav { border-top: 1px solid var(--color-line); padding: 12px var(--gutter) 20px; max-height: calc(100dvh - 124px); overflow-y: auto; overscroll-behavior: contain; }
 .mobile-nav>a { display: flex; justify-content: space-between; align-items: center; gap: 16px; min-height: 52px; border-bottom: 1px solid var(--color-line); font-weight: 550; }
 .mobile-nav .nav-dropdown { border-bottom: 1px solid var(--color-line); }
 .mobile-nav .nav-dropdown-heading > a { display: flex; align-items: center; flex: 1; min-height: 52px; font-weight: 550; }
@@ -200,10 +205,10 @@ h3 { font-size: 1.375rem; letter-spacing: -.025em; line-height: 1.4; margin: 0; 
 @media (max-width: 959px) {
   .desktop-nav { display: none; }
   .menu-toggle { display: grid; }
-  .navigation { padding-top: 14px; padding-bottom: 14px; }
+  .navigation { padding-top: 8px; padding-bottom: 8px; }
 }
 @media (max-width: 760px) {
-  html { scroll-padding-top: 108px; }
+  html { scroll-padding-top: 124px; }
   .hero { min-height: 610px; }
   .hero-content { padding-top: 72px; padding-bottom: 48px; }
   .hero h1, .hero-title { font-size: clamp(2.125rem, 7.8vw, 3.5rem); }
@@ -231,9 +236,7 @@ h3 { font-size: 1.375rem; letter-spacing: -.025em; line-height: 1.4; margin: 0; 
 @media (max-width: 480px) {
   .utility>span { display: none; }
   .utility { justify-content: flex-end; }
-  .brand-name { font-size: 1.625rem; }
-  .brand img { width: 40px; height: 40px; }
-  .brand-name small { font-size: .55rem; }
+  .brand { font-size: 1.875rem; }
   .hero-content { padding-top: 58px; padding-bottom: 48px; }
   .hero { min-height: 615px; }
   .hero-actions { gap: 12px; flex-direction: column; align-items: flex-start; margin-top: 26px; }
