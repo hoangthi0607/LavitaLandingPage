@@ -17,6 +17,17 @@ const revealTargets = [
   ".content-next > .button",
   ".contact > div > *",
   ".contact address > *",
+  ".profile-company-photo",
+  ".profile-company-copy > *",
+  ".profile-legal > h2",
+  ".profile-legal-groups > .profile-legal-album",
+  "#chuyen-mon > h2",
+  ".profile-credentials-layout > *",
+  ".profile-organization > h2, .profile-organization > h3",
+  ".profile-management",
+  ".profile-organization-tree > ul > li",
+  ".profile-project-layout > .profile-project-chapter",
+  ".profile-contact > div > *",
 ].join(", ");
 
 export function ScrollReveal({ children }: { children: ReactNode }) {
