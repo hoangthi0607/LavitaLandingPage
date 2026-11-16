@@ -56,6 +56,8 @@ CSS trong `src/app/globals.css` là nguồn chuẩn cho các token theo vai trò
 
 ## Responsive và khả năng tiếp cận
 
+“Hồ sơ năng lực” dẫn tới trang HTML `/ho-so-nang-luc` trong cùng tab ở header, footer và CTA tổng quan. Bố cục dùng ảnh gốc từ PDF: hero hệ thống, “Đội ngũ thi công công trình”, “Hồ sơ pháp lý”, “Bằng cấp, chứng chỉ nhân sự”, cây tổ chức và ba cụm dự án theo phạm vi PCCC. Hai tiêu đề tài liệu không có câu diễn giải bên cạnh. Nội dung, ảnh và trang nguồn tại `companyProfile` trong `src/data/home.ts`; ảnh tại `public/images/profile/`. Bản scan hiển thị đủ nội dung, không crop mất dấu/chữ; thumbnail tối ưu riêng, ảnh đầy đủ chỉ mount khi mở trình xem. Gallery là Client Component dùng native `dialog`, hỗ trợ chuyển ảnh, phóng lớn, Tab, Escape và trả focus về ảnh đã chọn; khi không có JavaScript, link mở ảnh gốc. Layout còn lại là Server Component, không thêm chuyển động. PDF tải riêng cuối trang, không tự nhúng; liên kết bằng chứng trên trang dự án vẫn giữ. Không biến kế hoạch tăng trưởng thành thành tích hoặc suy diễn hiệu lực giấy tờ.
+
 “Sản phẩm” là mục riêng sau “Dự án PCCC”, dẫn tới `/san-pham`. Trang dùng danh mục bên trái trên desktop, các lựa chọn xuống dòng trên mobile, form tìm kiếm GET và vùng danh sách. Dữ liệu tại `src/data/products.ts`; hiện chưa có sản phẩm thực tế nên hiển thị đang cập nhật, không tạo thẻ hàng/giá/ảnh/thông số giả. Bốn nhóm ban đầu là cấu trúc để bổ sung sau, không thay đổi ba dịch vụ PCCC. Liên hệ giữ nhóm sản phẩm và chỉ soạn email để người xem tự gửi. Xem [docs/products.md](docs/products.md). Header có sáu mục; CTA riêng ẩn dưới 1201 px để giữ menu thoáng, liên kết Liên hệ vẫn hiển thị.
 
 Desktop dùng bố cục rộng để cân bằng ảnh và chữ; mobile chuyển thành một cột khi cần, giữ thứ tự đọc và CTA rõ ràng. Hero phải chứa đủ nội dung và điều khiển ở màn hình hẹp hoặc thấp; không dùng chiều cao cố định để che phần tràn. Tên dự án, email và địa chỉ dài được xuống dòng an toàn.
@@ -75,6 +77,8 @@ Trang chủ ưu tiên dịch vụ và dự án trước phần giới thiệu ch
 Kiểm tra desktop và mobile cùng một lượt, gồm bàn phím, menu, slide, CTA, liên kết PDF, gọi điện và email. Xem thêm màn hình hẹp và landscape, nội dung dài, tương phản và chế độ giảm chuyển động. Sửa các lỗi tìm được trong một lượt rồi xác nhận tối đa thêm một lượt. Chạy typecheck và build theo README; không coi build thành công là bằng chứng đã kiểm tra trực quan.
 
 ## Hướng dẫn thiết kế được áp dụng
+
+Trang hồ sơ được áp dụng theo [docs/profile-visual-plan.md](docs/profile-visual-plan.md) và ba tiêu đề người dùng đã sửa ngày 16/11/2026. Bản phác lưu ở `.tmp/profile-visual-plan/`; giao diện thật và ảnh bàn giao được kiểm tra riêng.
 
 Tham khảo [Impeccable của Paul Bakaus](https://github.com/pbakaus/impeccable), phiên bản skill 4.5.2 tại commit [`c63b8dd7dd5a5f3c32eaabe1af76d0694f863ed2`](https://github.com/pbakaus/impeccable/tree/c63b8dd7dd5a5f3c32eaabe1af76d0694f863ed2). Các hướng dẫn đã đọc và áp dụng trực tiếp:
 

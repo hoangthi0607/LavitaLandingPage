@@ -6,7 +6,7 @@ Website có trang mô tả dịch vụ và khu vực dự án riêng. Theo yêu 
 
 - Website: `https://lavitacons.vn`.
 - Ghi nhận ban đầu: **14/10/2026**; cập nhật cấu trúc theo yêu cầu người dùng **13/11/2026**.
-- Cấu trúc triển khai: **13 trang HTML**, gồm cả ba URL thông tin dịch vụ chi tiết cũ được giữ để không làm hỏng liên kết; query hạng mục hoặc ngữ cảnh không tạo thêm trang độc lập trong sitemap.
+- Cấu trúc triển khai: **14 trang HTML**, gồm cả ba URL thông tin dịch vụ chi tiết cũ được giữ để không làm hỏng liên kết; query hạng mục hoặc ngữ cảnh không tạo thêm trang độc lập trong sitemap.
 - Nguồn: hồ sơ năng lực Lavita, các cập nhật doanh nghiệp của người dùng và dữ liệu tại `src/data/home.ts`.
 - Tình trạng: tài liệu quyết định cấu trúc phục vụ triển khai. Chưa có card sorting, tree testing, nghiên cứu khách hàng hoặc ký duyệt IA riêng.
 
@@ -35,7 +35,7 @@ Mô hình tổ chức dựa trên **nhu cầu và giai đoạn công trình**. C
 | Bốn dự án đang được giới thiệu | Chỉ là các ví dụ đã chọn từ hồ sơ, không là tổng số công trình Lavita | Danh sách theo hạng mục, bốn trang chi tiết, liên kết trang PDF |
 | Giới thiệu, năm thành lập, giá trị | Nội dung đã có trên website/hồ sơ | `/ve-lavita` và phần tổng quan trang chủ |
 | Hotline, email, địa chỉ, mã số thuế | Cập nhật hiện tại trong `company`, giữ số điện thoại và `tel:` đồng bộ | Header, footer, liên hệ và structured data |
-| Hồ sơ năng lực | PDF khoảng 67 MB, cần có file trên server sau khi clone | Tệp mở theo lựa chọn, không nhúng tự động |
+| Hồ sơ năng lực | Trang HTML từ dữ liệu doanh nghiệp và hồ sơ gốc | `/ho-so-nang-luc`, có mục lục và nút tải PDF khoảng 67 MB; cần giữ file trên server sau khi clone |
 | Gợi ý thông tin chuẩn bị tư vấn | Nội dung hướng dẫn mới để người đọc mô tả nhu cầu | Trang dịch vụ và trình soạn email; không là quy trình pháp lý hoặc cam kết dịch vụ |
 
 Địa chỉ và điện thoại hiện tại lấy từ dữ liệu người dùng cập nhật, không khôi phục thông tin cũ từ PDF. Tham khảo [README](README.md) để bổ sung PDF ngoài Git khi chuyển máy/server.
@@ -58,6 +58,7 @@ flowchart TD
     P3["/du-an/chung-cu-c2-binh-duong"]
     P4["/du-an/the-pegasuite"]
     A["Về Lavita /ve-lavita"]
+    CP["Hồ sơ năng lực /ho-so-nang-luc"]
     C["Liên hệ /lien-he"]
     F["Hồ sơ PDF /documents/ho-so-nang-luc-lavita.pdf"]
     H --> S
@@ -67,8 +68,8 @@ flowchart TD
     PD --> P1 & P2
     PI --> P3
     PM --> P4
-    H --> A & C
-    H -. "Tệp, không tính là trang HTML" .-> F
+    H --> A & C & CP
+    CP -. "Tải PDF theo lựa chọn" .-> F
 ```
 
 “Dịch vụ PCCC” là link tới trang mô tả dịch vụ, không có menu con. Menu “Dự án PCCC” chỉ có các hạng mục dịch vụ, không liệt kê công trình; thêm dự án không làm dài menu. Mỗi hạng mục dẫn tới danh sách công trình đúng `serviceSlug`. Slug chi tiết không nhận diện trả trang 404; 404 là trạng thái hệ thống, không là một mục nội dung trong sitemap.
@@ -85,6 +86,7 @@ flowchart TD
 | Chi tiết sản phẩm, khi có dữ liệu | `/san-pham/[slug]` | URL sản phẩm đó |
 | Chi tiết dự án | `/du-an/[slug]` | URL của dự án đó |
 | Doanh nghiệp | `/ve-lavita` | URL trang đó |
+| Hồ sơ năng lực | `/ho-so-nang-luc` | URL trang đó |
 | Liên hệ | `/lien-he` | URL trang đó, không query |
 | Lọc dự án | `/du-an?dich-vu=tu-van-thiet-ke` | `/du-an` trên origin chuẩn |
 | Liên hệ theo ngữ cảnh | `/lien-he?dich-vu=bao-tri-sua-chua&du-an=the-pegasuite` | `/lien-he` trên origin chuẩn |
@@ -101,9 +103,9 @@ Các anchor trang chủ hiện có như `/#services`, `/#projects`, `/#about`, `
 Primary nav có sáu mục, theo thứ tự: **Về Lavita**, **Dịch vụ PCCC**, **Dự án PCCC**, **Sản phẩm**, **Hồ sơ năng lực**, **Liên hệ**. Logo dẫn về `/`; CTA tư vấn dẫn về `/lien-he` ở mọi trang. Chỉ dự án có menu con theo hạng mục dịch vụ; không đưa danh sách công trình vào header. Sản phẩm có danh mục riêng, không đưa trở lại các dịch vụ đã gỡ.
 
 ```text
-Desktop: [Logo → /] [Về Lavita] [Dịch vụ] [Dự án theo hạng mục ▾] [Sản phẩm] [Hồ sơ PDF] [Liên hệ] [Tư vấn công trình]
+Desktop: [Logo → /] [Về Lavita] [Dịch vụ] [Dự án theo hạng mục ▾] [Sản phẩm] [Hồ sơ năng lực] [Liên hệ] [Tư vấn công trình]
 Mobile:  [Logo → /] [Mở/đóng menu]
-Menu:    Về Lavita → Dịch vụ → Dự án (hạng mục dịch vụ) → Sản phẩm → Hồ sơ PDF → Liên hệ → Gọi hotline
+Menu:    Về Lavita → Dịch vụ → Dự án (hạng mục dịch vụ) → Sản phẩm → Hồ sơ năng lực → Liên hệ → Gọi hotline
 ```
 
 Header sticky và nav báo section đang xem, kể cả trên trang chi tiết thuộc section. Menu mobile có trạng thái mở/đóng, Escape và focus về nút mở. Chuyển route phải để người đọc tiếp tục tới nội dung, không giữ menu che trang mới.
@@ -112,7 +114,9 @@ Secondary nav gồm breadcrumbs, bộ chuyển hạng mục trên danh sách d�
 
 Footer gom liên kết vào **Dịch vụ PCCC** (anchor tới ba mô tả trên cùng trang), **Tìm hiểu Lavita** (dự án, doanh nghiệp, liên hệ, hồ sơ) và thông tin công ty/điện thoại/email/địa chỉ. Không tạo mục privacy, tuyển dụng, tài khoản hoặc tìm kiếm khi chưa có nội dung/chức năng đó.
 
-PDF dùng link tệp rõ ràng, có nhãn PDF/dung lượng và thông tin mở tab mới. Điều hướng route và download không dùng chung một kiểu đích khiến người đọc nhầm trang nội dung với hồ sơ.
+Link bằng chứng PDF ghi rõ loại tệp và thông tin mở tab mới; nút tải hồ sơ riêng ghi dung lượng và dùng thuộc tính `download`. Điều hướng route dẫn tới trang nội dung HTML.
+
+Từ 16/11/2026, mục Hồ sơ năng lực và CTA tổng quan dẫn tới `/ho-so-nang-luc` trong cùng tab. Trang áp dụng bố cục ảnh gốc từ PDF: đội ngũ thi công, bản scan pháp lý, bằng cấp/chứng chỉ nhân sự, cây tổ chức và ba cụm dự án theo phạm vi PCCC. Có tám ảnh tài liệu mở lớn, chuyển ảnh và phóng ngay trên web; PDF là nút tải riêng cuối trang. Các link bằng chứng PDF tại công trình vẫn mở đúng trang gốc. Không đưa trở lại các dịch vụ đã gỡ hoặc kế hoạch doanh thu.
 
 ## Content types và taxonomy
 

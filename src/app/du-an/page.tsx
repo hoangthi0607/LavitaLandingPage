@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { ArrowRight, FileText } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { PageIntro } from "@/components/content/page-intro";
 import { ProjectCards } from "@/components/content/project-cards";
-import { company, contactHref, getService, projectCategoryHref, projects, serviceHref, services } from "@/data/home";
+import { contactHref, getService, projectCategoryHref, projects, serviceHref, services } from "@/data/home";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata = pageMetadata("Dự án PCCC", "Xem dự án thiết kế, thi công và bảo trì PCCC của Lavita, với phạm vi thực hiện và trang đối chiếu trong hồ sơ năng lực.", "/du-an");
@@ -37,6 +37,6 @@ export default async function ProjectsPage({ searchParams }: Props) {
         </article>;
       })}
     </section>}
-    <section className="section content-next"><div><h2>Muốn tìm hiểu thêm về Lavita?</h2><p>Xem hồ sơ năng lực để đối chiếu thông tin doanh nghiệp, dịch vụ và các công trình được giới thiệu.</p></div><div><a href={company.profile} className="button button-secondary" target="_blank" rel="noopener noreferrer">Mở hồ sơ PDF <FileText size={18} aria-hidden="true" /><span className="sr-only"> (mở trong tab mới)</span></a><span className="file-note">PDF khoảng 67 MB · mở khi bạn chọn</span></div></section>
+    <section className="section content-next"><div><h2>Muốn tìm hiểu thêm về Lavita?</h2><p>Xem hồ sơ năng lực để đối chiếu thông tin doanh nghiệp, dịch vụ và các công trình được giới thiệu.</p></div><Link href="/ho-so-nang-luc" className="button button-secondary">Xem hồ sơ năng lực<ArrowRight size={18} aria-hidden="true" /></Link></section>
   </>;
 }

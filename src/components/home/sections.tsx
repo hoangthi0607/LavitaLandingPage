@@ -4,14 +4,15 @@ import { ArrowRight, ArrowUpRight, Mail, MapPin, Phone, Plus } from "lucide-reac
 import { company, projects, serviceGroups, serviceHref, services, values } from "@/data/home";
 
 function ProfileLink({ children, className = "detail-link", page }: { children: React.ReactNode; className?: string; page?: number }) {
-  return <a className={className} href={`${company.profile}${page ? `#page=${page}` : ""}`} target="_blank" rel="noopener noreferrer">{children}<ArrowUpRight size={19} aria-hidden="true" /><span className="sr-only"> (PDF, mở trong tab mới)</span></a>;
+  if (page) return <a className={className} href={`${company.profile}#page=${page}`} target="_blank" rel="noopener noreferrer">{children}<ArrowUpRight size={19} aria-hidden="true" /><span className="sr-only"> (PDF, mở trong tab mới)</span></a>;
+  return <Link className={className} href="/ho-so-nang-luc">{children}<ArrowRight size={19} aria-hidden="true" /></Link>;
 }
 
 export function IntroStrip() {
   return <div className="intro-strip">
       <p>Tối ưu giải pháp.<br /><strong>Gia tăng giá trị.</strong></p>
       <p>Lavita đồng hành cùng công trình dân dụng và công nghiệp từ năm 2023.</p>
-      <div><ProfileLink>Hồ sơ năng lực Lavita</ProfileLink><span className="file-note">PDF · 67 MB</span></div>
+      <div><ProfileLink>Hồ sơ năng lực Lavita</ProfileLink></div>
     </div>;
 }
 
@@ -22,7 +23,7 @@ export function About({ overview = true }: { overview?: boolean }) {
         <h2 id="about-title">Kiến tạo niềm tin.<br /><span>Vững bền giá trị.</span></h2>
         <p className="lead">Lavita cung cấp dịch vụ và giải pháp phòng cháy chữa cháy cho công trình dân dụng và công nghiệp.</p>
         <p>Thành lập từ năm 2023, Công ty TNHH Xây dựng Lavita đồng hành cùng khách hàng từ tư vấn thiết kế, thi công đến bảo trì. Chúng tôi hướng đến giải pháp hiệu quả, tối ưu chi phí và công trình an toàn, bền vững.</p>
-        {overview ? <Link className="detail-link" href="/ve-lavita">Tìm hiểu về Lavita <ArrowRight size={19} aria-hidden="true" /></Link> : <ProfileLink page={2}>Mở giới thiệu trong hồ sơ</ProfileLink>}
+        {overview ? <Link className="detail-link" href="/ve-lavita">Tìm hiểu về Lavita <ArrowRight size={19} aria-hidden="true" /></Link> : <ProfileLink>Xem hồ sơ năng lực</ProfileLink>}
       </div>
     </section>;
 }
@@ -58,7 +59,7 @@ export function Projects() {
 
 export function Capabilities() {
   return <section id="capabilities" className="section capabilities" aria-labelledby="capabilities-title">
-      <div><h2 id="capabilities-title">Chuyên môn.<br />Trách nhiệm.<br /><span>Niềm tin.</span></h2><p>Đội ngũ kỹ thuật, hồ sơ pháp lý và hệ thống giá trị là nền tảng để Lavita đồng hành cùng khách hàng.</p><ProfileLink className="button button-light">Xem hồ sơ năng lực</ProfileLink><span className="file-note">PDF · 67 MB</span></div>
+      <div><h2 id="capabilities-title">Chuyên môn.<br />Trách nhiệm.<br /><span>Niềm tin.</span></h2><p>Đội ngũ kỹ thuật, hồ sơ pháp lý và hệ thống giá trị là nền tảng để Lavita đồng hành cùng khách hàng.</p><ProfileLink className="button button-light">Xem hồ sơ năng lực</ProfileLink></div>
       <ul className="values-list">{values.map(value => <li key={value}>{value}</li>)}</ul>
     </section>;
 }

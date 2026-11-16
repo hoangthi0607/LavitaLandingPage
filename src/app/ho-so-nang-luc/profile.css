@@ -1,0 +1,144 @@
+.profile-hero { position: relative; isolation: isolate; min-height: 600px; display: flex; align-items: center; color: var(--color-on-dark); background: var(--color-dark); }
+.profile-hero > img { object-fit: cover; object-position: center 60%; z-index: -2; }
+.profile-hero::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, color-mix(in srgb, var(--color-dark) 94%, transparent), color-mix(in srgb, var(--color-dark) 68%, transparent) 45%, color-mix(in srgb, var(--color-dark) 10%, transparent)); }
+.profile-hero-copy { min-width: 0; }
+.profile-hero .breadcrumbs ol, .profile-hero .breadcrumbs li + li::before { color: var(--color-muted-on-dark); }
+.profile-hero .breadcrumbs a:hover { color: var(--color-on-dark); }
+.profile-hero h1 { margin: 28px 0 24px; max-width: 13ch; white-space: pre-line; font-size: clamp(2.75rem, 5.5vw, 4.75rem); line-height: 1.12; }
+.profile-hero-copy > p { margin: 0; white-space: pre-line; font-size: clamp(1rem, 1.6vw, 1.1875rem); color: var(--color-on-dark); }
+.profile-hero :focus-visible, .profile-credentials :focus-visible { outline-color: var(--color-on-dark); }
+.profile-contents { display: flex; flex-wrap: wrap; gap: 8px 32px; padding-block: 18px; border-bottom: 1px solid var(--color-line); }
+.profile-contents a { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; font-size: .8125rem; font-weight: 600; }
+.profile-contents a:hover { color: var(--color-brand); }
+.profile-contents svg { flex-shrink: 0; color: var(--color-brand); }
+.profile-company { display: grid; grid-template-columns: 1.55fr 1fr; align-items: center; gap: clamp(32px, 4vw, 64px); }
+.profile-company-photo { margin: 0; min-width: 0; }
+.profile-company-photo img { display: block; width: 100%; height: auto; }
+.profile-company-copy { min-width: 0; }
+.profile-company h2 { font-size: clamp(1.75rem, 3vw, 2.5rem); max-width: 16ch; }
+.profile-company-copy > p { color: var(--color-muted); }
+.profile-company-copy .profile-company-name { font-size: .8125rem; margin: 16px 0 0; }
+.profile-facts { display: flex; flex-wrap: wrap; gap: 20px 36px; border-top: 1px solid var(--color-line); padding-top: 20px; margin: 0; }
+.profile-facts dt { color: var(--color-muted); font-size: .8125rem; }
+.profile-facts dd { margin: 4px 0 0; font-weight: 650; font-size: 1.375rem; }
+.profile-legal { background: var(--color-surface-soft); }
+.profile-legal > h2, .profile-credentials > h2 { margin-bottom: 40px; }
+.profile-legal-groups { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.profile-legal-album { min-width: 0; }
+.profile-legal-album > h3 { font-size: 1.0625rem; margin-top: 20px; }
+.profile-legal-album > p { font-size: .8125rem; color: var(--color-muted); margin: 8px 0 0; }
+.document-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; min-width: 0; }
+.document-gallery-legal { padding: 24px; background: var(--color-surface); }
+.document-thumbnail { min-width: 0; display: grid; grid-template-rows: minmax(0, 1fr) auto; aspect-ratio: .64; padding: 12px; background: var(--color-surface); color: var(--color-ink); }
+.document-thumbnail img { width: 100%; height: 100%; min-height: 0; object-fit: contain; }
+.document-thumbnail-action { display: inline-flex; justify-content: center; align-items: center; gap: 8px; padding-top: 10px; font-size: .75rem; font-weight: 600; }
+.document-thumbnail:hover .document-thumbnail-action { color: var(--color-brand); }
+.profile-credentials { background: var(--color-dark); color: var(--color-on-dark); }
+.profile-credentials-layout { display: grid; grid-template-columns: .75fr 1.25fr; gap: 32px; align-items: start; }
+.profile-credentials-layout > div { min-width: 0; }
+.profile-technician { min-width: 0; margin: 0; }
+.profile-technician > img { width: 100%; height: auto; display: block; }
+.profile-technician figcaption, .profile-credentials-source { font-size: .75rem; color: var(--color-muted-on-dark); margin: 16px 0 0; }
+.document-gallery-credentials .document-thumbnail { aspect-ratio: 1.3; }
+.profile-organization { margin-top: 48px; padding-top: 32px; border-top: 1px solid color-mix(in srgb, var(--color-muted-on-dark) 30%, transparent); }
+.profile-organization > h3 { margin-bottom: 28px; }
+.profile-organization-tree { min-width: 0; }
+.profile-management { position: relative; width: fit-content; max-width: 100%; min-width: 200px; margin: 0 auto 32px; padding: 16px 24px; background: color-mix(in srgb, var(--color-on-dark) 7%, transparent); text-align: center; font-weight: 650; }
+.profile-management::after { content: ""; position: absolute; left: 50%; top: 100%; height: 32px; border-left: 1px solid var(--color-muted-on-dark); }
+.profile-organization-tree ul { list-style: none; margin: 0; padding: 0; }
+.profile-organization-tree > ul { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; padding-top: 28px; }
+.profile-organization-tree > ul::before { content: ""; position: absolute; top: 0; left: calc((100% - 48px) / 6); right: calc((100% - 48px) / 6); border-top: 1px solid var(--color-muted-on-dark); }
+.profile-organization-tree > ul > li { position: relative; min-width: 0; padding: 20px; background: color-mix(in srgb, var(--color-on-dark) 5%, transparent); }
+.profile-organization-tree > ul > li::before { content: ""; position: absolute; left: 50%; top: -28px; height: 28px; border-left: 1px solid var(--color-muted-on-dark); }
+.profile-organization h4 { font-size: .9375rem; font-weight: 600; margin: 0 0 12px; }
+.profile-organization-tree > ul > li > ul { color: var(--color-muted-on-dark); font-size: .8125rem; }
+.profile-projects .section-heading h2 { white-space: pre-line; }
+.profile-project-layout { display: grid; grid-template-columns: 1.2fr 1fr; gap: 36px; }
+.profile-project-chapter { min-width: 0; }
+.profile-project-tu-van-thiet-ke { grid-row: span 2; display: flex; flex-direction: column; }
+.profile-project-photos { display: grid; grid-template-rows: minmax(0, 1fr); min-width: 0; aspect-ratio: 1.9; overflow: hidden; background: var(--color-surface-soft); }
+.profile-project-photos img { display: block; width: 100%; height: 100%; min-height: 0; min-width: 0; object-fit: cover; }
+.profile-project-tu-van-thiet-ke .profile-project-photos { flex: 1; min-height: 0; aspect-ratio: auto; }
+.profile-project-pair { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.profile-project-pair img { object-position: center 40%; }
+.profile-project-chapter h3 { font-size: 1.1875rem; margin-top: 18px; }
+.profile-project-links { display: flex; flex-wrap: wrap; gap: 0 24px; margin-top: 6px; }
+.profile-project-links a { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; color: var(--color-muted); font-size: .8125rem; }
+.profile-project-links a:hover { color: var(--color-brand); text-decoration: underline; }
+.profile-project-links svg { flex-shrink: 0; }
+.profile-contact { display: flex; align-items: center; justify-content: space-between; gap: 40px; background: var(--color-surface-soft); }
+.profile-contact > div:first-child { max-width: 64ch; min-width: 0; }
+.profile-contact h2 { max-width: 24ch; }
+.profile-contact address { display: flex; flex-wrap: wrap; gap: 8px 24px; font-style: normal; }
+.profile-contact address a { display: inline-flex; align-items: center; min-height: 44px; overflow-wrap: anywhere; }
+.profile-contact address a:hover { color: var(--color-brand); }
+.profile-contact p { font-size: .8125rem; color: var(--color-muted); margin: 20px 0 0; }
+.profile-contact-actions { flex-shrink: 0; }
+.profile-download { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; min-height: 44px; margin-top: 12px; font-size: .8125rem; color: var(--color-muted); }
+.profile-download:hover { color: var(--color-brand); }
+.profile-download span { flex-basis: 100%; font-size: .75rem; padding-left: 25px; }
+
+/* Native modal keeps the rest of the page inert; full-size scans mount on demand. */
+.document-viewer { width: min(1200px, calc(100% - 32px)); height: calc(100dvh - 32px); max-width: none; max-height: none; margin: auto; padding: 0; border: 0; background: var(--color-surface); color: var(--color-ink); }
+.document-viewer[open] { display: flex; flex-direction: column; }
+.document-viewer::backdrop { background: color-mix(in srgb, var(--color-dark) 85%, transparent); }
+.document-viewer :focus-visible { outline-color: var(--color-brand); outline-offset: 2px; }
+.document-viewer-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; padding: 16px 20px; border-bottom: 1px solid var(--color-line); }
+.document-viewer-header > div { min-width: 0; }
+.document-viewer h2 { font-size: clamp(1rem, 1.4vw, 1.25rem); margin: 0 0 6px; line-height: 1.4; }
+.document-viewer-header p { font-size: .75rem; color: var(--color-muted); margin: 0; }
+.document-viewer-icon { display: inline-grid; place-items: center; flex-shrink: 0; width: 44px; height: 44px; padding: 0; border: 1px solid var(--color-line); background: var(--color-surface); color: var(--color-ink); }
+.document-viewer-icon:hover:not(:disabled), .document-viewer-zoom:hover { background: var(--color-surface-soft); }
+.document-viewer-stage { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; padding: 16px; overflow: auto; overscroll-behavior: contain; background: var(--color-surface-soft); }
+.document-viewer-stage img { display: block; flex-shrink: 0; width: auto; height: auto; max-width: 100%; max-height: 100%; object-fit: contain; }
+.document-viewer-stage.is-zoomed { align-items: flex-start; justify-content: flex-start; }
+.document-viewer-stage.is-zoomed img { max-width: none; max-height: none; }
+.document-viewer-controls { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px 16px; padding: 12px 20px; border-top: 1px solid var(--color-line); }
+.document-viewer-pages { display: flex; gap: 8px; }
+.document-viewer-zoom { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 8px 12px; border: 1px solid var(--color-line); background: var(--color-surface); color: var(--color-ink); font-size: .8125rem; }
+.document-viewer-original { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--color-brand); font-size: .8125rem; text-decoration: underline; }
+.document-viewer-error { max-width: 45ch; padding: 16px; }
+@media (max-width: 1000px) {
+  .profile-company { grid-template-columns: 1.25fr 1fr; }
+  .profile-legal-groups { gap: 24px; }
+  .document-gallery-legal { padding: 16px; gap: 12px; }
+  .document-thumbnail { padding: 8px; }
+  .profile-contact { align-items: flex-start; }
+}
+@media (max-width: 760px) {
+  .profile-hero { min-height: 480px; padding-block: 48px; }
+  .profile-hero::after { background: color-mix(in srgb, var(--color-dark) 72%, transparent); }
+  .profile-hero > img { object-position: 60% center; }
+  .profile-hero h1 { font-size: clamp(2.5rem, 10vw, 3.5rem); }
+  .profile-contents { gap: 4px 24px; }
+  .profile-company, .profile-legal-groups, .profile-credentials-layout, .profile-project-layout { grid-template-columns: 1fr; }
+  .profile-company h2 { max-width: 24ch; }
+  .profile-legal > h2, .profile-credentials > h2 { margin-bottom: 28px; }
+  .profile-legal-groups { gap: 36px; }
+  .document-gallery-legal { padding: 16px; }
+  .profile-technician > img { width: min(100%, 420px); margin-inline: auto; }
+  .profile-technician figcaption { text-align: center; }
+  .profile-organization-tree > ul { grid-template-columns: 1fr; gap: 12px; padding: 0 0 0 32px; }
+  .profile-management { width: 100%; margin-bottom: 24px; text-align: left; }
+  .profile-management::after { left: 12px; height: 24px; }
+  .profile-organization-tree > ul::before { left: 12px; top: 0; bottom: 0; right: auto; border-top: 0; border-left: 1px solid var(--color-muted-on-dark); }
+  .profile-organization-tree > ul > li::before { top: 28px; left: -20px; width: 20px; height: 0; border-left: 0; border-top: 1px solid var(--color-muted-on-dark); }
+  .profile-project-tu-van-thiet-ke { grid-row: auto; display: block; }
+  .profile-project-tu-van-thiet-ke .profile-project-photos { aspect-ratio: 1.2; }
+  .profile-project-photos { aspect-ratio: 1.5; }
+  .profile-project-pair { aspect-ratio: 1.2; }
+  .profile-contact { flex-direction: column; gap: 28px; }
+  .profile-contact-actions { flex-shrink: 1; }
+  .document-viewer { width: calc(100% - 16px); height: calc(100dvh - 16px); }
+  .document-viewer-header, .document-viewer-controls { padding: 12px; }
+  .document-viewer-stage { padding: 8px; }
+}
+@media (max-width: 359px) {
+  .document-gallery-legal { grid-template-columns: 1fr; }
+  .document-gallery-legal .document-thumbnail { aspect-ratio: .75; }
+  .document-gallery-credentials { gap: 10px; }
+  .document-gallery-credentials .document-thumbnail { padding: 6px; aspect-ratio: 1; }
+  .document-thumbnail-action { font-size: .6875rem; }
+  .document-viewer-controls { gap: 8px; }
+  .document-viewer-original { flex-basis: 100%; }
+}

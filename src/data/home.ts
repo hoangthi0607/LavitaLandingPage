@@ -15,7 +15,7 @@ export const company = {
 export const projectNavigation = { label: "Dự án PCCC", href: "/du-an" } as const;
 export const navigation = [
  { label: "Về Lavita", href: "/ve-lavita" }, { label: "Dịch vụ PCCC", href: "/dich-vu" }, projectNavigation,
- { label: "Sản phẩm", href: "/san-pham" }, { label: "Hồ sơ năng lực", href: company.profile }, { label: "Liên hệ", href: "/lien-he" },
+ { label: "Sản phẩm", href: "/san-pham" }, { label: "Hồ sơ năng lực", href: "/ho-so-nang-luc" }, { label: "Liên hệ", href: "/lien-he" },
 ];
 export const slides = [
  { title: "An toàn hôm nay.\nGiá trị mai sau.", description: "Giải pháp phòng cháy chữa cháy đồng bộ — từ tư vấn thiết kế, thi công đến bảo trì công trình.", category: "LAVITA · GIẢI PHÁP PCCC", href: "/dich-vu", image: "/images/installation.webp", alt: "Hệ thống đường ống PCCC trong hồ sơ Lavita" },
@@ -58,3 +58,57 @@ export function contactHref(serviceSlug?: string, projectSlug?: string) {
  return `/lien-he${query.size ? `?${query.toString()}` : ""}`;
 }
 export const values = ["An toàn, chất lượng & hiệu quả chi phí", "Chủ động, nhanh chóng & quyết liệt", "Hợp tác & chia sẻ kinh nghiệm", "Phát triển cùng nhân viên & đối tác", "Trách nhiệm với cộng đồng & xã hội"];
+
+export type ProfileDocument = { src: string; width: number; height: number; title: string; sourcePage: number };
+
+export const companyProfile = {
+ title: "Hồ sơ năng lực",
+ description: "Thông tin doanh nghiệp, chuyên môn, đội ngũ và các dự án PCCC của Công ty TNHH Xây dựng Lavita.",
+ heroHeading: "Hồ sơ năng lực\nLavita.",
+ introduction: "Chuyên môn từ con người.\nMinh chứng qua từng công trình.",
+ heroImage: { src: "/images/profile/he-thong-pccc.webp", alt: "Hệ thống đường ống PCCC trong hồ sơ năng lực Lavita", sourcePage: 21 },
+ founded: "2023",
+ teamTitle: "Đội ngũ thi công công trình",
+ teamCaption: "Đội thi công hệ thống PCCC tại Chung cư C2 Bình Dương, được giới thiệu trong hồ sơ Lavita.",
+ teamImage: { src: "/images/profile/doi-ngu-thi-cong-c2.webp", width: 1181, height: 664, alt: "Đội thi công hệ thống PCCC tại Chung cư C2 Bình Dương", sourcePage: 23 },
+ legalTitle: "Hồ sơ pháp lý",
+ credentialsTitle: "Bằng cấp, chứng chỉ nhân sự",
+ technicianImage: { src: "/images/profile/ky-thuat-vien-pccc.webp", width: 720, height: 1020, alt: "Kỹ thuật viên thao tác tại hệ thống PCCC", sourcePage: 10 },
+ projectsTitle: "Năng lực thể hiện\nqua phạm vi PCCC.",
+ sections: [
+  { id: "thong-tin-doanh-nghiep", title: "Đội ngũ thi công" },
+  { id: "phap-ly", title: "Hồ sơ pháp lý" },
+  { id: "chuyen-mon", title: "Bằng cấp, chứng chỉ nhân sự" },
+  { id: "du-an-tieu-bieu", title: "Dự án tiêu biểu" },
+ ],
+ organization: [
+  { title: "Khối văn phòng", roles: ["Hành chính – Nhân sự", "Kế toán", "Hợp đồng", "Đấu thầu"] },
+  { title: "Khối kinh doanh", roles: ["Dự án", "Thương mại"] },
+  { title: "Khối kỹ thuật", roles: ["Tư vấn thiết kế", "Thi công", "Bảo trì"] },
+ ],
+ legalDocuments: [
+  { title: "Đăng ký doanh nghiệp", pages: [
+   { src: "/images/profile/dang-ky-doanh-nghiep-1.webp", width: 643, height: 916, title: "Đăng ký doanh nghiệp – trang 1", sourcePage: 6 },
+   { src: "/images/profile/dang-ky-doanh-nghiep-2.webp", width: 791, height: 1128, title: "Đăng ký doanh nghiệp – trang 2", sourcePage: 6 },
+  ] },
+  { title: "Điều kiện kinh doanh dịch vụ PCCC", pages: [
+   { src: "/images/profile/dieu-kien-kinh-doanh-pccc-1.webp", width: 730, height: 1025, title: "Giấy xác nhận đủ điều kiện kinh doanh dịch vụ PCCC", sourcePage: 7 },
+   { src: "/images/profile/dieu-kien-kinh-doanh-pccc-2.webp", width: 730, height: 1025, title: "Nội dung kinh doanh dịch vụ PCCC kèm theo", sourcePage: 7 },
+  ] },
+ ],
+ credentials: [
+  { src: "/images/profile/chung-chi-le-tien-thuy.webp", width: 1050, height: 738, title: "Chứng chỉ nhân sự – Lê Tiến Thủy", sourcePage: 11 },
+  { src: "/images/profile/bang-cap-le-tien-thuy.webp", width: 1259, height: 874, title: "Bằng tốt nghiệp đại học – Lê Tiến Thủy", sourcePage: 11 },
+  { src: "/images/profile/chung-chi-tran-luong-anh.webp", width: 1073, height: 756, title: "Chứng chỉ nhân sự – Trần Lương Anh", sourcePage: 11 },
+  { src: "/images/profile/bang-cap-tran-luong-anh.webp", width: 1024, height: 705, title: "Bằng tốt nghiệp đại học – Trần Lương Anh", sourcePage: 11 },
+ ],
+ projectChapters: [
+  { serviceSlug: "tu-van-thiet-ke", projectSlugs: ["chung-cu-dai-nhat", "crescent-mall"], photos: [{ src: "/images/profile/dai-nhat-thiet-ke.webp", width: 1800, height: 1273, alt: "Chung cư Đại Nhật – phạm vi thiết kế PCCC", sourcePage: 18 }] },
+  { serviceSlug: "thi-cong-he-thong", projectSlugs: ["chung-cu-c2-binh-duong"], photos: [{ src: "/images/binh-duong.webp", width: 957, height: 535, alt: "Chung cư C2 Bình Dương – phạm vi thi công PCCC", sourcePage: 22 }] },
+  { serviceSlug: "bao-tri-sua-chua", projectSlugs: ["the-pegasuite"], photos: [
+   { src: "/images/profile/pegasuite-kiem-tra-tu.webp", width: 556, height: 858, alt: "Kiểm tra tủ hệ thống PCCC tại Chung cư Phương Việt – The Pegasuite", sourcePage: 25 },
+   { src: "/images/profile/pegasuite-kiem-tra-thiet-bi.webp", width: 556, height: 858, alt: "Kiểm tra thiết bị PCCC tại Chung cư Phương Việt – The Pegasuite", sourcePage: 25 },
+  ] },
+ ],
+ documentNote: "Bản hồ sơ năng lực ngày 10/07/2025. Thông tin liên hệ trên website được cập nhật theo thông tin hiện tại của Lavita.",
+} as const;

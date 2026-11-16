@@ -99,6 +99,15 @@ Website Lavita có trang chủ, một trang mô tả ba dịch vụ, trang chọ
 
 Website được phục vụ trên máy Windows qua Next.js và Caddy cho tên miền public `lavitacons.vn`; xem [hướng dẫn vận hành HTTPS](docs/public-https.md).
 
+## Trang hồ sơ năng lực
+
+`/ho-so-nang-luc` áp dụng [bố cục đã chốt](docs/profile-visual-plan.md): ảnh hệ thống và đội thi công, hai album pháp lý, bốn bằng cấp/chứng chỉ nhân sự, cây tổ chức và ba cụm dự án theo phạm vi PCCC. Tiêu đề dùng đúng **Đội ngũ thi công công trình**, **Hồ sơ pháp lý**, **Bằng cấp, chứng chỉ nhân sự**. Header, footer và CTA tổng quan dẫn vào trang trong cùng tab. Nội dung/ảnh/trang nguồn nằm trong `companyProfile` tại `src/data/home.ts`; tài nguyên WebP tại `public/images/profile/` được trích từ PDF. Giữ thông tin liên hệ hiện tại trong `company` và không khôi phục dịch vụ đã gỡ.
+
+`DocumentGallery` là Client Component duy nhất của nội dung hồ sơ: thumbnail mở native `dialog`, có trước/sau, phóng lớn, ảnh gốc, Escape và trả focus về thumbnail. Bản đầy đủ không tải trước khi mở; các bản scan dùng WebP lossless để không giảm thêm chất lượng tệp trích. Khi tắt JavaScript, link mở thẳng ảnh gốc. Layout vẫn render trên server và không thêm chuyển động. PDF gốc nằm ở nút tải cuối trang; server vẫn cần `public/documents/ho-so-nang-luc-lavita.pdf`. Không gắn nhãn hiệu lực hiện tại cho tài liệu trong bản hồ sơ 10/07/2025.
+
+Kiểm tra bản dùng ảnh ngày 16/11/2026: typecheck/build thành công; Chromium ở bảy viewport 320–1440 px, gồm landscape, không tràn ngang. Đã kiểm tra ảnh, menu mobile, anchor, ba album/tám bản scan, chuyển ảnh, zoom, vòng Tab, Escape, trả focus và khôi phục cuộn trang. Axe không phát hiện vi phạm WCAG A/AA ở 1440 và 390 px trên cả trang và dialog. Bản đầy đủ/PDF không tự tải trước khi chọn; PDF trả 200 qua HEAD. Nội dung/ảnh hoạt động khi tắt JavaScript và ở cả hai chế độ chuyển động. Chưa kiểm tra thiết bị vật lý hoặc trình duyệt khác; độ rõ tài liệu bị giới hạn bởi ảnh gốc. Báo cáo/ảnh QA nằm ở `.tmp/profile-image-qa/` được Git bỏ qua.
+
+
 ## Danh mục sản phẩm
 
 Mục **Sản phẩm** tại `/san-pham` có nhóm sản phẩm, tìm kiếm theo tên/mã và liên hệ giữ ngữ cảnh. Người dùng chưa cung cấp danh sách thực tế nên danh mục hiển thị đang cập nhật. Bổ sung dữ liệu đã xác nhận trong `src/data/products.ts`; không tự điền thương hiệu, giá hoặc thông số. Xem [hướng dẫn sản phẩm](docs/products.md). Ba dịch vụ PCCC hiện có được giữ riêng.
