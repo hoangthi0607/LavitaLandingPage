@@ -4,25 +4,33 @@ import Link from "next/link";
 import { useState } from "react";
 import { ArrowUpRight, Mail, X } from "lucide-react";
 import { company, getProject, getService, services } from "@/data/home";
+import { catalogueHref, getProduct, getProductCategory } from "@/data/products";
 
 type ContactComposerProps = {
   initialServiceSlug?: string;
   initialProjectSlug?: string;
+  initialProductCategorySlug?: string;
+  initialProductSlug?: string;
 };
 
-export function ContactComposer({ initialServiceSlug, initialProjectSlug }: ContactComposerProps) {
+export function ContactComposer({ initialServiceSlug, initialProjectSlug, initialProductCategorySlug, initialProductSlug }: ContactComposerProps) {
   const [serviceSlug, setServiceSlug] = useState(initialServiceSlug ?? "");
   const [projectSlug, setProjectSlug] = useState(initialProjectSlug);
+  const [productCategorySlug, setProductCategorySlug] = useState(initialProductCategorySlug);
+  const [productSlug, setProductSlug] = useState(initialProductSlug);
   const [name, setName] = useState("");
   const [workplace, setWorkplace] = useState("");
   const [needs, setNeeds] = useState("");
   const service = getService(serviceSlug);
   const project = getProject(projectSlug);
-  const subject = service ? `Tư vấn PCCC – ${service.title}` : "Trao đổi nhu cầu PCCC với Lavita";
+  const product = getProduct(productSlug);
+  const productCategory = getProductCategory(product?.categorySlug ?? productCategorySlug);
+  const subject = product ? `Trao đổi sản phẩm – ${product.title}` : productCategory ? `Trao đổi sản phẩm – ${productCategory.title}` : service ? `Tư vấn PCCC – ${service.title}` : "Trao đổi nhu cầu PCCC với Lavita";
   const body = [
     "Kính gửi Lavita,",
     "",
-    service ? `Tôi muốn trao đổi về dịch vụ: ${service.title}.` : "Tôi muốn được tư vấn dịch vụ PCCC phù hợp công trình.",
+    product ? `Tôi muốn trao đổi về sản phẩm: ${product.title}${product.sku ? ` (${product.sku})` : ""}.` : productCategory ? `Tôi muốn trao đổi về nhóm sản phẩm: ${productCategory.title}.` : service ? `Tôi muốn trao đổi về dịch vụ: ${service.title}.` : "Tôi muốn được tư vấn dịch vụ PCCC phù hợp công trình.",
+    ...(productCategory && service ? [`Dịch vụ cần trao đổi: ${service.title}.`] : []),
     ...(project ? [`Dự án tôi đã tham khảo: ${project.title} (${project.tag}).`] : []),
     ...(name.trim() ? [`Người liên hệ: ${name.trim()}`] : []),
     ...(workplace.trim() ? [`Công trình / đơn vị: ${workplace.trim()}`] : []),
@@ -35,7 +43,7 @@ export function ContactComposer({ initialServiceSlug, initialProjectSlug }: Cont
 
   return <section className="contact-composer" aria-labelledby="contact-composer-title">
     <h2 id="contact-composer-title">Chuẩn bị nội dung tư vấn</h2>
-    <p>Chọn dịch vụ và bổ sung thông tin bạn muốn trao đổi. Các mục bên dưới đều không bắt buộc.</p>
+    <p>{productCategory ? "Nhóm sản phẩm bạn quan tâm đã được giữ lại. Bạn có thể bổ sung nhu cầu hoặc chọn thêm dịch vụ cần trao đổi." : "Chọn dịch vụ và bổ sung thông tin bạn muốn trao đổi. Các mục bên dưới đều không bắt buộc."}</p>
     <noscript>
       <p className="contact-noscript">Cần bật JavaScript để đưa thông tin bạn nhập vào email. Bạn vẫn có thể <a href={company.phoneHref}>gọi {company.phone}</a> hoặc <a href={`mailto:${company.email}`}>gửi email trực tiếp</a>.</p>
     </noscript>
@@ -48,6 +56,10 @@ export function ContactComposer({ initialServiceSlug, initialProjectSlug }: Cont
       <button type="button" className="contact-remove-reference" onClick={() => setProjectSlug(undefined)} aria-label={`Bỏ dự án tham khảo ${project.title}`}>
         <X size={18} aria-hidden="true" /><span>Bỏ chọn</span>
       </button>
+    </div>}
+    {productCategory && <div className="contact-reference">
+      <div><span>{product ? "Sản phẩm bạn quan tâm" : "Nhóm sản phẩm bạn quan tâm"}</span><Link href={product ? `/san-pham/${product.slug}` : catalogueHref(productCategory.slug)}>{product?.title ?? productCategory.title}<ArrowUpRight size={17} aria-hidden="true" /></Link>{product && <p>{productCategory.title}</p>}</div>
+      <button type="button" className="contact-remove-reference" onClick={() => { setProductSlug(undefined); setProductCategorySlug(undefined); }} aria-label="Bỏ lựa chọn sản phẩm"><X size={18} aria-hidden="true" /><span>Bỏ chọn</span></button>
     </div>}
     <div className="contact-fields">
       <div className="contact-field">

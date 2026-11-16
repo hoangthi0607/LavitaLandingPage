@@ -16,7 +16,7 @@ export function ProjectCards({ items }: { items: readonly Project[] }) {
             <h3><Link href={`/du-an/${project.slug}`}>{project.title}</Link></h3>
             <p>{project.description}</p>
             <div className="project-card-actions">
-              <Link href={`/du-an/${project.slug}`} className="project-link">Xem phạm vi PCCC <ArrowRight size={16} aria-hidden="true" /></Link>
+              <Link href={`/du-an/${project.slug}`} className="project-link">Xem chi tiết dự án <ArrowRight size={16} aria-hidden="true" /></Link>
               <a href={`${company.profile}#page=${project.profilePage}`} className="project-proof" target="_blank" rel="noopener noreferrer">
                 <FileText size={16} aria-hidden="true" /> Hồ sơ PDF · trang {project.profilePage}<span className="sr-only"> (mở trong tab mới)</span>
               </a>

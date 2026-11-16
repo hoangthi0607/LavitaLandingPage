@@ -1,7 +1,7 @@
 ﻿import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, Mail, MapPin, Phone, Plus } from "lucide-react";
-import { company, projects, serviceGroups, services, values } from "@/data/home";
+import { company, projects, serviceGroups, serviceHref, services, values } from "@/data/home";
 
 function ProfileLink({ children, className = "detail-link", page }: { children: React.ReactNode; className?: string; page?: number }) {
   return <a className={className} href={`${company.profile}${page ? `#page=${page}` : ""}`} target="_blank" rel="noopener noreferrer">{children}<ArrowUpRight size={19} aria-hidden="true" /><span className="sr-only"> (PDF, mở trong tab mới)</span></a>;
@@ -38,7 +38,7 @@ export function Services() {
     <div className="service-list">
       {services.map((service, index) => <details className="service-row" key={service.title} open={index < 2}>
         <summary><h3>{service.title}</h3><Plus size={22} aria-hidden="true" /></summary>
-        <div className="service-body"><p>{service.description}</p><Link href={`/dich-vu/${service.slug}`}>Xem phạm vi & dự án tham khảo <ArrowRight size={17} aria-hidden="true" /></Link></div>
+        <div className="service-body"><p>{service.description}</p><Link href={serviceHref(service.slug)}>Tìm hiểu dịch vụ <ArrowRight size={17} aria-hidden="true" /></Link></div>
       </details>)}
     </div>
   </section>;

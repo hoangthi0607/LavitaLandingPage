@@ -1,4 +1,4 @@
-﻿# Lavita — Website giới thiệu doanh nghiệp
+# Lavita — Website giới thiệu doanh nghiệp
 
 Next.js App Router + TypeScript + Tailwind CSS v4. Swiper cho slider, Lucide cho icon, Next Image cho tối ưu ảnh. Dữ liệu tại `src/data/home.ts`; bố cục và section độc lập trong `src/components`.
 
@@ -95,9 +95,13 @@ Giữ bản gốc ngoài Git hoặc sao lưu riêng; `.gitignore` không xóa fi
 
 ## Phạm vi
 
-Website Lavita có trang chủ, danh mục và sáu trang dịch vụ, danh mục và bốn trang dự án, giới thiệu công ty và liên hệ. Trang chủ dẫn người đọc từ dịch vụ đến dự án phù hợp; trang liên hệ giữ lựa chọn và hỗ trợ soạn email. Menu responsive, slider, liên kết hồ sơ, gọi điện và email có thể sử dụng. Dự án ghi rõ phạm vi PCCC, không thể hiện Lavita là tổng thầu toàn bộ công trình. Chưa có CMS/backend nhận yêu cầu; người đọc tự gửi nội dung qua ứng dụng email. Thông tin liên hệ hiện tại lấy từ `src/data/home.ts` theo cập nhật của người dùng: hotline **0962 381 114** và địa chỉ **Số 26 - 28 Nguyễn Hoàng, Khu phố 1, Phường Bình Trưng, Thành phố Hồ Chí Minh, Việt Nam**.
+Website Lavita có trang chủ, một trang mô tả ba dịch vụ, trang chọn hạng mục dự án, danh sách dự án theo từng hạng mục và bốn trang chi tiết công trình, giới thiệu công ty và liên hệ. Menu “Dự án PCCC” chỉ liệt kê hạng mục dịch vụ; chọn hạng mục mới xem danh sách, chọn công trình mới xem chi tiết. Ba URL thông tin dịch vụ chi tiết cũ vẫn hoạt động; các lối vào dịch vụ chính dẫn tới phần mô tả tương ứng trên `/dich-vu`. Trang liên hệ giữ lựa chọn và hỗ trợ soạn email. Menu responsive, slider, liên kết hồ sơ, gọi điện và email có thể sử dụng. Dự án ghi rõ phạm vi PCCC, không thể hiện Lavita là tổng thầu toàn bộ công trình. Chưa có CMS/backend nhận yêu cầu; người đọc tự gửi nội dung qua ứng dụng email. Thông tin liên hệ hiện tại lấy từ `src/data/home.ts` theo cập nhật của người dùng: hotline **0962 381 114** và địa chỉ **Số 26 - 28 Nguyễn Hoàng, Khu phố 1, Phường Bình Trưng, Thành phố Hồ Chí Minh, Việt Nam**.
 
 Website được phục vụ trên máy Windows qua Next.js và Caddy cho tên miền public `lavitacons.vn`; xem [hướng dẫn vận hành HTTPS](docs/public-https.md).
+
+## Danh mục sản phẩm
+
+Mục **Sản phẩm** tại `/san-pham` có nhóm sản phẩm, tìm kiếm theo tên/mã và liên hệ giữ ngữ cảnh. Người dùng chưa cung cấp danh sách thực tế nên danh mục hiển thị đang cập nhật. Bổ sung dữ liệu đã xác nhận trong `src/data/products.ts`; không tự điền thương hiệu, giá hoặc thông số. Xem [hướng dẫn sản phẩm](docs/products.md). Ba dịch vụ PCCC hiện có được giữ riêng.
 
 ## SEO
 
@@ -107,7 +111,7 @@ Trang chủ có metadata, canonical `https://lavitacons.vn/`, robots/sitemap, JS
 
 ### Kiến trúc thông tin
 
-Website được tổ chức theo luồng **dịch vụ → dự án theo phạm vi PCCC → liên hệ giữ ngữ cảnh**, với hub và trang chi tiết có URL riêng. [information-architecture.md](information-architecture.md) ghi sitemap, taxonomy, navigation, quy tắc URL/query và các trường hợp chưa có dự án mẫu. Hướng dẫn [RampStack Information Architecture](docs/information-architecture/README.md) được lưu cùng nguồn/license; không cài thành runtime hoặc skill toàn cục. Các giả thuyết về người đọc và nhãn nhóm chưa được kiểm chứng bằng nghiên cứu người dùng.
+Trang dịch vụ mô tả công ty cung cấp những gì. Khu vực dự án đi theo luồng **hạng mục dịch vụ → danh sách dự án cùng hạng mục → chi tiết dự án → liên hệ giữ ngữ cảnh**. [information-architecture.md](information-architecture.md) ghi sitemap, taxonomy, navigation, quy tắc URL/query và các trường hợp chưa có dự án mẫu. Hướng dẫn [RampStack Information Architecture](docs/information-architecture/README.md) được lưu cùng nguồn/license; không cài thành runtime hoặc skill toàn cục. Các giả thuyết về người đọc và nhãn nhóm chưa được kiểm chứng bằng nghiên cứu người dùng.
 
 [DESIGN.md](DESIGN.md) ghi nhận bảng màu, typography, bố cục, CTA, responsive và khả năng tiếp cận của Lavita. Khi chỉnh giao diện, giữ thông tin theo hồ sơ và đối chiếu các quy tắc này.
 

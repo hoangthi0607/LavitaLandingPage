@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowRight, FileText } from "lucide-react";
 import { PageIntro } from "@/components/content/page-intro";
 import { ProjectCards } from "@/components/content/project-cards";
-import { company, contactHref, getService, projects, services } from "@/data/home";
+import { company, contactHref, getService, projectCategoryHref, projects, serviceHref, services } from "@/data/home";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata = pageMetadata("Dự án PCCC", "Xem dự án thiết kế, thi công và bảo trì PCCC của Lavita, với phạm vi thực hiện và trang đối chiếu trong hồ sơ năng lực.", "/du-an");
@@ -12,21 +12,31 @@ type Props = { searchParams: Promise<{ "dich-vu"?: string | string[] }> };
 export default async function ProjectsPage({ searchParams }: Props) {
   const query = (await searchParams)["dich-vu"];
   const selectedService = getService(typeof query === "string" ? query : undefined);
-  const items = selectedService ? projects.filter((project) => project.serviceSlug === selectedService.slug) : projects;
-  const scopes = services.filter((service) => projects.some((project) => project.serviceSlug === service.slug));
+  const items = selectedService ? projects.filter((project) => project.serviceSlug === selectedService.slug) : [];
 
   return <>
-    <PageIntro title="Dự án theo phạm vi PCCC" description="Tìm công trình theo dịch vụ Lavita thực hiện. Mỗi dự án có phạm vi PCCC cụ thể và liên kết tới trang tương ứng trong hồ sơ năng lực." breadcrumbs={[{ label: "Trang chủ", href: "/" }, { label: "Dự án PCCC" }]} />
-    <section className="section content-section project-directory" aria-labelledby="project-list-title">
-      <nav className="project-filters" aria-label="Lọc dự án theo dịch vụ PCCC">
-        <Link href="/du-an" aria-current={!selectedService ? "page" : undefined}>Tất cả dự án</Link>
-        {scopes.map((service) => <Link key={service.slug} href={`/du-an?dich-vu=${service.slug}`} aria-current={selectedService?.slug === service.slug ? "page" : undefined}>{service.title}</Link>)}
+    <PageIntro
+      title={selectedService ? `Dự án ${selectedService.title.toLocaleLowerCase("vi-VN")} PCCC` : "Dự án PCCC theo hạng mục"}
+      description={selectedService ? "Chọn công trình để xem chi tiết phạm vi PCCC Lavita thực hiện và đối chiếu trong hồ sơ năng lực." : "Chọn hạng mục dịch vụ để xem danh sách các dự án Lavita thực hiện. Mỗi công trình có thông tin chi tiết về phạm vi PCCC."}
+      breadcrumbs={selectedService ? [{ label: "Trang chủ", href: "/" }, { label: "Dự án PCCC", href: "/du-an" }, { label: selectedService.title }] : [{ label: "Trang chủ", href: "/" }, { label: "Dự án PCCC" }]} />
+    {selectedService ? <section className="section content-section project-directory" aria-labelledby="project-list-title">
+      <nav className="project-filters" aria-label="Hạng mục dự án PCCC">
+        <Link href="/du-an">Các hạng mục</Link>
+        {services.map(service => <Link key={service.slug} href={projectCategoryHref(service.slug)} aria-current={selectedService.slug === service.slug ? "page" : undefined}>{service.title}</Link>)}
       </nav>
-      <div className="project-result-heading"><h2 id="project-list-title">{selectedService ? `${selectedService.title} PCCC` : "Các dự án được giới thiệu"}</h2><p>{items.length} dự án trong hồ sơ Lavita</p></div>
-      {items.length > 0 ? <ProjectCards items={items} /> : <div className="content-empty"><h3>Chưa có dự án được giới thiệu cho dịch vụ này</h3><p>Website hiện chưa có ví dụ riêng cho {selectedService?.title.toLocaleLowerCase("vi-VN")}. Trao đổi với Lavita để tìm hiểu nhu cầu của công trình.</p><div className="content-actions"><Link href={contactHref(selectedService?.slug)} className="button button-primary">Tư vấn về dịch vụ <ArrowRight size={18} aria-hidden="true" /></Link><Link href="/du-an" className="detail-link">Xem tất cả dự án <ArrowRight size={18} aria-hidden="true" /></Link></div></div>}
+      <div className="project-result-heading"><h2 id="project-list-title">Danh sách dự án</h2><p>{items.length} dự án được giới thiệu</p></div>
+      {items.length > 0 ? <ProjectCards items={items} /> : <div className="content-empty"><h3>Chưa có dự án được giới thiệu trong hạng mục này</h3><p>Website hiện chưa giới thiệu công trình thuộc hạng mục {selectedService.title.toLocaleLowerCase("vi-VN")}. Bạn có thể trao đổi với Lavita để tìm hiểu thêm.</p><div className="content-actions"><Link href={contactHref(selectedService.slug)} className="button button-primary">Trao đổi với Lavita <ArrowRight size={18} aria-hidden="true" /></Link><Link href="/du-an" className="detail-link">Xem các hạng mục khác <ArrowRight size={18} aria-hidden="true" /></Link></div></div>}
       <p className="project-scope-note">Các nhãn thể hiện phạm vi PCCC của Lavita tại công trình.</p>
-      {selectedService && <Link href={`/dich-vu/${selectedService.slug}`} className="detail-link">Tìm hiểu dịch vụ {selectedService.title.toLocaleLowerCase("vi-VN")} <ArrowRight size={18} aria-hidden="true" /></Link>}
-    </section>
+      <Link href={serviceHref(selectedService.slug)} className="detail-link">Tìm hiểu dịch vụ {selectedService.title.toLocaleLowerCase("vi-VN")} <ArrowRight size={18} aria-hidden="true" /></Link>
+    </section> : <section className="section content-section project-category-list" aria-label="Các hạng mục dự án PCCC">
+      {services.map(service => {
+        const count = projects.filter(project => project.serviceSlug === service.slug).length;
+        return <article className="project-category-row" key={service.slug}>
+          <div><h2><Link href={projectCategoryHref(service.slug)}>{service.title}</Link></h2><p>{service.description}</p></div>
+          <div className="project-category-action"><span>{count > 0 ? `${count} dự án được giới thiệu` : "Chưa có dự án được giới thiệu"}</span><Link href={projectCategoryHref(service.slug)} className="detail-link" aria-label={`Xem dự án ${service.title.toLocaleLowerCase("vi-VN")}`}>Xem dự án <ArrowRight size={18} aria-hidden="true" /></Link></div>
+        </article>;
+      })}
+    </section>}
     <section className="section content-next"><div><h2>Muốn tìm hiểu thêm về Lavita?</h2><p>Xem hồ sơ năng lực để đối chiếu thông tin doanh nghiệp, dịch vụ và các công trình được giới thiệu.</p></div><div><a href={company.profile} className="button button-secondary" target="_blank" rel="noopener noreferrer">Mở hồ sơ PDF <FileText size={18} aria-hidden="true" /><span className="sr-only"> (mở trong tab mới)</span></a><span className="file-note">PDF khoảng 67 MB · mở khi bạn chọn</span></div></section>
   </>;
 }
