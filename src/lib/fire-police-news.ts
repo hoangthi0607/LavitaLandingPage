@@ -1,9 +1,17 @@
 import sanitizeHtml from "sanitize-html";
 
 // Read-only client for the public CMS API behind canhsatpccc.gov.vn (Cục Cảnh sát PCCC và CNCH, Bộ Công an).
-// The API is undocumented and may change: every call is cached for an hour, times out after 8s and
+// The API is undocumented and may change: every call is cached for an hour, times out after 6s and
 // returns null on failure so pages can show a fallback instead of breaking.
-const API = "https://api.canhsatpccc.gov.vn/api/cms";
+//
+// The API only accepts connections from Vietnamese IPs, so hosts abroad (Vercel) go through the
+// read-only proxy in proxy/news-proxy.mjs running on a machine in Việt Nam (see docs/news-proxy.md):
+//   NEWS_API_BASE   proxy base, e.g. https://tin.example.vn/api/cms (default: the agency API directly)
+//   NEWS_PROXY_KEY  shared secret sent as x-proxy-key
+//   NEWS_SOURCE=off skip all calls and show the fallback immediately
+const API = (process.env.NEWS_API_BASE || "https://api.canhsatpccc.gov.vn/api/cms").replace(/\/+$/, "");
+const PROXY_KEY = process.env.NEWS_PROXY_KEY;
+const DISABLED = process.env.NEWS_SOURCE === "off";
 const SITE = "https://canhsatpccc.gov.vn";
 const CDN = "https://cdn.canhsatpccc.gov.vn";
 const REVALIDATE_SECONDS = 3600;
@@ -29,12 +37,13 @@ export type LegalItem = {
 export type Page<T> = { items: T[]; pageIndex: number; pageCount: number; total: number };
 
 async function request<T>(path: string, params: Record<string, string | number>): Promise<T | null> {
+  if (DISABLED) return null;
   const query = new URLSearchParams(Object.entries(params).map(([key, value]) => [key, String(value)]));
   try {
     const response = await fetch(`${API}${path}?${query}`, {
-      headers: { Accept: "application/json" },
+      headers: { Accept: "application/json", ...(PROXY_KEY ? { "x-proxy-key": PROXY_KEY } : {}) },
       next: { revalidate: REVALIDATE_SECONDS },
-      signal: AbortSignal.timeout(8000),
+      signal: AbortSignal.timeout(6000),
     });
     if (!response.ok) return null;
     const json = await response.json() as { content?: T | null; err?: unknown };

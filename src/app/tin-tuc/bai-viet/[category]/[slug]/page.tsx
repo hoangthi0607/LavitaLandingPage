@@ -53,7 +53,7 @@ export default async function NewsArticlePage({ params }: Props) {
         {sourceLine}
       </header>
       {/* The thumbnail is usually a resized copy of the first body image: show it only for text-only articles. */}
-      {image && !html.includes("<img") && <div className="article-cover"><Image src={image} alt="" fill sizes="(max-width: 900px) 92vw, 820px" priority /></div>}
+      {image && !html.includes("<img") && <div className="article-cover"><Image src={image} alt="" fill unoptimized priority /></div>}
       <div className="article-body" dangerouslySetInnerHTML={{ __html: html }} />
       <footer className="article-foot">
         {sourceLine}

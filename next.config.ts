@@ -1,10 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  images: {
-    // Thumbnails of news republished from canhsatpccc.gov.vn (Cục Cảnh sát PCCC và CNCH).
-    remotePatterns: [{ protocol: "https", hostname: "cdn.canhsatpccc.gov.vn", pathname: "/Uploads/**" }],
-  },
+  // News images (cdn.canhsatpccc.gov.vn) use unoptimized <Image>: the CDN only serves Vietnamese IPs, so the
+  // visitor's browser loads them directly instead of the image optimizer abroad.
   experimental: {
     agentUpgrade: "security",
   },

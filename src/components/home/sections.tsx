@@ -54,7 +54,7 @@ function NewsCard({ item, large = false }: { item: NewsItem; large?: boolean }) 
   const image = cdnUrl(item.filePreview);
   const date = formatDate(item.publishedDate);
   return <Link className={`home-news-card${large ? " home-news-card-large" : ""}`} href={`/tin-tuc/bai-viet/${item.categorySlug}/${itemSlug(item)}`} data-reveal={large ? "left" : "right"}>
-    {image && <Image className="home-news-image" src={image} alt="" fill sizes={large ? "(max-width: 768px) 92vw, 62vw" : "(max-width: 768px) 92vw, 30vw"} />}
+    {image && <Image className="home-news-image" src={image} alt="" fill unoptimized />}
     <div>{large ? <h3>{item.title}</h3> : <h3 className="home-news-small-title">{item.title}</h3>}{date && <p className="home-news-date">{date}</p>}</div>
   </Link>;
 }

@@ -53,7 +53,7 @@ export default async function NewsPage({ searchParams }: Props) {
           const image = cdnUrl(item.filePreview);
           return <li key={item.id} data-reveal="up">
             <Link className="news-card" href={`/tin-tuc/bai-viet/${item.categorySlug}/${itemSlug(item)}`}>
-              <span className="news-card-photo">{image ? <Image src={image} alt="" fill sizes="(max-width: 600px) 92vw, (max-width: 1024px) 46vw, 30vw" /> : null}</span>
+              <span className="news-card-photo">{image ? <Image src={image} alt="" fill unoptimized /> : null}</span>
               <span className="news-card-meta">{item.categoryName}{formatDate(item.publishedDate) ? ` · ${formatDate(item.publishedDate)}` : ""}</span>
               <h2>{item.title}</h2>
               {item.description && <p>{item.description}</p>}
