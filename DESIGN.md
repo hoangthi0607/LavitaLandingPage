@@ -10,6 +10,7 @@ Thông tin doanh nghiệp, dịch vụ, năm thành lập, phạm vi dự án v�
 
 - Giữ đỏ và cam của Lavita. Đỏ làm điểm nhấn cho hành động chính; cam dùng có chọn lọc cho chi tiết thương hiệu. Nền trắng và ivory tạo cảm giác thoáng; warm charcoal dành cho phần năng lực và lớp phủ ảnh.
 - Ảnh thật từ hồ sơ dẫn dắt câu chuyện: hệ thống kỹ thuật ở hero, con người ở giới thiệu, công trình ở dự án. Không thay ảnh bằng minh họa trang trí hoặc hình tạo sinh.
+- Banner trang chủ ưu tiên ảnh sáng, rõ: lớp phủ charcoal giảm dần sang phía phải trên desktop, tập trung độ đậm tại vùng chữ và điều khiển. Mobile dùng lớp phủ theo chiều dọc để giữ chữ dễ đọc trên cả ba ảnh. Mô tả và chữ phụ trên banner dùng `--color-on-dark`.
 - Các nhóm nội dung có khoảng cách rộng; nội dung trong cùng nhóm đặt gần nhau. Căn lề section, heading, ảnh và liên kết theo cùng một container.
 - Dịch vụ là các hàng mở có đường phân cách, không phải một loạt thẻ icon cùng kích thước. Dùng `details`/`summary` để mở mô tả khi cần; hai dịch vụ đầu mở mặc định ở cả desktop và mobile. Tên dịch vụ và dấu hiệu mở/đóng luôn thấy được; mô tả và CTA nằm trong cùng nhóm.
 - Không dùng nhãn trang trí phía trên heading, số thứ tự vô nghĩa, gradient chữ hoặc hiệu ứng kính. Phân cấp bằng cỡ chữ, trọng lượng, khoảng cách và ảnh.
@@ -81,6 +82,8 @@ Trang chủ ưu tiên dịch vụ và dự án trước phần giới thiệu ch
 Kiểm tra desktop và mobile cùng một lượt, gồm bàn phím, menu, slide, CTA, liên kết PDF, gọi điện và email. Xem thêm màn hình hẹp và landscape, nội dung dài, tương phản và chế độ giảm chuyển động. Sửa các lỗi tìm được trong một lượt rồi xác nhận tối đa thêm một lượt. Chạy typecheck và build theo README; không coi build thành công là bằng chứng đã kiểm tra trực quan.
 
 ## Hướng dẫn thiết kế được áp dụng
+
+Banner sáng hơn ngày 17/11/2026 đã được kiểm tra trên bản production bằng Chromium ở độ rộng 1440, 844, 390 và 320 px, đủ ba ảnh. Không tràn ngang hoặc có lỗi JavaScript; nút chuyển ảnh dùng được bằng bàn phím và giảm chuyển động tắt tự chạy. Đo tương phản trên vùng nền ảnh phía sau chữ đạt tối thiểu 3,72:1 với H1 và 4,85:1 với chữ thường; Axe không phát hiện vi phạm WCAG A/AA trong banner. Build gồm TypeScript thành công. Chưa kiểm tra thiết bị vật lý/trình duyệt khác; ảnh và báo cáo ở `.tmp/hero-brightness-qa/`.
 
 Trang hồ sơ được áp dụng theo [docs/profile-visual-plan.md](docs/profile-visual-plan.md) và ba tiêu đề người dùng đã sửa ngày 16/11/2026. Bản phác lưu ở `.tmp/profile-visual-plan/`; giao diện thật và ảnh bàn giao được kiểm tra riêng.
 
