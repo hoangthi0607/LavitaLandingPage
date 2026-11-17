@@ -2,12 +2,12 @@
 .page-intro { padding-top: clamp(40px, 6vw, 80px); padding-bottom: clamp(40px, 6vw, 80px); background: var(--color-surface-soft); }
 .page-intro h1 { max-width: 18ch; font-size: clamp(2.25rem, 5.25vw, 4.5rem); line-height: 1.14; margin: 28px 0 24px; overflow-wrap: break-word; }
 .page-intro .lead { max-width: 64ch; color: var(--color-muted); margin-bottom: 0; }
-.breadcrumbs ol { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 0; list-style: none; padding: 0; margin: 0; font-size: .8125rem; color: var(--color-muted); }
+.breadcrumbs ol { display: flex; flex-wrap: wrap; align-items: center; gap: 0; list-style: none; padding: 0; margin: 0; font-size: .75rem; font-weight: 650; letter-spacing: .04em; line-height: 1.5; text-transform: uppercase; color: var(--color-muted); }
 .breadcrumbs li { display: flex; align-items: center; min-width: 0; }
-.breadcrumbs li + li::before { content: "/"; margin: 0 12px; color: var(--color-muted); }
-.breadcrumbs a { min-height: 44px; display: inline-flex; align-items: center; text-decoration: underline; }
+.breadcrumbs li + li::before { content: "/"; margin: 0 10px; opacity: .55; }
+.breadcrumbs a { min-height: 32px; display: inline-flex; align-items: center; color: inherit; text-decoration: none; transition: color .2s var(--ease-out); }
 .breadcrumbs a:hover { color: var(--color-brand); }
-.breadcrumbs span { overflow-wrap: anywhere; }
+.breadcrumbs [aria-current="page"] { color: var(--color-brand); overflow-wrap: anywhere; }
 .content-section { padding-top: clamp(48px, 6vw, 80px); padding-bottom: clamp(48px, 6vw, 80px); }
 .content-section-description { max-width: 65ch; color: var(--color-muted); margin: 16px 0 0; }
 .content-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 16px 24px; margin-top: 24px; }
@@ -78,7 +78,6 @@
 }
 @media (max-width: 480px) {
   .page-intro h1 { font-size: clamp(2rem, 8vw, 2.5rem); margin-top: 20px; }
-  .breadcrumbs ol { font-size: .75rem; }
   .breadcrumbs li + li::before { margin-inline: 8px; }
   .content-actions { align-items: flex-start; flex-direction: column; gap: 12px; }
   .content-actions .button, .content-next > .button { max-width: 100%; }

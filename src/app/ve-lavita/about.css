@@ -8,9 +8,9 @@
 .company-hero::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, color-mix(in srgb, var(--color-dark) 45%, transparent), color-mix(in srgb, var(--color-dark) 68%, transparent) 40%, color-mix(in srgb, var(--color-dark) 70%, transparent)); }
 .company-hero-content { width: min(920px, 100%); margin-inline: auto; padding: 48px var(--gutter) 160px; text-align: center; }
 .company-hero .page-intro { padding: 0; background: transparent; color: var(--color-on-dark); }
-.company-hero .breadcrumbs ol { justify-content: center; color: var(--color-on-dark); font-size: .75rem; }
+.company-hero .breadcrumbs ol { justify-content: center; color: var(--color-muted-on-dark); }
 .company-hero .breadcrumbs li + li::before { color: var(--color-on-dark); }
-.company-hero .breadcrumbs a:hover { color: var(--color-on-dark); }
+.company-hero .breadcrumbs a:hover, .company-hero .breadcrumbs [aria-current="page"] { color: var(--color-on-dark); }
 .company-hero .page-intro h1 { margin: 20px auto 18px; max-width: 16ch; font-size: clamp(2.5rem, 4.5vw, 4rem); font-weight: 650; line-height: 1.15; }
 .company-hero .page-intro .lead { white-space: pre-line; max-width: 58ch; margin: 0 auto; font-size: clamp(1rem, 1.4vw, 1.125rem); color: var(--color-on-dark); line-height: 1.8; }
 .company-hero-content > .button { margin-top: 30px; }

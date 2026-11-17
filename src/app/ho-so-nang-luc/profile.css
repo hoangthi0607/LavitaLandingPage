@@ -3,7 +3,7 @@
 .profile-hero::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, color-mix(in srgb, var(--color-dark) 94%, transparent), color-mix(in srgb, var(--color-dark) 68%, transparent) 45%, color-mix(in srgb, var(--color-dark) 10%, transparent)); }
 .profile-hero-copy { min-width: 0; }
 .profile-hero .breadcrumbs ol, .profile-hero .breadcrumbs li + li::before { color: var(--color-muted-on-dark); }
-.profile-hero .breadcrumbs a:hover { color: var(--color-on-dark); }
+.profile-hero .breadcrumbs a:hover, .profile-hero .breadcrumbs [aria-current="page"] { color: var(--color-on-dark); }
 .profile-hero h1 { margin: 28px 0 24px; max-width: 13ch; white-space: pre-line; font-size: clamp(2.75rem, 5.5vw, 4.75rem); line-height: 1.12; }
 .profile-hero-copy > p { margin: 0; white-space: pre-line; font-size: clamp(1rem, 1.6vw, 1.1875rem); color: var(--color-on-dark); }
 .profile-hero :focus-visible, .profile-credentials :focus-visible { outline-color: var(--color-on-dark); }
