@@ -8,7 +8,7 @@
 .profile-hero-copy > p { margin: 0; white-space: pre-line; font-size: clamp(1rem, 1.6vw, 1.1875rem); color: var(--color-on-dark); }
 .profile-hero :focus-visible, .profile-credentials :focus-visible { outline-color: var(--color-on-dark); }
 .profile-contents { display: flex; flex-wrap: wrap; gap: 8px 32px; padding-block: 18px; border-bottom: 1px solid var(--color-line); }
-.profile-contents a { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; font-size: .8125rem; font-weight: 600; }
+.profile-contents a { text-transform: uppercase; letter-spacing: .03em; display: inline-flex; align-items: center; gap: 12px; min-height: 44px; font-size: .8125rem; font-weight: 600; }
 .profile-contents a:hover { color: var(--color-brand); }
 .profile-contents svg { flex-shrink: 0; color: var(--color-brand); }
 .profile-company { display: grid; grid-template-columns: 1.55fr 1fr; align-items: center; gap: clamp(32px, 4vw, 64px); }

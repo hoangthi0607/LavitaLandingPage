@@ -26,7 +26,7 @@
 .company-story-copy p:last-child { margin-bottom: 0; }
 .company-story-copy .lead { font-size: 1rem; }
 .company-story-nav { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 4px 32px; padding-block: 24px; margin-top: 16px; }
-.company-story-nav a { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; font-size: .8125rem; font-weight: 600; }
+.company-story-nav a { text-transform: uppercase; letter-spacing: .03em; display: inline-flex; align-items: center; gap: 12px; min-height: 44px; font-size: .8125rem; font-weight: 600; }
 .company-story-nav a:hover { color: var(--color-brand); }
 .company-story-nav svg { flex-shrink: 0; color: var(--color-brand); }
 .company-purpose { padding-top: clamp(32px, 4vw, 56px); }
