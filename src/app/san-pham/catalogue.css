@@ -1,15 +1,12 @@
-.catalogue { display: grid; grid-template-columns: minmax(200px, 260px) minmax(0, 1fr); align-items: start; gap: clamp(32px, 5vw, 72px); padding-top: clamp(40px, 5vw, 72px); }
-.catalogue-sidebar { position: sticky; top: 154px; min-width: 0; }
-.catalogue-sidebar h2 { font-size: 1.1875rem; margin-bottom: 20px; letter-spacing: -.02em; }
-.catalogue-sidebar ul { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--color-line); }
-.catalogue-sidebar li { border-bottom: 1px solid var(--color-line); }
-.catalogue-sidebar li a { display: flex; align-items: center; justify-content: space-between; gap: 14px; min-height: 52px; padding: 12px 14px; font-size: .875rem; }
-.catalogue-sidebar li a svg { flex-shrink: 0; }
-.catalogue-sidebar li a:hover, .catalogue-sidebar li a[aria-current="page"] { color: var(--color-brand); background: var(--color-surface-soft); }
-.catalogue-sidebar li a[aria-current="page"] { font-weight: 650; }
-.catalogue-help { padding-top: 28px; }
-.catalogue-help p { margin-bottom: 6px; color: var(--color-muted); font-size: .875rem; }
-.catalogue-help a { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; color: var(--color-brand); font-weight: 650; }
+/* Product catalogue in the dcons.vn visual language: centred text tabs, framed photos, divided spec rows. */
+.catalogue { padding-top: clamp(24px, 3vw, 40px); }
+.catalogue-tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px clamp(12px, 2.5vw, 32px); margin-bottom: clamp(40px, 5vw, 64px); }
+.catalogue-tabs a { position: relative; display: inline-flex; align-items: center; min-height: 48px; padding: 8px 14px 6px; font-size: clamp(1rem, 1.4vw, 1.25rem); font-weight: 700; color: var(--color-muted); transition: color .3s ease, transform .3s ease; }
+.catalogue-tabs a:hover { color: var(--color-ink); transform: translateY(-1px); }
+.catalogue-tabs a[aria-current="page"] { color: var(--color-ink); }
+.catalogue-tabs a[aria-current="page"]::after { content: ""; position: absolute; left: 14px; right: 14px; bottom: 2px; height: 3px; border-radius: 3px; background: var(--color-brand); animation: nav-underline .5s var(--ease-nav) both; }
+.catalogue-help { margin: 16px 0 0; color: var(--color-muted); font-size: .875rem; }
+.catalogue-help a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; margin-left: 4px; color: var(--color-brand); font-weight: 700; }
 .catalogue-content { min-width: 0; }
 .catalogue-heading h2 { font-size: clamp(1.5rem, 3vw, 2.25rem); margin-bottom: 16px; }
 .catalogue-heading p { max-width: 60ch; color: var(--color-muted); }
@@ -23,15 +20,15 @@
 .catalogue-search-summary { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px 20px; margin-top: 20px; font-size: .875rem; }
 .catalogue-search-summary p { margin: 0; color: var(--color-muted); overflow-wrap: anywhere; }
 .catalogue-search-summary a { display: inline-flex; align-items: center; min-height: 44px; color: var(--color-brand); text-decoration: underline; }
-.catalogue-empty { margin-top: 32px; padding: clamp(28px, 4vw, 56px); background: var(--color-surface-soft); }
+.catalogue-empty { margin-top: 32px; padding: clamp(28px, 4vw, 56px); border-radius: 12px; background: var(--color-surface-soft); }
 .catalogue-empty > svg { color: var(--color-accent); margin-bottom: 20px; }
 .catalogue-empty h3 { max-width: 28ch; font-size: clamp(1.375rem, 2.5vw, 1.875rem); margin-bottom: 16px; }
 .catalogue-empty > p { max-width: 60ch; color: var(--color-muted); margin-bottom: 0; }
 .catalogue-empty .content-actions { gap: 12px 24px; }
 .catalogue-count { margin: 28px 0 20px; color: var(--color-muted); font-size: .875rem; }
-.catalogue-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 24px; }
+.catalogue-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 48px 32px; }
 .catalogue-product { min-width: 0; }
-.catalogue-product-image { position: relative; display: grid; place-items: center; aspect-ratio: 1; background: var(--color-surface-soft); color: var(--color-muted); }
+.catalogue-product-image { position: relative; display: grid; place-items: center; aspect-ratio: 1; overflow: hidden; border-radius: 11px; background: var(--color-surface-soft); color: var(--color-muted); }
 .catalogue-product-image img { object-fit: contain; padding: 20px; }
 .catalogue-product h3 { font-size: 1.125rem; margin-top: 16px; }
 .catalogue-product h3 a:hover { color: var(--color-brand); }
@@ -41,17 +38,12 @@
 .catalogue-detail-copy { min-width: 0; }
 .catalogue-detail-copy > p { color: var(--color-muted); }
 .catalogue-specifications { margin: 28px 0; }
-.catalogue-specifications > div { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--color-line); }
-.catalogue-specifications dt { font-weight: 600; }
-.catalogue-specifications dd { margin: 0; color: var(--color-muted); overflow-wrap: anywhere; }
-@media (max-width: 900px) {
-  .catalogue { grid-template-columns: 1fr; gap: 36px; }
-  .catalogue-sidebar { position: static; }
-  .catalogue-sidebar ul { display: flex; flex-wrap: wrap; gap: 8px; border: 0; }
-  .catalogue-sidebar li { border: 1px solid var(--color-line); }
-  .catalogue-sidebar li a { min-height: 44px; }
-  .catalogue-sidebar li a svg { display: none; }
-  .catalogue-help { display: none; }
+.catalogue-specifications > div { display: flex; align-items: baseline; justify-content: space-between; gap: 16px 40px; padding: 12px 0; }
+.catalogue-specifications > div + div { border-top: 1px solid color-mix(in srgb, var(--color-ink) 35%, transparent); }
+.catalogue-specifications dt { flex-shrink: 0; font-weight: 700; }
+.catalogue-specifications dd { margin: 0; text-align: right; overflow-wrap: anywhere; }
+@media (max-width: 1024px) {
+  .catalogue-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 760px) {
   .catalogue-detail { grid-template-columns: 1fr; }
@@ -61,5 +53,6 @@
   .catalogue-search button { align-self: flex-start; }
   .catalogue-empty { padding: 24px; }
   .catalogue-grid { grid-template-columns: 1fr; }
-  .catalogue-specifications > div { grid-template-columns: 1fr; gap: 4px; }
+  .catalogue-specifications > div { flex-direction: column; gap: 4px; }
+  .catalogue-specifications dd { text-align: left; }
 }

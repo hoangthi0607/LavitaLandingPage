@@ -23,27 +23,22 @@ export default async function ProductsPage({ searchParams }: { searchParams: Pro
     <PageIntro title={productCatalogue.title} description={productCatalogue.description}
       breadcrumbs={category ? [{ label: "Trang chủ", href: "/" }, { label: "Sản phẩm", href: "/san-pham" }, { label: category.title }] : [{ label: "Trang chủ", href: "/" }, { label: "Sản phẩm" }]} />
     <section className="section catalogue" aria-label="Danh mục sản phẩm PCCC">
-      <aside className="catalogue-sidebar">
-        <nav aria-labelledby="catalogue-categories-title">
-          <h2 id="catalogue-categories-title">Nhóm sản phẩm</h2>
-          <ul>
-            <li><Link href={catalogueHref(undefined, keyword)} aria-current={!category ? "page" : undefined}>Tất cả sản phẩm</Link></li>
-            {productCategories.map(item => <li key={item.slug}><Link href={catalogueHref(item.slug, keyword)} aria-current={category?.slug === item.slug ? "page" : undefined}>{item.title}</Link></li>)}
-          </ul>
-        </nav>
-        <div className="catalogue-help"><p>Cần trao đổi về sản phẩm?</p><a href={company.phoneHref}><Phone size={18} aria-hidden="true" />{company.phone}</a></div>
-      </aside>
+      <nav className="catalogue-tabs" aria-label="Nhóm sản phẩm" data-reveal="up">
+        <Link href={catalogueHref(undefined, keyword)} aria-current={!category ? "page" : undefined}>Tất cả sản phẩm</Link>
+        {productCategories.map(item => <Link key={item.slug} href={catalogueHref(item.slug, keyword)} aria-current={category?.slug === item.slug ? "page" : undefined}>{item.title}</Link>)}
+      </nav>
       <div className="catalogue-content">
-        <div className="catalogue-heading"><h2>{category?.title ?? "Tất cả sản phẩm"}</h2>{category && <p>{category.description}</p>}</div>
+        <div className="catalogue-heading"><h2 className="section-title">{category?.title ?? "Tất cả sản phẩm"}</h2>{category && <p>{category.description}</p>}</div>
         <form className="catalogue-search" action="/san-pham" method="get" role="search">
           {category && <input type="hidden" name="danh-muc" value={category.slug} />}
           <label htmlFor="catalogue-search">Tìm sản phẩm</label>
           <div><input key={`${category?.slug ?? "all"}:${keyword}`} id="catalogue-search" type="search" name="q" defaultValue={keyword} maxLength={100} placeholder="Nhập tên hoặc mã sản phẩm" /><button type="submit"><Search size={19} aria-hidden="true" /><span>Tìm kiếm</span></button></div>
         </form>
+        <p className="catalogue-help">Cần trao đổi về sản phẩm? <a href={company.phoneHref}><Phone size={16} aria-hidden="true" />{company.phone}</a></p>
         {keyword && <div className="catalogue-search-summary"><p>Kết quả tìm kiếm cho “{keyword}”</p><Link href={catalogueHref(category?.slug)}>Xóa tìm kiếm</Link></div>}
         {items.length > 0 ? <>
           <p className="catalogue-count">{items.length} sản phẩm</p>
-          <div className="catalogue-grid">{items.map(product => <article className="catalogue-product" key={product.slug}>
+          <div className="catalogue-grid">{items.map(product => <article className="catalogue-product" key={product.slug} data-reveal="up">
             <Link href={`/san-pham/${product.slug}`} className="catalogue-product-image" aria-label={`Xem ${product.title}`}>
               {product.image ? <Image src={product.image} alt={product.title} fill sizes="(max-width: 600px) 90vw, (max-width: 1100px) 45vw, 30vw" /> : <Package size={52} aria-hidden="true" />}
             </Link>

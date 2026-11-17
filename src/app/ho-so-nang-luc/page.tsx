@@ -16,25 +16,25 @@ export default function CompanyProfilePage() {
     </section>
     <nav className="section profile-contents" aria-label="Nội dung hồ sơ năng lực">{companyProfile.sections.filter(section => companyProfile.showCredentials || section.id !== "chuyen-mon").map(section => <a href={`#${section.id}`} key={section.id}>{section.title}</a>)}</nav>
     <section id="thong-tin-doanh-nghiep" className="section profile-company" aria-labelledby="profile-company-title">
-      <figure className="profile-company-photo"><Image src={companyProfile.teamImage.src} alt={companyProfile.teamImage.alt} width={companyProfile.teamImage.width} height={companyProfile.teamImage.height} sizes="(max-width: 760px) 90vw, 55vw" /></figure>
-      <div className="profile-company-copy"><h2 id="profile-company-title">{companyProfile.teamTitle}</h2><p>{companyProfile.teamCaption}</p><dl className="profile-facts"><div><dt>Thành lập</dt><dd>{companyProfile.founded}</dd></div><div><dt>Mã số thuế</dt><dd>{company.taxCode}</dd></div></dl><p className="profile-company-name">{company.name}</p></div>
+      <figure className="profile-company-photo" data-reveal="left"><Image src={companyProfile.teamImage.src} alt={companyProfile.teamImage.alt} width={companyProfile.teamImage.width} height={companyProfile.teamImage.height} sizes="(max-width: 760px) 90vw, 55vw" /></figure>
+      <div className="profile-company-copy" data-reveal="right"><h2 id="profile-company-title" className="section-title">{companyProfile.teamTitle}</h2><p>{companyProfile.teamCaption}</p><dl className="profile-facts"><div><dt>Thành lập</dt><dd>{companyProfile.founded}</dd></div><div><dt>Mã số thuế</dt><dd>{company.taxCode}</dd></div></dl><p className="profile-company-name">{company.name}</p></div>
     </section>
 
     <section id="phap-ly" className="section profile-legal" aria-labelledby="profile-legal-title">
-      <h2 id="profile-legal-title">{companyProfile.legalTitle}</h2>
-      <div className="profile-legal-groups">{companyProfile.legalDocuments.map(album => <div className="profile-legal-album" key={album.title}><DocumentGallery title={album.title} items={album.pages} /><h3>{album.title}</h3></div>)}</div>
+      <h2 id="profile-legal-title" className="section-title">{companyProfile.legalTitle}</h2>
+      <div className="profile-legal-groups">{companyProfile.legalDocuments.map(album => <div className="profile-legal-album" key={album.title} data-reveal="scale"><DocumentGallery title={album.title} items={album.pages} /><h3>{album.title}</h3></div>)}</div>
     </section>
 
     <section id="doi-ngu" className={`section ${companyProfile.showCredentials ? "profile-credentials" : "profile-people"}`} aria-labelledby={companyProfile.showCredentials ? "profile-credentials-title" : "profile-organization-title"}>
       {companyProfile.showCredentials && <div id="chuyen-mon">
-      <h2 id="profile-credentials-title">{companyProfile.credentialsTitle}</h2>
+      <h2 id="profile-credentials-title" className="section-title">{companyProfile.credentialsTitle}</h2>
       <div className="profile-credentials-layout"><figure className="profile-technician"><Image src={companyProfile.technicianImage.src} alt={companyProfile.technicianImage.alt} width={companyProfile.technicianImage.width} height={companyProfile.technicianImage.height} sizes="(max-width: 760px) 90vw, 35vw" /></figure><div><DocumentGallery title={companyProfile.credentialsTitle} items={companyProfile.credentials} variant="credentials" /></div></div>
       </div>}
-      <div className={`profile-organization${companyProfile.showCredentials ? "" : " profile-organization-only"}`}>{companyProfile.showCredentials ? <h3>Cơ cấu tổ chức</h3> : <h2 id="profile-organization-title">Cơ cấu tổ chức</h2>}<div className="profile-organization-tree"><p className="profile-management">Ban giám đốc</p><ul>{companyProfile.organization.map(group => <li key={group.title}>{companyProfile.showCredentials ? <h4>{group.title}</h4> : <h3>{group.title}</h3>}<ul>{group.roles.map(role => <li key={role}>{role}</li>)}</ul></li>)}</ul></div></div>
+      <div className={`profile-organization${companyProfile.showCredentials ? "" : " profile-organization-only"}`}>{companyProfile.showCredentials ? <h3>Cơ cấu tổ chức</h3> : <h2 id="profile-organization-title" className="section-title">Cơ cấu tổ chức</h2>}<div className="profile-organization-tree"><p className="profile-management">Ban giám đốc</p><ul>{companyProfile.organization.map(group => <li key={group.title}>{companyProfile.showCredentials ? <h4>{group.title}</h4> : <h3>{group.title}</h3>}<ul>{group.roles.map(role => <li key={role}>{role}</li>)}</ul></li>)}</ul></div></div>
     </section>
 
     <section id="du-an-tieu-bieu" className="section profile-projects" aria-labelledby="profile-projects-title">
-      <div className="section-heading"><h2 id="profile-projects-title">{companyProfile.projectsTitle}</h2><Link className="detail-link" href="/du-an">Xem dự án theo hạng mục</Link></div>
+      <div className="section-heading"><h2 id="profile-projects-title" className="section-title">{companyProfile.projectsTitle}</h2><Link className="detail-link" href="/du-an">Xem dự án theo hạng mục</Link></div>
       <div className="profile-project-layout">{companyProfile.projectChapters.map(chapter => {
         const service = getService(chapter.serviceSlug);
         if (!service) return null;
