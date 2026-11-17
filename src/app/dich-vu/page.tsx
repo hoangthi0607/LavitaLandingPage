@@ -15,7 +15,7 @@ export default function ServicesPage() {
         <div className="service-directory-list">
           {services.filter((service) => service.group === group.id).map((service) => <article key={service.slug} id={service.slug} className="service-directory-row">
             <div><h3>{service.title}</h3><p>{service.description}</p></div>
-            <Link href={contactHref(service.slug)} className="detail-link" aria-label={`Trao đổi về ${service.title}`}>Trao đổi về dịch vụ <ArrowRight size={18} aria-hidden="true" /></Link>
+            <Link href={contactHref(service.slug)} className="detail-link" aria-label={`Trao đổi về ${service.title}`}>Trao đổi về dịch vụ</Link>
           </article>)}
         </div>
       </section>)}

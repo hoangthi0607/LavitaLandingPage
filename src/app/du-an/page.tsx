@@ -79,15 +79,15 @@ export default async function ProjectsPage({ searchParams }: Props) {
           <h3>{filtered ? "Chưa tìm thấy dự án phù hợp" : "Đang cập nhật công trình trong hạng mục này"}</h3>
           <p>{filtered ? "Thử từ khóa khác hoặc bỏ bớt điều kiện lọc." : "Bạn có thể trao đổi trực tiếp với Lavita để tìm hiểu thêm về dịch vụ."}</p>
           <div className="content-actions">
-            {filtered && <Link href={projectsHref({ service: selectedService?.slug })} className="detail-link">Xóa bộ lọc<ArrowRight size={18} aria-hidden="true" /></Link>}
-            <Link href={contactHref(selectedService?.slug)} className="detail-link">Trao đổi với Lavita<ArrowRight size={18} aria-hidden="true" /></Link>
+            {filtered && <Link href={projectsHref({ service: selectedService?.slug })} className="detail-link">Xóa bộ lọc</Link>}
+            <Link href={contactHref(selectedService?.slug)} className="detail-link">Trao đổi với Lavita</Link>
           </div>
         </div>}
       </section>
     </div>
 
     <section className="section content-next"><div><h2>Công trình của bạn cần giải pháp PCCC?</h2><p>Trao đổi nhu cầu với Lavita hoặc tìm hiểu đội ngũ thi công, hồ sơ pháp lý trong hồ sơ năng lực.</p></div>
-      <div className="content-actions"><Link href={contactHref(selectedService?.slug)} className="button button-primary">Trao đổi với Lavita<ArrowRight size={18} aria-hidden="true" /></Link><Link href="/ho-so-nang-luc" className="button button-secondary">Xem hồ sơ năng lực<ArrowRight size={18} aria-hidden="true" /></Link></div>
+      <div className="content-actions"><Link href={contactHref(selectedService?.slug)} className="button button-primary">Trao đổi với Lavita<ArrowRight size={18} aria-hidden="true" /></Link><Link href="/ho-so-nang-luc" className="button button-secondary">Xem hồ sơ năng lực</Link></div>
     </section>
   </div>;
 }

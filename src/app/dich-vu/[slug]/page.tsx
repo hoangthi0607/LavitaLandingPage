@@ -36,7 +36,7 @@ export default async function ServicePage({ params }: Props) {
         <div className="content-actions"><Link href={contactHref(service.slug)} className="button button-primary">Tư vấn về dịch vụ này <ArrowRight size={18} aria-hidden="true" /></Link></div>
       </div>
     </section>
-    <section className="section content-section related-services" aria-labelledby="related-services-title"><h2 id="related-services-title">Dịch vụ liên quan</h2><div className="related-service-list">{relatedServices.map((related) => <Link key={related.slug} href={serviceHref(related.slug)}><span>{related.title}</span><ArrowRight size={20} aria-hidden="true" /></Link>)}</div></section>
-    <div className="section content-return"><Link href={projectCategoryHref(service.slug)} className="detail-link">Xem dự án theo hạng mục dịch vụ này <ArrowRight size={18} aria-hidden="true" /></Link></div>
+    <section className="section content-section related-services" aria-labelledby="related-services-title"><h2 id="related-services-title">Dịch vụ liên quan</h2><div className="related-service-list">{relatedServices.map((related) => <Link key={related.slug} href={serviceHref(related.slug)}><span>{related.title}</span></Link>)}</div></section>
+    <div className="section content-return"><Link href={projectCategoryHref(service.slug)} className="detail-link">Xem dự án theo hạng mục dịch vụ này</Link></div>
   </>;
 }

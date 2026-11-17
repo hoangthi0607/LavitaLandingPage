@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { type Project } from "@/data/home";
 
 export function ProjectCards({ items }: { items: readonly Project[] }) {
@@ -15,7 +14,7 @@ export function ProjectCards({ items }: { items: readonly Project[] }) {
           <div className="project-info">
             <h3><Link href={`/du-an/${project.slug}`}>{project.title}</Link></h3>
             <p>{project.description}</p>
-            <Link href={`/du-an/${project.slug}`} className="project-link">Xem chi tiết dự án <ArrowRight size={16} aria-hidden="true" /></Link>
+            <Link href={`/du-an/${project.slug}`} className="project-link">Xem chi tiết dự án</Link>
           </div>
         </article>
       ))}

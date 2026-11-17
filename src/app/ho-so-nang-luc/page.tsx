@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowDown, ArrowRight, Download } from "lucide-react";
+import { ArrowRight, Download } from "lucide-react";
 import { DocumentGallery } from "@/components/content/document-gallery";
 import { ScrollReveal } from "@/components/content/scroll-reveal";
 import { company, companyProfile, getProject, getService } from "@/data/home";
@@ -15,7 +15,7 @@ export default function CompanyProfilePage() {
       <Image src={companyProfile.heroImage.src} alt={companyProfile.heroImage.alt} fill sizes="100vw" preload />
       <div className="profile-hero-copy"><nav className="breadcrumbs" aria-label="Đường dẫn"><ol><li><Link href="/">Trang chủ</Link></li><li><span aria-current="page">Hồ sơ năng lực</span></li></ol></nav><h1 id="profile-title">{companyProfile.heroHeading}</h1><p>{companyProfile.introduction}</p></div>
     </section>
-    <nav className="section profile-contents" aria-label="Nội dung hồ sơ năng lực">{companyProfile.sections.filter(section => companyProfile.showCredentials || section.id !== "chuyen-mon").map(section => <a href={`#${section.id}`} key={section.id}>{section.title}<ArrowDown size={15} aria-hidden="true" /></a>)}</nav>
+    <nav className="section profile-contents" aria-label="Nội dung hồ sơ năng lực">{companyProfile.sections.filter(section => companyProfile.showCredentials || section.id !== "chuyen-mon").map(section => <a href={`#${section.id}`} key={section.id}>{section.title}</a>)}</nav>
 
     <ScrollReveal>
     <section id="thong-tin-doanh-nghiep" className="section profile-company" aria-labelledby="profile-company-title">
@@ -37,13 +37,13 @@ export default function CompanyProfilePage() {
     </section>
 
     <section id="du-an-tieu-bieu" className="section profile-projects" aria-labelledby="profile-projects-title">
-      <div className="section-heading"><h2 id="profile-projects-title">{companyProfile.projectsTitle}</h2><Link className="detail-link" href="/du-an">Xem dự án theo hạng mục<ArrowRight size={18} aria-hidden="true" /></Link></div>
+      <div className="section-heading"><h2 id="profile-projects-title">{companyProfile.projectsTitle}</h2><Link className="detail-link" href="/du-an">Xem dự án theo hạng mục</Link></div>
       <div className="profile-project-layout">{companyProfile.projectChapters.map(chapter => {
         const service = getService(chapter.serviceSlug);
         if (!service) return null;
         return <article className={`profile-project-chapter profile-project-${chapter.serviceSlug}`} key={chapter.serviceSlug}>
           <div className={`profile-project-photos${chapter.photos.length > 1 ? " profile-project-pair" : ""}`}>{chapter.photos.map(photo => <Image key={photo.src} src={photo.src} alt={photo.alt} width={photo.width} height={photo.height} sizes={chapter.photos.length > 1 ? "(max-width: 760px) 43vw, 22vw" : "(max-width: 760px) 90vw, 50vw"} />)}</div>
-          <h3>{service.title} PCCC</h3><div className="profile-project-links">{chapter.projectSlugs.map(slug => { const project = getProject(slug); return project ? <Link href={`/du-an/${project.slug}`} key={slug}>{project.title}<ArrowRight size={16} aria-hidden="true" /><span className="sr-only"> · {project.tag}</span></Link> : null; })}</div>
+          <h3>{service.title} PCCC</h3><div className="profile-project-links">{chapter.projectSlugs.map(slug => { const project = getProject(slug); return project ? <Link href={`/du-an/${project.slug}`} key={slug}>{project.title}<span className="sr-only"> · {project.tag}</span></Link> : null; })}</div>
         </article>;
       })}</div>
     </section>

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 import { ContactComposer } from "@/components/contact/contact-composer";
 import { PageIntro } from "@/components/content/page-intro";
 import { company, getProject, getService } from "@/data/home";
@@ -50,19 +50,19 @@ export default async function ContactPage({
           <a href={company.phoneHref}>
             <Phone size={21} aria-hidden="true" />
             <span>Điện thoại<strong>{company.phone}</strong></span>
-            <ArrowUpRight size={18} aria-hidden="true" />
+           
           </a>
           <a href={`mailto:${company.email}`}>
             <Mail size={21} aria-hidden="true" />
             <span>Email trực tiếp<strong>{company.email}</strong></span>
-            <ArrowUpRight size={18} aria-hidden="true" />
+           
           </a>
           <div>
             <MapPin size={21} aria-hidden="true" />
             <span>Địa chỉ<strong>{company.address}</strong></span>
           </div>
         </address>
-        <Link className="detail-link" href="/dich-vu">Xem lại các dịch vụ PCCC <ArrowUpRight size={18} aria-hidden="true" /></Link>
+        <Link className="detail-link" href="/dich-vu">Xem lại các dịch vụ PCCC</Link>
       </div>
       <ContactComposer
         key={`${service?.slug ?? "general"}:${project?.slug ?? "none"}:${productCategory?.slug ?? "none"}:${product?.slug ?? "none"}`}

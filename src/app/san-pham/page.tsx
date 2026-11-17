@@ -27,8 +27,8 @@ export default async function ProductsPage({ searchParams }: { searchParams: Pro
         <nav aria-labelledby="catalogue-categories-title">
           <h2 id="catalogue-categories-title">Nhóm sản phẩm</h2>
           <ul>
-            <li><Link href={catalogueHref(undefined, keyword)} aria-current={!category ? "page" : undefined}>Tất cả sản phẩm<ArrowRight size={16} aria-hidden="true" /></Link></li>
-            {productCategories.map(item => <li key={item.slug}><Link href={catalogueHref(item.slug, keyword)} aria-current={category?.slug === item.slug ? "page" : undefined}>{item.title}<ArrowRight size={16} aria-hidden="true" /></Link></li>)}
+            <li><Link href={catalogueHref(undefined, keyword)} aria-current={!category ? "page" : undefined}>Tất cả sản phẩm</Link></li>
+            {productCategories.map(item => <li key={item.slug}><Link href={catalogueHref(item.slug, keyword)} aria-current={category?.slug === item.slug ? "page" : undefined}>{item.title}</Link></li>)}
           </ul>
         </nav>
         <div className="catalogue-help"><p>Cần trao đổi về sản phẩm?</p><a href={company.phoneHref}><Phone size={18} aria-hidden="true" />{company.phone}</a></div>
@@ -50,13 +50,13 @@ export default async function ProductsPage({ searchParams }: { searchParams: Pro
             {product.sku && <p className="catalogue-sku">{product.sku}</p>}
             <h3><Link href={`/san-pham/${product.slug}`}>{product.title}</Link></h3>
             <p>{product.description}</p>
-            <Link href={`/san-pham/${product.slug}`} className="detail-link">Xem sản phẩm<ArrowRight size={17} aria-hidden="true" /></Link>
+            <Link href={`/san-pham/${product.slug}`} className="detail-link">Xem sản phẩm</Link>
           </article>)}</div>
         </> : <div className="catalogue-empty">
           <PackageSearch size={46} strokeWidth={1.4} aria-hidden="true" />
           <h3>{products.length === 0 ? productCatalogue.emptyTitle : "Chưa tìm thấy sản phẩm phù hợp"}</h3>
           <p>{products.length === 0 ? productCatalogue.emptyDescription : "Thử từ khóa khác hoặc chọn một nhóm sản phẩm khác. Bạn cũng có thể trao đổi trực tiếp với Lavita."}</p>
-          <div className="content-actions"><Link className="button button-primary" href={productContactHref(category?.slug)}>Trao đổi về sản phẩm<ArrowRight size={18} aria-hidden="true" /></Link>{(keyword || category) && <Link className="detail-link" href="/san-pham">Xem tất cả danh mục<ArrowRight size={18} aria-hidden="true" /></Link>}</div>
+          <div className="content-actions"><Link className="button button-primary" href={productContactHref(category?.slug)}>Trao đổi về sản phẩm<ArrowRight size={18} aria-hidden="true" /></Link>{(keyword || category) && <Link className="detail-link" href="/san-pham">Xem tất cả danh mục</Link>}</div>
         </div>}
       </div>
     </section>

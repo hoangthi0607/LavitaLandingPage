@@ -53,7 +53,7 @@ export function Hero() {
         <p>{slides[active].description}</p>
         <div className="hero-actions">
           <Link className="button button-primary" href="/dich-vu">Tìm dịch vụ phù hợp <ArrowUpRight size={18} aria-hidden="true" /></Link>
-          <Link className="hero-secondary" href={slides[active].href === "/dich-vu" ? "/du-an" : slides[active].href}>{slides[active].href === "/dich-vu" ? "Xem dự án PCCC" : "Tìm hiểu dịch vụ"} <ArrowRight size={18} aria-hidden="true" /></Link>
+          <Link className="hero-secondary" href={slides[active].href === "/dich-vu" ? "/du-an" : slides[active].href}>{slides[active].href === "/dich-vu" ? "Xem dự án PCCC" : "Tìm hiểu dịch vụ"}</Link>
         </div>
       </div>
       <div className="hero-bottom">

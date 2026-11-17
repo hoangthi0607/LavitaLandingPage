@@ -32,7 +32,7 @@ export default async function ProductPage({ params }: Props) {
       <div className="catalogue-detail-copy"><h2>Thông tin sản phẩm</h2>{product.sku && <p className="catalogue-sku">Mã sản phẩm: {product.sku}</p>}<p>{product.description}</p>
         {product.specifications && product.specifications.length > 0 && <dl className="catalogue-specifications">{product.specifications.map(item => <div key={item.name}><dt>{item.name}</dt><dd>{item.value}</dd></div>)}</dl>}
         <div className="content-actions"><Link className="button button-primary" href={productContactHref(category.slug, product.slug)}>Trao đổi về sản phẩm<ArrowRight size={18} aria-hidden="true" /></Link><a className="detail-link" href={company.phoneHref}><Phone size={18} aria-hidden="true" />{company.phone}</a></div>
-        <Link className="detail-link" href={catalogueHref(category.slug)}>Xem nhóm {category.title.toLocaleLowerCase("vi-VN")}<ArrowRight size={18} aria-hidden="true" /></Link>
+        <Link className="detail-link" href={catalogueHref(category.slug)}>Xem nhóm {category.title.toLocaleLowerCase("vi-VN")}</Link>
       </div>
     </section>
   </>;

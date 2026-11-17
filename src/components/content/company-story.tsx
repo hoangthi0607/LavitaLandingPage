@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowDown, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { aboutCompany } from "@/data/home";
 
 export function CompanyStory() {
@@ -18,7 +18,7 @@ export function CompanyStory() {
     </section>
 
     <nav className="section company-story-nav" aria-label="Nội dung về Lavita">
-      {aboutCompany.sections.map(section => <a href={`#${section.id}`} key={section.id}>{section.title}<ArrowDown size={15} aria-hidden="true" /></a>)}
+      {aboutCompany.sections.map(section => <a href={`#${section.id}`} key={section.id}>{section.title}</a>)}
     </nav>
 
     <section id="tam-nhin-su-menh" className="section company-purpose" aria-label="Tầm nhìn và sứ mệnh">

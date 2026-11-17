@@ -50,7 +50,7 @@ export function ContactComposer({ initialServiceSlug, initialProjectSlug, initia
     {project && <div className="contact-reference">
       <div>
         <span>Dự án bạn đã tham khảo</span>
-        <Link href={`/du-an/${project.slug}`}>{project.title} <ArrowUpRight size={17} aria-hidden="true" /></Link>
+        <Link href={`/du-an/${project.slug}`}>{project.title}</Link>
         <p>{project.tag}</p>
       </div>
       <button type="button" className="contact-remove-reference" onClick={() => setProjectSlug(undefined)} aria-label={`Bỏ dự án tham khảo ${project.title}`}>
@@ -58,7 +58,7 @@ export function ContactComposer({ initialServiceSlug, initialProjectSlug, initia
       </button>
     </div>}
     {productCategory && <div className="contact-reference">
-      <div><span>{product ? "Sản phẩm bạn quan tâm" : "Nhóm sản phẩm bạn quan tâm"}</span><Link href={product ? `/san-pham/${product.slug}` : catalogueHref(productCategory.slug)}>{product?.title ?? productCategory.title}<ArrowUpRight size={17} aria-hidden="true" /></Link>{product && <p>{productCategory.title}</p>}</div>
+      <div><span>{product ? "Sản phẩm bạn quan tâm" : "Nhóm sản phẩm bạn quan tâm"}</span><Link href={product ? `/san-pham/${product.slug}` : catalogueHref(productCategory.slug)}>{product?.title ?? productCategory.title}</Link>{product && <p>{productCategory.title}</p>}</div>
       <button type="button" className="contact-remove-reference" onClick={() => { setProductSlug(undefined); setProductCategorySlug(undefined); }} aria-label="Bỏ lựa chọn sản phẩm"><X size={18} aria-hidden="true" /><span>Bỏ chọn</span></button>
     </div>}
     <div className="contact-fields">
