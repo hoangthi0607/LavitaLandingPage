@@ -1,27 +1,29 @@
-.scroll-reveal-scope [data-scroll-reveal] {
-  transition: opacity 650ms var(--ease-out), transform 650ms var(--ease-out);
+/* Scroll reveal in the dcons.vn manner: elements slide in once as they enter the viewport.
+   Distances: up 40px, sideways 80px, scale from .95. Content is visible by default (no JS, reduced motion). */
+:root { --reveal-ease: cubic-bezier(.23, 1, .32, 1); --reveal-duration: 800ms; }
+
+[data-scroll-reveal] {
+  transition: opacity var(--reveal-duration) var(--reveal-ease), transform var(--reveal-duration) var(--reveal-ease);
   transition-delay: var(--reveal-delay, 0ms);
 }
+[data-scroll-reveal="pending"] { opacity: 0; transform: translateY(40px); }
+[data-scroll-reveal="pending"][data-reveal="down"] { transform: translateY(-40px); }
+[data-scroll-reveal="pending"][data-reveal="left"] { transform: translateX(-80px); }
+[data-scroll-reveal="pending"][data-reveal="right"] { transform: translateX(80px); }
+[data-scroll-reveal="pending"][data-reveal="scale"] { transform: translateY(30px) scale(.95); }
+[data-scroll-reveal="pending"][data-reveal="fade"] { transform: none; }
+[data-scroll-reveal="pending"][data-reveal="pop"] { transform: scale(0); }
+[data-scroll-reveal="pending"][data-reveal="grow"] { opacity: 1; transform: scaleX(0); }
 
-.scroll-reveal-scope [data-scroll-reveal="pending"] {
-  opacity: 0;
-  transform: translateY(24px);
-}
+[data-scroll-reveal="visible"],
+[data-scroll-reveal]:focus-within { opacity: 1; transform: none; }
+[data-scroll-reveal]:focus-within { transition: none; }
 
-.scroll-reveal-scope [data-scroll-reveal="visible"],
-.scroll-reveal-scope [data-scroll-reveal]:focus-within {
-  opacity: 1;
-  transform: none;
-}
-
-.scroll-reveal-scope [data-scroll-reveal]:focus-within {
-  transition: none;
-}
+/* Route change: the new page fades in (template.tsx remounts on navigation). */
+.page-transition { animation: page-in 450ms cubic-bezier(.4, 0, .2, 1) both; }
+@keyframes page-in { from { opacity: 0; } to { opacity: 1; } }
 
 @media (prefers-reduced-motion: reduce) {
-  .scroll-reveal-scope [data-scroll-reveal] {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
+  [data-scroll-reveal] { opacity: 1; transform: none; transition: none; }
+  .page-transition { animation: none; }
 }

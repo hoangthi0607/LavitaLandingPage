@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Download } from "lucide-react";
 import { DocumentGallery } from "@/components/content/document-gallery";
-import { ScrollReveal } from "@/components/content/scroll-reveal";
 import { company, companyProfile, getProject, getService } from "@/data/home";
 import { pageMetadata } from "@/lib/metadata";
 import "./profile.css";
@@ -16,8 +15,6 @@ export default function CompanyProfilePage() {
       <div className="profile-hero-copy"><nav className="breadcrumbs" aria-label="Đường dẫn"><ol><li><Link href="/">Trang chủ</Link></li><li><span aria-current="page">Hồ sơ năng lực</span></li></ol></nav><h1 id="profile-title">{companyProfile.heroHeading}</h1><p>{companyProfile.introduction}</p></div>
     </section>
     <nav className="section profile-contents" aria-label="Nội dung hồ sơ năng lực">{companyProfile.sections.filter(section => companyProfile.showCredentials || section.id !== "chuyen-mon").map(section => <a href={`#${section.id}`} key={section.id}>{section.title}</a>)}</nav>
-
-    <ScrollReveal>
     <section id="thong-tin-doanh-nghiep" className="section profile-company" aria-labelledby="profile-company-title">
       <figure className="profile-company-photo"><Image src={companyProfile.teamImage.src} alt={companyProfile.teamImage.alt} width={companyProfile.teamImage.width} height={companyProfile.teamImage.height} sizes="(max-width: 760px) 90vw, 55vw" /></figure>
       <div className="profile-company-copy"><h2 id="profile-company-title">{companyProfile.teamTitle}</h2><p>{companyProfile.teamCaption}</p><dl className="profile-facts"><div><dt>Thành lập</dt><dd>{companyProfile.founded}</dd></div><div><dt>Mã số thuế</dt><dd>{company.taxCode}</dd></div></dl><p className="profile-company-name">{company.name}</p></div>
@@ -49,6 +46,5 @@ export default function CompanyProfilePage() {
     </section>
 
     <section className="section profile-contact" aria-labelledby="profile-contact-title"><div><h2 id="profile-contact-title">Cùng trao đổi về công trình của bạn.</h2><address><a href={company.phoneHref}>{company.phone}</a><a href={`mailto:${company.email}`}>{company.email}</a></address></div><div className="profile-contact-actions"><Link className="button button-primary" href="/lien-he">Liên hệ Lavita<ArrowRight size={18} aria-hidden="true" /></Link><a className="profile-download" href={company.profile} download="Ho-so-nang-luc-Lavita.pdf" aria-label="Tải hồ sơ PDF, khoảng 67 MB"><Download size={17} aria-hidden="true" />Tải hồ sơ PDF</a></div></section>
-    </ScrollReveal>
   </>;
 }
