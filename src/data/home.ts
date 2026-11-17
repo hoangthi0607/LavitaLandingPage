@@ -28,7 +28,7 @@ export const languages = [
 export type LanguageCode = (typeof languages)[number]["code"];
 export const currentLanguage: LanguageCode = "vi";
 export const slides = [
- { title: "An toàn hôm nay.\nGiá trị mai sau.", description: "Giải pháp phòng cháy chữa cháy đồng bộ — từ tư vấn thiết kế, thi công đến bảo trì công trình.", category: "LAVITA · GIẢI PHÁP PCCC", href: "/dich-vu", image: "/images/installation.webp", alt: "Hệ thống đường ống PCCC" },
+ { title: "An toàn hôm nay.\nGiá trị mai sau.", description: "Giải pháp phòng cháy chữa cháy đồng bộ — từ tư vấn thiết kế, thi công đến bảo trì công trình.", category: "LAVITA · GIẢI PHÁP PCCC", href: "/dich-vu", image: "/images/profile/he-thong-pccc.webp", alt: "Hệ thống đường ống PCCC lắp đặt trên trần công trình" },
  { title: "Thiết kế đúng.\nVững nền an toàn.", description: "Đồng hành cùng công trình dân dụng và công nghiệp với giải pháp phù hợp từng nhu cầu.", category: "TƯ VẤN & THIẾT KẾ", href: "/dich-vu#tu-van-thiet-ke", image: "/images/dai-nhat.webp", alt: "Phối cảnh Chung cư Đại Nhật, dự án thiết kế PCCC" },
  { title: "Chủ động bảo trì.\nBền vững vận hành.", description: "Bảo trì, sửa chữa hệ thống PCCC để công trình vận hành an toàn.", category: "BẢO TRÌ & SỬA CHỮA", href: "/dich-vu#bao-tri-sua-chua", image: "/images/maintenance.webp", alt: "Kiểm tra thiết bị hệ thống PCCC" },
 ];
@@ -55,7 +55,16 @@ export const projectPortfolio = {
  pageSize: 8,
  allLabel: "Tất cả",
 } as const;
-export const projectLocations = [...new Set(projects.map(project => project.location))];
+// Home page blocks in the dcons.vn layout. No partner list or news exists yet: fill these when real content is supplied.
+export const homePartners: string[] = [];
+export const homeNews = {
+ heading: "Tin tức",
+ placeholders: [
+  { title: "Đang cập nhật", text: "Tin tức về hoạt động và công trình của Lavita sẽ được cập nhật tại đây." },
+  { title: "Đang cập nhật", text: "Tin tức sẽ sớm có mặt." },
+  { title: "Đang cập nhật", text: "Tin tức sẽ sớm có mặt." },
+ ],
+} as const;
 export type Service = (typeof services)[number];
 export type Project = (typeof projects)[number];
 export function getService(slug?: string) { return services.find(service => service.slug === slug); }

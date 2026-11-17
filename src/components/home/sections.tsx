@@ -1,36 +1,41 @@
 ﻿import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Mail, MapPin, Phone, Plus } from "lucide-react";
-import { company, projects, serviceGroups, serviceHref, services, values } from "@/data/home";
+import { aboutCompany, company, homeNews, homePartners, serviceGroups, serviceHref, services } from "@/data/home";
 
-function ProfileLink({ children, className = "detail-link" }: { children: React.ReactNode; className?: string }) {
-  return <Link className={className} href="/ho-so-nang-luc">{children}</Link>;
-}
-
-export function IntroStrip() {
-  return <div className="intro-strip">
-      <p>Tối ưu giải pháp.<br /><strong>Gia tăng giá trị.</strong></p>
-      <p>Lavita đồng hành cùng công trình dân dụng và công nghiệp từ năm 2023.</p>
-      <div><ProfileLink>Hồ sơ năng lực Lavita</ProfileLink></div>
-    </div>;
-}
-
-export function About({ overview = true }: { overview?: boolean }) {
-  return <section id="about" className="section about" aria-labelledby="about-title">
-      <div className="about-photo"><Image src="/images/engineer.webp" alt="Nhân sự kỹ thuật Lavita kiểm tra tủ điện của hệ thống PCCC" fill sizes="(max-width: 760px) 100vw, 45vw" /><div className="photo-caption">Đồng hành cùng sự an toàn.</div></div>
-      <div className="about-copy">
-        <h2 id="about-title">Kiến tạo niềm tin.<br /><span>Vững bền giá trị.</span></h2>
-        <p className="lead">Lavita cung cấp dịch vụ và giải pháp phòng cháy chữa cháy cho công trình dân dụng và công nghiệp.</p>
-        <p>Thành lập từ năm 2023, Công ty TNHH Xây dựng Lavita đồng hành cùng khách hàng từ tư vấn thiết kế, thi công đến bảo trì. Chúng tôi hướng đến giải pháp hiệu quả, tối ưu chi phí và công trình an toàn, bền vững.</p>
-        {overview ? <Link className="detail-link" href="/ve-lavita">Tìm hiểu về Lavita</Link> : <ProfileLink>Xem hồ sơ năng lực</ProfileLink>}
+// Company intro in the dcons.vn "about-home" layout: heading, copy, large figures, overlapping photos, partner row.
+// #capabilities is kept on the figures so older shared links still land on this section.
+export function HomeAbout() {
+  const founded = aboutCompany.facts.find(fact => fact.label === "Thành lập")?.value;
+  return <section id="about" className="section home-about" aria-labelledby="home-about-title">
+    <div className="home-about-inner">
+      <div className="home-about-copy">
+        <h2 id="home-about-title" data-reveal="up">Giải pháp PCCC toàn diện</h2>
+        <p className="home-about-desc" data-reveal="up">{aboutCompany.overview.lead} {aboutCompany.overview.paragraphs[1]}</p>
+        <div id="capabilities" className="home-about-stats" data-reveal="up">
+          <div><strong>{founded}</strong><span>Năm<br />thành lập</span></div>
+          <div><strong>{services.length}</strong><span>Dịch vụ<br />PCCC</span></div>
+        </div>
+        <Link className="detail-link" href="/ve-lavita" data-reveal="up">Tìm hiểu về Lavita</Link>
       </div>
-    </section>;
+      <div className="home-about-media" data-reveal="right">
+        <div className="home-about-photo home-about-photo-top"><Image src="/images/profile/doi-ngu-thi-cong-c2.webp" alt="Đội ngũ Lavita thi công hệ thống PCCC tại Chung cư C2 Bình Dương" fill sizes="(max-width: 980px) 70vw, 30vw" /></div>
+        <div className="home-about-photo home-about-photo-main"><Image src="/images/engineer.webp" alt="Nhân sự kỹ thuật Lavita kiểm tra tủ điện của hệ thống PCCC" fill sizes="(max-width: 980px) 85vw, 40vw" /></div>
+      </div>
+    </div>
+    <div className="home-partners" data-reveal="up">
+      <h3>Đối tác<br />chiến lược</h3>
+      {homePartners.length > 0
+        ? <ul>{homePartners.map(partner => <li key={partner}>{partner}</li>)}</ul>
+        : <><ul aria-hidden="true">{Array.from({ length: 5 }, (_, index) => <li key={index} className="is-pending">Logo đối tác</li>)}</ul><p className="home-partners-note">Đang cập nhật</p></>}
+    </div>
+  </section>;
 }
 
 export function Services() {
   return <section id="services" className="section services" aria-labelledby="services-title">
     <div className="services-intro">
-      <h2 id="services-title">Dịch vụ PCCC<br /><span>theo nhu cầu của bạn.</span></h2>
+      <h2 id="services-title" className="home-title">Dịch vụ PCCC</h2>
       <p>Từ bản vẽ đầu tiên đến quá trình vận hành — Lavita đồng hành ở từng giai đoạn của công trình.</p>
       <nav className="service-entry" aria-label="Dịch vụ theo nhu cầu">{serviceGroups.map(group => <Link href={`/dich-vu#group-${group.id}`} key={group.id}>{group.title}</Link>)}</nav>
       <Link className="detail-link" href="/dich-vu">Xem tất cả dịch vụ</Link>
@@ -44,28 +49,21 @@ export function Services() {
   </section>;
 }
 
-export function Projects() {
-  return <section id="projects" className="section projects" aria-labelledby="projects-title">
-    <div className="section-heading"><h2 id="projects-title">Năng lực qua<br /><span>từng công trình.</span></h2><Link className="detail-link" href="/du-an">Xem dự án theo phạm vi PCCC</Link></div>
-    <div className="project-grid">
-      {projects.map(project => <article className="project-card" key={project.title}>
-        <div className="project-photo"><Image src={project.image} alt={`${project.title} – ${project.tag}`} fill sizes="(max-width: 760px) 100vw, 50vw" /><span>{project.tag}</span></div>
-        <div className="project-info"><div><h3><Link href={`/du-an/${project.slug}`}>{project.title}</Link></h3><p>{project.description}</p></div><Link className="project-link" href={`/du-an/${project.slug}`}>Xem phạm vi PCCC<span className="sr-only">: {project.title}</span></Link></div>
-      </article>)}
+// News in the dcons.vn layout (one large, two small). No articles exist yet, so the cards are placeholders.
+export function News() {
+  const [lead, ...rest] = homeNews.placeholders;
+  return <section id="news" className="section home-news" aria-labelledby="home-news-title">
+    <div className="home-news-head" data-reveal="up"><h2 id="home-news-title" className="home-title">{homeNews.heading}</h2></div>
+    <div className="home-news-grid">
+      <article className="home-news-card home-news-card-large" data-reveal="left"><div><h3>{lead.title}</h3><p>{lead.text}</p></div></article>
+      <div className="home-news-side">{rest.map((item, index) => <article className="home-news-card" key={index} data-reveal="right"><div><h3>{item.title}</h3><p>{item.text}</p></div></article>)}</div>
     </div>
   </section>;
 }
 
-export function Capabilities() {
-  return <section id="capabilities" className="section capabilities" aria-labelledby="capabilities-title">
-      <div><h2 id="capabilities-title">Chuyên môn.<br />Trách nhiệm.<br /><span>Niềm tin.</span></h2><p>Đội ngũ kỹ thuật, hồ sơ pháp lý và hệ thống giá trị là nền tảng để Lavita đồng hành cùng khách hàng.</p><ProfileLink className="button button-light">Xem hồ sơ năng lực</ProfileLink></div>
-      <ul className="values-list">{values.map(value => <li key={value}>{value}</li>)}</ul>
-    </section>;
-}
-
 export function Contact() {
   return <section id="contact" className="section contact" aria-labelledby="contact-title">
-      <div><h2 id="contact-title">Công trình của bạn.<br /><span>Giải pháp của chúng tôi.</span></h2><p>Chọn dịch vụ, chia sẻ nhu cầu và trao đổi cùng Lavita về công trình.</p><Link className="button button-primary" href="/lien-he">Chuẩn bị nội dung tư vấn <ArrowRight size={18} aria-hidden="true" /></Link></div>
+      <div><h2 id="contact-title">Công trình của bạn.<br /><span>Giải pháp của chúng tôi.</span></h2><p>Chọn dịch vụ, chia sẻ nhu cầu và trao đổi cùng Lavita về công trình.</p><Link className="button button-primary" href="/lien-he">Chuẩn bị nội dung tư vấn<ArrowRight size={18} aria-hidden="true" /></Link></div>
       <address>
         <a href={company.phoneHref}><Phone aria-hidden="true" /><span>Hotline<strong>{company.phone}</strong></span></a>
         <a href={`mailto:${company.email}`}><Mail aria-hidden="true" /><span>Email<strong>{company.email}</strong></span></a>

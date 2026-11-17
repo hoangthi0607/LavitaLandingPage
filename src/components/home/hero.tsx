@@ -3,16 +3,18 @@
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperInstance } from "swiper";
-import { A11y, Autoplay } from "swiper/modules";
-import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
+import { A11y, Autoplay, EffectFade } from "swiper/modules";
+import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { site, slides } from "@/data/home";
 import "swiper/css";
+import "swiper/css/effect-fade";
 
+// Full-height carousel in the dcons.vn home style: centred heading, large side chevrons, pill dots.
+// The H1 and actions stay outside the slides so they are always present.
 export function Hero() {
   const [active, setActive] = useState(0);
-  const [transitioning, setTransitioning] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(true);
   const [focused, setFocused] = useState(false);
   const [hovered, setHovered] = useState(false);
@@ -33,36 +35,35 @@ export function Hero() {
     return () => { if (!swiper.destroyed) swiper.autoplay.stop(); };
   }, [swiper, shouldAutoplay]);
 
+  const slide = slides[active];
   return (
     <section className="hero" aria-labelledby="hero-title" aria-roledescription="băng chuyền"
       onPointerEnter={event => { if (event.pointerType === "mouse") setHovered(true); }}
       onPointerLeave={() => setHovered(false)}
       onFocusCapture={() => setFocused(true)}
       onBlurCapture={event => { if (!event.currentTarget.contains(event.relatedTarget)) setFocused(false); }}>
-      <Swiper modules={[A11y, Autoplay]} autoplay={{ delay: 3000, disableOnInteraction: false }} speed={reducedMotion ? 0 : 450} loop a11y={{ slideLabelMessage: "Giải pháp {{index}} trên {{slidesLength}}", itemRoleDescriptionMessage: "slide" }} onSwiper={setSwiper} onSlideChange={swiper => setActive(swiper.realIndex)} onSlideChangeTransitionStart={() => setTransitioning(true)} onSlideChangeTransitionEnd={() => setTransitioning(false)}>
-        {slides.map((slide, index) => (
-          <SwiperSlide key={slide.title}>
+      <Swiper modules={[A11y, Autoplay, EffectFade]} effect="fade" fadeEffect={{ crossFade: true }} autoplay={{ delay: 3000, disableOnInteraction: false }} speed={reducedMotion ? 0 : 1000} loop a11y={{ slideLabelMessage: "Giải pháp {{index}} trên {{slidesLength}}", itemRoleDescriptionMessage: "slide" }} onSwiper={setSwiper} onSlideChange={instance => setActive(instance.realIndex)}>
+        {slides.map((item, index) => (
+          <SwiperSlide key={item.title}>
             <div className={`hero-slide hero-slide-${index}`} inert={index !== active}>
-              <Image className="hero-image" src={slide.image} alt={slide.alt} fill priority={index === 0} sizes="100vw" />
+              <Image className="hero-image" src={item.image} alt={item.alt} fill priority={index === 0} sizes="100vw" />
             </div>
           </SwiperSlide>
         ))}
       </Swiper>
       <div className="hero-content">
         <h1 id="hero-title">{site.heroHeading}</h1>
-        <p>{slides[active].description}</p>
+        <p className="hero-tagline" aria-live={shouldAutoplay ? "off" : "polite"}>{slide.title.replace("\n", " ")}</p>
+        <p className="hero-description">{slide.description}</p>
         <div className="hero-actions">
-          <Link className="button button-primary" href="/dich-vu">Tìm dịch vụ phù hợp <ArrowUpRight size={18} aria-hidden="true" /></Link>
-          <Link className="hero-secondary" href={slides[active].href === "/dich-vu" ? "/du-an" : slides[active].href}>{slides[active].href === "/dich-vu" ? "Xem dự án PCCC" : "Tìm hiểu dịch vụ"}</Link>
+          <Link className="button button-primary" href="/dich-vu">Tìm dịch vụ phù hợp<ArrowUpRight size={18} aria-hidden="true" /></Link>
+          <Link className="hero-secondary" href={slide.href === "/dich-vu" ? "/du-an" : slide.href}>{slide.href === "/dich-vu" ? "Xem dự án PCCC" : "Tìm hiểu dịch vụ"}</Link>
         </div>
       </div>
-      <div className="hero-bottom">
-        <p>{slides[active].title.replace("\n", " ")}<span>Thiết kế. Thi công. Bảo trì.</span></p>
-        <div className="hero-controls">
-          <span className="slide-count" aria-live={shouldAutoplay ? "off" : "polite"} aria-atomic="true"><span className="sr-only">Slide </span>{String(active + 1).padStart(2, "0")}<span> / {String(slides.length).padStart(2, "0")}</span></span>
-          <button type="button" aria-disabled={transitioning} onClick={() => { if (!transitioning) swiper?.slidePrev(); }} aria-label="Giải pháp trước"><ArrowLeft size={20} aria-hidden="true" /></button>
-          <button type="button" aria-disabled={transitioning} onClick={() => { if (!transitioning) swiper?.slideNext(); }} aria-label="Giải pháp tiếp theo"><ArrowRight size={20} aria-hidden="true" /></button>
-        </div>
+      <button type="button" className="hero-arrow hero-arrow-prev" onClick={() => swiper?.slidePrev()} aria-label="Giải pháp trước"><ChevronLeft size={44} strokeWidth={1.75} aria-hidden="true" /></button>
+      <button type="button" className="hero-arrow hero-arrow-next" onClick={() => swiper?.slideNext()} aria-label="Giải pháp tiếp theo"><ChevronRight size={44} strokeWidth={1.75} aria-hidden="true" /></button>
+      <div className="hero-dots" role="group" aria-label="Chọn slide">
+        {slides.map((item, index) => <button type="button" key={item.title} aria-label={`Slide ${index + 1}: ${item.title.replace("\n", " ")}`} aria-current={index === active ? "true" : undefined} onClick={() => swiper?.slideToLoop(index)} />)}
       </div>
     </section>
   );
