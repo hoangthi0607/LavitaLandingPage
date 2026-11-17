@@ -35,7 +35,7 @@ Mô hình tổ chức dựa trên **nhu cầu và giai đoạn công trình**. C
 | --- | --- | --- |
 | Ba dịch vụ PCCC | Tên và mô tả từ dữ liệu doanh nghiệp | Một trang mô tả đầy đủ; URL thông tin chi tiết cũ vẫn hoạt động |
 | Bốn dự án đang được giới thiệu | Chỉ là các ví dụ đã chọn từ hồ sơ, không là tổng số công trình Lavita | Danh sách theo hạng mục, bốn trang chi tiết, phạm vi PCCC rõ ràng |
-| Giới thiệu, năm thành lập, giá trị | Nội dung đã có trên website/hồ sơ | `/ve-lavita` và phần tổng quan trang chủ |
+| Giới thiệu, năm thành lập, tầm nhìn, sứ mệnh, giá trị, kế hoạch tăng trưởng | Phần mở đầu hồ sơ, PDF 2–5; dữ liệu `aboutCompany` | `/ve-lavita` chi tiết và phần tổng quan trang chủ; các mốc tăng trưởng là mục tiêu kế hoạch |
 | Hotline, email, địa chỉ, mã số thuế | Cập nhật hiện tại trong `company`, giữ số điện thoại và `tel:` đồng bộ | Header, footer, liên hệ và structured data |
 | Hồ sơ năng lực | Trang HTML từ dữ liệu doanh nghiệp và hồ sơ gốc | `/ho-so-nang-luc`, có mục lục và nút tải PDF khoảng 67 MB; cần giữ file trên server sau khi clone |
 | Gợi ý thông tin chuẩn bị tư vấn | Nội dung hướng dẫn mới để người đọc mô tả nhu cầu | Trang dịch vụ và trình soạn email; không là quy trình pháp lý hoặc cam kết dịch vụ |
@@ -128,9 +128,9 @@ Mục sản phẩm được dựng khung theo yêu cầu người dùng, hiện 
 | --- | --- | --- |
 | Mô tả dịch vụ | Nhãn nhóm, mô tả nhóm, nội dung ba dịch vụ | `/dich-vu`, anchor từng dịch vụ và liên hệ có ngữ cảnh |
 | Service | `slug`, `title`, `description`, `group`, `image`, `preparation`, `relatedServiceSlugs` | Mô tả tại `/dich-vu#[slug]`; giữ `/dich-vu/[slug]` cũ, không nhúng danh sách dự án |
-| Hạng mục và danh sách dự án | Hạng mục từ `services`, công trình khớp `serviceSlug` | `/du-an` chọn hạng mục; query hạng mục mở danh sách; chọn công trình mở chi tiết |
+| Hạng mục và danh sách dự án | Hạng mục từ `services`, ảnh đại diện từ `projectPortfolio`, công trình khớp `serviceSlug` | `/du-an` chọn từ ba hạng mục có ảnh; query mở danh sách ảnh lớn với các hàng thông tin phạm vi, chọn công trình mở chi tiết |
 | Project | `slug`, `serviceSlug`, `title`, `description`, `tag`, `image`, `profilePage` | `/du-an/[slug]`, scope rõ, tham chiếu nguồn nội bộ, liên hệ và hub lọc |
-| Trang doanh nghiệp | Giới thiệu, giá trị, năng lực đã có | `/ve-lavita`, dẫn dịch vụ và hồ sơ |
+| Trang doanh nghiệp | Giới thiệu, tầm nhìn, năm sứ mệnh, năm giá trị và kế hoạch 2023–2027 | `/ve-lavita`, mục lục bốn phần, dẫn dịch vụ và hồ sơ |
 | Trang liên hệ | Thông tin công ty, dịch vụ/dự án tham khảo, nội dung người đọc muốn trao đổi | `/lien-he`, gọi điện hoặc mở email do người đọc tự gửi |
 
 Taxonomy dịch vụ là danh sách nhỏ, có kiểm soát:

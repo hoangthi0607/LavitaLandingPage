@@ -28,6 +28,19 @@ const revealTargets = [
   ".profile-organization-tree > ul > li",
   ".profile-project-layout > .profile-project-chapter",
   ".profile-contact > div > *",
+  ".company-overview-heading > *",
+  ".company-story-copy > *",
+  ".company-vision > *",
+  ".company-mission > h2",
+  ".company-mission li",
+  ".company-vision-photo",
+  ".company-team-photo",
+  ".company-values > h2",
+  ".company-details > h2",
+  ".company-facts > div",
+  ".company-values-list > li",
+  ".company-growth-copy > *",
+  ".company-growth-chart > li",
 ].join(", ");
 
 export function ScrollReveal({ children }: { children: ReactNode }) {

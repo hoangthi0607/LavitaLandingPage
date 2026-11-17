@@ -32,11 +32,21 @@ export const serviceGroups = [
  { id: "van-hanh", title: "Vận hành & an toàn", description: "Kiểm tra, bảo trì và sửa chữa hệ thống PCCC tại công trình." },
 ] as const;
 export const projects = [
- { slug: "chung-cu-dai-nhat", serviceSlug: "tu-van-thiet-ke", title: "Chung cư Đại Nhật", description: "Block A & B · TP. Hồ Chí Minh", tag: "Thiết kế PCCC", image: "/images/dai-nhat.webp", profilePage: 18 },
+ { slug: "chung-cu-dai-nhat", serviceSlug: "tu-van-thiet-ke", title: "Chung cư Đại Nhật", description: "Block A & B · TP. Hồ Chí Minh", tag: "Thiết kế PCCC", image: "/images/profile/dai-nhat-thiet-ke.webp", profilePage: 18 },
  { slug: "crescent-mall", serviceSlug: "tu-van-thiet-ke", title: "Crescent Mall", description: "Trung tâm thương mại · TP. Hồ Chí Minh", tag: "Thiết kế PCCC", image: "/images/crescent-mall.webp", profilePage: 19 },
  { slug: "chung-cu-c2-binh-duong", serviceSlug: "thi-cong-he-thong", title: "Chung cư C2 – Bình Dương", description: "Công trình dân dụng · Bình Dương", tag: "Thi công PCCC", image: "/images/binh-duong.webp", profilePage: 22 },
  { slug: "the-pegasuite", serviceSlug: "bao-tri-sua-chua", title: "The Pegasuite", description: "Chung cư Phương Việt · TP. Hồ Chí Minh", tag: "Bảo trì PCCC", image: "/images/pegasuite.webp", profilePage: 25 },
 ] as const;
+export const projectPortfolio = {
+ title: "Dự án PCCC",
+ description: "Khám phá các công trình Lavita tham gia tư vấn thiết kế, thi công hệ thống, bảo trì và sửa chữa PCCC.",
+ categoryDescription: "Chọn hạng mục để khám phá các công trình và phạm vi PCCC Lavita thực hiện.",
+ categories: [
+  { serviceSlug: "tu-van-thiet-ke", image: "/images/profile/dai-nhat-thiet-ke.webp", alt: "Chung cư Đại Nhật, công trình Lavita thực hiện thiết kế PCCC" },
+  { serviceSlug: "thi-cong-he-thong", image: "/images/binh-duong.webp", alt: "Chung cư C2 Bình Dương, công trình Lavita thi công hệ thống PCCC" },
+  { serviceSlug: "bao-tri-sua-chua", image: "/images/pegasuite.webp", alt: "The Pegasuite, công trình Lavita thực hiện bảo trì PCCC" },
+ ],
+} as const;
 export type Service = (typeof services)[number];
 export type Project = (typeof projects)[number];
 export function getService(slug?: string) { return services.find(service => service.slug === slug); }
@@ -58,6 +68,77 @@ export function contactHref(serviceSlug?: string, projectSlug?: string) {
  return `/lien-he${query.size ? `?${query.toString()}` : ""}`;
 }
 export const values = ["An toàn, chất lượng & hiệu quả chi phí", "Chủ động, nhanh chóng & quyết liệt", "Hợp tác & chia sẻ kinh nghiệm", "Phát triển cùng nhân viên & đối tác", "Trách nhiệm với cộng đồng & xã hội"];
+
+// Nội dung chi tiết: phần giới thiệu, tầm nhìn/sứ mệnh, giá trị và kế hoạch
+// ở các trang PDF 2–5. Các mốc dưới đây là kế hoạch, không phải kết quả thực hiện.
+export const aboutCompany = {
+ title: "Về Lavita",
+ description: "Tìm hiểu về Công ty TNHH Xây dựng Lavita: giới thiệu doanh nghiệp, tầm nhìn, sứ mệnh, giá trị cốt lõi và kế hoạch tăng trưởng.",
+ heading: "Lavita. Đồng hành cùng sự an toàn.",
+ heroDescription: "Đồng hành cùng sự an toàn.\nGiải pháp PCCC cho công trình dân dụng và công nghiệp.",
+ introduction: "Công ty TNHH Xây dựng Lavita cung cấp giải pháp phòng cháy chữa cháy cho công trình dân dụng và công nghiệp từ năm 2023.",
+ bannerImage: { src: "/images/profile/he-thong-pccc.webp", alt: "Hệ thống đường ống phòng cháy chữa cháy tại công trình" },
+ facts: [
+  { label: "Tên doanh nghiệp", value: company.name },
+  { label: "Thành lập", value: "2023" },
+  { label: "Địa chỉ", value: company.address },
+  { label: "Mã số thuế", value: company.taxCode },
+ ],
+ sections: [
+  { id: "gioi-thieu", title: "Giới thiệu" },
+  { id: "tam-nhin-su-menh", title: "Tầm nhìn & sứ mệnh" },
+  { id: "gia-tri-cot-loi", title: "Giá trị cốt lõi" },
+  { id: "ke-hoach-tang-truong", title: "Kế hoạch tăng trưởng" },
+ ],
+ overview: {
+  sectionTitle: "Giới thiệu chung",
+  heading: "Kiến tạo niềm tin và giá trị cho tương lai.",
+  lead: "Với sứ mệnh mang đến những giải pháp đột phá và chất lượng vượt trội, Lavita tập trung vào các giải pháp hệ thống phòng cháy chữa cháy.",
+  paragraphs: [
+   "Thành lập từ năm 2023, Công ty TNHH Xây dựng Lavita hoạt động trong lĩnh vực cung cấp dịch vụ và giải pháp tối ưu cho các dự án, hướng đến những công trình an toàn, bền vững.",
+   "Từ tư vấn thiết kế, thi công đến bảo trì, Lavita đồng hành cùng khách hàng để xây dựng giải pháp PCCC phù hợp với công trình, chú trọng hiệu quả và tối ưu chi phí.",
+  ],
+  image: { src: "/images/engineer.webp", alt: "Nhân sự kỹ thuật Lavita kiểm tra tủ điện của hệ thống PCCC" },
+ },
+ vision: {
+  heading: "Tầm nhìn",
+  text: "Trở thành đơn vị hàng đầu trong lĩnh vực phòng cháy chữa cháy tại Việt Nam, tiên phong trong việc cung cấp giải pháp an toàn toàn diện, hiện đại và bền vững cho mọi công trình – từ dân dụng đến công nghiệp, góp phần xây dựng một xã hội an toàn trước rủi ro cháy nổ.",
+  image: { src: "/images/profile/doi-ngu-thi-cong-c2.webp", width: 1181, height: 664, alt: "Đội ngũ Lavita thi công hệ thống PCCC tại Chung cư C2 Bình Dương" },
+ },
+ mission: {
+  heading: "Sứ mệnh",
+  items: [
+   "Cung cấp giải pháp PCCC hiệu quả – đúng chuẩn – tối ưu chi phí.",
+   "Cam kết an toàn tuyệt đối cho người và tài sản.",
+   "Đồng hành cùng khách hàng từ thiết kế, thi công đến bảo trì.",
+   "Không ngừng nâng cao năng lực kỹ thuật và công nghệ.",
+   "Phát triển bền vững: gắn kết giữa lợi ích doanh nghiệp, khách hàng và trách nhiệm xã hội.",
+  ],
+ },
+ coreValues: {
+  heading: "Giá trị cốt lõi",
+  items: [
+   { title: "An toàn, chất lượng và hiệu quả", text: "Sản phẩm an toàn, chất lượng vượt trội, hiệu quả chi phí." },
+   { title: "Nhanh chóng và quyết liệt", text: "Hành động nhanh và quyết liệt để đảm bảo tiến độ, tiết kiệm thời gian và chi phí." },
+   { title: "Hợp tác và chia sẻ", text: "Hợp tác và chia sẻ kinh nghiệm cùng mang lại thành công chung cho dự án." },
+   { title: "Cùng phát triển", text: "Sự phát triển của công ty gắn với sự phát triển của nhân viên và đối tác." },
+   { title: "Trách nhiệm với cộng đồng", text: "Trách nhiệm với cộng đồng và xã hội luôn được đề cao." },
+  ],
+ },
+ growth: {
+  heading: "Kế hoạch tăng trưởng",
+  description: "Các mốc mục tiêu giai đoạn 2023–2027.",
+  note: "Các giá trị thể hiện mục tiêu kế hoạch, không phải số liệu kết quả thực hiện.",
+  unit: "tỷ đồng",
+  milestones: [
+   { year: 2023, value: 25 },
+   { year: 2024, value: 35 },
+   { year: 2025, value: 55 },
+   { year: 2026, value: 85 },
+   { year: 2027, value: 105 },
+  ],
+ },
+} as const;
 
 export type ProfileDocument = { src: string; width: number; height: number; title: string; sourcePage: number };
 
