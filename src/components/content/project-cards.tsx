@@ -1,23 +1,24 @@
 import Image from "next/image";
 import Link from "next/link";
-import { type Project } from "@/data/home";
+import { projectPortfolio, type Project } from "@/data/home";
 
+// Project cards in the dcons.vn/du-an style: photo, then label/value rows. Styles live in app/du-an/projects.css.
 export function ProjectCards({ items }: { items: readonly Project[] }) {
-  return (
-    <div className="project-grid content-project-grid">
-      {items.map((project) => (
-        <article key={project.slug} className="content-project">
-          <Link href={`/du-an/${project.slug}`} className="project-photo" aria-label={`Xem ${project.title} – ${project.tag}`}>
-            <Image src={project.image} alt={`${project.title} – ${project.tag}`} fill sizes="(max-width: 480px) 90vw, (max-width: 760px) 44vw, 45vw" />
-            <span>{project.tag}</span>
-          </Link>
-          <div className="project-info">
-            <h3><Link href={`/du-an/${project.slug}`}>{project.title}</Link></h3>
-            <p>{project.description}</p>
-            <Link href={`/du-an/${project.slug}`} className="project-link">Xem chi tiết dự án</Link>
-          </div>
-        </article>
-      ))}
-    </div>
-  );
+  const pending = projectPortfolio.pendingLabel;
+  return <ul className="projects-grid">
+    {items.map(project => <li className="projects-card" key={project.slug} data-reveal="up">
+      <Link className="projects-card-photo" href={`/du-an/${project.slug}`} tabIndex={-1} aria-hidden="true"><Image src={project.image} alt="" fill sizes="(max-width: 1024px) 92vw, 44vw" /></Link>
+      <ProjectSpecs project={project} pending={pending} linkTitle />
+    </li>)}
+  </ul>;
+}
+
+export function ProjectSpecs({ project, pending = projectPortfolio.pendingLabel, linkTitle = false }: { project: Project; pending?: string; linkTitle?: boolean }) {
+  return <dl className="projects-card-specs">
+    <div><dt>Tên dự án:</dt><dd>{linkTitle ? <Link href={`/du-an/${project.slug}`}>{project.title}</Link> : project.title}</dd></div>
+    <div><dt>Vị trí:</dt><dd>{project.location}</dd></div>
+    <div><dt>Quy mô:</dt><dd className={project.scale ? undefined : "is-pending"}>{project.scale || pending}</dd></div>
+    <div><dt>Hạng mục PCCC:</dt><dd>{project.tag}</dd></div>
+    <div><dt>Chủ đầu tư:</dt><dd className={project.investor ? undefined : "is-pending"}>{project.investor || pending}</dd></div>
+  </dl>;
 }

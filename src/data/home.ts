@@ -41,16 +41,18 @@ export const serviceGroups = [
  { id: "trien-khai", title: "Thiết kế & triển khai", description: "Tư vấn thiết kế và thi công hệ thống PCCC cho công trình." },
  { id: "van-hanh", title: "Vận hành & an toàn", description: "Kiểm tra, bảo trì và sửa chữa hệ thống PCCC tại công trình." },
 ] as const;
+// scale and investor are not in the company profile yet; empty values render as "Đang cập nhật".
 export const projects = [
- { slug: "chung-cu-dai-nhat", serviceSlug: "tu-van-thiet-ke", title: "Chung cư Đại Nhật", description: "Block A & B · TP. Hồ Chí Minh", location: "TP. Hồ Chí Minh", tag: "Thiết kế PCCC", image: "/images/profile/dai-nhat-thiet-ke.webp", profilePage: 18 },
- { slug: "crescent-mall", serviceSlug: "tu-van-thiet-ke", title: "Crescent Mall", description: "Trung tâm thương mại · TP. Hồ Chí Minh", location: "TP. Hồ Chí Minh", tag: "Thiết kế PCCC", image: "/images/crescent-mall.webp", profilePage: 19 },
- { slug: "chung-cu-c2-binh-duong", serviceSlug: "thi-cong-he-thong", title: "Chung cư C2 – Bình Dương", description: "Công trình dân dụng · Bình Dương", location: "Bình Dương", tag: "Thi công PCCC", image: "/images/binh-duong.webp", profilePage: 22 },
- { slug: "the-pegasuite", serviceSlug: "bao-tri-sua-chua", title: "The Pegasuite", description: "Chung cư Phương Việt · TP. Hồ Chí Minh", location: "TP. Hồ Chí Minh", tag: "Bảo trì PCCC", image: "/images/pegasuite.webp", profilePage: 25 },
+ { slug: "chung-cu-dai-nhat", serviceSlug: "tu-van-thiet-ke", title: "Chung cư Đại Nhật", description: "Block A & B · TP. Hồ Chí Minh", location: "TP. Hồ Chí Minh", tag: "Thiết kế PCCC", scale: "", investor: "", image: "/images/profile/dai-nhat-thiet-ke.webp", profilePage: 18 },
+ { slug: "crescent-mall", serviceSlug: "tu-van-thiet-ke", title: "Crescent Mall", description: "Trung tâm thương mại · TP. Hồ Chí Minh", location: "TP. Hồ Chí Minh", tag: "Thiết kế PCCC", scale: "", investor: "", image: "/images/crescent-mall.webp", profilePage: 19 },
+ { slug: "chung-cu-c2-binh-duong", serviceSlug: "thi-cong-he-thong", title: "Chung cư C2 – Bình Dương", description: "Công trình dân dụng · Bình Dương", location: "Bình Dương", tag: "Thi công PCCC", scale: "", investor: "", image: "/images/binh-duong.webp", profilePage: 22 },
+ { slug: "the-pegasuite", serviceSlug: "bao-tri-sua-chua", title: "The Pegasuite", description: "Chung cư Phương Việt · TP. Hồ Chí Minh", location: "TP. Hồ Chí Minh", tag: "Bảo trì PCCC", scale: "", investor: "", image: "/images/pegasuite.webp", profilePage: 25 },
 ] as const;
 export const projectPortfolio = {
  title: "Dự án PCCC",
  description: "Khám phá các công trình Lavita tham gia tư vấn thiết kế, thi công hệ thống, bảo trì và sửa chữa PCCC.",
- banner: { src: "/images/installation.webp", alt: "Hệ thống đường ống PCCC lắp đặt dọc trần công trình" },
+ pendingLabel: "Đang cập nhật",
+ pageSize: 8,
  allLabel: "Tất cả",
 } as const;
 export const projectLocations = [...new Set(projects.map(project => project.location))];
