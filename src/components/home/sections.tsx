@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { ArrowRight, Mail, MapPin, Phone, Plus } from "lucide-react";
 import { aboutCompany, company, homeNews, homePartners, serviceGroups, serviceHref, services } from "@/data/home";
+import { cdnUrl, formatDate, getNewsPage, itemSlug, newsSource, type NewsItem } from "@/lib/fire-police-news";
 
 // Company intro in the dcons.vn "about-home" layout: heading, copy, large figures, overlapping photos, partner row.
 // #capabilities is kept on the figures so older shared links still land on this section.
@@ -49,15 +50,35 @@ export function Services() {
   </section>;
 }
 
-// News in the dcons.vn layout (one large, two small). No articles exist yet, so the cards are placeholders.
-export function News() {
+function NewsCard({ item, large = false }: { item: NewsItem; large?: boolean }) {
+  const image = cdnUrl(item.filePreview);
+  const date = formatDate(item.publishedDate);
+  return <Link className={`home-news-card${large ? " home-news-card-large" : ""}`} href={`/tin-tuc/bai-viet/${item.categorySlug}/${itemSlug(item)}`} data-reveal={large ? "left" : "right"}>
+    {image && <Image className="home-news-image" src={image} alt="" fill sizes={large ? "(max-width: 768px) 92vw, 62vw" : "(max-width: 768px) 92vw, 30vw"} />}
+    <div>{large ? <h3>{item.title}</h3> : <h3 className="home-news-small-title">{item.title}</h3>}{date && <p className="home-news-date">{date}</p>}</div>
+  </Link>;
+}
+
+// News in the dcons.vn layout (one large, two small): the latest articles from canhsatpccc.gov.vn,
+// falling back to the placeholder cards when the source cannot be reached.
+export async function News() {
+  const latest = (await getNewsPage(1, 3))?.items ?? [];
   const [lead, ...rest] = homeNews.placeholders;
   return <section id="news" className="section home-news" aria-labelledby="home-news-title">
-    <div className="home-news-head" data-reveal="up"><h2 id="home-news-title" className="home-title">{homeNews.heading}</h2></div>
-    <div className="home-news-grid">
+    <div className="home-news-head" data-reveal="up">
+      <h2 id="home-news-title" className="home-title">{homeNews.heading}</h2>
+      {latest.length > 0 && <Link className="detail-link" href="/tin-tuc">Xem thêm tin tức</Link>}
+    </div>
+    {latest.length >= 3 ? <>
+      <div className="home-news-grid">
+        <NewsCard item={latest[0]} large />
+        <div className="home-news-side">{latest.slice(1, 3).map(item => <NewsCard key={item.id} item={item} />)}</div>
+      </div>
+      <p className="home-news-source">Nguồn: <a href={newsSource.url} target="_blank" rel="noopener noreferrer">{newsSource.name}<span className="sr-only"> (mở trong tab mới)</span></a></p>
+    </> : <div className="home-news-grid">
       <article className="home-news-card home-news-card-large" data-reveal="left"><div><h3>{lead.title}</h3><p>{lead.text}</p></div></article>
       <div className="home-news-side">{rest.map((item, index) => <article className="home-news-card" key={index} data-reveal="right"><div><h3>{item.title}</h3><p>{item.text}</p></div></article>)}</div>
-    </div>
+    </div>}
   </section>;
 }
 

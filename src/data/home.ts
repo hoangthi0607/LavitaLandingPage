@@ -15,7 +15,7 @@ export const company = {
 export const projectNavigation = { label: "Dự án PCCC", href: "/du-an" } as const;
 export const navigation = [
  { label: "Về Lavita", href: "/ve-lavita" }, { label: "Dịch vụ PCCC", href: "/dich-vu" }, projectNavigation,
- { label: "Sản phẩm", href: "/san-pham" }, { label: "Hồ sơ năng lực", href: "/ho-so-nang-luc" }, { label: "Liên hệ", href: "/lien-he" },
+ { label: "Sản phẩm", href: "/san-pham" }, { label: "Hồ sơ năng lực", href: "/ho-so-nang-luc" }, { label: "Tin tức", href: "/tin-tuc" }, { label: "Liên hệ", href: "/lien-he" },
 ];
 // Language switcher. Only Vietnamese content exists today; the others are placeholders until translations ship.
 export const languages = [

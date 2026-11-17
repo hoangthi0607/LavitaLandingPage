@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Breadcrumbs } from "@/components/content/breadcrumbs";
+import { Pagination } from "@/components/content/pagination";
 import { ProjectCards } from "@/components/content/project-cards";
 import { contactHref, getService, projectPortfolio, projects, services } from "@/data/home";
 import { pageMetadata } from "@/lib/metadata";
@@ -45,13 +46,7 @@ export default async function ProjectsPage({ searchParams }: Props) {
         <Link href={contactHref(selectedService?.slug)} className="detail-link">Trao đổi với Lavita</Link>
       </div>}
 
-      {pageCount > 1 && <nav className="projects-pagination" aria-label="Phân trang dự án" data-reveal="up">
-        {page > 1 ? <Link className="projects-page-arrow" href={projectsHref(selectedService?.slug, page - 1)} aria-label="Trang trước"><ChevronLeft size={24} aria-hidden="true" /></Link> : <span className="projects-page-arrow" aria-hidden="true"><ChevronLeft size={24} /></span>}
-        <ol>{Array.from({ length: pageCount }, (_, index) => index + 1).map(number => <li key={number}>
-          <Link className="projects-page-number" href={projectsHref(selectedService?.slug, number)} aria-current={number === page ? "page" : undefined} aria-label={`Trang ${number}`}>{number}</Link>
-        </li>)}</ol>
-        {page < pageCount ? <Link className="projects-page-arrow" href={projectsHref(selectedService?.slug, page + 1)} aria-label="Trang sau"><ChevronRight size={24} aria-hidden="true" /></Link> : <span className="projects-page-arrow" aria-hidden="true"><ChevronRight size={24} /></span>}
-      </nav>}
+      <Pagination page={page} pageCount={pageCount} href={number => projectsHref(selectedService?.slug, number)} label="Phân trang dự án" />
     </section>
 
     <section className="section content-next"><div><h2>Công trình của bạn cần giải pháp PCCC?</h2><p>Trao đổi nhu cầu với Lavita hoặc tìm hiểu đội ngũ thi công, hồ sơ pháp lý trong hồ sơ năng lực.</p></div>

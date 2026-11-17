@@ -9,6 +9,7 @@ const companyLinks = [
   { label: "Dự án PCCC", href: "/du-an" },
   { label: "Sản phẩm", href: "/san-pham" },
   { label: "Hồ sơ năng lực", href: "/ho-so-nang-luc" },
+  { label: "Tin tức", href: "/tin-tuc" },
   { label: "Liên hệ", href: "/lien-he" },
 ];
 

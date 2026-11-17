@@ -88,8 +88,15 @@
 .home-news-head h2 { margin: 0; font-size: clamp(2.25rem, 4vw, 3.5rem); }
 .home-news-grid { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 20px; }
 .home-news-side { display: grid; grid-template-rows: 1fr 1fr; gap: 20px; }
-.home-news-card { display: flex; align-items: flex-end; min-height: 200px; padding: 28px; border-radius: 12px; color: var(--color-on-dark); background: linear-gradient(135deg, var(--color-dark), color-mix(in srgb, var(--color-dark) 78%, var(--color-brand))); box-shadow: 0 10px 25px color-mix(in srgb, var(--color-dark) 18%, transparent); }
+.home-news-card { position: relative; isolation: isolate; display: flex; align-items: flex-end; min-height: 200px; padding: 28px; overflow: hidden; border-radius: 12px; color: var(--color-on-dark); background: linear-gradient(135deg, var(--color-dark), color-mix(in srgb, var(--color-dark) 78%, var(--color-brand))); box-shadow: 0 10px 25px color-mix(in srgb, var(--color-dark) 18%, transparent); }
 .home-news-card-large { min-height: 420px; }
+.home-news-image { z-index: -2; object-fit: cover; transition: transform .55s var(--ease-out); }
+a.home-news-card::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, color-mix(in srgb, var(--color-dark) 92%, transparent) 0%, color-mix(in srgb, var(--color-dark) 55%, transparent) 55%, color-mix(in srgb, var(--color-dark) 15%, transparent)); }
+a.home-news-card:hover .home-news-image { transform: scale(1.04); }
+.home-news-card .home-news-small-title { display: -webkit-box; overflow: hidden; font-size: 1.0625rem; -webkit-line-clamp: 3; -webkit-box-orient: vertical; }
+.home-news-card .home-news-date { margin: 6px 0 0; color: var(--color-on-dark); font-size: .8125rem; font-weight: 600; }
+.home-news-source { margin: 16px 0 0; color: var(--color-muted); font-size: .8125rem; }
+.home-news-source a { color: var(--color-ink); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
 .home-news-card h3 { margin: 0 0 8px; font-size: clamp(1.125rem, 2vw, 1.5rem); font-weight: 800; color: var(--color-on-dark); }
 .home-news-card p { margin: 0; max-width: 46ch; color: var(--color-muted-on-dark); font-size: .9375rem; }
 
@@ -125,7 +132,7 @@
   .hero h1 { font-size: 2.5rem; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .home-projects-photo, .home-projects-thumbs button, .hero-dots button::before { transition: none; }
+  .home-projects-photo, .home-projects-thumbs button, .hero-dots button::before, .home-news-image { transition: none; }
   .home-projects-content { animation: none; }
   .home-projects-bar span { animation: none; transform: scaleX(0); }
 }
