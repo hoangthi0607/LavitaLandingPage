@@ -125,11 +125,23 @@ export const aboutCompany = {
  coreValues: {
   heading: "Giá trị cốt lõi",
   items: [
-   { title: "An toàn, chất lượng và hiệu quả", text: "Sản phẩm an toàn, chất lượng vượt trội, hiệu quả chi phí." },
-   { title: "Nhanh chóng và quyết liệt", text: "Hành động nhanh và quyết liệt để đảm bảo tiến độ, tiết kiệm thời gian và chi phí." },
-   { title: "Hợp tác và chia sẻ", text: "Hợp tác và chia sẻ kinh nghiệm cùng mang lại thành công chung cho dự án." },
-   { title: "Cùng phát triển", text: "Sự phát triển của công ty gắn với sự phát triển của nhân viên và đối tác." },
-   { title: "Trách nhiệm với cộng đồng", text: "Trách nhiệm với cộng đồng và xã hội luôn được đề cao." },
+   { title: "An toàn, chất lượng và hiệu quả", text: "Sản phẩm an toàn, chất lượng vượt trội, hiệu quả chi phí.", image: "/images/maintenance.webp" },
+   { title: "Nhanh chóng và quyết liệt", text: "Hành động nhanh và quyết liệt để đảm bảo tiến độ, tiết kiệm thời gian và chi phí.", image: "/images/profile/ky-thuat-vien-pccc.webp" },
+   { title: "Hợp tác và chia sẻ", text: "Hợp tác và chia sẻ kinh nghiệm cùng mang lại thành công chung cho dự án.", image: "/images/profile/doi-ngu-thi-cong-c2.webp" },
+   { title: "Cùng phát triển", text: "Sự phát triển của công ty gắn với sự phát triển của nhân viên và đối tác.", image: "/images/engineer.webp" },
+   { title: "Trách nhiệm với cộng đồng", text: "Trách nhiệm với cộng đồng và xã hội luôn được đề cao.", image: "/images/training.webp" },
+  ],
+ },
+ // Timeline in the dcons.vn layout. Only the founding year is sourced; later periods are placeholders until real milestones are supplied.
+ history: {
+  heading: "Lịch sử phát triển",
+  pendingLabel: "Đang cập nhật",
+  pendingMedia: "Hình ảnh đang cập nhật",
+  items: [
+   { period: "Năm 2023", title: "Thành lập Lavita", text: "Công ty TNHH Xây dựng Lavita được thành lập, cung cấp giải pháp phòng cháy chữa cháy cho công trình dân dụng và công nghiệp.", pending: false },
+   { period: "Năm 2024", title: "Đang cập nhật", text: "Nội dung về giai đoạn này đang được cập nhật.", pending: true },
+   { period: "Năm 2025", title: "Đang cập nhật", text: "Nội dung về giai đoạn này đang được cập nhật.", pending: true },
+   { period: "2026 – nay", title: "Đang cập nhật", text: "Nội dung về giai đoạn này đang được cập nhật.", pending: true },
   ],
  },
  growth: {

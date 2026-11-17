@@ -9,6 +9,9 @@ function BrandA() {
   </svg>;
 }
 
-export function Brand() {
-  return <Link className="brand" href="/" aria-label="Lavita trang chủ"><Image src="/images/lavita-symbol.png" alt="" width={72} height={72} /><span className="brand-name"><span className="brand-word">L<BrandA />VIT<BrandA /></span><small>Tối ưu giải pháp · Gia tăng giá trị</small></span></Link>;
+export function Brand({ link = true, className }: { link?: boolean; className?: string }) {
+  const content = <><Image src="/images/lavita-symbol.png" alt="" width={72} height={72} /><span className="brand-name"><span className="brand-word">L<BrandA />VIT<BrandA /></span><small>Tối ưu giải pháp · Gia tăng giá trị</small></span></>;
+  const classes = className ? `brand ${className}` : "brand";
+  if (!link) return <div className={classes} role="img" aria-label="Logo Lavita">{content}</div>;
+  return <Link className={classes} href="/" aria-label="Lavita trang chủ">{content}</Link>;
 }
