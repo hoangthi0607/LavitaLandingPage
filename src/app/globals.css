@@ -79,8 +79,22 @@ h3 { font-size: 1.375rem; letter-spacing: -.025em; line-height: 1.4; margin: 0; 
 .nav-dropdown-panel li { min-width: 0; }
 .nav-dropdown-panel a { display: flex; width: 100%; min-height: 44px; padding: 10px 14px; font-size: .875rem; font-weight: 500; line-height: 1.5; overflow-wrap: anywhere; }
 .nav-dropdown-panel a:hover, .nav-dropdown-panel a:focus-visible { background: var(--color-surface-soft); color: var(--color-brand); }
-.header-cta { display: inline-flex; align-items: center; justify-content: center; gap: 16px; padding: 12px 18px; min-height: 44px; background: var(--color-brand); color: white; font-size: .8125rem; font-weight: 650; }
-.header-cta:hover { background: var(--color-brand-hover); }
+/* Language flags replace the header CTA; the current language carries a brand-red underline. */
+.language-flags { display: flex; align-items: center; gap: 2px; margin: 0; padding: 0; list-style: none; }
+.language-flags button { position: relative; display: grid; place-items: center; width: 36px; height: 36px; padding: 0; border: 0; border-radius: 6px; background: transparent; cursor: pointer; transition: background .2s var(--ease-out); }
+.language-flags button[aria-disabled="true"] { cursor: default; }
+.language-flags button:hover { background: var(--color-surface-soft); }
+.language-flags svg { display: block; width: 24px; height: 16px; border-radius: 2px; box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-ink) 16%, transparent); }
+.language-flags button[aria-pressed="true"]::after { content: ""; position: absolute; left: 8px; right: 8px; bottom: 3px; height: 2px; border-radius: 1px; background: var(--color-brand); }
+.header-languages { flex-shrink: 0; }
+/* Below 1280px the nav bar has no room, so the flags move to the utility strip beside the phone number. */
+.utility-actions { display: flex; align-items: center; gap: clamp(12px, 2vw, 24px); }
+.utility-languages button { width: 32px; height: 32px; }
+.utility-languages svg { width: 21px; height: 14px; }
+.utility-languages button[aria-pressed="true"]::after { left: 6px; right: 6px; bottom: 2px; }
+.utility-languages button:hover { background: var(--color-surface); }
+@media (min-width: 1280px) { .utility-languages { display: none; } }
+@media (max-width: 1279px) { .header-languages { display: none; } }
 .menu-toggle { display: none; width: 44px; height: 44px; flex-shrink: 0; place-items: center; border: 1px solid var(--color-line); background: transparent; color: var(--color-ink); }
 .mobile-nav { border-top: 1px solid var(--color-line); padding: 12px var(--gutter) 20px; max-height: calc(100dvh - 124px); overflow-y: auto; overscroll-behavior: contain; }
 .mobile-nav>a { display: flex; justify-content: space-between; align-items: center; gap: 16px; min-height: 52px; border-bottom: 1px solid var(--color-line); font-weight: 550; }
@@ -194,9 +208,6 @@ h3 { font-size: 1.375rem; letter-spacing: -.025em; line-height: 1.4; margin: 0; 
 .footer-company a { display: flex; align-items: center; overflow-wrap: anywhere; }
 .footer .footer-copyright { grid-column: 1 / -1; border-top: 1px solid var(--color-line); padding-top: 24px; font-size: .75rem; color: var(--color-muted); margin-top: 20px; }
 
-@media (max-width: 1279px) {
-  .header-cta { display: none; }
-}
 @media (max-width: 1100px) {
   .hero-slide::after { background: linear-gradient(0deg, color-mix(in srgb, var(--color-dark) 78%, transparent), color-mix(in srgb, var(--color-dark) 70%, transparent) 30%, color-mix(in srgb, var(--color-dark) 68%, transparent) 75%, color-mix(in srgb, var(--color-dark) 50%, transparent)); }
   .intro-strip { gap: 30px; }
@@ -239,6 +250,7 @@ h3 { font-size: 1.375rem; letter-spacing: -.025em; line-height: 1.4; margin: 0; 
 @media (max-width: 480px) {
   .utility>span { display: none; }
   .utility { justify-content: flex-end; }
+  .utility-actions { flex: 1; justify-content: space-between; }
   .brand { font-size: 1.875rem; }
   .hero-content { padding-top: 58px; padding-bottom: 48px; }
   .hero { min-height: 615px; }

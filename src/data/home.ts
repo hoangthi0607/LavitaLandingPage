@@ -17,6 +17,16 @@ export const navigation = [
  { label: "Về Lavita", href: "/ve-lavita" }, { label: "Dịch vụ PCCC", href: "/dich-vu" }, projectNavigation,
  { label: "Sản phẩm", href: "/san-pham" }, { label: "Hồ sơ năng lực", href: "/ho-so-nang-luc" }, { label: "Liên hệ", href: "/lien-he" },
 ];
+// Language switcher. Only Vietnamese content exists today; the others are placeholders until translations ship.
+export const languages = [
+ { code: "en", name: "Tiếng Anh", nativeName: "English" },
+ { code: "vi", name: "Tiếng Việt", nativeName: "Tiếng Việt" },
+ { code: "zh", name: "Tiếng Trung", nativeName: "中文" },
+ { code: "ko", name: "Tiếng Hàn", nativeName: "한국어" },
+ { code: "ja", name: "Tiếng Nhật", nativeName: "日本語" },
+] as const;
+export type LanguageCode = (typeof languages)[number]["code"];
+export const currentLanguage: LanguageCode = "vi";
 export const slides = [
  { title: "An toàn hôm nay.\nGiá trị mai sau.", description: "Giải pháp phòng cháy chữa cháy đồng bộ — từ tư vấn thiết kế, thi công đến bảo trì công trình.", category: "LAVITA · GIẢI PHÁP PCCC", href: "/dich-vu", image: "/images/installation.webp", alt: "Hệ thống đường ống PCCC" },
  { title: "Thiết kế đúng.\nVững nền an toàn.", description: "Đồng hành cùng công trình dân dụng và công nghiệp với giải pháp phù hợp từng nhu cầu.", category: "TƯ VẤN & THIẾT KẾ", href: "/dich-vu#tu-van-thiet-ke", image: "/images/dai-nhat.webp", alt: "Phối cảnh Chung cư Đại Nhật, dự án thiết kế PCCC" },
