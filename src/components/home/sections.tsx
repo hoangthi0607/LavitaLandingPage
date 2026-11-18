@@ -1,8 +1,10 @@
 ﻿import Image from "next/image";
-import { ArrowRight, Mail, MapPin, Phone, Plus, Quote } from "lucide-react";
-import { homeClients, serviceHref } from "@/data/home";
+import type { CSSProperties } from "react";
+import { ArrowRight, Mail, MapPin, Phone, Quote } from "lucide-react";
+import { homeClients } from "@/data/home";
 import { getContent } from "@/i18n/content";
 import { LogoMarquee } from "@/components/home/logo-marquee";
+import { ServiceStack } from "@/components/home/service-stack";
 import { TestimonialText } from "@/components/home/testimonial-text";
 import Link from "@/i18n/link";
 import { cdnUrl, formatDate, getNewsPage, itemSlug, newsSource, type NewsItem } from "@/lib/fire-police-news";
@@ -43,14 +45,21 @@ export async function Services() {
       <h2 id="services-title" className="home-title">{copy.heading}</h2>
       <p>{copy.intro}</p>
       <nav className="service-entry" aria-label={copy.entryLabel}>{serviceGroups.map(group => <Link href={`/dich-vu#group-${group.id}`} key={group.id}>{group.title}</Link>)}</nav>
-      <Link className="detail-link" href="/dich-vu">{copy.all}</Link>
     </div>
-    <div className="service-list">
-      {services.map((service, index) => <details className="service-row" key={service.slug} open={index < 2}>
-        <summary><h3>{service.title}</h3><Plus size={22} aria-hidden="true" /></summary>
-        <div className="service-body"><p>{service.description}</p><Link href={serviceHref(service.slug)}>{copy.learn}</Link></div>
-      </details>)}
-    </div>
+    <ServiceStack>
+      {services.map((service, index) => <li className={`service-stack-card${index % 2 ? " is-reverse" : ""}`} key={service.slug} style={{ "--i": index } as CSSProperties}>
+        <article className="service-stack-inner" data-reveal="up" aria-labelledby={`service-stack-${service.slug}`}>
+          <div className="service-stack-media"><Image src={service.image} alt="" fill sizes="(max-width: 900px) 92vw, 50vw" /></div>
+          <div className="service-stack-copy">
+            <h3 id={`service-stack-${service.slug}`}>{service.pageTitle}</h3>
+            <p>{service.detail.lead}</p>
+            <ul className="service-stack-topics">{service.detail.sections.map(section => <li key={section.heading}>{section.heading}</li>)}</ul>
+            <Link className="detail-link" href={`/dich-vu/${service.slug}`}>{copy.learn}<span className="sr-only">: {service.pageTitle}</span></Link>
+          </div>
+        </article>
+      </li>)}
+    </ServiceStack>
+    <div className="services-more"><Link className="button button-secondary" href="/dich-vu">{copy.all}</Link></div>
   </section>;
 }
 

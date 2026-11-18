@@ -168,7 +168,7 @@ export const zh: Dictionary = {
       foundedLabel: ["成立", "年份"], servicesLabel: ["消防", "服务"], learnMore: "了解Lavita",
       photoTopAlt: "Lavita团队在平阳C2公寓施工消防系统",
       photoMainAlt: "Lavita技术人员检查消防系统控制柜",
-      clients: "代表客户", clientLogo: "客户标志",
+      clients: "合作伙伴与客户", clientLogo: "客户标志",
     },
     services: { heading: "消防服务", intro: "从第一张图纸到日常运营——Lavita陪伴建筑的每一个阶段。", entryLabel: "按需求分类的服务", all: "查看全部服务", learn: "了解服务" },
     projects: {
@@ -226,7 +226,7 @@ export const zh: Dictionary = {
     heading: "从建筑需求出发",
     intro: "在确定具体范围之前，您可以先与Lavita沟通建筑情况和所需支持。",
     note: "即使尚未备齐上述信息，也可以先开始沟通。",
-    cta: "咨询此服务", related: "相关服务", seeProjects: "查看该服务类别的项目", productsLink: "查看产品目录",
+    cta: "咨询此服务", related: "相关服务", seeProjects: "查看该服务类别的项目", productsLink: "查看产品目录", contents: "本页内容",
   },
   projectsPage: {
     title: "消防项目",

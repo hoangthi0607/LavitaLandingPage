@@ -8,7 +8,6 @@ import "./scroll-reveal.css";
 const revealTargets = [
   "[data-reveal]",
   ".services-intro > *",
-  ".service-list > .service-row",
   ".section-heading > *",
   ".project-grid > .project-card",
   ".content-next > div > *",

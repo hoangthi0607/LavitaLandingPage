@@ -168,7 +168,7 @@ export const ko: Dictionary = {
       foundedLabel: ["설립", "연도"], servicesLabel: ["소방", "서비스"], learnMore: "Lavita 알아보기",
       photoTopAlt: "빈즈엉 C2 아파트에서 소방 시스템을 시공하는 Lavita 팀",
       photoMainAlt: "소방 시스템 제어반을 점검하는 Lavita 기술 인력",
-      clients: "주요 고객", clientLogo: "고객 로고",
+      clients: "파트너 및 고객", clientLogo: "고객 로고",
     },
     services: { heading: "소방 서비스", intro: "첫 도면부터 운영까지 — Lavita는 건축물의 모든 단계를 함께합니다.", entryLabel: "필요별 서비스", all: "전체 서비스 보기", learn: "서비스 알아보기" },
     projects: {
@@ -226,7 +226,7 @@ export const ko: Dictionary = {
     heading: "건축물의 요구에서 시작합니다",
     intro: "구체적인 범위를 정하기 전에 건축물과 필요한 지원에 대해 Lavita와 먼저 상담할 수 있습니다.",
     note: "위 정보를 모두 준비하지 않아도 상담을 시작할 수 있습니다.",
-    cta: "이 서비스 상담하기", related: "관련 서비스", seeProjects: "이 서비스 분류의 프로젝트 보기", productsLink: "제품 카탈로그 보기",
+    cta: "이 서비스 상담하기", related: "관련 서비스", seeProjects: "이 서비스 분류의 프로젝트 보기", productsLink: "제품 카탈로그 보기", contents: "주요 내용",
   },
   projectsPage: {
     title: "소방 프로젝트",

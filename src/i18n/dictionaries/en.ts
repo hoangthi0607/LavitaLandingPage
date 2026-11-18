@@ -168,7 +168,7 @@ export const en: Dictionary = {
       foundedLabel: ["Year", "founded"], servicesLabel: ["Fire protection", "services"], learnMore: "About Lavita",
       photoTopAlt: "Lavita team installing a fire protection system at C2 Apartments, Bình Dương",
       photoMainAlt: "A Lavita technician inspecting a fire protection control panel",
-      clients: "Featured clients", clientLogo: "Client logo",
+      clients: "Partners & clients", clientLogo: "Client logo",
     },
     services: { heading: "Fire protection services", intro: "From the first drawing to day-to-day operation — Lavita supports every stage of your building.", entryLabel: "Services by need", all: "View all services", learn: "Learn about the service" },
     projects: {
@@ -226,7 +226,7 @@ export const en: Dictionary = {
     heading: "Starting from your building's needs",
     intro: "You can talk to Lavita about your building and the support you need before the exact scope is defined.",
     note: "You can start the conversation even if you don't have all of this information yet.",
-    cta: "Ask about this service", related: "Related services", seeProjects: "View projects in this service category", productsLink: "View the product catalogue",
+    cta: "Ask about this service", related: "Related services", seeProjects: "View projects in this service category", productsLink: "View the product catalogue", contents: "On this page",
   },
   projectsPage: {
     title: "Fire Protection Projects",

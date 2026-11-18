@@ -29,6 +29,15 @@ export const serviceBase = [
   { slug: "cung-cap-thiet-bi", group: "cung-ung", image: "/images/vat-tu-thiet-bi.webp", relatedServiceSlugs: ["thi-cong-he-thong", "bao-tri-sua-chua"], hasProjects: false },
 ] as const;
 export type ServiceSlug = (typeof serviceBase)[number]["slug"];
+// How each section of services[slug].detail is laid out on the service page, in order:
+// steps = numbered process, cards = labelled points with an icon, tiles = compact grid, checks = checklist.
+export type ServiceSectionStyle = "steps" | "cards" | "tiles" | "checks";
+export const serviceSectionStyles: Record<ServiceSlug, readonly ServiceSectionStyle[]> = {
+  "tu-van-thiet-ke": ["steps", "checks", "checks", "cards"],
+  "thi-cong-he-thong": ["cards", "steps"],
+  "bao-tri-sua-chua": ["cards", "tiles", "cards"],
+  "cung-cap-thiet-bi": ["cards", "tiles"],
+};
 export const serviceGroupIds = ["trien-khai", "van-hanh", "cung-ung"] as const;
 export type ServiceGroupId = (typeof serviceGroupIds)[number];
 

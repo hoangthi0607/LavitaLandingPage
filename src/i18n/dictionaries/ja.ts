@@ -168,7 +168,7 @@ export const ja: Dictionary = {
       foundedLabel: ["設立", "年"], servicesLabel: ["消防", "サービス"], learnMore: "Lavitaについて",
       photoTopAlt: "ビンズオンのC2マンションで消防システムを施工するLavitaのチーム",
       photoMainAlt: "消防システムの制御盤を点検するLavitaの技術スタッフ",
-      clients: "主な取引先", clientLogo: "取引先ロゴ",
+      clients: "パートナー・お客様", clientLogo: "取引先ロゴ",
     },
     services: { heading: "消防サービス", intro: "最初の図面から日々の運用まで — Lavitaは建物のあらゆる段階に寄り添います。", entryLabel: "ニーズ別のサービス", all: "すべてのサービスを見る", learn: "サービスを見る" },
     projects: {
@@ -226,7 +226,7 @@ export const ja: Dictionary = {
     heading: "建物のニーズから始めます",
     intro: "具体的な範囲を決める前に、建物と必要なサポートについてLavitaにご相談いただけます。",
     note: "上記の情報がすべてそろっていなくても、ご相談を始められます。",
-    cta: "このサービスについて相談する", related: "関連サービス", seeProjects: "このサービス分類のプロジェクトを見る", productsLink: "製品カタログを見る",
+    cta: "このサービスについて相談する", related: "関連サービス", seeProjects: "このサービス分類のプロジェクトを見る", productsLink: "製品カタログを見る", contents: "このページの内容",
   },
   projectsPage: {
     title: "消防プロジェクト",

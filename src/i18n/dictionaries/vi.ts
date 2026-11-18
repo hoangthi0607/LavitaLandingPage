@@ -168,7 +168,7 @@ export const vi = {
       foundedLabel: ["Năm", "thành lập"], servicesLabel: ["Dịch vụ", "PCCC"], learnMore: "Tìm hiểu về Lavita",
       photoTopAlt: "Đội ngũ Lavita thi công hệ thống PCCC tại Chung cư C2 Bình Dương",
       photoMainAlt: "Nhân sự kỹ thuật Lavita kiểm tra tủ điện của hệ thống PCCC",
-      clients: "Khách hàng tiêu biểu", clientLogo: "Logo khách hàng",
+      clients: "Đối tác khách hàng", clientLogo: "Logo khách hàng",
     },
     services: { heading: "Dịch vụ PCCC", intro: "Từ bản vẽ đầu tiên đến quá trình vận hành — Lavita đồng hành ở từng giai đoạn của công trình.", entryLabel: "Dịch vụ theo nhu cầu", all: "Xem tất cả dịch vụ", learn: "Tìm hiểu dịch vụ" },
     projects: {
@@ -227,7 +227,7 @@ export const vi = {
     heading: "Bắt đầu từ nhu cầu công trình",
     intro: "Bạn có thể trao đổi với Lavita về công trình và nội dung cần hỗ trợ trước khi xác định phạm vi cụ thể.",
     note: "Bạn có thể bắt đầu trao đổi khi chưa có đầy đủ các thông tin trên.",
-    cta: "Tư vấn về dịch vụ này", related: "Dịch vụ liên quan", seeProjects: "Xem dự án theo hạng mục dịch vụ này", productsLink: "Xem danh mục sản phẩm",
+    cta: "Tư vấn về dịch vụ này", related: "Dịch vụ liên quan", seeProjects: "Xem dự án theo hạng mục dịch vụ này", productsLink: "Xem danh mục sản phẩm", contents: "Nội dung chính",
   },
   projectsPage: {
     title: "Dự án PCCC",
