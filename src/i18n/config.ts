@@ -24,8 +24,10 @@ export function localizeHref(href: string, locale: Locale) {
 
 /** Splits a browser pathname into its locale and the shared, unprefixed path. */
 export function splitLocale(pathname: string): { locale: Locale; path: string } {
+  // The "vi" prefix is stripped too: Vietnamese URLs are unprefixed for visitors, but in production usePathname()
+  // can return the rewritten "/vi/..." route (prerendered pages), while `next dev` returns the browser URL.
   const first = pathname.split("/")[1];
-  if (hasLocale(first) && first !== defaultLocale) return { locale: first, path: pathname.slice(first.length + 1) || "/" };
+  if (hasLocale(first)) return { locale: first, path: pathname.slice(first.length + 1) || "/" };
   return { locale: defaultLocale, path: pathname || "/" };
 }
 
