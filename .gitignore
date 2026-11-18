@@ -55,3 +55,7 @@ test-results/
 .DS_Store
 Thumbs.db
 Desktop.ini
+
+# Site backup archive (do not push)
+lavitacons.vn_20260912_033642.zip
+db_sql_lavitacons_vn_20260912_013005_mysql_data.sql.gz
