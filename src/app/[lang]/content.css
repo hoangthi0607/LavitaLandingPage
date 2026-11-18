@@ -71,6 +71,18 @@ span.pagination-arrow { opacity: .3; }
 .content-project .project-photo { display: block; }
 .content-project .project-photo img { transition: transform .5s var(--ease-out); }
 .content-project .project-photo:hover img { transform: scale(1.03); }
+.service-lead { color: var(--color-ink) !important; font-size: 1.0625rem; line-height: 1.7; }
+/* Service detail sections: heading and intro on the left, divided list on the right. */
+.service-sections { display: grid; gap: 0; padding-top: 0; }
+.service-section { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: 24px clamp(32px, 6vw, 96px); padding-block: clamp(36px, 4.5vw, 56px); border-top: 1px solid var(--color-line); }
+.service-section-head { min-width: 0; }
+.service-section-head .section-title { margin-bottom: 0; }
+.service-section-head p { max-width: 46ch; margin: 20px 0 0; color: var(--color-muted); }
+.service-section-list { margin-top: 0; min-width: 0; }
+.service-section-list li { color: var(--color-muted); }
+.service-section-list li:first-child { padding-top: 4px; }
+.service-section-list li:first-child::before { top: calc(4px + .55em); }
+.service-section-list strong { display: block; margin-bottom: 4px; color: var(--color-ink); font-weight: 700; }
 .related-service-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0 48px; }
 .related-service-list a { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 72px; padding: 16px 0; border-block: 1px solid var(--color-line); font-size: 1.125rem; font-weight: 700; text-transform: uppercase; letter-spacing: .02em; transition: color .3s ease, transform .3s ease; }
 .related-service-list svg { flex-shrink: 0; color: var(--color-brand); }
@@ -93,6 +105,7 @@ span.pagination-arrow { opacity: .3; }
 }
 @media (max-width: 760px) {
   .service-overview, .project-detail { grid-template-columns: 1fr; gap: 28px; }
+  .service-section { grid-template-columns: 1fr; }
   .service-group-intro p { max-width: 64ch; }
   .content-photo { aspect-ratio: 1.4; }
   .project-detail-photo { aspect-ratio: 1.4; }

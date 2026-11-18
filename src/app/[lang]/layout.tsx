@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
-import { ScrollReveal } from "@/components/content/scroll-reveal";
 import { businessStructuredData } from "@/data/structured-data";
 import { localeInfo, locales } from "@/i18n/config";
 import { getContent } from "@/i18n/content";
@@ -47,5 +46,5 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function RootLayout({ children }: LayoutProps<"/[lang]">) {
   const content = await getContent();
   const { t, locale } = content;
-  return <html lang={localeInfo[locale].htmlLang} className={manrope.variable}><body><a className="skip-link" href="#main-content">{t.common.skipLink}</a><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(businessStructuredData(content)).replace(/</g, "\\u003c") }} /><Header content={{ t: { nav: t.nav }, navigation: content.navigation, services: content.services.map(({ slug, title }) => ({ slug, title })), phone: content.company.phone, phoneHref: content.company.phoneHref, tagline: t.company.tagline }} /><main id="main-content" tabIndex={-1}>{children}</main><ScrollReveal className="footer-reveal"><Footer /></ScrollReveal></body></html>;
+  return <html lang={localeInfo[locale].htmlLang} className={manrope.variable}><body><a className="skip-link" href="#main-content">{t.common.skipLink}</a><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(businessStructuredData(content)).replace(/</g, "\\u003c") }} /><Header content={{ t: { nav: t.nav }, navigation: content.navigation, services: content.services.filter(service => service.hasProjects).map(({ slug, title }) => ({ slug, title })), phone: content.company.phone, phoneHref: content.company.phoneHref, tagline: t.company.tagline }} /><main id="main-content" tabIndex={-1}>{children}</main><Footer /></body></html>;
 }

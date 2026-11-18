@@ -35,16 +35,90 @@ export const vi = {
     languages: "Ngôn ngữ", openProjectCategories: "Mở hạng mục dự án PCCC", closeProjectCategories: "Đóng hạng mục dự án PCCC",
     brandHome: "Lavita trang chủ", brandLogo: "Logo Lavita",
   },
-  footer: { headOffice: "Trụ sở", contact: "Liên hệ", servicesLabel: "Dịch vụ PCCC cuối trang", rights: "Bảo lưu mọi quyền." },
+  footer: { headOffice: "Trụ sở", contact: "Liên hệ", links: "Liên kết", servicesLabel: "Dịch vụ PCCC cuối trang", rights: "Bảo lưu mọi quyền." },
   pagination: { previous: "Trang trước", next: "Trang sau", page: "Trang {page}" },
   services: {
-    "tu-van-thiet-ke": { title: "Tư vấn thiết kế", pageTitle: "Tư vấn thiết kế PCCC", description: "Xây dựng giải pháp và thiết kế hệ thống PCCC phù hợp đặc thù công trình.", preparation: ["Loại công trình và địa điểm", "Giai đoạn chuẩn bị hoặc thiết kế hiện tại", "Bản vẽ và nhu cầu PCCC đang có"] },
-    "thi-cong-he-thong": { title: "Thi công hệ thống", pageTitle: "Thi công hệ thống PCCC", description: "Triển khai thi công hệ thống PCCC cho công trình dân dụng và công nghiệp.", preparation: ["Loại công trình và địa điểm", "Phạm vi hệ thống cần thi công", "Hồ sơ thiết kế và tiến độ dự kiến"] },
-    "bao-tri-sua-chua": { title: "Bảo trì & sửa chữa", pageTitle: "Bảo trì & sửa chữa PCCC", description: "Kiểm tra, bảo trì và sửa chữa hệ thống; nạp sạc các loại bình chữa cháy.", preparation: ["Loại công trình đang vận hành", "Hệ thống hoặc thiết bị cần kiểm tra", "Tình trạng hiện tại và nhu cầu bảo trì"] },
+    "tu-van-thiet-ke": { title: "Tư vấn thiết kế", pageTitle: "Tư vấn thiết kế PCCC", description: "Xây dựng giải pháp và thiết kế hệ thống PCCC phù hợp đặc thù công trình.", preparation: ["Loại công trình và địa điểm", "Giai đoạn chuẩn bị hoặc thiết kế hiện tại", "Bản vẽ và nhu cầu PCCC đang có"],
+    detail: { lead: "Lavita đồng hành cùng chủ đầu tư từ những bước đầu tiên: khảo sát, lập thiết kế hệ thống PCCC đúng tiêu chuẩn, quy chuẩn hiện hành, tối ưu chi phí đầu tư mà vẫn bảo đảm vận hành hiệu quả. Dịch vụ phù hợp nhà ở, nhà xưởng, tòa nhà văn phòng, trung tâm thương mại và cơ sở công nghiệp.", sections: [
+      { heading: "Dịch vụ tư vấn thiết kế", intro: "", items: [
+        { label: "Tiếp nhận và khảo sát", text: "Phân tích đặc điểm, công năng công trình: nhà xưởng, chung cư, khách sạn, văn phòng, nhà ở riêng lẻ." },
+        { label: "Tư vấn giải pháp kỹ thuật", text: "Đề xuất giải pháp phù hợp cho hệ thống PCCC (báo cháy tự động, chữa cháy vách tường, sprinkler…) theo đúng quy định và ngân sách." },
+        { label: "Lập hồ sơ thiết kế chi tiết", text: "Hồ sơ đồng bộ, rõ ràng, đúng tiêu chuẩn PCCC; bóc tách khối lượng, lập dự toán sát chi phí thi công, lắp đặt và nghiệm thu." },
+        { label: "Lập hồ sơ nghiệm thu", text: "Bước then chốt để pháp lý hóa hệ thống an toàn tại công trình, phối hợp chặt chẽ giữa các đơn vị liên quan." },
+      ] },
+      { heading: "Tư vấn thẩm định thiết kế PCCC", intro: "Bảo đảm bản vẽ thiết kế đáp ứng đầy đủ yêu cầu kỹ thuật để nộp cơ quan chức năng phê duyệt.", items: [
+        { label: "", text: "Kiểm tra, đối chiếu bản vẽ thiết kế với tiêu chuẩn pháp lý hiện hành." },
+        { label: "", text: "Đề xuất giải pháp điều chỉnh khi cần, bảo đảm tính khả thi và hiệu quả cho công trình." },
+        { label: "", text: "Đại diện khách hàng nộp hồ sơ thẩm duyệt, theo dõi tiến trình và bổ sung tài liệu khi được yêu cầu cho đến khi có văn bản thẩm duyệt thiết kế PCCC." },
+      ] },
+      { heading: "Tư vấn nghiệm thu hệ thống PCCC", intro: "Bảo đảm hệ thống đáp ứng yêu cầu kỹ thuật và pháp lý trước khi đưa vào sử dụng.", items: [
+        { label: "", text: "Kiểm tra toàn diện hệ thống đã lắp đặt theo tiêu chuẩn." },
+        { label: "", text: "Phối hợp với cơ quan chức năng nghiệm thu thực tế tại công trình khi có yêu cầu." },
+        { label: "", text: "Tư vấn khắc phục các lỗi phát sinh trong quá trình nghiệm thu." },
+      ] },
+      { heading: "Giá trị Lavita mang lại", intro: "", items: [
+        { label: "Đúng tiêu chuẩn, quy chuẩn hiện hành", text: "Hạn chế việc chỉnh sửa hồ sơ nhiều lần, giữ tiến độ thẩm định." },
+        { label: "Tối ưu ngân sách", text: "Thiết kế dựa trên thực tế công trình, tránh lãng phí vật tư và nhân công." },
+        { label: "An toàn pháp lý", text: "Chuẩn bị đủ điều kiện để công trình được chấp thuận và hoạt động ổn định, lâu dài." },
+        { label: "Thiết kế cho vận hành", text: "Không chỉ thiết kế trên giấy mà hướng tới vận hành an toàn cho khách hàng." },
+      ] },
+    ] } },
+    "thi-cong-he-thong": { title: "Thi công hệ thống", pageTitle: "Thi công hệ thống PCCC", description: "Triển khai thi công hệ thống PCCC cho công trình dân dụng và công nghiệp.", preparation: ["Loại công trình và địa điểm", "Phạm vi hệ thống cần thi công", "Hồ sơ thiết kế và tiến độ dự kiến"],
+    detail: { lead: "Lavita thi công, lắp đặt hệ thống PCCC theo thiết kế đã được thẩm duyệt, với quy trình chuẩn hóa từ bóc tách khối lượng đến nghiệm thu, hoàn công, để khách hàng yên tâm sau khi bàn giao.", sections: [
+      { heading: "Hệ thống thi công", intro: "", items: [
+        { label: "Báo cháy (FA – Fire Alarm)", text: "Hệ thống báo cháy được thi công và cài đặt để phát hiện sớm nguy cơ cháy, gồm đầu báo khói, thiết bị báo động và tủ điều khiển." },
+        { label: "Chữa cháy (FF – Fire Fighting)", text: "Hệ thống chữa cháy thi công theo tiêu chuẩn để xử lý kịp thời sự cố cháy, gồm bình chữa cháy, hệ thống phun nước, chữa cháy khí CO2 và FM200." },
+      ] },
+      { heading: "Quy trình thi công", intro: "", items: [
+        { label: "Tư vấn và bóc tách khối lượng (BOQ)", text: "Dựa trên thiết kế thẩm duyệt, kỹ sư khảo sát thực tế để tối ưu vị trí lắp đặt thiết bị, bảo đảm khả năng bảo vệ với chi phí hợp lý." },
+        { label: "Lắp đặt đúng kỹ thuật, theo QCVN", text: "Hệ thống sprinkler, cụm bơm và thiết bị phụ trợ (van báo động, cuộn vòi) được lắp đặt chính xác và kiểm tra trước khi đưa vào hoạt động." },
+        { label: "Kết nối liên động", text: "Hệ thống PCCC liên động với hệ thống điện, thông gió và thang máy, bảo đảm thoát nạn và chữa cháy tự động khi có báo động." },
+        { label: "Nghiệm thu và hoàn công", text: "Đồng hành chuẩn bị hồ sơ nghiệm thu PCCC với cơ quan chức năng để công trình đủ điều kiện đi vào hoạt động đúng tiến độ." },
+      ] },
+    ] } },
+    "bao-tri-sua-chua": { title: "Bảo trì & sửa chữa", pageTitle: "Bảo trì & sửa chữa PCCC", description: "Kiểm tra, bảo trì và sửa chữa hệ thống; nạp sạc các loại bình chữa cháy.", preparation: ["Loại công trình đang vận hành", "Hệ thống hoặc thiết bị cần kiểm tra", "Tình trạng hiện tại và nhu cầu bảo trì"],
+    detail: { lead: "Hệ thống PCCC chỉ thực sự có giá trị khi luôn ở trạng thái sẵn sàng. Lavita kiểm tra, bảo dưỡng định kỳ và sửa chữa để hệ thống của công trình vận hành ổn định.", sections: [
+      { heading: "Vì sao cần bảo trì định kỳ", intro: "Theo quy định, hệ thống PCCC phải được kiểm tra, bảo dưỡng định kỳ ít nhất 01 lần mỗi năm. Bảo trì không đúng quy định chuyên ngành hoặc khuyến cáo của nhà sản xuất có thể gây hậu quả nghiêm trọng khi có sự cố.", items: [
+        { label: "Hỏng hóc ngầm", text: "Đầu báo khói bám bụi, bình chữa cháy mất áp, máy bơm kẹt rỉ… khiến hệ thống không hoạt động khi có cháy." },
+        { label: "Rủi ro pháp lý", text: "Bị xử phạt hành chính, đình chỉ hoạt động hoặc vướng mắc với bảo hiểm khi hồ sơ bảo trì không đầy đủ." },
+        { label: "Lãng phí tài sản", text: "Thay vì chi phí nhỏ cho bảo dưỡng, doanh nghiệp phải bỏ ra số tiền lớn để thay mới." },
+      ] },
+      { heading: "Hạng mục bảo trì", intro: "Quy trình bảo trì tuân thủ tiêu chuẩn của Cảnh sát PCCC, gồm:", items: [
+        { label: "Hệ thống báo cháy", text: "Kiểm tra trung tâm báo cháy, vệ sinh đầu báo khói/nhiệt, kiểm tra chuông, đèn, nút ấn và nguồn dự phòng." },
+        { label: "Hệ thống chữa cháy", text: "Kiểm tra máy bơm chữa cháy, đường ống, van chặn, lăng vòi, trụ cấp nước và hệ thống chữa cháy tự động." },
+        { label: "Chữa cháy vách tường", text: "Kiểm tra áp lực nước tại đầu lăng phun, độ mềm dẻo của vòi và độ kín của khớp nối." },
+        { label: "Chữa cháy khí", text: "Kiểm tra áp suất bình khí qua đồng hồ, tủ điều khiển trung tâm và các đầu phun xả khí." },
+        { label: "Đèn chiếu sáng sự cố và đèn Exit", text: "Kiểm tra tình trạng pin dự phòng và thời gian chiếu sáng." },
+        { label: "Cửa chống cháy", text: "Kiểm tra độ kín của gioăng, tốc độ đóng của tay co; thanh thoát hiểm mở được bằng một cú đẩy nhẹ." },
+        { label: "Loa thông báo cháy", text: "Kiểm tra âm lượng tại các điểm xa nhất và chức năng phát thông báo tự động." },
+        { label: "Thiết bị chữa cháy xách tay", text: "Kiểm tra áp suất bình bột, bình khí CO2; nạp sạc khi cần." },
+        { label: "Hồ sơ theo dõi", text: "Cung cấp biên bản kiểm tra, hồ sơ bảo trì đúng chuẩn để làm việc với cơ quan chức năng." },
+      ] },
+      { heading: "Khách hàng nhận được", intro: "", items: [
+        { label: "Đội ngũ kỹ thuật chuyên sâu", text: "Am hiểu, xử lý lỗi và lập trình cấu hình các hãng báo cháy." },
+        { label: "Báo cáo khảo sát, đánh giá", text: "Đánh giá đúng thực trạng, đề xuất thay thế, sửa chữa theo quy định pháp luật về PCCC." },
+        { label: "Hỗ trợ 24/7", text: "Sẵn sàng xử lý sự cố kỹ thuật của hệ thống trong thời gian nhanh nhất." },
+        { label: "Bảo đảm tính pháp lý", text: "Hồ sơ bảo trì đạt chuẩn cho nghiệm thu và kiểm tra định kỳ của cơ quan chức năng." },
+      ] },
+    ] } },
+    "cung-cap-thiet-bi": { title: "Cung cấp thiết bị, vật tư", pageTitle: "Cung cấp thiết bị, vật tư PCCC", description: "Cung cấp thiết bị, vật tư PCCC chính hãng và vật tư cho hệ HVAC, kèm tư vấn chọn đúng chủng loại.", preparation: ["Danh mục hoặc bản vẽ thiết bị cần cung cấp","Chủng loại, quy cách và số lượng dự kiến","Địa điểm và thời gian giao hàng"],
+    detail: { lead: "Lavita cung cấp thiết bị đúng hãng, kiểm định theo quy định hiện hành, cho hệ thống PCCC và hệ HVAC của mọi loại công trình. Lavita là nhà phân phối chính thức các sản phẩm thương hiệu Starduct của Công ty CP Đầu tư Công nghệ Ngôi Sao Châu Á (NSCA).", sections: [
+      { heading: "Vì sao chọn vật tư từ Lavita", intro: "", items: [
+        { label: "Chất lượng kiểm định", text: "Thiết bị có đầy đủ chứng chỉ CO/CQ và được dán tem kiểm định theo quy định hiện hành." },
+        { label: "Giá thành tối ưu", text: "Là đối tác trực tiếp của các nhà sản xuất, Lavita mang đến mức giá cạnh tranh cho nhà thầu và chủ đầu tư." },
+        { label: "Tư vấn kỹ thuật", text: "Hỗ trợ lựa chọn đúng chủng loại thiết bị phù hợp với bản vẽ thiết kế và kinh phí." },
+      ] },
+      { heading: "Nhóm sản phẩm", intro: "", items: [
+        { label: "Vật tư PCCC", text: "Van PCCC, đầu phun sprinkler, phụ kiện đường ống ren, hàn và inox." },
+        { label: "Vật tư HVAC", text: "Cửa gió, miệng gió, van gió và van ngăn cháy, ống gió, tiêu âm, VAV/CAV, quạt thông gió." },
+        { label: "Hệ điện và giá treo", text: "Tủ điện, máng cáp trunking và hệ giá treo Unistar." },
+      ] },
+    ] } },
   },
   serviceGroups: {
     "trien-khai": { title: "Thiết kế & triển khai", description: "Tư vấn thiết kế và thi công hệ thống PCCC cho công trình." },
     "van-hanh": { title: "Vận hành & an toàn", description: "Kiểm tra, bảo trì và sửa chữa hệ thống PCCC tại công trình." },
+    "cung-ung": { title: "Thiết bị & vật tư", description: "Cung cấp thiết bị, vật tư PCCC và vật tư cho hệ HVAC." },
   },
   // tag is the PCCC scope label; scope is the same phrase as it reads inside a sentence.
   projects: {
@@ -94,7 +168,7 @@ export const vi = {
       foundedLabel: ["Năm", "thành lập"], servicesLabel: ["Dịch vụ", "PCCC"], learnMore: "Tìm hiểu về Lavita",
       photoTopAlt: "Đội ngũ Lavita thi công hệ thống PCCC tại Chung cư C2 Bình Dương",
       photoMainAlt: "Nhân sự kỹ thuật Lavita kiểm tra tủ điện của hệ thống PCCC",
-      partners: ["Đối tác", "chiến lược"], partnerLogo: "Logo đối tác",
+      clients: "Khách hàng tiêu biểu", clientLogo: "Logo khách hàng",
     },
     services: { heading: "Dịch vụ PCCC", intro: "Từ bản vẽ đầu tiên đến quá trình vận hành — Lavita đồng hành ở từng giai đoạn của công trình.", entryLabel: "Dịch vụ theo nhu cầu", all: "Xem tất cả dịch vụ", learn: "Tìm hiểu dịch vụ" },
     projects: {
@@ -142,9 +216,9 @@ export const vi = {
   projectCard: { name: "Tên dự án:", location: "Vị trí:", scale: "Quy mô:", scope: "Hạng mục PCCC:", investor: "Chủ đầu tư:" },
   servicesPage: {
     metaTitle: "Dịch vụ PCCC",
-    metaDescription: "Tìm hiểu các dịch vụ Lavita cung cấp: tư vấn thiết kế, thi công hệ thống, bảo trì và sửa chữa PCCC.",
+    metaDescription: "Tìm hiểu các dịch vụ Lavita cung cấp: tư vấn thiết kế, thi công hệ thống, bảo trì và sửa chữa PCCC, cung cấp thiết bị, vật tư PCCC.",
     title: "Dịch vụ PCCC của Lavita",
-    description: "Lavita cung cấp dịch vụ phòng cháy chữa cháy cho công trình dân dụng và công nghiệp, từ tư vấn thiết kế, thi công đến bảo trì và sửa chữa hệ thống.",
+    description: "Lavita cung cấp dịch vụ phòng cháy chữa cháy cho công trình dân dụng và công nghiệp, từ tư vấn thiết kế, thi công đến bảo trì và sửa chữa hệ thống, cùng thiết bị, vật tư PCCC chính hãng.",
     imageAlt: "Hình ảnh minh họa dịch vụ {title} PCCC", prepare: "Thông tin nên chuẩn bị",
     discussLabel: "Trao đổi về {title}", discuss: "Trao đổi về dịch vụ", detail: "Chi tiết dịch vụ",
     nextHeading: "Chưa xác định được dịch vụ?", nextText: "Chia sẻ loại công trình, tình trạng hiện tại và nội dung bạn cần hỗ trợ để bắt đầu trao đổi.",
@@ -153,7 +227,7 @@ export const vi = {
     heading: "Bắt đầu từ nhu cầu công trình",
     intro: "Bạn có thể trao đổi với Lavita về công trình và nội dung cần hỗ trợ trước khi xác định phạm vi cụ thể.",
     note: "Bạn có thể bắt đầu trao đổi khi chưa có đầy đủ các thông tin trên.",
-    cta: "Tư vấn về dịch vụ này", related: "Dịch vụ liên quan", seeProjects: "Xem dự án theo hạng mục dịch vụ này",
+    cta: "Tư vấn về dịch vụ này", related: "Dịch vụ liên quan", seeProjects: "Xem dự án theo hạng mục dịch vụ này", productsLink: "Xem danh mục sản phẩm",
   },
   projectsPage: {
     title: "Dự án PCCC",

@@ -1,12 +1,13 @@
 ﻿import Image from "next/image";
 import { ArrowRight, Mail, MapPin, Phone, Plus, Quote } from "lucide-react";
-import { homePartners, serviceHref } from "@/data/home";
+import { homeClients, serviceHref } from "@/data/home";
 import { getContent } from "@/i18n/content";
+import { LogoMarquee } from "@/components/home/logo-marquee";
 import { TestimonialText } from "@/components/home/testimonial-text";
 import Link from "@/i18n/link";
 import { cdnUrl, formatDate, getNewsPage, itemSlug, newsSource, type NewsItem } from "@/lib/fire-police-news";
 
-// Company intro in the dcons.vn "about-home" layout: heading, copy, large figures, overlapping photos, partner row.
+// Company intro in the dcons.vn "about-home" layout: heading, copy, large figures, overlapping photos, client logo band.
 // #capabilities is kept on the figures so older shared links still land on this section.
 export async function HomeAbout() {
   const { company, services, t } = await getContent();
@@ -27,11 +28,9 @@ export async function HomeAbout() {
         <div className="home-about-photo home-about-photo-main"><Image src="/images/engineer.webp" alt={about.photoMainAlt} fill sizes="(max-width: 980px) 85vw, 40vw" /></div>
       </div>
     </div>
-    <div className="home-partners" data-reveal="up">
-      <h3>{about.partners[0]}<br />{about.partners[1]}</h3>
-      {homePartners.length > 0
-        ? <ul>{homePartners.map(partner => <li key={partner}>{partner}</li>)}</ul>
-        : <><ul aria-hidden="true">{Array.from({ length: 5 }, (_, index) => <li key={index} className="is-pending">{about.partnerLogo}</li>)}</ul><p className="home-partners-note">{t.common.pending}</p></>}
+    <div className="home-clients" data-reveal="up">
+      <div className="home-clients-head"><h3>{about.clients}</h3>{homeClients.length === 0 && <p className="home-clients-note">{t.common.pending}</p>}</div>
+      <LogoMarquee logos={homeClients} pendingLabel={about.clientLogo} label={about.clients} />
     </div>
   </section>;
 }

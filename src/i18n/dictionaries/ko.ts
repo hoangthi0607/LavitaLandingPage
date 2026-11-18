@@ -36,16 +36,90 @@ export const ko: Dictionary = {
     languages: "언어", openProjectCategories: "소방 프로젝트 분류 열기", closeProjectCategories: "소방 프로젝트 분류 닫기",
     brandHome: "Lavita 홈", brandLogo: "Lavita 로고",
   },
-  footer: { headOffice: "본사", contact: "연락처", servicesLabel: "하단 소방 서비스 메뉴", rights: "모든 권리 보유." },
+  footer: { headOffice: "본사", contact: "연락처", links: "바로가기", servicesLabel: "하단 소방 서비스 메뉴", rights: "모든 권리 보유." },
   pagination: { previous: "이전 페이지", next: "다음 페이지", page: "{page}페이지" },
   services: {
-    "tu-van-thiet-ke": { title: "설계 컨설팅", pageTitle: "소방 설계 컨설팅", description: "건축물의 특성에 맞는 소방 솔루션을 수립하고 시스템을 설계합니다.", preparation: ["건축물 유형 및 위치", "현재 준비 또는 설계 단계", "보유 도면 및 소방 요구 사항"] },
-    "thi-cong-he-thong": { title: "시스템 시공", pageTitle: "소방 시스템 시공", description: "주거·상업·산업 건축물의 소방 시스템을 시공합니다.", preparation: ["건축물 유형 및 위치", "시공할 시스템 범위", "설계 도서 및 예상 일정"] },
-    "bao-tri-sua-chua": { title: "유지보수 및 수리", pageTitle: "소방 유지보수 및 수리", description: "시스템 점검, 유지보수 및 수리와 각종 소화기 충전을 수행합니다.", preparation: ["운영 중인 건축물 유형", "점검이 필요한 시스템 또는 설비", "현재 상태 및 유지보수 요구 사항"] },
+    "tu-van-thiet-ke": { title: "설계 컨설팅", pageTitle: "소방 설계 컨설팅", description: "건축물의 특성에 맞는 소방 솔루션을 수립하고 시스템을 설계합니다.", preparation: ["건축물 유형 및 위치", "현재 준비 또는 설계 단계", "보유 도면 및 소방 요구 사항"],
+    detail: { lead: "Lavita는 첫 단계부터 사업주와 함께합니다. 현장을 조사하고 현행 기준과 규정에 맞는 소방 시스템을 설계하여, 투자 비용을 최적화하면서도 효과적인 운영을 보장합니다. 주택, 공장, 사무용 건물, 쇼핑센터, 산업 시설에 적합합니다.", sections: [
+      { heading: "설계 컨설팅 서비스", intro: "", items: [
+        { label: "요청 접수 및 현장 조사", text: "건물의 특성과 용도 분석: 공장, 아파트, 호텔, 사무실, 단독주택." },
+        { label: "기술 솔루션 제안", text: "규정과 예산에 맞는 소방 시스템 솔루션(자동화재탐지, 옥내소화전, 스프링클러 등)을 제안합니다." },
+        { label: "상세 설계 도서 작성", text: "일관되고 명확하며 소방 기준에 맞는 도서를 작성하고, 물량 산출과 함께 시공·설치·준공에 근접한 공사비를 산정합니다." },
+        { label: "준공 서류 작성", text: "건물 안전 시스템을 법적으로 확정하는 핵심 단계로, 관련 기관과 긴밀히 협력합니다." },
+      ] },
+      { heading: "소방 설계 심사 컨설팅", intro: "설계 도면이 관계 기관 승인 신청에 필요한 기술 요건을 모두 충족하도록 합니다.", items: [
+        { label: "", text: "현행 법적 기준과 설계 도면을 대조·검토합니다." },
+        { label: "", text: "필요 시 조정안을 제시하여 실현 가능성과 효과를 확보합니다." },
+        { label: "", text: "고객을 대신해 심사 서류를 제출하고 진행 상황을 추적하며, 요청 시 서류를 보완하여 소방 설계 승인을 받을 때까지 지원합니다." },
+      ] },
+      { heading: "소방 시스템 준공검사 컨설팅", intro: "시스템이 사용 전에 기술적·법적 요건을 충족하도록 합니다.", items: [
+        { label: "", text: "설치된 시스템을 기준에 따라 전면 점검합니다." },
+        { label: "", text: "필요 시 관계 기관과 현장 준공검사를 협의합니다." },
+        { label: "", text: "준공검사 중 발견된 문제의 시정 방안을 자문합니다." },
+      ] },
+      { heading: "Lavita가 드리는 가치", intro: "", items: [
+        { label: "현행 기준·규정 준수", text: "서류 수정 반복을 줄이고 심사 일정을 지킵니다." },
+        { label: "예산 최적화", text: "실제 건물에 기반한 설계로 자재와 인력 낭비를 막습니다." },
+        { label: "법적 안정성", text: "건물이 승인을 받고 장기간 안정적으로 운영될 수 있도록 준비합니다." },
+        { label: "운영을 위한 설계", text: "서류상의 설계가 아니라 고객의 안전한 운영을 목표로 합니다." },
+      ] },
+    ] } },
+    "thi-cong-he-thong": { title: "시스템 시공", pageTitle: "소방 시스템 시공", description: "주거·상업·산업 건축물의 소방 시스템을 시공합니다.", preparation: ["건축물 유형 및 위치", "시공할 시스템 범위", "설계 도서 및 예상 일정"],
+    detail: { lead: "Lavita는 승인된 설계에 따라 소방 시스템을 시공·설치하며, 물량 산출부터 준공검사와 준공 서류까지 표준화된 절차로 인도 후에도 안심할 수 있도록 합니다.", sections: [
+      { heading: "시공 시스템", intro: "", items: [
+        { label: "화재 경보(FA)", text: "연기 감지기, 경보 장치, 제어반을 포함해 화재 위험을 조기에 감지하도록 화재 경보 시스템을 시공·설정합니다." },
+        { label: "소화 설비(FF)", text: "소화기, 스프링클러, CO2 및 FM200 가스 소화를 포함해 화재에 신속히 대응하도록 기준에 맞게 시공합니다." },
+      ] },
+      { heading: "시공 절차", intro: "", items: [
+        { label: "컨설팅 및 물량 산출(BOQ)", text: "승인 설계를 바탕으로 엔지니어가 현장을 조사해 설비 위치를 최적화하고 합리적인 비용으로 보호 성능을 확보합니다." },
+        { label: "기술 기준(QCVN)에 맞는 설치", text: "스프링클러, 펌프 세트, 부속 설비(알람 밸브, 호스릴)를 정확히 설치하고 가동 전에 점검합니다." },
+        { label: "시스템 연동", text: "소방 시스템을 전기, 환기, 엘리베이터 시스템과 연동해 경보 시 피난과 자동 소화를 보장합니다." },
+        { label: "준공검사 및 준공 서류", text: "관계 기관에 제출할 소방 준공 서류 준비를 지원해 건물이 일정대로 운영을 시작하도록 합니다." },
+      ] },
+    ] } },
+    "bao-tri-sua-chua": { title: "유지보수 및 수리", pageTitle: "소방 유지보수 및 수리", description: "시스템 점검, 유지보수 및 수리와 각종 소화기 충전을 수행합니다.", preparation: ["운영 중인 건축물 유형", "점검이 필요한 시스템 또는 설비", "현재 상태 및 유지보수 요구 사항"],
+    detail: { lead: "소방 시스템은 항상 작동 가능한 상태일 때 비로소 가치가 있습니다. Lavita는 점검, 정기 유지보수와 수리로 건물의 소방 시스템이 안정적으로 운영되도록 합니다.", sections: [
+      { heading: "정기 유지보수가 필요한 이유", intro: "규정상 소방 시스템은 최소 연 1회 점검·정비해야 합니다. 전문 규정이나 제조사 권고를 따르지 않은 유지보수는 사고 시 심각한 결과를 초래할 수 있습니다.", items: [
+        { label: "숨은 고장", text: "먼지 낀 연기 감지기, 압력이 빠진 소화기, 녹슬어 멈춘 펌프 등은 화재 시 시스템을 무력화합니다." },
+        { label: "법적 위험", text: "유지보수 기록이 불완전하면 행정 처분, 영업 정지, 보험 분쟁을 겪을 수 있습니다." },
+        { label: "자산 낭비", text: "적은 정비 비용 대신 큰 비용을 들여 새로 교체해야 합니다." },
+      ] },
+      { heading: "유지보수 항목", intro: "소방경찰 기준에 따른 유지보수 절차로 다음을 포함합니다:", items: [
+        { label: "화재 경보 시스템", text: "수신기 점검, 연기/열 감지기 청소, 경종·표시등·발신기 및 예비 전원 점검." },
+        { label: "소화 시스템", text: "소방 펌프, 배관, 차단 밸브, 노즐, 소화전 및 자동 소화 시스템 점검." },
+        { label: "옥내소화전", text: "노즐 방수 압력, 호스의 유연성, 커플링 기밀 점검." },
+        { label: "가스 소화", text: "압력계로 용기 압력 확인, 제어반 및 방출 노즐 점검." },
+        { label: "비상조명 및 유도등", text: "예비 배터리 상태와 점등 시간 점검." },
+        { label: "방화문", text: "개스킷 기밀과 도어 클로저 속도 점검; 패닉바는 가볍게 밀어 열려야 합니다." },
+        { label: "화재 안내 방송", text: "가장 먼 지점의 음량과 자동 안내 기능 점검." },
+        { label: "휴대용 소화기", text: "분말·CO2 소화기 압력 점검 및 필요 시 재충전." },
+        { label: "관리 기록", text: "관계 기관 대응을 위한 표준 점검 보고서와 유지보수 기록 제공." },
+      ] },
+      { heading: "고객이 얻는 것", intro: "", items: [
+        { label: "전문 기술팀", text: "여러 화재 경보 브랜드의 고장 처리와 설정 프로그래밍에 능숙합니다." },
+        { label: "조사·평가 보고서", text: "현황을 정확히 평가하고 소방 법규에 맞는 교체·수리를 제안합니다." },
+        { label: "24시간 지원", text: "시스템 기술 문제를 가장 빠르게 처리할 준비가 되어 있습니다." },
+        { label: "법적 적합성", text: "관계 기관의 준공검사와 정기 점검 기준에 맞는 유지보수 기록." },
+      ] },
+    ] } },
+    "cung-cap-thiet-bi": { title: "설비·자재 공급", pageTitle: "소방 설비·자재 공급", description: "정품 소방 설비·자재와 공조(HVAC) 자재를 공급하고 알맞은 사양 선택을 상담해 드립니다.", preparation: ["필요한 설비 목록 또는 도면","종류, 규격 및 예상 수량","납품 장소와 일정"],
+    detail: { lead: "Lavita는 모든 유형의 건물에 쓰이는 소방 및 공조(HVAC) 시스템용 정품 설비를 현행 규정에 따른 검정을 거쳐 공급합니다. Lavita는 NSCA(아시아스타 기술투자 주식회사)의 Starduct 브랜드 제품 공식 유통사입니다.", sections: [
+      { heading: "Lavita 자재를 선택하는 이유", intro: "", items: [
+        { label: "검정 품질", text: "설비는 CO/CQ 인증서를 모두 갖추고 현행 규정에 따라 검정 스티커를 부착합니다." },
+        { label: "합리적인 가격", text: "제조사의 직접 파트너로서 시공사와 사업주에게 경쟁력 있는 가격을 제공합니다." },
+        { label: "기술 상담", text: "설계 도면과 예산에 맞는 설비 종류 선택을 지원합니다." },
+      ] },
+      { heading: "제품군", intro: "", items: [
+        { label: "소방 자재", text: "소방 밸브, 스프링클러 헤드, 나사식·용접식·스테인리스 배관 부속품." },
+        { label: "공조(HVAC) 자재", text: "디퓨저와 그릴, 댐퍼와 방화 댐퍼, 덕트, 소음기, VAV/CAV, 환기팬." },
+        { label: "전기 및 지지 설비", text: "분전반, 케이블 트렁킹, Unistar 지지 시스템." },
+      ] },
+    ] } },
   },
   serviceGroups: {
     "trien-khai": { title: "설계 및 시공", description: "건축물을 위한 소방 설계 컨설팅과 시스템 시공." },
     "van-hanh": { title: "운영 및 안전", description: "현장의 소방 시스템 점검, 유지보수 및 수리." },
+    "cung-ung": { title: "설비·자재", description: "소방 설비·자재 및 공조(HVAC) 자재 공급." },
   },
   projects: {
     "chung-cu-dai-nhat": { title: "Đại Nhật 아파트", description: "A동 및 B동 · 호찌민시", location: "호찌민시", tag: "소방 설계", scope: "소방 설계", scale: "20–25층 타워 2개동, 숍하우스·상업시설 및 약 300–306세대", investor: "Đại Phúc Group" },
@@ -94,7 +168,7 @@ export const ko: Dictionary = {
       foundedLabel: ["설립", "연도"], servicesLabel: ["소방", "서비스"], learnMore: "Lavita 알아보기",
       photoTopAlt: "빈즈엉 C2 아파트에서 소방 시스템을 시공하는 Lavita 팀",
       photoMainAlt: "소방 시스템 제어반을 점검하는 Lavita 기술 인력",
-      partners: ["전략적", "파트너"], partnerLogo: "파트너 로고",
+      clients: "주요 고객", clientLogo: "고객 로고",
     },
     services: { heading: "소방 서비스", intro: "첫 도면부터 운영까지 — Lavita는 건축물의 모든 단계를 함께합니다.", entryLabel: "필요별 서비스", all: "전체 서비스 보기", learn: "서비스 알아보기" },
     projects: {
@@ -141,9 +215,9 @@ export const ko: Dictionary = {
   projectCard: { name: "프로젝트명:", location: "위치:", scale: "규모:", scope: "소방 범위:", investor: "발주처:" },
   servicesPage: {
     metaTitle: "소방 서비스",
-    metaDescription: "Lavita의 서비스를 알아보세요: 소방 설계 컨설팅, 시스템 시공, 유지보수 및 수리.",
+    metaDescription: "Lavita의 서비스: 소방 설계 컨설팅, 시스템 시공, 유지보수 및 수리, 소방 설비·자재 공급.",
     title: "Lavita 소방 서비스",
-    description: "Lavita는 설계 컨설팅과 시공부터 시스템 유지보수 및 수리까지, 주거·상업·산업 건축물을 위한 소방 서비스를 제공합니다.",
+    description: "Lavita는 주거·상업·산업 건물에 설계 컨설팅, 시공, 시스템 유지보수·수리에 이르는 소방 서비스와 정품 소방 설비·자재를 제공합니다.",
     imageAlt: "{title} 소방 서비스 예시 이미지", prepare: "준비하면 좋은 정보",
     discussLabel: "{title} 상담하기", discuss: "서비스 상담하기", detail: "서비스 자세히 보기",
     nextHeading: "필요한 서비스를 아직 정하지 못하셨나요?", nextText: "건축물 유형, 현재 상태와 필요한 지원 내용을 알려 주시면 상담을 시작할 수 있습니다.",
@@ -152,7 +226,7 @@ export const ko: Dictionary = {
     heading: "건축물의 요구에서 시작합니다",
     intro: "구체적인 범위를 정하기 전에 건축물과 필요한 지원에 대해 Lavita와 먼저 상담할 수 있습니다.",
     note: "위 정보를 모두 준비하지 않아도 상담을 시작할 수 있습니다.",
-    cta: "이 서비스 상담하기", related: "관련 서비스", seeProjects: "이 서비스 분류의 프로젝트 보기",
+    cta: "이 서비스 상담하기", related: "관련 서비스", seeProjects: "이 서비스 분류의 프로젝트 보기", productsLink: "제품 카탈로그 보기",
   },
   projectsPage: {
     title: "소방 프로젝트",

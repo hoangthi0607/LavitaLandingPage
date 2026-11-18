@@ -36,16 +36,90 @@ export const en: Dictionary = {
     languages: "Languages", openProjectCategories: "Open fire protection project categories", closeProjectCategories: "Close fire protection project categories",
     brandHome: "Lavita home page", brandLogo: "Lavita logo",
   },
-  footer: { headOffice: "Head office", contact: "Contact", servicesLabel: "Fire protection services (footer)", rights: "All rights reserved." },
+  footer: { headOffice: "Head office", contact: "Contact", links: "Links", servicesLabel: "Fire protection services (footer)", rights: "All rights reserved." },
   pagination: { previous: "Previous page", next: "Next page", page: "Page {page}" },
   services: {
-    "tu-van-thiet-ke": { title: "Design consulting", pageTitle: "Fire Protection Design Consulting", description: "Developing fire protection solutions and system designs tailored to each building.", preparation: ["Building type and location", "Current preparation or design stage", "Existing drawings and fire protection requirements"] },
-    "thi-cong-he-thong": { title: "System installation", pageTitle: "Fire Protection System Installation", description: "Installing fire protection systems for residential, commercial and industrial buildings.", preparation: ["Building type and location", "Scope of the systems to be installed", "Design documents and expected schedule"] },
-    "bao-tri-sua-chua": { title: "Maintenance & repair", pageTitle: "Fire Protection Maintenance & Repair", description: "Inspecting, maintaining and repairing systems; refilling all types of fire extinguishers.", preparation: ["Type of building in operation", "Systems or equipment to be inspected", "Current condition and maintenance needs"] },
+    "tu-van-thiet-ke": { title: "Design consulting", pageTitle: "Fire Protection Design Consulting", description: "Developing fire protection solutions and system designs tailored to each building.", preparation: ["Building type and location", "Current preparation or design stage", "Existing drawings and fire protection requirements"],
+    detail: { lead: "Lavita works with investors from the very first steps: surveying the site and designing a fire protection system that meets current standards and regulations, optimising investment while keeping the system effective. The service suits homes, factories, office buildings, shopping centres and industrial facilities.", sections: [
+      { heading: "Design consulting service", intro: "", items: [
+        { label: "Brief and site survey", text: "Analysing the building and its use: factories, apartment buildings, hotels, offices, private houses." },
+        { label: "Technical solutions", text: "Proposing suitable fire protection solutions (automatic fire alarm, wall hydrants, sprinklers…) in line with regulations and budget." },
+        { label: "Detailed design documents", text: "Consistent, clear documents to fire protection standards, with quantity take-off and cost estimates close to the real cost of installation and acceptance." },
+        { label: "Acceptance documents", text: "A key step to give the building’s safety system its legal footing, coordinating closely with all parties involved." },
+      ] },
+      { heading: "Design appraisal consulting", intro: "Making sure the design drawings meet every technical requirement for submission to the authorities.", items: [
+        { label: "", text: "Checking the drawings against current legal standards." },
+        { label: "", text: "Proposing adjustments where needed to keep the design feasible and effective." },
+        { label: "", text: "Submitting the appraisal dossier on the client’s behalf, following up and adding documents on request until the fire protection design approval is issued." },
+      ] },
+      { heading: "Acceptance consulting", intro: "Making sure the system meets technical and legal requirements before it is put into use.", items: [
+        { label: "", text: "A full check of the installed system against the standards." },
+        { label: "", text: "Coordinating on-site acceptance with the authorities when required." },
+        { label: "", text: "Advising on fixing any issues found during acceptance." },
+      ] },
+      { heading: "What Lavita brings", intro: "", items: [
+        { label: "Compliant with current standards", text: "Fewer rounds of revisions and an appraisal that stays on schedule." },
+        { label: "Optimised budget", text: "Designs based on the actual building, avoiding wasted materials and labour." },
+        { label: "Legal certainty", text: "Everything in place for the building to be approved and to operate reliably over time." },
+        { label: "Designed for operation", text: "Not just a design on paper, but a system that runs safely for the client." },
+      ] },
+    ] } },
+    "thi-cong-he-thong": { title: "System installation", pageTitle: "Fire Protection System Installation", description: "Installing fire protection systems for residential, commercial and industrial buildings.", preparation: ["Building type and location", "Scope of the systems to be installed", "Design documents and expected schedule"],
+    detail: { lead: "Lavita installs fire protection systems to the approved design, following a standardised process from quantity take-off to acceptance and as-built records, so clients can rest easy after handover.", sections: [
+      { heading: "Systems we install", intro: "", items: [
+        { label: "Fire alarm (FA)", text: "Fire alarm systems installed and configured to detect fire risks early, including smoke detectors, alarm devices and control panels." },
+        { label: "Fire fighting (FF)", text: "Fire fighting systems installed to standard to respond to fires promptly, including extinguishers, sprinklers and CO2 and FM200 gas suppression." },
+      ] },
+      { heading: "Installation process", intro: "", items: [
+        { label: "Consulting and bill of quantities (BOQ)", text: "Based on the approved design, engineers survey the site to optimise device positions for full protection at a reasonable cost." },
+        { label: "Installed to technical standards (QCVN)", text: "Sprinkler systems, pump sets and accessories (alarm valves, hose reels) are installed accurately and tested before commissioning." },
+        { label: "System interlocks", text: "The fire protection system is interlocked with electrical, ventilation and lift systems for automatic evacuation and fire fighting when an alarm is raised." },
+        { label: "Acceptance and as-built records", text: "We help prepare the fire protection acceptance dossier with the authorities so the building can open on schedule." },
+      ] },
+    ] } },
+    "bao-tri-sua-chua": { title: "Maintenance & repair", pageTitle: "Fire Protection Maintenance & Repair", description: "Inspecting, maintaining and repairing systems; refilling all types of fire extinguishers.", preparation: ["Type of building in operation", "Systems or equipment to be inspected", "Current condition and maintenance needs"],
+    detail: { lead: "A fire protection system is only worth something when it is always ready. Lavita inspects, services and repairs systems so that each building’s protection runs reliably.", sections: [
+      { heading: "Why regular maintenance matters", intro: "Regulations require fire protection systems to be inspected and serviced at least once a year. Maintenance that ignores specialist rules or manufacturer recommendations can have serious consequences when an incident occurs.", items: [
+        { label: "Hidden faults", text: "Dusty smoke detectors, depressurised extinguishers or seized pumps can leave the system dead when a fire breaks out." },
+        { label: "Legal risk", text: "Administrative fines, suspension of operations or insurance disputes when maintenance records are incomplete." },
+        { label: "Wasted assets", text: "Instead of a small servicing cost, the business ends up paying a large amount for replacements." },
+      ] },
+      { heading: "Maintenance scope", intro: "Our maintenance process follows the Fire Police standards and covers:", items: [
+        { label: "Fire alarm system", text: "Checking the control panel, cleaning smoke/heat detectors, testing bells, lights, call points and backup power." },
+        { label: "Fire fighting system", text: "Checking fire pumps, piping, isolation valves, nozzles, hydrants and automatic suppression." },
+        { label: "Wall hydrants", text: "Checking water pressure at the nozzle, hose flexibility and the tightness of couplings." },
+        { label: "Gas suppression", text: "Checking cylinder pressure on the gauges, the control panel and the discharge nozzles." },
+        { label: "Emergency and exit lighting", text: "Checking backup batteries and lighting duration." },
+        { label: "Fire doors", text: "Checking seal tightness and closer speed; panic bars must open with a light push." },
+        { label: "Fire announcement speakers", text: "Checking volume at the farthest points and automatic announcements." },
+        { label: "Portable extinguishers", text: "Checking the pressure of powder and CO2 extinguishers and refilling when needed." },
+        { label: "Records", text: "Inspection reports and maintenance records in the proper format for the authorities." },
+      ] },
+      { heading: "What clients get", intro: "", items: [
+        { label: "Specialist technicians", text: "Experienced in troubleshooting and configuring fire alarm brands." },
+        { label: "Survey and assessment reports", text: "An accurate assessment with replacement and repair proposals in line with fire safety law." },
+        { label: "24/7 support", text: "Ready to handle technical incidents as quickly as possible." },
+        { label: "Legal compliance", text: "Maintenance records that meet the standard for acceptance and periodic inspections by the authorities." },
+      ] },
+    ] } },
+    "cung-cap-thiet-bi": { title: "Equipment & materials supply", pageTitle: "Fire protection equipment & materials supply", description: "Genuine fire protection equipment and materials, plus HVAC materials, with advice on choosing the right types.", preparation: ["List or drawings of the equipment needed","Types, specifications and estimated quantities","Delivery location and timing"],
+    detail: { lead: "Lavita supplies genuine, inspected equipment in line with current regulations for the fire protection and HVAC systems of all kinds of buildings. Lavita is an official distributor of Starduct products from Asia Star Technology Investment JSC (NSCA).", sections: [
+      { heading: "Why source from Lavita", intro: "", items: [
+        { label: "Inspected quality", text: "Equipment comes with full CO/CQ certificates and inspection stamps as required by current regulations." },
+        { label: "Competitive prices", text: "As a direct partner of manufacturers, Lavita offers competitive prices to contractors and investors." },
+        { label: "Technical advice", text: "Help choosing the right equipment types for the design drawings and budget." },
+      ] },
+      { heading: "Product groups", intro: "", items: [
+        { label: "Fire protection materials", text: "Fire protection valves, sprinkler heads, threaded, welded and stainless steel pipe fittings." },
+        { label: "HVAC materials", text: "Grilles and diffusers, dampers and fire dampers, air ducts, silencers, VAV/CAV units, ventilation fans." },
+        { label: "Electrical and supports", text: "Electrical panels, cable trunking and Unistar support systems." },
+      ] },
+    ] } },
   },
   serviceGroups: {
     "trien-khai": { title: "Design & delivery", description: "Fire protection design consulting and system installation for buildings." },
     "van-hanh": { title: "Operation & safety", description: "Inspection, maintenance and repair of fire protection systems on site." },
+    "cung-ung": { title: "Equipment & materials", description: "Supply of fire protection equipment and materials, and HVAC materials." },
   },
   projects: {
     "chung-cu-dai-nhat": { title: "Đại Nhật Apartments", description: "Blocks A & B · Ho Chi Minh City", location: "Ho Chi Minh City", tag: "Fire protection design", scope: "fire protection design", scale: "2 towers of 20–25 floors; shophouses, a shopping centre and about 300–306 apartments", investor: "Đại Phúc Group" },
@@ -94,7 +168,7 @@ export const en: Dictionary = {
       foundedLabel: ["Year", "founded"], servicesLabel: ["Fire protection", "services"], learnMore: "About Lavita",
       photoTopAlt: "Lavita team installing a fire protection system at C2 Apartments, Bình Dương",
       photoMainAlt: "A Lavita technician inspecting a fire protection control panel",
-      partners: ["Strategic", "partners"], partnerLogo: "Partner logo",
+      clients: "Featured clients", clientLogo: "Client logo",
     },
     services: { heading: "Fire protection services", intro: "From the first drawing to day-to-day operation — Lavita supports every stage of your building.", entryLabel: "Services by need", all: "View all services", learn: "Learn about the service" },
     projects: {
@@ -141,9 +215,9 @@ export const en: Dictionary = {
   projectCard: { name: "Project:", location: "Location:", scale: "Scale:", scope: "Fire protection scope:", investor: "Developer:" },
   servicesPage: {
     metaTitle: "Fire Protection Services",
-    metaDescription: "Explore Lavita's services: fire protection design consulting, system installation, maintenance and repair.",
+    metaDescription: "Explore Lavita's services: fire protection design consulting, system installation, maintenance and repair, and equipment and materials supply.",
     title: "Lavita fire protection services",
-    description: "Lavita provides fire protection services for residential, commercial and industrial buildings, from design consulting and installation to system maintenance and repair.",
+    description: "Lavita provides fire protection services for residential, commercial and industrial buildings, from design consulting and installation to system maintenance and repair, along with genuine fire protection equipment and materials.",
     imageAlt: "Illustration of the {title} fire protection service", prepare: "Information to prepare",
     discussLabel: "Discuss {title}", discuss: "Discuss this service", detail: "Service details",
     nextHeading: "Not sure which service you need?", nextText: "Share your building type, its current condition and what you need help with to start the conversation.",
@@ -152,7 +226,7 @@ export const en: Dictionary = {
     heading: "Starting from your building's needs",
     intro: "You can talk to Lavita about your building and the support you need before the exact scope is defined.",
     note: "You can start the conversation even if you don't have all of this information yet.",
-    cta: "Ask about this service", related: "Related services", seeProjects: "View projects in this service category",
+    cta: "Ask about this service", related: "Related services", seeProjects: "View projects in this service category", productsLink: "View the product catalogue",
   },
   projectsPage: {
     title: "Fire Protection Projects",

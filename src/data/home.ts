@@ -20,13 +20,16 @@ export const slideBase = [
   { href: "/dich-vu#bao-tri-sua-chua", image: "/images/maintenance.webp" },
 ] as const;
 
+// hasProjects: the service is a project category (project menu, /du-an tabs). Equipment supply has no projects;
+// its detail page links to the product catalogue instead. Detail texts come from the old lavitacons.vn service pages.
 export const serviceBase = [
-  { slug: "tu-van-thiet-ke", group: "trien-khai", image: "/images/dai-nhat.webp", relatedServiceSlugs: ["thi-cong-he-thong"] },
-  { slug: "thi-cong-he-thong", group: "trien-khai", image: "/images/installation.webp", relatedServiceSlugs: ["tu-van-thiet-ke", "bao-tri-sua-chua"] },
-  { slug: "bao-tri-sua-chua", group: "van-hanh", image: "/images/maintenance.webp", relatedServiceSlugs: ["thi-cong-he-thong"] },
+  { slug: "tu-van-thiet-ke", group: "trien-khai", image: "/images/dai-nhat.webp", relatedServiceSlugs: ["thi-cong-he-thong"], hasProjects: true },
+  { slug: "thi-cong-he-thong", group: "trien-khai", image: "/images/installation.webp", relatedServiceSlugs: ["tu-van-thiet-ke", "bao-tri-sua-chua"], hasProjects: true },
+  { slug: "bao-tri-sua-chua", group: "van-hanh", image: "/images/maintenance.webp", relatedServiceSlugs: ["thi-cong-he-thong"], hasProjects: true },
+  { slug: "cung-cap-thiet-bi", group: "cung-ung", image: "/images/vat-tu-thiet-bi.webp", relatedServiceSlugs: ["thi-cong-he-thong", "bao-tri-sua-chua"], hasProjects: false },
 ] as const;
 export type ServiceSlug = (typeof serviceBase)[number]["slug"];
-export const serviceGroupIds = ["trien-khai", "van-hanh"] as const;
+export const serviceGroupIds = ["trien-khai", "van-hanh", "cung-ung"] as const;
 export type ServiceGroupId = (typeof serviceGroupIds)[number];
 
 // Sources: company profile (profilePage) and the "Dự án" posts of the old lavitacons.vn site (wpPost, backup 12/09/2026).
@@ -52,8 +55,19 @@ export const projectBase = [
 export type ProjectSlug = (typeof projectBase)[number]["slug"];
 export const projectPageSize = 8;
 
-// No partner list exists yet: fill this when real content is supplied.
-export const homePartners: string[] = [];
+// Featured client logos for the home marquee: investors of projects in projectBase. Official logos taken from each
+// company's website (18/11/2026) at the user's request, trimmed to 160 px high WebP in public/images/clients/.
+export type ClientLogo = { name: string; logo: string; width: number; height: number; url?: string };
+export const homeClients: ClientLogo[] = [
+  { name: "CapitaLand", logo: "/images/clients/capitaland.webp", width: 373, height: 160 },
+  { name: "FPT", logo: "/images/clients/fpt.webp", width: 266, height: 160 },
+  { name: "Nam Long Group", logo: "/images/clients/nam-long.webp", width: 272, height: 160 },
+  { name: "CJ Group", logo: "/images/clients/cj.webp", width: 189, height: 160 },
+  { name: "EVN", logo: "/images/clients/evn.webp", width: 350, height: 160 },
+  { name: "Phú Mỹ Hưng", logo: "/images/clients/phu-my-hung.webp", width: 207, height: 160 },
+  { name: "Đại Phúc Group", logo: "/images/clients/dai-phuc.webp", width: 362, height: 160 },
+  { name: "Saigonres", logo: "/images/clients/saigonres.webp", width: 178, height: 160 },
+];
 
 export function getServiceBase(slug?: string) { return serviceBase.find(service => service.slug === slug); }
 export function getProjectBase(slug?: string) { return projectBase.find(project => project.slug === slug); }

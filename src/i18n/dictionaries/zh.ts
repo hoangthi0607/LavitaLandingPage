@@ -36,16 +36,90 @@ export const zh: Dictionary = {
     languages: "语言", openProjectCategories: "展开消防项目类别", closeProjectCategories: "收起消防项目类别",
     brandHome: "Lavita首页", brandLogo: "Lavita标志",
   },
-  footer: { headOffice: "总部", contact: "联系方式", servicesLabel: "页脚消防服务", rights: "版权所有。" },
+  footer: { headOffice: "总部", contact: "联系方式", links: "链接", servicesLabel: "页脚消防服务", rights: "版权所有。" },
   pagination: { previous: "上一页", next: "下一页", page: "第 {page} 页" },
   services: {
-    "tu-van-thiet-ke": { title: "设计咨询", pageTitle: "消防设计咨询", description: "根据建筑的具体特点制定消防解决方案并进行系统设计。", preparation: ["建筑类型与地点", "目前所处的筹备或设计阶段", "现有图纸与消防需求"] },
-    "thi-cong-he-thong": { title: "系统施工", pageTitle: "消防系统施工", description: "为民用与工业建筑实施消防系统施工。", preparation: ["建筑类型与地点", "需施工的系统范围", "设计文件与预计进度"] },
-    "bao-tri-sua-chua": { title: "维护与维修", pageTitle: "消防维护与维修", description: "系统检查、维护与维修；各类灭火器充装。", preparation: ["运营中的建筑类型", "需检查的系统或设备", "当前状况与维护需求"] },
+    "tu-van-thiet-ke": { title: "设计咨询", pageTitle: "消防设计咨询", description: "根据建筑的具体特点制定消防解决方案并进行系统设计。", preparation: ["建筑类型与地点", "目前所处的筹备或设计阶段", "现有图纸与消防需求"],
+    detail: { lead: "Lavita 从最初阶段起就与投资方同行：现场勘察，按照现行标准和规范设计消防系统，在优化投资的同时确保系统有效运行。服务适用于住宅、厂房、办公楼、购物中心及工业设施。", sections: [
+      { heading: "设计咨询服务", intro: "", items: [
+        { label: "需求接收与勘察", text: "分析建筑特点与功能：厂房、公寓、酒店、办公楼、独立住宅。" },
+        { label: "技术方案咨询", text: "按照规定和预算提出合适的消防系统方案（自动火灾报警、室内消火栓、喷淋系统等）。" },
+        { label: "编制详细设计文件", text: "文件统一、清晰、符合消防标准；进行工程量计算，编制贴近施工、安装和验收实际成本的预算。" },
+        { label: "编制验收文件", text: "这是使建筑安全系统合法化的关键步骤，需要各相关单位密切配合。" },
+      ] },
+      { heading: "消防设计审查咨询", intro: "确保设计图纸满足提交主管部门审批的全部技术要求。", items: [
+        { label: "", text: "对照现行法规标准检查设计图纸。" },
+        { label: "", text: "必要时提出调整方案，确保工程的可行性和有效性。" },
+        { label: "", text: "代表客户提交审查资料，跟踪进度并按要求补充文件，直至取得消防设计审查文件。" },
+      ] },
+      { heading: "消防系统验收咨询", intro: "确保系统在投入使用前满足技术和法律要求。", items: [
+        { label: "", text: "按照标准全面检查已安装的系统。" },
+        { label: "", text: "需要时配合主管部门进行现场验收。" },
+        { label: "", text: "就验收中发现的问题提供整改咨询。" },
+      ] },
+      { heading: "Lavita 带来的价值", intro: "", items: [
+        { label: "符合现行标准规范", text: "减少文件反复修改，保持审查进度。" },
+        { label: "优化预算", text: "根据工程实际进行设计，避免材料和人工浪费。" },
+        { label: "法律保障", text: "为工程获批并长期稳定运行做好充分准备。" },
+        { label: "面向运行的设计", text: "不只是纸面设计，而是为客户实现安全运行。" },
+      ] },
+    ] } },
+    "thi-cong-he-thong": { title: "系统施工", pageTitle: "消防系统施工", description: "为民用与工业建筑实施消防系统施工。", preparation: ["建筑类型与地点", "需施工的系统范围", "设计文件与预计进度"],
+    detail: { lead: "Lavita 按照已审批的设计施工安装消防系统，从工程量计算到验收、竣工采用标准化流程，让客户在交付后安心无忧。", sections: [
+      { heading: "施工系统", intro: "", items: [
+        { label: "火灾报警（FA）", text: "施工并调试火灾报警系统，及早发现火灾隐患，包括烟感探测器、报警装置和控制柜。" },
+        { label: "灭火系统（FF）", text: "按标准施工灭火系统，及时处置火情，包括灭火器、喷淋系统以及CO2和FM200气体灭火。" },
+      ] },
+      { heading: "施工流程", intro: "", items: [
+        { label: "咨询与工程量清单（BOQ）", text: "依据审批设计，工程师现场勘察，优化设备安装位置，以合理成本实现有效保护。" },
+        { label: "按技术规范（QCVN）安装", text: "喷淋系统、泵组及附属设备（报警阀、水带卷盘）精准安装，并在投入运行前进行检测。" },
+        { label: "系统联动", text: "消防系统与电气、通风和电梯系统联动，报警时确保疏散和自动灭火。" },
+        { label: "验收与竣工", text: "协助准备向主管部门提交的消防验收资料，确保工程按期投入使用。" },
+      ] },
+    ] } },
+    "bao-tri-sua-chua": { title: "维护与维修", pageTitle: "消防维护与维修", description: "系统检查、维护与维修；各类灭火器充装。", preparation: ["运营中的建筑类型", "需检查的系统或设备", "当前状况与维护需求"],
+    detail: { lead: "消防系统只有始终处于备用状态才真正有价值。Lavita 进行检查、定期保养和维修，确保工程的消防系统稳定运行。", sections: [
+      { heading: "为什么需要定期维护", intro: "根据规定，消防系统每年至少检查、保养一次。不按专业规定或制造商建议进行维护，可能在发生事故时造成严重后果。", items: [
+        { label: "隐性故障", text: "烟感探测器积尘、灭火器失压、水泵锈死等，会导致火灾时系统无法工作。" },
+        { label: "法律风险", text: "维护记录不完整时，可能被行政处罚、停业或与保险产生纠纷。" },
+        { label: "资产浪费", text: "本可用少量保养费用解决，最终却要花大笔资金更换新设备。" },
+      ] },
+      { heading: "维护项目", intro: "维护流程遵循消防警察标准，包括：", items: [
+        { label: "火灾报警系统", text: "检查报警控制器，清洁烟感/温感探测器，检查警铃、警灯、手动按钮及备用电源。" },
+        { label: "灭火系统", text: "检查消防泵、管道、截止阀、水枪、消火栓及自动灭火系统。" },
+        { label: "室内消火栓", text: "检查水枪出口水压、水带柔韧性及接口密封性。" },
+        { label: "气体灭火", text: "通过压力表检查气瓶压力，检查控制柜及喷放喷头。" },
+        { label: "应急照明与出口指示灯", text: "检查备用电池状态及照明时间。" },
+        { label: "防火门", text: "检查密封条密封性和闭门器速度；逃生推杠轻推即可打开。" },
+        { label: "消防广播", text: "检查最远点音量及自动播报功能。" },
+        { label: "手提式灭火器", text: "检查干粉、CO2灭火器压力，必要时充装。" },
+        { label: "跟踪记录", text: "提供规范的检查记录和维护档案，便于与主管部门对接。" },
+      ] },
+      { heading: "客户获得", intro: "", items: [
+        { label: "专业技术团队", text: "熟悉各品牌火灾报警设备的故障处理与编程配置。" },
+        { label: "勘察评估报告", text: "准确评估现状，按消防法规提出更换和维修建议。" },
+        { label: "24/7 支持", text: "随时以最快速度处理系统技术故障。" },
+        { label: "合规保障", text: "维护档案符合主管部门验收和定期检查的标准。" },
+      ] },
+    ] } },
+    "cung-cap-thiet-bi": { title: "设备与材料供应", pageTitle: "消防设备与材料供应", description: "供应正品消防设备与材料以及暖通空调材料，并提供选型咨询。", preparation: ["所需设备清单或图纸","品类、规格及预计数量","交货地点与时间"],
+    detail: { lead: "Lavita 为各类工程的消防系统和暖通空调系统供应正品、按现行规定检验的设备。Lavita 是亚洲之星科技投资股份公司（NSCA）旗下 Starduct 品牌产品的官方经销商。", sections: [
+      { heading: "为什么选择 Lavita 的材料", intro: "", items: [
+        { label: "检验合格", text: "设备具备完整的CO/CQ证书，并按现行规定加贴检验标签。" },
+        { label: "价格优化", text: "作为制造商的直接合作伙伴，Lavita 为承包商和投资方提供有竞争力的价格。" },
+        { label: "技术咨询", text: "协助选择符合设计图纸和预算的设备品类。" },
+      ] },
+      { heading: "产品类别", intro: "", items: [
+        { label: "消防材料", text: "消防阀门、喷淋头，以及螺纹、焊接和不锈钢管道配件。" },
+        { label: "暖通空调材料", text: "风口与散流器、风阀与防火阀、风管、消声器、VAV/CAV、通风机。" },
+        { label: "电气与支吊架", text: "电气柜、线槽及Unistar支吊架系统。" },
+      ] },
+    ] } },
   },
   serviceGroups: {
     "trien-khai": { title: "设计与实施", description: "为建筑提供消防设计咨询与系统施工。" },
     "van-hanh": { title: "运营与安全", description: "在现场对消防系统进行检查、维护与维修。" },
+    "cung-ung": { title: "设备与材料", description: "供应消防设备、材料及暖通空调材料。" },
   },
   projects: {
     "chung-cu-dai-nhat": { title: "Đại Nhật 公寓", description: "A座与B座 · 胡志明市", location: "胡志明市", tag: "消防设计", scope: "消防设计", scale: "2栋20–25层塔楼；含商铺住宅、购物中心及约300–306套公寓", investor: "Đại Phúc Group" },
@@ -94,7 +168,7 @@ export const zh: Dictionary = {
       foundedLabel: ["成立", "年份"], servicesLabel: ["消防", "服务"], learnMore: "了解Lavita",
       photoTopAlt: "Lavita团队在平阳C2公寓施工消防系统",
       photoMainAlt: "Lavita技术人员检查消防系统控制柜",
-      partners: ["战略", "合作伙伴"], partnerLogo: "合作伙伴标志",
+      clients: "代表客户", clientLogo: "客户标志",
     },
     services: { heading: "消防服务", intro: "从第一张图纸到日常运营——Lavita陪伴建筑的每一个阶段。", entryLabel: "按需求分类的服务", all: "查看全部服务", learn: "了解服务" },
     projects: {
@@ -141,9 +215,9 @@ export const zh: Dictionary = {
   projectCard: { name: "项目名称：", location: "地点：", scale: "规模：", scope: "消防范围：", investor: "投资方：" },
   servicesPage: {
     metaTitle: "消防服务",
-    metaDescription: "了解Lavita提供的服务：消防设计咨询、系统施工、维护与维修。",
+    metaDescription: "了解 Lavita 提供的服务：消防设计咨询、系统施工、维护维修，以及消防设备与材料供应。",
     title: "Lavita消防服务",
-    description: "Lavita为民用与工业建筑提供消防服务，涵盖设计咨询、施工以及系统维护与维修。",
+    description: "Lavita 为民用及工业建筑提供消防服务，涵盖设计咨询、施工、系统维护维修，并供应正品消防设备与材料。",
     imageAlt: "{title}消防服务示意图", prepare: "建议准备的信息",
     discussLabel: "咨询{title}", discuss: "咨询此服务", detail: "服务详情",
     nextHeading: "尚未确定所需服务？", nextText: "告诉我们建筑类型、当前状况以及您需要的支持，即可开始沟通。",
@@ -152,7 +226,7 @@ export const zh: Dictionary = {
     heading: "从建筑需求出发",
     intro: "在确定具体范围之前，您可以先与Lavita沟通建筑情况和所需支持。",
     note: "即使尚未备齐上述信息，也可以先开始沟通。",
-    cta: "咨询此服务", related: "相关服务", seeProjects: "查看该服务类别的项目",
+    cta: "咨询此服务", related: "相关服务", seeProjects: "查看该服务类别的项目", productsLink: "查看产品目录",
   },
   projectsPage: {
     title: "消防项目",

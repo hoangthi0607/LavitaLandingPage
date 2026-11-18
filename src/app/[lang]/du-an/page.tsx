@@ -30,7 +30,8 @@ export default async function ProjectsPage({ searchParams }: Props) {
   const { projects, services, t } = content;
   const copy = t.projectsPage;
   const params = await searchParams;
-  const selectedService = content.service(single(params["dich-vu"]));
+  const requestedService = content.service(single(params["dich-vu"]));
+  const selectedService = requestedService?.hasProjects ? requestedService : undefined;
   const filtered = selectedService ? projects.filter(project => project.serviceSlug === selectedService.slug) : [...projects];
   const pageCount = Math.max(1, Math.ceil(filtered.length / projectPageSize));
   const page = Math.min(pageCount, Math.max(1, Number.parseInt(single(params.trang) ?? "1", 10) || 1));
@@ -43,7 +44,7 @@ export default async function ProjectsPage({ searchParams }: Props) {
       <p className="projects-lead" data-reveal="up">{copy.description}</p>
       <nav className="projects-tabs" aria-label={copy.tabsLabel} data-reveal="up">
         <Link href={projectsHref()} aria-current={!selectedService ? "page" : undefined}>{copy.all}</Link>
-        {services.map(service => <Link key={service.slug} href={projectsHref(service.slug)} aria-current={selectedService?.slug === service.slug ? "page" : undefined}>{service.title}</Link>)}
+        {services.filter(service => service.hasProjects).map(service => <Link key={service.slug} href={projectsHref(service.slug)} aria-current={selectedService?.slug === service.slug ? "page" : undefined}>{service.title}</Link>)}
       </nav>
     </section>
 

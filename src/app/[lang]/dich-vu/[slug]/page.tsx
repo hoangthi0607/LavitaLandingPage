@@ -21,6 +21,8 @@ export async function generateMetadata({ params }: Props) {
   return pageMetadata(service.pageTitle, service.description, `/dich-vu/${service.slug}`);
 }
 
+// Service description page: lead + photo + what to prepare, then the service sections (from the old lavitacons.vn
+// service pages), related services and a link to the matching projects or, for equipment supply, the catalogue.
 export default async function ServicePage({ params }: Props) {
   const content = await getContent();
   const { t } = content;
@@ -35,14 +37,27 @@ export default async function ServicePage({ params }: Props) {
       <div className="content-photo" data-reveal="left"><Image src={service.image} alt={format(t.servicesPage.imageAlt, { title: service.title })} fill sizes="(max-width: 760px) 90vw, 48vw" priority /></div>
       <div className="content-copy" data-reveal="right">
         <h2 className="section-title">{copy.heading}</h2>
-        <p>{service.description} {copy.intro}</p>
+        <p className="service-lead">{service.detail.lead}</p>
         <h3>{t.servicesPage.prepare}</h3>
         <ul className="spec-list">{service.preparation.map((item) => <li key={item}>{item}</li>)}</ul>
         <p className="content-note">{copy.note}</p>
-        <div className="content-actions"><Link href={contactHref(service.slug)} className="button button-primary">{copy.cta} <ArrowRight size={18} aria-hidden="true" /></Link></div>
+        <div className="content-actions">
+          <Link href={contactHref(service.slug)} className="button button-primary">{copy.cta} <ArrowRight size={18} aria-hidden="true" /></Link>
+          {!service.hasProjects && <Link href="/san-pham" className="detail-link">{copy.productsLink}</Link>}
+        </div>
       </div>
     </section>
+    <div className="section service-sections">
+      {service.detail.sections.map((section, index) => <section key={section.heading} className="service-section" aria-labelledby={`service-section-${index}`} data-reveal="up">
+        <div className="service-section-head"><h2 id={`service-section-${index}`} className="section-title">{section.heading}</h2>{section.intro && <p>{section.intro}</p>}</div>
+        <ul className="spec-list service-section-list">{section.items.map((item) => <li key={item.text}>{item.label && <strong>{item.label}</strong>}{item.text}</li>)}</ul>
+      </section>)}
+    </div>
     <section className="section content-section related-services" aria-labelledby="related-services-title"><h2 id="related-services-title" className="section-title">{copy.related}</h2><div className="related-service-list">{relatedServices.map((related) => <Link key={related.slug} href={serviceHref(related.slug)}><span>{related.title}</span></Link>)}</div></section>
-    <div className="section content-return"><Link href={projectCategoryHref(service.slug)} className="detail-link">{copy.seeProjects}</Link></div>
+    <div className="section content-return">
+      {service.hasProjects
+        ? <Link href={projectCategoryHref(service.slug)} className="detail-link">{copy.seeProjects}</Link>
+        : <Link href="/san-pham" className="detail-link">{copy.productsLink}</Link>}
+    </div>
   </>;
 }
