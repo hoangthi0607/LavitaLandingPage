@@ -101,6 +101,34 @@ export const vi = {
       roleDescription: "băng chuyền", heading: "Dự án tiêu biểu", label: "Dự án", location: "Vị trí", scope: "Hạng mục PCCC", scale: "Quy mô", investor: "Chủ đầu tư",
       details: "Xem chi tiết", all: "Tất cả dự án", view: "Xem dự án {title}", previous: "Dự án trước", next: "Dự án tiếp theo",
     },
+    // Client feedback posts of the old lavitacons.vn site (WordPress backup 12/09/2026), wording kept; role may be empty.
+    testimonials: {
+      heading: "Khách hàng nói về Lavita", more: "Đọc tiếp", less: "Thu gọn",
+      items: [
+        { name: "Anh Kiên", role: "Khách hàng mua thiết bị, vật tư PCCC của Lavita", paragraphs: [
+          "Chúng tôi đã sử dụng các thiết bị phòng cháy chữa cháy do Lavita cung cấp trong suốt thời gian qua và rất hài lòng. Sản phẩm chính hãng, đầy đủ chứng nhận kiểm định, đảm bảo an toàn theo tiêu chuẩn Việt Nam cũng như quốc tế. Đặc biệt, các thiết bị như bình chữa cháy, đầu phun sprinkler, tủ điều khiển… đều được Lavita nhập khẩu hoặc sản xuất với chất lượng tốt, vận hành ổn định.",
+          "Ngoài ra, thời gian giao hàng nhanh, đóng gói chuyên nghiệp, dịch vụ hướng dẫn, hỗ trợ kỹ thuật kèm theo cũng là điểm cộng lớn khi chúng tôi làm việc với Lavita.",
+          "Chúng tôi nhận thấy Lavita rất chú trọng uy tín. Sản phẩm không những rõ ràng nguồn gốc xuất xứ, tiêu chuẩn chất lượng mà còn có chính sách bảo hành, hậu mãi rõ ràng. Trong quá trình sử dụng, nếu có vấn đề gì cần tư vấn, đội kỹ thuật hỗ trợ rất nhanh, trách nhiệm. Đó là lý do chúng tôi yên tâm tiếp tục lựa chọn Lavita là nhà cung cấp thiết bị phòng cháy chữa cháy cho các dự án của mình.",
+        ] },
+        { name: "Đại diện Ban Quản lý dự án", role: "", paragraphs: [
+          "Chúng tôi đánh giá rất cao chất lượng thi công hệ thống PCCC trong các công trình của Lavita đảm nhiệm hạng mục thi công PCCC. Từ quá trình triển khai cho đến hoàn thiện, đội ngũ kỹ thuật của Lavita luôn làm việc rất chuyên nghiệp, đúng tiến độ và đảm bảo các tiêu chuẩn kỹ thuật, an toàn thi công. Các hạng mục đường ống, đầu phun, thiết bị báo cháy… đều được lắp đặt chính xác, gọn gàng, dễ bảo trì.",
+          "Điều chúng tôi ấn tượng là tiến độ được kiểm soát rất chặt chẽ, kể cả trong giai đoạn cao điểm. Các vấn đề phát sinh tại công trường đều được Lavita phối hợp xử lý nhanh chóng, hiệu quả.",
+          "Chúng tôi đặc biệt hài lòng về thái độ làm việc của đội ngũ thi công Lavita. Các kỹ sư, công nhân của Lavita không chỉ tuân thủ an toàn lao động mà còn rất tôn trọng quy định chung của dự án, phối hợp tốt với các nhà thầu khác trên công trường.",
+          "Quan trọng nhất là khi bàn giao, toàn bộ hệ thống PCCC đã được nghiệm thu suôn sẻ, vận hành ổn định, giúp chúng tôi yên tâm trong công tác quản lý vận hành tòa nhà. Có thể nói, Lavita là đơn vị thi công hệ thống phòng cháy chữa cháy mà chúng tôi hoàn toàn tin tưởng.",
+        ] },
+        { name: "Đại diện Chủ đầu tư", role: "", paragraphs: [
+          "Chúng tôi đánh giá rất cao năng lực thiết kế hệ thống phòng cháy chữa cháy của Lavita. Đội ngũ kỹ sư của công ty làm việc chuyên nghiệp, phương án thiết kế luôn được trình bày rõ ràng, khoa học và đặc biệt là tuân thủ đúng các tiêu chuẩn, quy chuẩn hiện hành.",
+          "Trong suốt quá trình làm việc, Lavita luôn phối hợp chặt chẽ với bộ phận giám sát và tư vấn thiết kế của chúng tôi để đảm bảo hệ thống PCCC phù hợp thực tế công trình, tối ưu chi phí nhưng vẫn đảm bảo an toàn ở mức cao nhất. Điều đó giúp chúng tôi rất yên tâm khi triển khai dự án.",
+          "Có lẽ điều khiến chúng tôi hài lòng nhất là tính chuyên nghiệp và tinh thần trách nhiệm của đội ngũ cán bộ và kỹ sư Lavita. Các bản vẽ thiết kế luôn được bàn giao đúng tiến độ, hồ sơ hoàn chỉnh, dễ triển khai. Khi có điều chỉnh từ phía đơn vị chủ đầu tư, Lavita luôn hỗ trợ nhanh chóng và hợp tác hết mình.",
+          "Chúng tôi đánh giá Lavita không chỉ là một đơn vị thiết kế, mà còn là một đối tác kỹ thuật đồng hành, giúp dự án của chúng tôi đảm bảo tiêu chuẩn an toàn phòng cháy chữa cháy ngay từ bước đầu tiên.",
+        ] },
+        { name: "Đại diện Ban Quản lý chung cư", role: "", paragraphs: [
+          "Chúng tôi thật sự hài lòng với chất lượng dịch vụ của Lavita. Trong suốt quá trình hợp tác, đội ngũ kỹ thuật của Lavita luôn làm việc chuyên nghiệp, tuân thủ nghiêm ngặt các tiêu chuẩn kỹ thuật và an toàn. Các đợt kiểm tra, bảo trì được thực hiện đúng định kỳ, đảm bảo toàn bộ hệ thống PCCC của toàn bộ các khu vực trong tòa nhà luôn ở tình trạng hoạt động tốt.",
+          "Ngoài ra, điều khiến chúng tôi yên tâm nhất là thái độ tận tâm của đội kỹ thuật Lavita. Họ không chỉ kiểm tra, sửa chữa thiết bị mà còn sẵn sàng tư vấn, hướng dẫn Ban quản lý cách nhận biết, xử lý các sự cố đơn giản tại chỗ.",
+          "Từ khi hợp tác với Lavita, tòa nhà chúng tôi đã không còn những sự cố nhỏ kiểu “báo cháy giả” hay vòi chữa cháy gặp sự cố. Quan trọng nhất là qua sự hướng dẫn của Lavita, chúng tôi thấy rõ được tầm quan trọng của sự chủ động phòng ngừa rủi ro, điều rất cần thiết đối với một chung cư cao cấp như chúng tôi. Có thể nói, dịch vụ của Lavita đã giúp chúng tôi vận hành hệ thống PCCC một cách an toàn, ổn định và yên tâm hơn rất nhiều.",
+        ] },
+      ],
+    },
     news: {
       heading: "Tin tức", more: "Xem thêm tin tức",
       placeholders: [

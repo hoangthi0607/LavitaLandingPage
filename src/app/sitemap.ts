@@ -7,7 +7,7 @@ import { absoluteUrl, alternates } from "@/i18n/urls";
 // One entry per page and language, each listing its translations (hreflang).
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages: { path: string; images?: string[] }[] = [
-    { path: "/", images: [...new Set([...slideBase, ...projectBase.filter(project => project.featured)].map(item => `${site.url}${item.image}`))] },
+    { path: "/", images: [...new Set([...slideBase, ...projectBase].map(item => `${site.url}${item.image}`))] },
     ...["/dich-vu", "/du-an", "/san-pham", "/ve-lavita", "/ho-so-nang-luc", "/tin-tuc", "/lien-he"].map(path => ({ path })),
     ...serviceBase.map(service => ({ path: `/dich-vu/${service.slug}`, images: [`${site.url}${service.image}`] })),
     ...projectBase.map(project => ({ path: `/du-an/${project.slug}`, images: [`${site.url}${project.image}`] })),

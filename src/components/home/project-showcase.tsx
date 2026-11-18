@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { format } from "@/i18n/config";
@@ -11,6 +11,8 @@ const DELAY = 6000;
 
 // Full-width project showcase in the dcons.vn home style: photo background, project facts on the left,
 // thumbnails and arrows on the right, a countdown bar on top. Pauses on hover, focus, hidden tab or reduced motion.
+// All projects are shown: thumbnails scroll horizontally and follow the active project; full-size backdrops are only
+// mounted for the active project, its neighbours and the ones already shown, so the page does not load every photo.
 type ShowcaseProject = { slug: string; title: string; location: string; tag: string; scale: string; investor: string; image: string };
 
 export function ProjectShowcase({ projects, labels, pending }: { projects: ShowcaseProject[]; labels: Dictionary["home"]["projects"]; pending: string }) {
@@ -21,6 +23,23 @@ export function ProjectShowcase({ projects, labels, pending }: { projects: Showc
   const autoplay = !paused && !reducedMotion && !hidden;
   const project = projects[active];
   const go = (index: number) => setActive((index + projects.length) % projects.length);
+  const thumbsRef = useRef<HTMLUListElement>(null);
+  const [mounted, setMounted] = useState(() => new Set([0, 1, projects.length - 1]));
+
+  useEffect(() => {
+    setMounted(current => {
+      const next = [active, (active + 1) % projects.length, (active - 1 + projects.length) % projects.length];
+      return next.every(index => current.has(index)) ? current : new Set([...current, ...next]);
+    });
+    // Keep the active thumbnail visible inside the strip without scrolling the page.
+    const list = thumbsRef.current;
+    const item = list?.children[active] as HTMLElement | undefined;
+    if (!list || !item) return;
+    const left = item.offsetLeft, right = left + item.offsetWidth;
+    if (left < list.scrollLeft || right > list.scrollLeft + list.clientWidth) {
+      list.scrollTo({ left: Math.max(0, left - (list.clientWidth - item.offsetWidth) / 2), behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+    }
+  }, [active, projects.length]);
 
   useEffect(() => {
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -44,7 +63,7 @@ export function ProjectShowcase({ projects, labels, pending }: { projects: Showc
     onBlurCapture={event => { if (!event.currentTarget.contains(event.relatedTarget)) setPaused(false); }}>
     <h2 id="home-projects-title" className="sr-only">{labels.heading}</h2>
     <div className="home-projects-backdrop" aria-hidden="true">
-      {projects.map((item, index) => <div key={item.slug} className="home-projects-photo" data-active={index === active ? "true" : undefined}><Image src={item.image} alt="" fill sizes="100vw" /></div>)}
+      {projects.map((item, index) => mounted.has(index) && <div key={item.slug} className="home-projects-photo" data-active={index === active ? "true" : undefined}><Image src={item.image} alt="" fill sizes="100vw" /></div>)}
     </div>
     <div className="home-projects-bar" aria-hidden="true"><span key={active} style={{ animationDuration: `${DELAY}ms`, animationPlayState: autoplay ? "running" : "paused" }} /></div>
     <div className="home-projects-inner">
@@ -63,7 +82,7 @@ export function ProjectShowcase({ projects, labels, pending }: { projects: Showc
         </div>
       </div>
       <div className="home-projects-nav">
-        <ul className="home-projects-thumbs">
+        <ul className="home-projects-thumbs" ref={thumbsRef}>
           {projects.map((item, index) => <li key={item.slug}>
             <button type="button" aria-pressed={index === active} aria-label={format(labels.view, { title: item.title })} onClick={() => go(index)}>
               <Image src={item.image} alt="" fill sizes="160px" /><span>{item.title}</span>
@@ -71,6 +90,7 @@ export function ProjectShowcase({ projects, labels, pending }: { projects: Showc
           </li>)}
         </ul>
         <div className="home-projects-arrows">
+          <p className="home-projects-count" aria-hidden="true">{active + 1} / {projects.length}</p>
           <button type="button" onClick={() => go(active - 1)} aria-label={labels.previous}><ChevronLeft size={22} aria-hidden="true" /></button>
           <button type="button" onClick={() => go(active + 1)} aria-label={labels.next}><ChevronRight size={22} aria-hidden="true" /></button>
         </div>

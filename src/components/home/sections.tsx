@@ -1,7 +1,8 @@
 ﻿import Image from "next/image";
-import { ArrowRight, Mail, MapPin, Phone, Plus } from "lucide-react";
+import { ArrowRight, Mail, MapPin, Phone, Plus, Quote } from "lucide-react";
 import { homePartners, serviceHref } from "@/data/home";
 import { getContent } from "@/i18n/content";
+import { TestimonialText } from "@/components/home/testimonial-text";
 import Link from "@/i18n/link";
 import { cdnUrl, formatDate, getNewsPage, itemSlug, newsSource, type NewsItem } from "@/lib/fire-police-news";
 
@@ -62,6 +63,24 @@ function NewsCard({ item, intl, large = false }: { item: NewsItem; intl: string;
     {/* Agency articles are published in Vietnamese only. */}
     <div lang="vi">{large ? <h3>{item.title}</h3> : <h3 className="home-news-small-title">{item.title}</h3>}{date && <p className="home-news-date">{date}</p>}</div>
   </Link>;
+}
+
+// Client feedback from the old lavitacons.vn site. The first paragraph is always visible; the rest opens smoothly
+// with the toggle at the bottom of each quote (TestimonialText).
+export async function Testimonials() {
+  const { t } = await getContent();
+  const copy = t.home.testimonials;
+  return <section id="testimonials" className="section home-testimonials" aria-labelledby="home-testimonials-title">
+    <noscript><style>{".home-testimonial-more{grid-template-rows:1fr!important;opacity:1!important}.home-testimonial-toggle{display:none!important}"}</style></noscript>
+    <h2 id="home-testimonials-title" className="home-title" data-reveal="up">{copy.heading}</h2>
+    <div className="home-testimonials-grid">
+      {copy.items.map((item, index) => <figure className="home-testimonial" key={index} data-reveal={index % 2 ? "right" : "left"}>
+        <Quote className="home-testimonial-mark" size={36} strokeWidth={1.5} aria-hidden="true" />
+        <TestimonialText paragraphs={item.paragraphs} more={copy.more} less={copy.less} />
+        <figcaption><strong>{item.name}</strong>{item.role && <span>{item.role}</span>}</figcaption>
+      </figure>)}
+    </div>
+  </section>;
 }
 
 // News in the dcons.vn layout (one large, two small): the latest articles from canhsatpccc.gov.vn,

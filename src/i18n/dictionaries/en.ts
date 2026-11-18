@@ -101,6 +101,33 @@ export const en: Dictionary = {
       roleDescription: "carousel", heading: "Featured projects", label: "Project", location: "Location", scope: "Fire protection scope", scale: "Scale", investor: "Developer",
       details: "View details", all: "All projects", view: "View project {title}", previous: "Previous project", next: "Next project",
     },
+    testimonials: {
+      heading: "What our clients say", more: "Read more", less: "Show less",
+      items: [
+        { name: "Mr. Kiên", role: "Customer buying fire protection equipment and materials from Lavita", paragraphs: [
+          "We have been using fire protection equipment supplied by Lavita for some time and are very satisfied. The products are genuine, fully inspected and certified, and meet Vietnamese as well as international safety standards. In particular, equipment such as fire extinguishers, sprinkler heads and control panels is imported or manufactured by Lavita to a good quality and runs reliably.",
+          "Fast delivery, professional packaging, and the accompanying guidance and technical support are also big advantages of working with Lavita.",
+          "We can see that Lavita takes its reputation seriously. The products have a clear origin and quality standards, as well as clear warranty and after-sales policies. Whenever we need advice during use, the technical team responds quickly and responsibly. That is why we confidently continue to choose Lavita as the fire protection equipment supplier for our projects.",
+        ] },
+        { name: "Project Management Board representative", role: "", paragraphs: [
+          "We highly value the quality of fire protection installation on the projects where Lavita handled the fire protection works. From execution to completion, Lavita's technical team always worked very professionally, on schedule and in line with technical and site safety standards. Piping, sprinkler heads, fire alarm devices and other items were installed accurately, neatly and in a way that is easy to maintain.",
+          "What impressed us was how tightly the schedule was controlled, even during peak periods. Issues arising on site were resolved by Lavita quickly and effectively in coordination with us.",
+          "We are particularly pleased with the working attitude of Lavita's installation team. Lavita's engineers and workers not only follow occupational safety rules but also respect the project's general regulations and coordinate well with other contractors on site.",
+          "Most importantly, at handover the entire fire protection system passed acceptance smoothly and runs reliably, giving us peace of mind in operating the building. Lavita is a fire protection installation contractor we fully trust.",
+        ] },
+        { name: "Investor representative", role: "", paragraphs: [
+          "We highly value Lavita's fire protection system design capability. The company's engineers work professionally, and design options are always presented clearly and methodically and, above all, comply with current standards and regulations.",
+          "Throughout the work, Lavita coordinated closely with our supervision and design consulting teams to make sure the fire protection system fits the actual building, optimising cost while keeping safety at the highest level. That gave us great confidence in delivering the project.",
+          "What pleased us most was the professionalism and sense of responsibility of Lavita's staff and engineers. Design drawings were always delivered on schedule with complete, easy-to-implement documentation. Whenever the investor made changes, Lavita supported us quickly and wholeheartedly.",
+          "We see Lavita not just as a design firm but as a technical partner that helps our projects meet fire safety standards from the very first step.",
+        ] },
+        { name: "Apartment Management Board representative", role: "", paragraphs: [
+          "We are truly satisfied with the quality of Lavita's service. Throughout our cooperation, Lavita's technical team has always worked professionally and strictly followed technical and safety standards. Inspections and maintenance are carried out on schedule, keeping the fire protection system in every area of the building in good working order.",
+          "What reassures us most is the dedication of Lavita's technical team. They not only inspect and repair equipment but are also ready to advise and show the management board how to recognise and handle simple incidents on the spot.",
+          "Since working with Lavita, our building no longer has small problems such as false fire alarms or faulty fire hoses. Most importantly, Lavita's guidance has shown us how important proactive risk prevention is, which is essential for a premium apartment building like ours. Lavita's service has helped us operate our fire protection system far more safely, reliably and confidently.",
+        ] },
+      ],
+    },
     news: {
       heading: "News", more: "More news",
       placeholders: [
