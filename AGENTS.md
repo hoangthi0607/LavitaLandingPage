@@ -4,7 +4,7 @@
 
 Before changing the landing page, read `DESIGN.md` and the applicable design guidance in `docs/impeccable/reference/`. The Impeccable source is vendored as documentation, not installed as a runtime dependency or a registered agent skill. See `docs/impeccable/README.md` for provenance.
 
-Preserve Lavita's identity, Vietnamese content, and the facts in the supplied company profile. Keep content in `src/data/home.ts` separate from layout and client interactions. Keep Next.js Server Components as the default; use client components for browser interactions.
+Preserve Lavita's identity, Vietnamese content, and the facts in the supplied company profile. Keep facts and structure in `src/data/home.ts` and visible text in `src/i18n/dictionaries/` (Vietnamese `vi.ts` is the source; en/zh/ko/ja must keep the same keys), separate from layout and client interactions. Use `@/i18n/link` for internal links so visitors stay in their language. Keep Next.js Server Components as the default; use client components for browser interactions.
 
 Use the established semantic CSS tokens and self-hosted Manrope font. Keep service descriptions, project PCCC scopes, and working contact/PDF links. Do not invent certifications, testimonials, revenue, or backend behavior. Growth plans in the profile are not realized revenue.
 

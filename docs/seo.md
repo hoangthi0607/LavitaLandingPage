@@ -2,7 +2,7 @@
 
 ## Dữ liệu và nguồn chuẩn
 
-`src/data/home.ts` tập trung cấu hình `site` và thông tin `company`. Tiêu đề, mô tả, canonical, metadata chia sẻ và structured data dùng các dữ liệu này để giữ thông tin nhất quán với nội dung hiển thị.
+`src/data/home.ts` tập trung cấu hình `site` và thông tin `company`; tiêu đề/mô tả theo ngôn ngữ nằm ở `meta` trong `src/i18n/dictionaries/`. Mỗi trang có canonical theo ngôn ngữ và `hreflang` cho năm ngôn ngữ (xem mục Đa ngôn ngữ trong README). Tiêu đề, mô tả, canonical, metadata chia sẻ và structured data dùng các dữ liệu này để giữ thông tin nhất quán với nội dung hiển thị.
 
 Thông tin liên hệ hiện tại theo cập nhật của người dùng:
 

@@ -1,5 +1,8 @@
-import { useId } from "react";
-import { currentLanguage, languages, type LanguageCode } from "@/data/home";
+"use client";
+
+import { useId, type MouseEvent } from "react";
+import { localeInfo, localizeHref, locales, type Locale } from "@/i18n/config";
+import { useLocale, useLocalePath } from "@/i18n/link";
 
 // Five-point star polygon, first point straight up.
 function star(cx: number, cy: number, outer: number, rotate = 0) {
@@ -18,7 +21,7 @@ function Trigram({ x, y, angle }: { x: number; y: number; angle: number }) {
 }
 
 // Authored SVG flags (3:2). Flag colours are the official ones, not theme tokens.
-function Flag({ code, uid }: { code: LanguageCode; uid: string }) {
+function Flag({ code, uid }: { code: Locale; uid: string }) {
   switch (code) {
     case "en": return <svg viewBox="0 0 60 40" aria-hidden="true" focusable="false">
       <clipPath id={`${uid}-t`}><path d="M30,20 h30 v20 z v20 h-30 z h-30 v-20 z v-20 h30 z" /></clipPath>
@@ -49,17 +52,26 @@ function Flag({ code, uid }: { code: LanguageCode; uid: string }) {
   }
 }
 
-export function LanguageFlags({ className }: { className?: string }) {
+// Each flag links to the same page in another language. Query strings and anchors are carried over on click;
+// switching language reloads the page because <html lang> and every text change with it.
+export function LanguageFlags({ className, label }: { className?: string; label: string }) {
   const uid = useId().replace(/[^a-zA-Z0-9_-]/g, "");
-  return <ul className={className ? `language-flags ${className}` : "language-flags"} aria-label="Ngôn ngữ">
-    {languages.map(language => {
-      const current = language.code === currentLanguage;
-      // Translations are not available yet: non-current languages are announced as upcoming and do nothing.
-      return <li key={language.code}>
-        <button type="button" aria-pressed={current} aria-disabled={current ? undefined : true}
-          aria-label={`${language.nativeName}${current ? "" : " (sắp có)"}`} title={current ? language.name : `${language.name} · sắp có`}>
-          <Flag code={language.code} uid={`${uid}-${language.code}`} />
-        </button>
+  const current = useLocale();
+  const path = useLocalePath();
+  const switchTo = (event: MouseEvent<HTMLAnchorElement>, code: Locale) => {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    if (code === current) return;
+    window.location.assign(`${event.currentTarget.pathname}${window.location.search}${window.location.hash}`);
+  };
+  return <ul className={className ? `language-flags ${className}` : "language-flags"} aria-label={label}>
+    {locales.map(code => {
+      const { nativeName, htmlLang } = localeInfo[code];
+      return <li key={code}>
+        <a href={localizeHref(path, code)} hrefLang={htmlLang} lang={htmlLang} aria-current={code === current ? "true" : undefined}
+          aria-label={nativeName} title={nativeName} onClick={event => switchTo(event, code)}>
+          <Flag code={code} uid={`${uid}-${code}`} />
+        </a>
       </li>;
     })}
   </ul>;

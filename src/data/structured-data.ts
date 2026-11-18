@@ -1,13 +1,14 @@
-import { company, services, site } from "./home";
-
-const organizationId = `${site.url}/#organization`;
-const websiteId = `${site.url}/#website`;
-const webpageId = `${site.url}/#webpage`;
+import { localeInfo } from "@/i18n/config";
+import type { Content } from "@/i18n/content";
+import { absoluteUrl } from "@/i18n/urls";
 
 // Only business facts already displayed on the homepage are included.
-export const homeStructuredData = {
-  "@context": "https://schema.org",
-  "@graph": [
+function graph({ site, company, services, locale, t }: Content) {
+  const organizationId = `${site.url}/#organization`;
+  const websiteId = `${site.url}/#website`;
+  const home = absoluteUrl("/", locale);
+  const inLanguage = localeInfo[locale].intl;
+  return [
     {
       "@type": "Organization",
       "@id": organizationId,
@@ -20,20 +21,21 @@ export const homeStructuredData = {
       email: company.email,
       taxID: company.taxCode,
       address: { "@type": "PostalAddress", streetAddress: company.address, addressCountry: "VN" },
-      contactPoint: { "@type": "ContactPoint", telephone: company.phoneHref.replace("tel:", ""), email: company.email, contactType: "Tư vấn dịch vụ PCCC", availableLanguage: "vi" },
+      // Consultations are handled in Vietnamese; translated pages do not change that.
+      contactPoint: { "@type": "ContactPoint", telephone: company.phoneHref.replace("tel:", ""), email: company.email, contactType: t.meta.contactType, availableLanguage: "vi" },
     },
-    { "@type": "WebSite", "@id": websiteId, name: site.name, alternateName: company.name, url: `${site.url}/`, inLanguage: "vi-VN", publisher: { "@id": organizationId } },
+    { "@type": "WebSite", "@id": websiteId, name: site.name, alternateName: company.name, url: `${site.url}/`, inLanguage, publisher: { "@id": organizationId } },
     {
-      "@type": "WebPage", "@id": webpageId, url: `${site.url}/`, name: site.title, description: site.description,
-      inLanguage: "vi-VN", isPartOf: { "@id": websiteId }, about: { "@id": organizationId },
-      mainEntity: services.map((_, index) => ({ "@id": `${site.url}/#service-${index + 1}` })),
+      "@type": "WebPage", "@id": `${home}#webpage`, url: home, name: site.title, description: site.description,
+      inLanguage, isPartOf: { "@id": websiteId }, about: { "@id": organizationId },
+      mainEntity: services.map((_, index) => ({ "@id": `${home}#service-${index + 1}` })),
     },
     ...services.map((service, index) => ({
-      "@type": "Service", "@id": `${site.url}/#service-${index + 1}`, name: service.title, serviceType: "Phòng cháy chữa cháy",
-      description: service.description, url: `${site.url}/dich-vu/${service.slug}`, provider: { "@id": organizationId },
+      "@type": "Service", "@id": `${home}#service-${index + 1}`, name: service.title, serviceType: t.meta.serviceType,
+      description: service.description, url: absoluteUrl(`/dich-vu/${service.slug}`, locale), provider: { "@id": organizationId },
     })),
-  ],
-};
+  ];
+}
 
-export const businessStructuredData = { "@context": homeStructuredData["@context"], "@graph": homeStructuredData["@graph"].filter(node => node["@type"] !== "WebPage") };
-export const homepageStructuredData = { "@context": homeStructuredData["@context"], "@graph": homeStructuredData["@graph"].filter(node => node["@type"] === "WebPage") };
+export const businessStructuredData = (content: Content) => ({ "@context": "https://schema.org", "@graph": graph(content).filter(node => node["@type"] !== "WebPage") });
+export const homepageStructuredData = (content: Content) => ({ "@context": "https://schema.org", "@graph": graph(content).filter(node => node["@type"] === "WebPage") });

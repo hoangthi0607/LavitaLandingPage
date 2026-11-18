@@ -5,8 +5,10 @@ import { useEffect, useId, useRef, useState } from "react";
 import type { MouseEvent } from "react";
 import { ChevronLeft, ChevronRight, ExternalLink, Minus, Plus, X, ZoomIn } from "lucide-react";
 import type { ProfileDocument } from "@/data/home";
+import { format } from "@/i18n/config";
+import type { Dictionary } from "@/i18n/dictionaries/vi";
 
-export function DocumentGallery({ title, items, variant = "legal" }: { title: string; items: readonly ProfileDocument[]; variant?: "legal" | "credentials" }) {
+export function DocumentGallery({ title, items, labels, variant = "legal" }: { title: string; items: readonly ProfileDocument[]; labels: Dictionary["gallery"]; variant?: "legal" | "credentials" }) {
   const [selected, setSelected] = useState<number | null>(null);
   const [zoomed, setZoomed] = useState(false);
   const [imageError, setImageError] = useState(false);
@@ -45,9 +47,9 @@ export function DocumentGallery({ title, items, variant = "legal" }: { title: st
 
   return <>
     <div className={`document-gallery document-gallery-${variant}`} role="group" aria-label={title}>
-      {items.map((item, index) => <a className="document-thumbnail" key={item.src} href={item.src} aria-label={`Xem ${item.title}`} aria-haspopup="dialog" onClick={event => open(event, index)}>
+      {items.map((item, index) => <a className="document-thumbnail" key={item.src} href={item.src} aria-label={format(labels.view, { title: item.title })} aria-haspopup="dialog" onClick={event => open(event, index)}>
         <Image src={item.src} alt={item.title} width={item.width} height={item.height} sizes={variant === "legal" ? "(max-width: 359px) 80vw, (max-width: 760px) 40vw, 20vw" : "(max-width: 760px) 40vw, 25vw"} />
-        <span className="document-thumbnail-action"><ZoomIn size={16} aria-hidden="true" /><span>Xem ảnh</span></span>
+        <span className="document-thumbnail-action"><ZoomIn size={16} aria-hidden="true" /><span>{labels.viewImage}</span></span>
       </a>)}
     </div>
     <dialog ref={dialogRef} className="document-viewer" aria-labelledby={`${id}-title`} aria-describedby={`${id}-status`}
@@ -66,12 +68,12 @@ export function DocumentGallery({ title, items, variant = "legal" }: { title: st
           else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
         }
       }}>
-      <div className="document-viewer-header"><div><h2 id={`${id}-title`}>{active?.title ?? title}</h2><p id={`${id}-status`} role="status">{active && `Ảnh ${(selected ?? 0) + 1} / ${items.length}`}</p></div><button type="button" className="document-viewer-icon" onClick={close} aria-label="Đóng ảnh"><X size={23} aria-hidden="true" /></button></div>
-      <div ref={stageRef} className={`document-viewer-stage${zoomed ? " is-zoomed" : ""}`} tabIndex={0} aria-label="Vùng xem tài liệu">
+      <div className="document-viewer-header"><div><h2 id={`${id}-title`}>{active?.title ?? title}</h2><p id={`${id}-status`} role="status">{active && format(labels.status, { index: (selected ?? 0) + 1, total: items.length })}</p></div><button type="button" className="document-viewer-icon" onClick={close} aria-label={labels.close}><X size={23} aria-hidden="true" /></button></div>
+      <div ref={stageRef} className={`document-viewer-stage${zoomed ? " is-zoomed" : ""}`} tabIndex={0} aria-label={labels.stage}>
         {active && !imageError && <Image key={active.src} src={active.src} alt={active.title} width={active.width} height={active.height} unoptimized loading="eager" onError={() => setImageError(true)} />}
-        {imageError && <p className="document-viewer-error">Không thể tải ảnh tài liệu. Bạn có thể thử mở ảnh gốc bằng liên kết bên dưới.</p>}
+        {imageError && <p className="document-viewer-error">{labels.error}</p>}
       </div>
-      <div className="document-viewer-controls"><div className="document-viewer-pages"><button type="button" className="document-viewer-icon" onClick={() => change(-1)} disabled={selected === null || selected === 0} aria-label="Ảnh trước"><ChevronLeft aria-hidden="true" /></button><button type="button" className="document-viewer-icon" onClick={() => change(1)} disabled={selected === null || selected === items.length - 1} aria-label="Ảnh tiếp theo"><ChevronRight aria-hidden="true" /></button></div><button type="button" className="document-viewer-zoom" aria-pressed={zoomed} onClick={() => { setZoomed(value => !value); stageRef.current?.scrollTo(0, 0); }}>{zoomed ? <Minus size={17} aria-hidden="true" /> : <Plus size={17} aria-hidden="true" />}{zoomed ? "Thu vừa khung" : "Phóng lớn"}</button>{active && <a href={active.src} target="_blank" rel="noopener noreferrer" className="document-viewer-original">Mở ảnh gốc<ExternalLink size={16} aria-hidden="true" /><span className="sr-only">, mở trong tab mới</span></a>}</div>
+      <div className="document-viewer-controls"><div className="document-viewer-pages"><button type="button" className="document-viewer-icon" onClick={() => change(-1)} disabled={selected === null || selected === 0} aria-label={labels.previous}><ChevronLeft aria-hidden="true" /></button><button type="button" className="document-viewer-icon" onClick={() => change(1)} disabled={selected === null || selected === items.length - 1} aria-label={labels.next}><ChevronRight aria-hidden="true" /></button></div><button type="button" className="document-viewer-zoom" aria-pressed={zoomed} onClick={() => { setZoomed(value => !value); stageRef.current?.scrollTo(0, 0); }}>{zoomed ? <Minus size={17} aria-hidden="true" /> : <Plus size={17} aria-hidden="true" />}{zoomed ? labels.zoomOut : labels.zoomIn}</button>{active && <a href={active.src} target="_blank" rel="noopener noreferrer" className="document-viewer-original">{labels.original}<ExternalLink size={16} aria-hidden="true" /><span className="sr-only">{labels.newTab}</span></a>}</div>
     </dialog>
   </>;
 }

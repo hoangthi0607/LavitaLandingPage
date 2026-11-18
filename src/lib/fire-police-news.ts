@@ -86,10 +86,10 @@ export const originalNewsUrl = (item: NewsItem) => `${SITE}/vi/news/${item.categ
 export const originalLegalUrl = (item: LegalItem) => `${SITE}/vi/legal-document/${item.categorySlug}/${itemSlug(item)}`;
 export const legalFiles = (item: LegalItem) => [item.legalDocumentFile, ...(item.galaryFiles ?? [])].filter((file): file is FileRef => Boolean(file?.filePreview));
 
-export function formatDate(value: string | null | undefined) {
+export function formatDate(value: string | null | undefined, intl = "vi-VN") {
   if (!value) return null;
   const date = new Date(value);
-  return Number.isNaN(date.getTime()) ? null : new Intl.DateTimeFormat("vi-VN", { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "Asia/Ho_Chi_Minh" }).format(date);
+  return Number.isNaN(date.getTime()) ? null : new Intl.DateTimeFormat(intl, { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "Asia/Ho_Chi_Minh" }).format(date);
 }
 
 /** Article HTML comes from a third party: keep text formatting, images from the agency CDN and safe links only. */

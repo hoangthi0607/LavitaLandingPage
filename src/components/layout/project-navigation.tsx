@@ -1,20 +1,21 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { ChevronDown } from "lucide-react";
-import { getService, projectCategoryHref, projectNavigation, services } from "@/data/home";
+import { projectCategoryHref, projectsHref } from "@/data/home";
+import Link, { useLocalePath } from "@/i18n/link";
 
-export function ProjectNavigation({ mobile = false, expanded, onExpandedChange, onNavigate }: {
+export function ProjectNavigation({ mobile = false, label, services, labels, expanded, onExpandedChange, onNavigate }: {
   mobile?: boolean;
+  label: string;
+  services: { slug: string; title: string }[];
+  labels: { open: string; close: string };
   expanded: boolean;
   onExpandedChange: (expanded: boolean) => void;
   onNavigate: () => void;
 }) {
-  const pathname = usePathname();
+  const pathname = useLocalePath();
   const [selectedCategory, setSelectedCategory] = useState<string>();
-  const group = projectNavigation;
   const rootRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const panelId = `${mobile ? "mobile" : "desktop"}-project-categories`;
@@ -22,8 +23,8 @@ export function ProjectNavigation({ mobile = false, expanded, onExpandedChange, 
   useEffect(() => {
     if (!expanded) return;
     const values = new URLSearchParams(window.location.search).getAll("dich-vu");
-    setSelectedCategory(values.length === 1 ? getService(values[0])?.slug : undefined);
-  }, [expanded]);
+    setSelectedCategory(values.length === 1 ? services.find(service => service.slug === values[0])?.slug : undefined);
+  }, [expanded, services]);
 
   useEffect(() => {
     if (!expanded) return;
@@ -45,7 +46,7 @@ export function ProjectNavigation({ mobile = false, expanded, onExpandedChange, 
   };
 
   return <div className="nav-dropdown" ref={rootRef} data-section="projects" data-expanded={expanded}
-    data-active={pathname === group.href || pathname.startsWith(`${group.href}/`) || undefined}
+    data-active={pathname === projectsHref || pathname.startsWith(`${projectsHref}/`) || undefined}
     onPointerEnter={event => { if (!mobile && event.pointerType === "mouse") onExpandedChange(true); }}
     onPointerLeave={event => {
       if (!mobile && event.pointerType === "mouse" && !rootRef.current?.contains(document.activeElement)) onExpandedChange(false);
@@ -59,18 +60,18 @@ export function ProjectNavigation({ mobile = false, expanded, onExpandedChange, 
       toggleRef.current?.focus();
     }}>
     <div className="nav-dropdown-heading">
-      <Link className="nav-dropdown-link" href={group.href} onClick={navigate}
-        aria-current={pathname === group.href ? "page" : undefined}
-        data-active={pathname.startsWith(`${group.href}/`) || undefined}>{group.label}</Link>
+      <Link className="nav-dropdown-link" href={projectsHref} onClick={navigate}
+        aria-current={pathname === projectsHref ? "page" : undefined}
+        data-active={pathname.startsWith(`${projectsHref}/`) || undefined}>{label}</Link>
       <button className="nav-dropdown-toggle" type="button" ref={toggleRef}
         aria-expanded={expanded} aria-controls={panelId}
-        aria-label={`${expanded ? "Đóng" : "Mở"} hạng mục dự án PCCC`}
+        aria-label={expanded ? labels.close : labels.open}
         onClick={() => onExpandedChange(!expanded)}><ChevronDown size={16} aria-hidden="true" /></button>
     </div>
     <ul className="nav-dropdown-panel" id={panelId} hidden={!expanded}>
       {services.map(service => <li key={service.slug}>
         <Link href={projectCategoryHref(service.slug)} onClick={navigate}
-          aria-current={pathname === group.href && selectedCategory === service.slug ? "page" : undefined}>{service.title}</Link>
+          aria-current={pathname === projectsHref && selectedCategory === service.slug ? "page" : undefined}>{service.title}</Link>
       </li>)}
     </ul>
   </div>;

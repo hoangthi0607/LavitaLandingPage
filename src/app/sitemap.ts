@@ -1,13 +1,21 @@
 import type { MetadataRoute } from "next";
-import { projects, services, site, slides } from "@/data/home";
-import { products } from "@/data/products";
+import { projectBase, serviceBase, site, slideBase } from "@/data/home";
+import { productBase } from "@/data/products";
+import { locales } from "@/i18n/config";
+import { absoluteUrl, alternates } from "@/i18n/urls";
 
+// One entry per page and language, each listing its translations (hreflang).
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    { url: `${site.url}/`, images: [...new Set([...slides, ...projects].map(item => `${site.url}${item.image}`))] },
-    ...["/dich-vu", "/du-an", "/san-pham", "/ve-lavita", "/ho-so-nang-luc", "/tin-tuc", "/lien-he"].map(path => ({ url: `${site.url}${path}` })),
-    ...services.map(service => ({ url: `${site.url}/dich-vu/${service.slug}`, images: [`${site.url}${service.image}`] })),
-    ...projects.map(project => ({ url: `${site.url}/du-an/${project.slug}`, images: [`${site.url}${project.image}`] })),
-    ...products.map(product => ({ url: `${site.url}/san-pham/${product.slug}`, ...(product.image ? { images: [`${site.url}${product.image}`] } : {}) })),
+  const pages: { path: string; images?: string[] }[] = [
+    { path: "/", images: [...new Set([...slideBase, ...projectBase].map(item => `${site.url}${item.image}`))] },
+    ...["/dich-vu", "/du-an", "/san-pham", "/ve-lavita", "/ho-so-nang-luc", "/tin-tuc", "/lien-he"].map(path => ({ path })),
+    ...serviceBase.map(service => ({ path: `/dich-vu/${service.slug}`, images: [`${site.url}${service.image}`] })),
+    ...projectBase.map(project => ({ path: `/du-an/${project.slug}`, images: [`${site.url}${project.image}`] })),
+    ...productBase.map(product => ({ path: `/san-pham/${product.slug}`, ...(product.image ? { images: [`${site.url}${product.image}`] } : {}) })),
   ];
+  return pages.flatMap(page => locales.map(locale => ({
+    url: absoluteUrl(page.path, locale),
+    alternates: { languages: alternates(page.path, locale).languages },
+    ...(page.images ? { images: page.images } : {}),
+  })));
 }
