@@ -52,7 +52,7 @@ export function ProjectShowcase({ projects, labels, pending }: { projects: Showc
         <p className="home-projects-label">{labels.label}</p>
         <h3>{project.title}</h3>
         <dl>
-          <div><dt>{labels.location}</dt><dd>{project.location}</dd></div>
+          <div><dt>{labels.location}</dt><dd>{project.location || pending}</dd></div>
           <div><dt>{labels.scope}</dt><dd>{project.tag}</dd></div>
           <div><dt>{labels.scale}</dt><dd>{project.scale || pending}</dd></div>
           <div><dt>{labels.investor}</dt><dd>{project.investor || pending}</dd></div>

@@ -1,31 +1,29 @@
 # Danh mục sản phẩm Lavita
 
-Theo yêu cầu người dùng, mục **Sản phẩm** dẫn tới `/san-pham`. Người dùng chưa có danh sách, hình ảnh hoặc mã sản phẩm thực tế, nên đây là khung danh mục để bổ sung sau.
+Mục **Sản phẩm** dẫn tới `/san-pham`. Từ 18/11/2026, dữ liệu lấy từ bản backup WordPress của lavitacons.vn (`lavitacons.vn_20260912_033642.zip` và dump MySQL ngày 12/09/2026, cả hai nằm ở thư mục gốc và đã được git ignore).
 
-## Nội dung và giới hạn
+## Nguồn và cách nhập
 
-- Dữ liệu tại `src/data/products.ts`, tách khỏi ba dịch vụ PCCC hiện có.
-- Bốn nhóm khởi tạo: thiết bị báo cháy, thiết bị chữa cháy, đầu phun sprinkler, van và phụ kiện. Đây là cấu trúc biên tập tham khảo từ [PCCC.vn](https://pccc.vn/san-pham/), cần rà soát theo danh mục thực tế khi bổ sung dữ liệu.
-- `products` đang rỗng. Giao diện hiển thị đang cập nhật, không giả lập thương hiệu, sản phẩm, giá, tồn kho, chứng nhận hoặc bảo hành.
-- Không sao chép ảnh, mô tả riêng hoặc thông tin thương mại của website tham khảo.
-- Không có giỏ hàng, thanh toán hoặc backend tiếp nhận đơn hàng.
+- Script nhập nằm trong `.tmp/wp-import/tools/` (ignored, không phải dependency): `parse.mjs` đọc dump SQL, `extract.mjs` chuẩn hóa sản phẩm WooCommerce và dự án Pods, `resolve.mjs` tìm file ảnh/PDF trong zip, `build.mjs` chuyển ảnh sang WebP (tối đa 1400 px) vào `public/images/products/`, copy PDF vào `public/documents/products/` và sinh `src/data/product-catalog.ts`.
+- `build.mjs` chứa bảng tiêu đề đã làm sạch (bỏ tiền tố "Mã sản phẩm:", hậu tố kích thước ảnh, sửa lỗi chính tả rõ ràng như Golbe → Globe, Value → Valve) và gộp 5 bản trùng cũ (Gate/Globe/Butterfly/Check Valve) vào bản mới hơn.
+- 102 sản phẩm đã đăng → 97 sản phẩm, 303 ảnh, 11 tài liệu kỹ thuật. Không nhập giá, tồn kho, đánh giá hay đơn hàng.
+- Mô tả, thông số và nội dung giữ nguyên chữ tiếng Việt của site cũ; nhãn thông số tiếng Anh của cửa gió (Height, Finish…) được dịch sang tiếng Việt, bỏ "Discovery"/"Packaging Type". 75 sản phẩm không có chữ mô tả ở site cũ, nên chỉ hiện ảnh và mô tả nhóm.
+- Các ngôn ngữ khác dùng lại chữ tiếng Việt của sản phẩm (chưa dịch); tên nhóm và nhãn giao diện đã dịch trong từ điển.
 
-## Bổ sung sản phẩm
+## Nhóm sản phẩm
 
-Thêm bản ghi thực tế vào `products`: `slug`, `title`, `categorySlug` và `description`. Có thể bổ sung `image`, `sku` và `specifications` khi có nguồn xác nhận. Ảnh dùng đường dẫn trong `public/`, thường đặt dưới `public/images/products/`; không dùng ảnh dự án để giả làm ảnh sản phẩm.
+Mười nhóm theo cây danh mục site cũ, PCCC trước rồi HVAC: Van PCCC, Đầu phun sprinkler, Phụ kiện đường ống, Cửa gió & miệng gió, Van gió & van ngăn cháy, Ống gió, Tiêu âm, VAV & CAV, Quạt thông gió, Tủ điện – máng cáp – giá treo. Slug tại `productCategorySlugs` trong `src/data/products.ts`, tên và mô tả trong `productCategories` của từ điển.
 
-Danh sách và `/san-pham/[slug]` dùng chung dữ liệu này. Tìm kiếm hỗ trợ tên, mã và mô tả, không phân biệt dấu tiếng Việt; kết hợp với nhóm sản phẩm. Khi chưa có dữ liệu, không hiển thị thẻ hàng hoặc thông số mẫu. Slug không có sản phẩm trả 404.
+## Giao diện
 
-Sau khi thêm dữ liệu hoặc ảnh, chạy typecheck/build và kiểm tra danh sách, trang chi tiết, ảnh, trạng thái không tìm thấy và email nháp. Sitemap thêm sản phẩm từ dữ liệu đã nhập.
+- Danh sách: tab nhóm, tìm kiếm GET (không phân biệt dấu), 12 sản phẩm mỗi trang (`?trang=N`, `productPageSize`). Thẻ hiện ảnh đầu tiên, mã, tên và mô tả nếu có.
+- Chi tiết: ảnh lớn + hàng ảnh nhỏ dùng `DocumentGallery` (biến thể `product`, cùng trình xem dialog với hồ sơ năng lực: phím mũi tên, Escape, trả focus); mã sản phẩm, "Thông số kỹ thuật", nút trao đổi; bên dưới là "Mô tả sản phẩm" và "Tài liệu kỹ thuật" (mở tab mới). CSS chung của gallery/viewer tại `src/components/content/document-gallery.css`.
+- Không có giỏ hàng, thanh toán hoặc backend; CTA giữ `nhom-san-pham`/`san-pham` sang `/lien-he` để soạn email.
 
-## Điều hướng và liên hệ
+## Bổ sung hoặc sửa
 
-Header và footer có link Sản phẩm. Danh sách nhóm nằm bên trái ở desktop và chuyển thành các lựa chọn xuống dòng trên mobile. Form tìm kiếm dùng GET, hoạt động khi tắt JavaScript. Query `danh-muc` và `q` giữ lựa chọn; canonical luôn là `/san-pham`.
+Sửa tay `src/data/product-catalog.ts` cho thay đổi nhỏ, hoặc chỉnh `build.mjs` rồi chạy lại `node .tmp/wp-import/tools/build.mjs` (xóa và tạo lại toàn bộ ảnh/PDF sản phẩm). Thêm bản dịch qua trường `translations` của từng sản phẩm.
 
-CTA liên hệ giữ `nhom-san-pham` và, khi đã có dữ liệu, `san-pham`. Trang liên hệ kiểm tra slug trước khi hiển thị và đưa nhóm/sản phẩm vào email nháp. Người xem tự gửi qua ứng dụng email. Query sai hoặc lặp bị bỏ qua.
+## Kiểm chứng
 
-## Giới hạn kiểm chứng
-
-Với dữ liệu hiện rỗng, chỉ kiểm tra được danh mục, lọc/tìm kiếm rỗng, điều hướng, ngữ cảnh nhóm sản phẩm trong liên hệ và 404. Chưa kiểm chứng ảnh, thông số hoặc trang chi tiết cho sản phẩm thực tế tới khi được cung cấp. Kết quả QA thực tế ghi trong bàn giao và `.tmp/`.
-
-Kiểm tra ngày 14/11/2026 trên production build bằng Chromium: typecheck/build thành công; bảy viewport từ 320 đến 1440 px, gồm landscape, không tràn ngang; menu mobile có focus bàn phím và Escape trả về nút mở. Axe không phát hiện vi phạm WCAG A/AA ở 1440 và 390 px. Đã kiểm tra tìm kiếm GET khi tắt JavaScript, giới hạn từ khóa, query không hợp lệ, nhóm sản phẩm trong email nháp và luồng liên hệ dịch vụ/dự án cũ. Không gửi email trong quá trình kiểm tra. Chưa kiểm tra trên thiết bị vật lý hoặc trình duyệt khác.
+18/11/2026: typecheck và build thành công (485 trang sản phẩm cho 5 ngôn ngữ). Chromium trên production build, 1440 px, iPhone 13 và 320 px: 205/205 kiểm tra đạt — trạng thái 200, không tràn ngang, ảnh tải đủ, Axe WCAG A/AA không vi phạm trên trang sản phẩm/dự án, trình xem ảnh dùng bàn phím, PDF trả về đúng, tìm kiếm không dấu, ngữ cảnh sản phẩm trong liên hệ. Báo cáo tại `.tmp/wp-import-qa/`. Chưa kiểm tra thiết bị thật/trình duyệt khác; bản dịch AI cần người bản ngữ rà soát.

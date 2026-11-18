@@ -29,12 +29,26 @@ export type ServiceSlug = (typeof serviceBase)[number]["slug"];
 export const serviceGroupIds = ["trien-khai", "van-hanh"] as const;
 export type ServiceGroupId = (typeof serviceGroupIds)[number];
 
-// scale and investor are not in the company profile yet; empty values render as the "pending" label.
+// Sources: company profile (profilePage) and the "Dự án" posts of the old lavitacons.vn site (wpPost, backup 12/09/2026).
+// Title, location, scale and investor live in the dictionaries; empty values render as the "pending" label.
+// `featured` projects appear in the home page showcase.
 export const projectBase = [
-  { slug: "chung-cu-dai-nhat", serviceSlug: "tu-van-thiet-ke", scale: "", investor: "", image: "/images/profile/dai-nhat-thiet-ke.webp", profilePage: 18 },
-  { slug: "crescent-mall", serviceSlug: "tu-van-thiet-ke", scale: "", investor: "", image: "/images/crescent-mall.webp", profilePage: 19 },
-  { slug: "chung-cu-c2-binh-duong", serviceSlug: "thi-cong-he-thong", scale: "", investor: "", image: "/images/binh-duong.webp", profilePage: 22 },
-  { slug: "the-pegasuite", serviceSlug: "bao-tri-sua-chua", scale: "", investor: "", image: "/images/pegasuite.webp", profilePage: 25 },
+  { slug: "chung-cu-dai-nhat", serviceSlug: "tu-van-thiet-ke", featured: true, image: "/images/profile/dai-nhat-thiet-ke.webp", profilePage: 18, wpPost: 2057 },
+  { slug: "crescent-mall", serviceSlug: "tu-van-thiet-ke", featured: true, image: "/images/crescent-mall.webp", profilePage: 19 },
+  { slug: "chung-cu-c2-binh-duong", serviceSlug: "thi-cong-he-thong", featured: true, image: "/images/binh-duong.webp", profilePage: 22, wpPost: 2056 },
+  { slug: "the-pegasuite", serviceSlug: "bao-tri-sua-chua", featured: true, image: "/images/pegasuite.webp", profilePage: 25, wpPost: 2193 },
+  { slug: "sycamore-capitaland", serviceSlug: "tu-van-thiet-ke", featured: false, image: "/images/projects/sycamore-capitaland.webp", wpPost: 2175 },
+  { slug: "fpt-online-tang-5-6", serviceSlug: "tu-van-thiet-ke", featured: false, image: "/images/projects/fpt-online-tang-5-6.webp", wpPost: 2173 },
+  { slug: "truong-chuyen-biet-tuong-lai", serviceSlug: "thi-cong-he-thong", featured: false, image: "/images/projects/truong-chuyen-biet-tuong-lai.webp", wpPost: 2177 },
+  { slug: "truong-thcs-ba-dinh", serviceSlug: "thi-cong-he-thong", featured: false, image: "/images/projects/truong-thcs-ba-dinh.webp", wpPost: 2179 },
+  { slug: "cong-ty-dai-luc", serviceSlug: "thi-cong-he-thong", featured: false, image: "/images/projects/cong-ty-dai-luc.webp", wpPost: 2181 },
+  { slug: "phu-my-hung-7-toa-nha", serviceSlug: "bao-tri-sua-chua", featured: false, image: "/images/projects/phu-my-hung-7-toa-nha.webp", wpPost: 2187 },
+  { slug: "riverside-residence", serviceSlug: "bao-tri-sua-chua", featured: false, image: "/images/projects/riverside-residence.webp", wpPost: 2191 },
+  { slug: "diamond-lotus", serviceSlug: "bao-tri-sua-chua", featured: false, image: "/images/projects/diamond-lotus.webp", wpPost: 2189 },
+  { slug: "mizuki-park", serviceSlug: "bao-tri-sua-chua", featured: false, image: "/images/projects/mizuki-park.webp", wpPost: 2200 },
+  { slug: "chung-cu-an-phu-dong", serviceSlug: "bao-tri-sua-chua", featured: false, image: "/images/projects/chung-cu-an-phu-dong.webp", wpPost: 2196 },
+  { slug: "nha-may-cj", serviceSlug: "bao-tri-sua-chua", featured: false, image: "/images/projects/nha-may-cj.webp", wpPost: 2198 },
+  { slug: "dien-luc-dong-nai", serviceSlug: "bao-tri-sua-chua", featured: false, image: "/images/projects/dien-luc-dong-nai.webp", wpPost: 2183 },
 ] as const;
 export type ProjectSlug = (typeof projectBase)[number]["slug"];
 export const projectPageSize = 8;

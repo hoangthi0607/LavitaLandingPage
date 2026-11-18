@@ -18,7 +18,7 @@ export async function ProjectSpecs({ project, linkTitle = false }: { project: Lo
   const pending = t.common.pending;
   return <dl className="projects-card-specs">
     <div><dt>{labels.name}</dt><dd>{linkTitle ? <Link href={`/du-an/${project.slug}`}>{project.title}</Link> : project.title}</dd></div>
-    <div><dt>{labels.location}</dt><dd>{project.location}</dd></div>
+    <div><dt>{labels.location}</dt><dd className={project.location ? undefined : "is-pending"}>{project.location || pending}</dd></div>
     <div><dt>{labels.scale}</dt><dd className={project.scale ? undefined : "is-pending"}>{project.scale || pending}</dd></div>
     <div><dt>{labels.scope}</dt><dd>{project.tag}</dd></div>
     <div><dt>{labels.investor}</dt><dd className={project.investor ? undefined : "is-pending"}>{project.investor || pending}</dd></div>

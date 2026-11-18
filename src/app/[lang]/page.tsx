@@ -13,7 +13,7 @@ export default async function HomePage() {
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(homepageStructuredData(content)).replace(/</g, "\\u003c") }} />
     <Hero heading={t.home.heroHeading} slides={content.slides} labels={{ ...t.home.hero, findService: t.common.findService }} />
     <HomeAbout /><Services />
-    <ProjectShowcase projects={content.projects.map(({ slug, title, location, tag, scale, investor, image }) => ({ slug, title, location, tag, scale, investor, image }))} labels={t.home.projects} pending={t.common.pending} />
+    <ProjectShowcase projects={content.projects.filter(project => project.featured).map(({ slug, title, location, tag, scale, investor, image }) => ({ slug, title, location, tag, scale, investor, image }))} labels={t.home.projects} pending={t.common.pending} />
     <News /><Contact />
   </>;
 }

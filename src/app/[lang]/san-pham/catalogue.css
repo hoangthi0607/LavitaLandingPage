@@ -42,11 +42,31 @@
 .catalogue-specifications > div + div { border-top: 1px solid color-mix(in srgb, var(--color-ink) 35%, transparent); }
 .catalogue-specifications dt { flex-shrink: 0; font-weight: 700; }
 .catalogue-specifications dd { margin: 0; text-align: right; overflow-wrap: anywhere; }
+.catalogue-subheading { margin: 28px 0 0; font-size: 1.0625rem; }
+.catalogue-subheading + .catalogue-specifications { margin-top: 12px; }
+/* Product photos: first image large, the rest as a row of small thumbnails; all open the shared viewer. */
+.catalogue-detail-media { min-width: 0; }
+.document-gallery-product { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.document-gallery-product .document-thumbnail { aspect-ratio: 1; padding: 8px; border-radius: 8px; background: var(--color-surface-soft); grid-template-rows: minmax(0, 1fr); }
+.document-gallery-product .document-thumbnail:first-child { grid-column: 1 / -1; padding: clamp(16px, 3vw, 32px); border-radius: 11px; grid-template-rows: minmax(0, 1fr) auto; }
+.document-gallery-product .document-thumbnail:not(:first-child) .document-thumbnail-action { display: none; }
+.document-gallery-product .document-thumbnail:hover, .document-gallery-product .document-thumbnail:focus-visible { box-shadow: inset 0 0 0 2px var(--color-brand); }
+.catalogue-article { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 80px); align-items: start; padding-top: 0; }
+.catalogue-body { min-width: 0; max-width: 72ch; }
+.catalogue-body h3 { font-size: 1.125rem; margin: 28px 0 8px; }
+.catalogue-body p { color: var(--color-muted); margin: 0 0 14px; overflow-wrap: anywhere; }
+.catalogue-documents { min-width: 0; }
+.catalogue-documents ul { list-style: none; margin: 0; padding: 0; }
+.catalogue-documents li + li { border-top: 1px solid var(--color-line); }
+.catalogue-documents a { display: flex; align-items: center; gap: 12px; min-height: 52px; padding: 10px 0; font-weight: 600; overflow-wrap: anywhere; }
+.catalogue-documents a svg { flex-shrink: 0; color: var(--color-accent); }
+.catalogue-documents a:hover { color: var(--color-brand); text-decoration: underline; }
+.catalogue-documents:only-child { grid-column: 1 / -1; max-width: 60ch; }
 @media (max-width: 1024px) {
   .catalogue-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 760px) {
-  .catalogue-detail { grid-template-columns: 1fr; }
+  .catalogue-detail, .catalogue-article { grid-template-columns: 1fr; }
 }
 @media (max-width: 480px) {
   .catalogue-search > div { flex-direction: column; }

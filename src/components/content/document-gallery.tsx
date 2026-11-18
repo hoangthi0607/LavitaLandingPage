@@ -4,11 +4,19 @@ import Image from "next/image";
 import { useEffect, useId, useRef, useState } from "react";
 import type { MouseEvent } from "react";
 import { ChevronLeft, ChevronRight, ExternalLink, Minus, Plus, X, ZoomIn } from "lucide-react";
-import type { ProfileDocument } from "@/data/home";
 import { format } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries/vi";
+import "./document-gallery.css";
 
-export function DocumentGallery({ title, items, labels, variant = "legal" }: { title: string; items: readonly ProfileDocument[]; labels: Dictionary["gallery"]; variant?: "legal" | "credentials" }) {
+type GalleryItem = { src: string; width: number; height: number; title: string };
+const thumbnailSizes = {
+  legal: "(max-width: 359px) 80vw, (max-width: 760px) 40vw, 20vw",
+  credentials: "(max-width: 760px) 40vw, 25vw",
+  product: "(max-width: 760px) 25vw, 12vw",
+};
+
+// Profile scans and product photos. In the "product" variant the first item is shown large (see catalogue.css).
+export function DocumentGallery({ title, items, labels, variant = "legal" }: { title: string; items: readonly GalleryItem[]; labels: Dictionary["gallery"]; variant?: keyof typeof thumbnailSizes }) {
   const [selected, setSelected] = useState<number | null>(null);
   const [zoomed, setZoomed] = useState(false);
   const [imageError, setImageError] = useState(false);
@@ -48,7 +56,7 @@ export function DocumentGallery({ title, items, labels, variant = "legal" }: { t
   return <>
     <div className={`document-gallery document-gallery-${variant}`} role="group" aria-label={title}>
       {items.map((item, index) => <a className="document-thumbnail" key={item.src} href={item.src} aria-label={format(labels.view, { title: item.title })} aria-haspopup="dialog" onClick={event => open(event, index)}>
-        <Image src={item.src} alt={item.title} width={item.width} height={item.height} sizes={variant === "legal" ? "(max-width: 359px) 80vw, (max-width: 760px) 40vw, 20vw" : "(max-width: 760px) 40vw, 25vw"} />
+        <Image src={item.src} alt={item.title} width={item.width} height={item.height} sizes={variant === "product" && index === 0 ? "(max-width: 760px) 90vw, 45vw" : thumbnailSizes[variant]} priority={variant === "product" && index === 0} />
         <span className="document-thumbnail-action"><ZoomIn size={16} aria-hidden="true" /><span>{labels.viewImage}</span></span>
       </a>)}
     </div>
