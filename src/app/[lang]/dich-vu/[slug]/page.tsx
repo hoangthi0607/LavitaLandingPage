@@ -31,7 +31,9 @@ const delay = (index: number) => ({ "--reveal-delay": `${Math.min(index, 6) * 90
 
 // Service page: full-bleed photo hero; large lead beside "what to prepare"; sticky contents with scrollspy beside
 // the sections (each laid out as steps, cards, tiles or a checklist, see serviceSectionStyles); matching projects
-// (or product groups for equipment supply); a dark call-to-action band; related services as photo cards.
+// (or product groups for equipment supply); the shared contact panel; related services as horizontal photo cards.
+// 19/11/2026: preparation card without the side rule, steps line drawn on scroll, icon badges on cards, checklist
+// rows that respond to hover.
 export default async function ServicePage({ params }: Props) {
   const content = await getContent();
   const { t, company } = content;
@@ -69,7 +71,7 @@ export default async function ServicePage({ params }: Props) {
       <p className="service-intro-lead" data-reveal="left">{service.detail.lead}</p>
       <aside className="service-prepare" data-reveal="right">
         <h2>{t.servicesPage.prepare}</h2>
-        <ul>{service.preparation.map((item) => <li key={item}><CheckCircle2 size={20} aria-hidden="true" />{item}</li>)}</ul>
+        <ul>{service.preparation.map((item, index) => <li key={item} style={delay(index)}><span className="service-prepare-icon" aria-hidden="true"><CheckCircle2 size={18} /></span>{item}</li>)}</ul>
         <p>{copy.note}</p>
       </aside>
     </section>
@@ -86,7 +88,7 @@ export default async function ServicePage({ params }: Props) {
               <div>{item.label && <h3>{item.label}</h3>}<p>{item.text}</p></div>
             </li>)}</ol>}
             {style === "cards" && <ul className="service-points">{section.items.map((item, itemIndex) => <li key={item.text} data-reveal="up" style={delay(itemIndex)}>
-              <ShieldCheck className="service-card-icon" size={26} strokeWidth={1.75} aria-hidden="true" />
+              <span className="service-card-icon" aria-hidden="true"><ShieldCheck size={22} strokeWidth={1.9} /></span>
               {item.label && <h3>{item.label}</h3>}<p>{item.text}</p>
             </li>)}</ul>}
             {style === "tiles" && <ul className="service-tiles">{section.items.map((item, itemIndex) => <li key={item.text} data-reveal="scale" style={delay(itemIndex)}>
@@ -114,12 +116,12 @@ export default async function ServicePage({ params }: Props) {
       </div>
     </div>
 
-    <section className="service-cta">
-      <div className="service-cta-inner" data-reveal="up">
-        <div><h2>{copy.heading}</h2><p>{copy.intro}</p></div>
-        <div className="service-cta-actions">
-          <Link href={contactHref(service.slug)} className="button button-primary">{copy.cta}<ArrowRight size={18} aria-hidden="true" /></Link>
-          <a href={company.phoneHref} className="button service-button-ghost"><Phone size={17} aria-hidden="true" />{company.phone}</a>
+    <section className="cta-band" aria-labelledby="service-cta-title">
+      <div className="cta-band-inner" data-reveal="up">
+        <div><h2 id="service-cta-title">{copy.heading}</h2><p>{copy.intro}</p></div>
+        <div className="cta-band-actions">
+          <Link href={contactHref(service.slug)} className="button button-light">{copy.cta}<ArrowRight size={18} aria-hidden="true" /></Link>
+          <a href={company.phoneHref} className="button cta-band-ghost"><Phone size={17} aria-hidden="true" />{company.phone}</a>
         </div>
       </div>
     </section>

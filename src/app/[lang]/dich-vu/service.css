@@ -16,10 +16,10 @@
 .service-hero .breadcrumbs a:hover, .service-hero .breadcrumbs [aria-current="page"] { color: var(--color-on-dark); }
 .service-hero h1 { margin: 20px 0 18px; color: var(--color-on-dark); font-size: clamp(2.25rem, 5vw, 4.25rem); font-weight: 800; line-height: 1.1; letter-spacing: -.01em; text-transform: uppercase; }
 .service-hero-copy > p { max-width: 56ch; margin: 0; color: var(--color-on-dark); font-size: clamp(1rem, 1.5vw, 1.1875rem); line-height: 1.65; }
-.service-hero-actions, .service-cta-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; margin-top: 32px; }
+.service-hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; margin-top: 32px; }
 .service-button-ghost { gap: 10px; border: 1px solid color-mix(in srgb, var(--color-on-dark) 70%, transparent); color: var(--color-on-dark); transition: background .25s ease, color .25s ease; }
 .service-button-ghost:hover { background: var(--color-on-dark); color: var(--color-dark); }
-.service-hero :focus-visible, .service-cta :focus-visible { outline-color: #ffd1aa; }
+.service-hero :focus-visible { outline-color: #ffd1aa; }
 @keyframes service-hero-zoom { from { transform: scale(1.14); } to { transform: scale(1); } }
 @keyframes service-rise { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
 
@@ -90,12 +90,6 @@
 .service-product-title { font-size: .9375rem; font-weight: 700; line-height: 1.35; }
 
 /* Call to action band */
-.service-cta { padding: clamp(56px, 7vw, 96px) max(var(--gutter), calc((100vw - var(--content-width)) / 2)); background: var(--color-dark); color: var(--color-on-dark); }
-.service-cta-inner { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px 48px; }
-.service-cta h2 { margin: 0 0 12px; color: var(--color-on-dark); font-size: clamp(1.75rem, 3.2vw, 2.75rem); font-weight: 800; line-height: 1.2; }
-.service-cta-inner > div:first-child { max-width: 60ch; }
-.service-cta p { margin: 0; color: var(--color-muted-on-dark); line-height: 1.7; }
-.service-cta-actions { margin-top: 0; }
 
 /* Related services */
 .service-related ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin: 32px 0 0; padding: 0; list-style: none; }
@@ -125,11 +119,55 @@
   .service-steps li { grid-template-columns: 40px minmax(0, 1fr); gap: 16px; }
   .service-step-number { width: 40px; height: 40px; }
   .service-steps::before { left: 19px; }
-  .service-hero-actions .button, .service-cta-actions .button { width: 100%; }
+  .service-hero-actions .button { width: 100%; }
 }
 @media (prefers-reduced-motion: reduce) {
   .service-hero-photo, .service-hero-copy > * { animation: none; }
   .service-toc ol[data-marker]::before, .service-points li, .service-tiles li::before, .service-products a, .service-product-photo img, .service-related-photo img, .service-step-number, .service-button-ghost { transition: none; }
   .service-points li:hover, .service-products a:hover { transform: none; }
   .service-products a:hover .service-product-photo img, .service-related a:hover .service-related-photo img { transform: none; }
+}
+
+/* 19/11/2026 motion pass. Preparation card: no side rule; icon badges; items arrive in turn. */
+.service-prepare { background: var(--color-surface); box-shadow: 0 24px 50px -34px color-mix(in srgb, var(--color-dark) 60%, transparent); }
+.service-prepare li { align-items: center; animation: service-rise .7s var(--reveal-ease) both; animation-delay: calc(.35s + var(--reveal-delay, 0ms)); }
+.service-prepare-icon { display: grid; place-items: center; flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; background: color-mix(in srgb, var(--color-accent) 12%, transparent); color: var(--color-accent); }
+@keyframes service-rise { from { opacity: 0; transform: translateY(14px); } }
+
+/* Steps: the connecting line draws as the list scrolls through (where supported); numbers pop in. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .service-steps::before { transform-origin: top; animation: service-line linear both; animation-timeline: view(); animation-range: entry 20% cover 60%; }
+    @keyframes service-line { from { transform: scaleY(0); } }
+  }
+}
+.service-step-number { transition: background .3s ease, color .3s ease, transform .4s cubic-bezier(.34, 1.56, .64, 1); }
+.service-steps li[data-scroll-reveal="pending"] .service-step-number { transform: scale(.4); }
+.service-steps li:hover .service-step-number { transform: scale(1.08); }
+
+/* Cards: filled, with an icon badge that turns red on hover. */
+.service-points li { box-shadow: 0 16px 34px -28px color-mix(in srgb, var(--color-dark) 60%, transparent); }
+.service-points li:hover { box-shadow: 0 26px 46px -28px color-mix(in srgb, var(--color-dark) 70%, transparent); }
+.service-card-icon { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; background: color-mix(in srgb, var(--color-accent) 12%, transparent); transition: background .3s ease, color .3s ease, transform .4s var(--reveal-ease); }
+.service-points li:hover .service-card-icon { background: var(--color-brand); color: white; transform: rotate(-8deg) scale(1.06); }
+
+/* Checklist rows respond to hover. */
+.service-checks li { padding-inline: 12px; border-radius: 10px; transition: background .3s ease, transform .35s var(--reveal-ease); }
+.service-checks li:hover { background: var(--color-surface-soft); transform: translateX(4px); }
+
+/* Related services: horizontal photo cards, so a single one still fills the row. */
+.service-related ul { grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); }
+.service-related a { grid-template-columns: minmax(0, .9fr) minmax(0, 1fr); grid-template-rows: none; box-shadow: 0 18px 40px -32px color-mix(in srgb, var(--color-dark) 60%, transparent); transition: transform .45s var(--reveal-ease), box-shadow .45s ease; }
+.service-related a:hover { transform: translateY(-5px); box-shadow: 0 28px 50px -32px color-mix(in srgb, var(--color-dark) 70%, transparent); }
+.service-related-photo { aspect-ratio: auto; min-height: 220px; }
+.service-related-copy { align-content: center; padding: clamp(22px, 3vw, 36px); }
+
+@media (max-width: 640px) {
+  .service-related a { grid-template-columns: 1fr; }
+  .service-related-photo { aspect-ratio: 16 / 9; min-height: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .service-prepare li { animation: none; }
+  .service-card-icon, .service-checks li, .service-related a { transition: none; }
+  .service-steps li[data-scroll-reveal="pending"] .service-step-number, .service-steps li:hover .service-step-number, .service-points li:hover .service-card-icon, .service-checks li:hover, .service-related a:hover { transform: none; }
 }

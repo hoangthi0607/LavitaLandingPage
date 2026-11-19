@@ -8,7 +8,6 @@ import { format } from "@/i18n/config";
 import { getContent } from "@/i18n/content";
 import Link from "@/i18n/link";
 import { pageMetadata } from "@/lib/metadata";
-import "./service.css";
 import "./services.css";
 
 export async function generateMetadata() {
@@ -18,7 +17,7 @@ export async function generateMetadata() {
 
 // /dich-vu: split hero with a staggered photo mosaic (each tile jumps to its service), a sticky need-group bar with
 // scroll spy, then one block per group: sticky group title on the left, service cards on the right. Ends on the dark
-// contact band shared with the service detail pages. Anchors #group-… and #<slug> are kept.
+// contact panel (.cta-band). Anchors #group-… and #<slug> are kept.
 export default async function ServicesPage() {
   const { company, services, serviceGroups, t } = await getContent();
   const copy = t.servicesPage;
@@ -74,12 +73,12 @@ export default async function ServicesPage() {
     </div>
     </div>
 
-    <section className="service-cta" aria-labelledby="services-next-title">
-      <div className="service-cta-inner" data-reveal="up">
+    <section className="cta-band" aria-labelledby="services-next-title">
+      <div className="cta-band-inner" data-reveal="up">
         <div><h2 id="services-next-title">{copy.nextHeading}</h2><p>{copy.nextText}</p></div>
-        <div className="service-cta-actions">
+        <div className="cta-band-actions">
           <Link href={contactHref()} className="button button-light">{t.common.contactLavita}<ArrowRight size={18} aria-hidden="true" /></Link>
-          <a href={company.phoneHref} className="button service-button-ghost"><Phone size={18} aria-hidden="true" />{company.phone}</a>
+          <a href={company.phoneHref} className="button cta-band-ghost"><Phone size={18} aria-hidden="true" />{company.phone}</a>
         </div>
       </div>
     </section>
