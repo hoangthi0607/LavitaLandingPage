@@ -1,5 +1,5 @@
 ﻿import Image from "next/image";
-import { ArrowRight, Mail, MapPin, Phone, Quote } from "lucide-react";
+import { ArrowRight, Mail, MapPin, Newspaper, Phone, Quote } from "lucide-react";
 import { homeClients } from "@/data/home";
 import { getContent } from "@/i18n/content";
 import { LogoMarquee } from "@/components/home/logo-marquee";
@@ -54,14 +54,30 @@ export async function Services() {
   </section>;
 }
 
-function NewsCard({ item, intl, large = false }: { item: NewsItem; intl: string; large?: boolean }) {
+const newsHref = (item: NewsItem) => `/tin-tuc/bai-viet/${item.categorySlug}/${itemSlug(item)}`;
+
+// Lead article: photo card with category and date chips; the photo zooms slowly on hover.
+// Agency articles are published in Vietnamese only, hence lang="vi".
+function NewsFeature({ item, intl }: { item: NewsItem; intl: string }) {
   const image = cdnUrl(item.filePreview);
   const date = formatDate(item.publishedDate, intl);
-  return <Link className={`home-news-card${large ? " home-news-card-large" : ""}`} href={`/tin-tuc/bai-viet/${item.categorySlug}/${itemSlug(item)}`} data-reveal={large ? "left" : "right"}>
-    {image && <Image className="home-news-image" src={image} alt="" fill unoptimized />}
-    {/* Agency articles are published in Vietnamese only. */}
-    <div lang="vi">{large ? <h3>{item.title}</h3> : <h3 className="home-news-small-title">{item.title}</h3>}{date && <p className="home-news-date">{date}</p>}</div>
+  return <Link className="home-news-feature" href={newsHref(item)} lang="vi" data-reveal="wipe">
+    {image ? <Image className="home-news-image" src={image} alt="" fill unoptimized /> : <Newspaper className="home-news-placeholder-icon" size={48} strokeWidth={1.3} aria-hidden="true" />}
+    <span className="home-news-chips"><span className="home-news-chip">{item.categoryName}</span>{date && <span className="home-news-chip is-date">{date}</span>}</span>
+    <span className="home-news-feature-copy"><h3>{item.title}</h3>{item.description && <p>{item.description}</p>}</span>
   </Link>;
+}
+
+// Other latest articles as compact rows: thumbnail, category, title, date.
+function NewsRow({ item, intl }: { item: NewsItem; intl: string }) {
+  const image = cdnUrl(item.filePreview);
+  const date = formatDate(item.publishedDate, intl);
+  return <li data-reveal="up">
+    <Link className="home-news-row" href={newsHref(item)} lang="vi">
+      <span className="home-news-thumb">{image ? <Image src={image} alt="" fill unoptimized /> : <Newspaper size={22} aria-hidden="true" />}</span>
+      <span className="home-news-row-copy"><span className="home-news-row-meta">{item.categoryName}</span><h3>{item.title}</h3>{date && <span className="home-news-row-date">{date}</span>}</span>
+    </Link>
+  </li>;
 }
 
 // Client feedback from the old lavitacons.vn site. The first paragraph is always visible; the rest opens smoothly
@@ -82,25 +98,25 @@ export async function Testimonials() {
   </section>;
 }
 
-// News in the dcons.vn layout (one large, two small): the latest articles from canhsatpccc.gov.vn,
-// falling back to the placeholder cards when the source cannot be reached.
+// News (19/11/2026): the lead article as a large photo card beside a list of four more, from canhsatpccc.gov.vn;
+// the source line sits under the heading. Falls back to the placeholder cards when the source cannot be reached.
 export async function News() {
   const { t, intl } = await getContent();
   const copy = t.home.news;
-  const latest = (await getNewsPage(1, 3))?.items ?? [];
+  const latest = (await getNewsPage(1, 5))?.items ?? [];
   const [lead, ...rest] = copy.placeholders;
   return <section id="news" className="section home-news" aria-labelledby="home-news-title">
     <div className="home-news-head" data-reveal="up">
-      <h2 id="home-news-title" className="home-title">{copy.heading}</h2>
+      <div>
+        <h2 id="home-news-title" className="home-title">{copy.heading}</h2>
+        {latest.length >= 3 && <p className="home-news-source">{t.common.source} <a href={newsSource.url} target="_blank" rel="noopener noreferrer">{t.news.sourceName}<span className="sr-only"> {t.common.newTab}</span></a>{t.news.languageNote && <> · {t.news.languageNote}</>}</p>}
+      </div>
       {latest.length > 0 && <Link className="detail-link" href="/tin-tuc">{copy.more}</Link>}
     </div>
-    {latest.length >= 3 ? <>
-      <div className="home-news-grid">
-        <NewsCard item={latest[0]} intl={intl} large />
-        <div className="home-news-side">{latest.slice(1, 3).map(item => <NewsCard key={item.id} item={item} intl={intl} />)}</div>
-      </div>
-      <p className="home-news-source">{t.common.source} <a href={newsSource.url} target="_blank" rel="noopener noreferrer">{t.news.sourceName}<span className="sr-only"> {t.common.newTab}</span></a>{t.news.languageNote && <> · {t.news.languageNote}</>}</p>
-    </> : <div className="home-news-grid">
+    {latest.length >= 3 ? <div className="home-news-layout">
+      <NewsFeature item={latest[0]} intl={intl} />
+      <ul className="home-news-list">{latest.slice(1, 5).map(item => <NewsRow key={item.id} item={item} intl={intl} />)}</ul>
+    </div> : <div className="home-news-grid">
       <article className="home-news-card home-news-card-large" data-reveal="left"><div><h3>{lead.title}</h3><p>{lead.text}</p></div></article>
       <div className="home-news-side">{rest.map((item, index) => <article className="home-news-card" key={index} data-reveal="right"><div><h3>{item.title}</h3><p>{item.text}</p></div></article>)}</div>
     </div>}
