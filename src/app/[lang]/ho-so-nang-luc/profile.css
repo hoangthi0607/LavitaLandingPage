@@ -4,7 +4,7 @@
 .profile-hero-copy { min-width: 0; }
 .profile-hero .breadcrumbs ol, .profile-hero .breadcrumbs li + li::before { color: var(--color-muted-on-dark); }
 .profile-hero .breadcrumbs a:hover, .profile-hero .breadcrumbs [aria-current="page"] { color: var(--color-on-dark); }
-.profile-hero h1 { margin: 28px 0 24px; max-width: 16ch; white-space: pre-line; font-size: clamp(2.75rem, 5.5vw, 4.75rem); font-weight: 800; line-height: 1.12; letter-spacing: -.01em; text-transform: uppercase; }
+.profile-hero h1 { margin: 28px 0 24px; max-width: 16ch; white-space: pre-line; font-size: clamp(2.75rem, 5.5vw, 4.75rem); font-weight: var(--fw-heading); line-height: 1.12; letter-spacing: -.01em; text-transform: uppercase; }
 .profile-hero-copy > p { margin: 0; white-space: pre-line; font-size: clamp(1rem, 1.6vw, 1.1875rem); color: var(--color-on-dark); }
 .profile-hero :focus-visible, .profile-credentials :focus-visible { outline-color: var(--color-on-dark); }
 .profile-company { display: grid; grid-template-columns: 1.55fr 1fr; align-items: center; gap: clamp(32px, 4vw, 64px); }
@@ -16,7 +16,7 @@
 .profile-company-copy .profile-company-name { font-size: .8125rem; margin: 16px 0 0; }
 .profile-facts { display: flex; flex-wrap: wrap; gap: 20px 36px; border-top: 1px solid var(--color-line); padding-top: 20px; margin: 0; }
 .profile-facts dt { color: var(--color-muted); font-size: .8125rem; }
-.profile-facts dd { margin: 4px 0 0; font-weight: 650; font-size: 1.375rem; }
+.profile-facts dd { margin: 4px 0 0; font-weight: var(--fw-strong); font-size: 1.375rem; }
 .profile-legal { background: var(--color-surface-soft); }
 .profile-legal > h2, .profile-credentials > h2 { margin-bottom: 40px; }
 .profile-legal-groups { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
@@ -33,14 +33,14 @@
 .profile-organization > h3 { margin-bottom: 28px; }
 .profile-organization-only { margin-top: 0; padding-top: 0; border-top: 0; }
 .profile-organization-tree { min-width: 0; }
-.profile-management { position: relative; width: fit-content; max-width: 100%; min-width: 200px; margin: 0 auto 32px; padding: 16px 24px; background: color-mix(in srgb, var(--color-on-dark) 7%, transparent); text-align: center; font-weight: 650; }
+.profile-management { position: relative; width: fit-content; max-width: 100%; min-width: 200px; margin: 0 auto 32px; padding: 16px 24px; background: color-mix(in srgb, var(--color-on-dark) 7%, transparent); text-align: center; font-weight: var(--fw-strong); }
 .profile-management::after { content: ""; position: absolute; left: 50%; top: 100%; height: 32px; border-left: 1px solid var(--color-muted-on-dark); }
 .profile-organization-tree ul { list-style: none; margin: 0; padding: 0; }
 .profile-organization-tree > ul { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; padding-top: 28px; }
 .profile-organization-tree > ul::before { content: ""; position: absolute; top: 0; left: calc((100% - 48px) / 6); right: calc((100% - 48px) / 6); border-top: 1px solid var(--color-muted-on-dark); }
 .profile-organization-tree > ul > li { position: relative; min-width: 0; padding: 20px; background: color-mix(in srgb, var(--color-on-dark) 5%, transparent); }
 .profile-organization-tree > ul > li::before { content: ""; position: absolute; left: 50%; top: -28px; height: 28px; border-left: 1px solid var(--color-muted-on-dark); }
-.profile-organization h4, .profile-organization-tree > ul > li > h3 { font-size: .9375rem; font-weight: 600; margin: 0 0 12px; }
+.profile-organization h4, .profile-organization-tree > ul > li > h3 { font-size: .9375rem; font-weight: var(--fw-medium); margin: 0 0 12px; }
 .profile-organization-tree > ul > li > ul { color: var(--color-muted-on-dark); font-size: .8125rem; }
 .profile-projects .section-heading h2 { white-space: pre-line; }
 .profile-project-layout { display: grid; grid-template-columns: 1.2fr 1fr; gap: 36px; }
@@ -51,7 +51,7 @@
 .profile-project-tu-van-thiet-ke .profile-project-photos { flex: 1; min-height: 0; aspect-ratio: auto; }
 .profile-project-pair { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
 .profile-project-pair img { object-position: center 40%; }
-.profile-project-chapter h3 { font-size: 1.1875rem; font-weight: 800; letter-spacing: .02em; text-transform: uppercase; margin-top: 18px; }
+.profile-project-chapter h3 { font-size: 1.1875rem; font-weight: var(--fw-heading); letter-spacing: .02em; text-transform: uppercase; margin-top: 18px; }
 .profile-project-links { display: flex; flex-wrap: wrap; gap: 0 24px; margin-top: 6px; }
 .profile-project-links a { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; color: var(--color-muted); font-size: .8125rem; }
 .profile-project-links a:hover { color: var(--color-brand); text-decoration: underline; }
@@ -108,7 +108,7 @@
 .profile-company-photo { overflow: hidden; border-radius: 16px; box-shadow: 0 24px 50px -34px color-mix(in srgb, var(--color-dark) 60%, transparent); }
 .profile-company-photo img { transform: scale(1.1); transition: transform 1.6s var(--reveal-ease); }
 .profile-company-photo:not([data-scroll-reveal="pending"]) img { transform: scale(1); }
-.profile-facts dd { color: var(--color-brand); font-size: 1.75rem; font-weight: 800; }
+.profile-facts dd { color: var(--color-brand); font-size: 1.75rem; font-weight: var(--fw-heading); }
 
 /* Legal albums lift on hover. */
 .document-gallery-legal { border-radius: 16px; box-shadow: 0 18px 40px -32px color-mix(in srgb, var(--color-dark) 60%, transparent); transition: transform .45s var(--reveal-ease), box-shadow .45s ease; }
@@ -133,12 +133,12 @@
 .profile-project-photos img { transition: transform .9s var(--reveal-ease); }
 .profile-project-chapter:hover .profile-project-photos img { transform: scale(1.05); }
 .profile-project-links { gap: 8px; margin-top: 12px; }
-.profile-project-links a { min-height: 40px; padding: 6px 14px; border: 1px solid var(--color-line); border-radius: 999px; color: var(--color-ink); font-weight: 600; transition: border-color .25s ease, background .25s ease, color .25s ease, transform .3s var(--reveal-ease); }
+.profile-project-links a { min-height: 40px; padding: 6px 14px; border: 1px solid var(--color-line); border-radius: 999px; color: var(--color-ink); font-weight: var(--fw-medium); transition: border-color .25s ease, background .25s ease, color .25s ease, transform .3s var(--reveal-ease); }
 .profile-project-links a:hover { border-color: var(--color-brand); background: var(--color-brand); color: white; text-decoration: none; transform: translateY(-2px); }
 
 /* Contact panel (.cta-band) with phone and email. */
 .profile-contact address { display: flex; flex-wrap: wrap; gap: 4px 24px; margin-top: 12px; font-style: normal; }
-.profile-contact address a { display: inline-flex; align-items: center; min-height: 44px; color: var(--color-on-dark); font-weight: 600; overflow-wrap: anywhere; text-decoration: underline transparent 1px; text-underline-offset: 4px; transition: color .2s ease, text-decoration-color .2s ease; }
+.profile-contact address a { display: inline-flex; align-items: center; min-height: 44px; color: var(--color-on-dark); font-weight: var(--fw-medium); overflow-wrap: anywhere; text-decoration: underline transparent 1px; text-underline-offset: 4px; transition: color .2s ease, text-decoration-color .2s ease; }
 .profile-contact address a:hover { color: #ffc493; text-decoration-color: currentColor; }
 
 @media (prefers-reduced-motion: reduce) {

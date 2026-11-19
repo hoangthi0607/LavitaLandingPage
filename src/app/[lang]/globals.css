@@ -16,17 +16,28 @@
   --gutter: clamp(20px, 5vw, 80px);
   --section-space: clamp(64px, 8vw, 120px);
   --ease-out: cubic-bezier(.16, 1, .3, 1);
+  /* Typography (19/11/2026): one family per language for headings and text, four weights by role.
+     Be Vietnam Pro for vi/en; Noto Sans SC/KR/JP (which include Latin and Vietnamese) for zh/ko/ja, so a line never
+     mixes two families. Manrope stays only in the LAVITA wordmark. */
+  --font-body: "Be Vietnam Pro", "Segoe UI", Arial, sans-serif;
+  --font-heading: var(--font-body);
+  --font-brand: var(--font-manrope), var(--font-body);
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-strong: 600;
+  --fw-heading: 700;
 }
+html:lang(zh-CN) { --font-body: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif; }
+html:lang(ko) { --font-body: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; }
+html:lang(ja) { --font-body: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif; }
 
 * { box-sizing: border-box; }
 /* Elements waiting to slide in (data-reveal left/right) sit up to 80px off-screen; without clipping, mobile
    browsers widen the layout viewport to include them and push the fixed header (menu button) off-screen.
    clip (not hidden) keeps position: sticky working. */
 html, body { overflow-x: clip; }
-/* Manrope has no CJK glyphs: Latin text keeps Manrope, Chinese/Korean/Japanese fall back to the system's CJK fonts. */
-html:lang(zh-CN) body { font-family: var(--font-manrope), "PingFang SC", "Microsoft YaHei", "Noto Sans SC", "Source Han Sans SC", sans-serif; }
-html:lang(ko) body { font-family: var(--font-manrope), "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", "Source Han Sans K", sans-serif; }
-html:lang(ja) body { font-family: var(--font-manrope), "Hiragino Sans", "Yu Gothic", "Meiryo", "Noto Sans JP", "Source Han Sans JP", sans-serif; }
+/* CJK glyphs are square and already evenly spaced: no negative tracking on headings. */
+html:lang(zh-CN) :is(h1, h2, h3, h4), html:lang(ko) :is(h1, h2, h3, h4), html:lang(ja) :is(h1, h2, h3, h4) { letter-spacing: 0; }
 /* CJK lines break between phrases where supported, so a single kana or punctuation mark is not left on its own line. */
 html:lang(zh-CN) body, html:lang(ja) body { line-break: strict; word-break: auto-phrase; }
 html:lang(ko) body { word-break: keep-all; }
@@ -35,7 +46,7 @@ body {
   margin: 0;
   background: var(--color-surface);
   color: var(--color-ink);
-  font-family: var(--font-manrope), sans-serif;
+  font-family: var(--font-body);
   font-size: 1rem;
   line-height: 1.75;
   -webkit-font-smoothing: antialiased;
@@ -50,14 +61,14 @@ button:disabled { cursor: not-allowed; opacity: .5; }
 ::selection { background: var(--color-brand); color: white; }
 html { scrollbar-color: var(--color-accent) var(--color-surface-soft); }
 p { margin: 0 0 1.25rem; }
-h1, h2, h3 { font-weight: 600; letter-spacing: -.035em; text-wrap: balance; }
+h1, h2, h3 { font-family: var(--font-heading); font-weight: var(--fw-strong); letter-spacing: -.015em; text-wrap: balance; }
 h2 { font-size: clamp(2rem, 3.5vw, 3.25rem); line-height: 1.2; margin: 0 0 1.75rem; }
 h2 span { color: var(--color-brand); }
-h3 { font-size: 1.375rem; letter-spacing: -.025em; line-height: 1.4; margin: 0; }
+h3 { font-size: 1.375rem; letter-spacing: -.01em; line-height: 1.4; margin: 0; }
 .section { padding: var(--section-space) max(var(--gutter), calc((100vw - var(--content-width)) / 2)); }
 .lead { font-size: clamp(1.125rem, 1.5vw, 1.25rem); line-height: 1.7; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
-.skip-link { position: fixed; z-index: 100; top: 16px; left: 16px; transform: translateY(-160%); background: var(--color-surface); color: var(--color-brand); padding: 12px 20px; font-weight: 700; box-shadow: 0 4px 20px #30282420; }
+.skip-link { position: fixed; z-index: 100; top: 16px; left: 16px; transform: translateY(-160%); background: var(--color-surface); color: var(--color-brand); padding: 12px 20px; font-weight: var(--fw-strong); box-shadow: 0 4px 20px #30282420; }
 .skip-link:focus { transform: translateY(0); }
 
 /* Header: fixed, in the dcons.vn structure. Logo left, capitalised menu centred, languages right.
@@ -67,19 +78,19 @@ h3 { font-size: 1.375rem; letter-spacing: -.025em; line-height: 1.4; margin: 0; 
 .site-header[data-solid="false"] { background: transparent; box-shadow: none; }
 main { padding-top: var(--header-h); }
 body:has(.site-header[data-overlay]) main { padding-top: 0; }
-.navigation { display: flex; align-items: center; gap: 24px; max-width: 1400px; min-height: var(--header-h); margin: 0 auto; padding: 8px var(--gutter); }
+.navigation { display: flex; align-items: center; gap: 16px; max-width: 1400px; min-height: var(--header-h); margin: 0 auto; padding: 8px var(--gutter); }
 /* Lockup proportions from the official logo, in em of the wordmark size: circle = 2.30 × cap height,
    circle centre level with the LAVITA wordmark, gap = 0.55 × cap height (the PNG has ~7.6% padding per side). */
 .brand { display: inline-flex; align-items: flex-start; flex-shrink: 0; gap: .245em; min-width: 0; font-size: calc(var(--nav-size) * 2.25); transition: transform .3s ease; }
 .brand:hover { transform: scale(1.02); }
 .brand img { width: 1.952em; height: 1.952em; flex-shrink: 0; object-fit: contain; }
-.brand-name { margin-top: .453em; color: var(--color-brand); min-width: 0; overflow-wrap: anywhere; font-size: 1em; font-weight: 800; letter-spacing: -.025em; line-height: 1; }
+.brand-name { margin-top: .453em; color: var(--color-brand); min-width: 0; overflow-wrap: anywhere; font-family: var(--font-brand); font-size: 1em; font-weight: 800; letter-spacing: -.025em; line-height: 1; }
 /* Slogan width matches the LAVITA wordmark, as in the official logo (0.257em at Manrope 500). */
 .brand-name small { display: block; margin-top: .14em; font-size: .257em; letter-spacing: -.01em; font-weight: 500; white-space: nowrap; }
 .brand-word { display: block; white-space: nowrap; }
 .brand-a { display: inline-block; width: .792em; height: .72em; margin: 0 .02em; vertical-align: baseline; }
 /* Menu: logo = 2.25 × menu text; capitals with slight tracking; muted until hovered or current. */
-.desktop-nav { flex: 1; display: flex; justify-content: center; align-items: center; gap: clamp(22px, 6.47vw - 49.2px, 44px); font-size: var(--nav-size); font-weight: 600; letter-spacing: .3px; text-transform: uppercase; white-space: nowrap; }
+.desktop-nav { flex: 1; display: flex; justify-content: center; align-items: center; gap: clamp(12px, 2.4vw - 14px, 44px); font-size: var(--nav-size); font-weight: var(--fw-medium); letter-spacing: 0; text-transform: uppercase; white-space: nowrap; }
 .desktop-nav a { position: relative; display: inline-flex; align-items: center; min-height: 44px; color: var(--color-muted); transition: color .3s var(--ease-nav), transform .3s var(--ease-nav); }
 .desktop-nav a:hover { color: var(--color-ink); transform: translateY(-1px) scale(1.08); }
 .desktop-nav a[aria-current="page"], .desktop-nav .nav-dropdown-link[data-active] { color: var(--color-ink); }
@@ -93,7 +104,7 @@ body:has(.site-header[data-overlay]) main { padding-top: 0; }
 .nav-dropdown-toggle { display: inline-grid; place-items: center; width: 36px; height: 44px; flex-shrink: 0; padding: 0; border: 0; background: transparent; color: inherit; cursor: pointer; }
 .nav-dropdown-toggle svg { transition: transform 180ms var(--ease-out); }
 .nav-dropdown-toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
-.nav-dropdown-panel { position: absolute; top: 100%; left: -16px; z-index: 1; width: 280px; max-width: calc(100vw - 40px); margin: 0; padding: 8px; list-style: none; border-radius: 12px; background: var(--color-surface); box-shadow: 0 8px 16px color-mix(in srgb, var(--color-dark) 10%, transparent); font-weight: 500; }
+.nav-dropdown-panel { position: absolute; top: 100%; left: -16px; z-index: 1; width: 280px; max-width: calc(100vw - 40px); margin: 0; padding: 8px; list-style: none; border-radius: 12px; background: var(--color-surface); box-shadow: 0 8px 16px color-mix(in srgb, var(--color-dark) 10%, transparent); font-weight: var(--fw-regular); }
 .nav-dropdown-panel li { min-width: 0; }
 .nav-dropdown-panel a { display: flex; width: 100%; min-height: 44px; padding: 10px 14px; border-radius: 6px; font-size: .875rem; line-height: 1.5; overflow-wrap: anywhere; color: var(--color-ink); transition: background .3s var(--ease-nav), color .3s var(--ease-nav), transform .3s var(--ease-nav); }
 .desktop-nav .nav-dropdown-panel a:hover { transform: translateX(4px); }
@@ -122,14 +133,14 @@ body:has(.site-header[data-overlay]) main { padding-top: 0; }
 /* Mobile menu drops below the header. */
 .mobile-nav { position: absolute; top: 100%; left: 0; right: 0; display: flex; flex-direction: column; gap: 6px; max-height: calc(100dvh - var(--header-h)); padding: 12px var(--gutter) 20px; overflow-y: auto; overscroll-behavior: contain; background: var(--color-surface); box-shadow: 0 8px 16px color-mix(in srgb, var(--color-dark) 10%, transparent); }
 .mobile-nav[hidden] { display: none; }
-.mobile-nav > a, .mobile-nav .nav-dropdown-heading > a { display: flex; align-items: center; flex: 1; min-height: 48px; padding: 10px 16px; border-radius: 6px; font-size: .9375rem; font-weight: 600; letter-spacing: .3px; text-transform: uppercase; color: var(--color-muted); transition: background .3s var(--ease-nav), color .3s var(--ease-nav), transform .3s var(--ease-nav); }
+.mobile-nav > a, .mobile-nav .nav-dropdown-heading > a { display: flex; align-items: center; flex: 1; min-height: 48px; padding: 10px 16px; border-radius: 6px; font-size: .9375rem; font-weight: var(--fw-medium); letter-spacing: .3px; text-transform: uppercase; color: var(--color-muted); transition: background .3s var(--ease-nav), color .3s var(--ease-nav), transform .3s var(--ease-nav); }
 .mobile-nav > a:hover, .mobile-nav > a[aria-current="page"], .mobile-nav .nav-dropdown-heading > a:hover, .mobile-nav .nav-dropdown-heading > a[aria-current="page"], .mobile-nav .nav-dropdown-heading > a[data-active] { background: var(--color-surface-soft); color: var(--color-ink); transform: translateX(4px); }
 .mobile-nav .nav-dropdown-heading { padding-right: 4px; }
 .mobile-nav .nav-dropdown-panel { position: static; width: auto; max-width: none; margin: 4px 0 0 16px; padding: 4px 0; border-radius: 0; background: transparent; box-shadow: none; }
-.mobile-nav .mobile-phone { display: inline-flex; align-items: center; gap: 12px; min-height: 48px; padding: 10px 16px; color: var(--color-brand); font-weight: 600; text-transform: none; }
+.mobile-nav .mobile-phone { display: inline-flex; align-items: center; gap: 12px; min-height: 48px; padding: 10px 16px; color: var(--color-brand); font-weight: var(--fw-medium); text-transform: none; }
 .mobile-languages { padding: 4px 8px 8px; }
 @media (min-width: 600px) { .mobile-languages { display: none; } }
-@media (max-width: 1099px) {
+@media (max-width: 1199px) {
   :root { --header-h: 76px; }
   .desktop-nav { display: none; }
   .menu-toggle { display: flex; }
@@ -146,25 +157,25 @@ body:has(.site-header[data-overlay]) main { padding-top: 0; }
 }
 
 /* Photography, one clear action, timed rotation with manual controls. */
-.button { display: inline-flex; align-items: center; justify-content: center; gap: 24px; max-width: 100%; padding: 15px 22px; min-height: 50px; font-size: .875rem; font-weight: 650; transition: background .2s var(--ease-out); }
+.button { display: inline-flex; align-items: center; justify-content: center; gap: 24px; max-width: 100%; padding: 15px 22px; min-height: 50px; font-size: .875rem; font-weight: var(--fw-strong); transition: background .2s var(--ease-out); }
 .button-primary { background: var(--color-brand); color: white; }
 .button-primary:hover { background: var(--color-brand-hover); }
 .button-light { background: var(--color-on-dark); color: var(--color-dark); }
 .button-light:hover { background: #efddc9; }
 
 /* Content remains open; separation follows the information. */
-.detail-link { display: inline-flex; align-items: center; gap: 24px; border-bottom: 1px solid var(--color-line); padding: 10px 0; min-height: 44px; font-size: .875rem; font-weight: 650; }
+.detail-link { display: inline-flex; align-items: center; gap: 24px; border-bottom: 1px solid var(--color-line); padding: 10px 0; min-height: 44px; font-size: .875rem; font-weight: var(--fw-strong); }
 .detail-link:hover { color: var(--color-brand); border-color: var(--color-brand); }
 .section-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; margin-bottom: 48px; }
 .section-heading h2 { margin: 0; }
 .project-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px 36px; }
 .project-photo { position: relative; aspect-ratio: 1.55; overflow: hidden; background: var(--color-surface-soft); }
 .project-photo img { object-fit: cover; }
-.project-photo>span { position: absolute; top: 18px; left: 18px; padding: 7px 12px; background: var(--color-surface); font-size: .75rem; font-weight: 650; }
+.project-photo>span { position: absolute; top: 18px; left: 18px; padding: 7px 12px; background: var(--color-surface); font-size: .75rem; font-weight: var(--fw-strong); }
 .project-info { padding-top: 20px; }
 .project-info h3 { margin-bottom: 6px; }
 .project-info p { font-size: .875rem; color: var(--color-muted); margin: 0; }
-.project-link { display: inline-flex; gap: 14px; align-items: center; min-height: 44px; margin-top: 8px; font-size: .8125rem; font-weight: 600; }
+.project-link { display: inline-flex; gap: 14px; align-items: center; min-height: 44px; margin-top: 8px; font-size: .8125rem; font-weight: var(--fw-medium); }
 .project-link:hover { color: var(--color-brand); text-decoration: underline; }
 .project-info h3 a:hover { color: var(--color-brand); text-decoration: underline; }
 /* Footer: tkfire.com.vn structure on warm charcoal. Brand + intro, company + head office, services, links;
@@ -176,12 +187,12 @@ body:has(.site-header[data-overlay]) main { padding-top: 0; }
 .footer-about .brand:hover { transform: none; }
 .footer-about .brand-name small { color: var(--color-muted-on-dark); }
 .footer-about p { max-width: 34ch; margin: 0; color: var(--color-muted-on-dark); font-size: .875rem; line-height: 1.75; }
-.footer-title { display: flex; align-items: center; gap: 8px; margin: 0 0 18px; color: var(--color-on-dark); font-size: 1.0625rem; font-weight: 700; letter-spacing: .02em; line-height: 1.4; text-transform: uppercase; }
+.footer-title { display: flex; align-items: center; gap: 8px; margin: 0 0 18px; color: var(--color-on-dark); font-size: 1.0625rem; font-weight: var(--fw-strong); letter-spacing: .02em; line-height: 1.4; text-transform: uppercase; }
 .footer-title::after { content: ""; flex-shrink: 0; width: 0; height: 0; border-style: solid; border-width: 0 0 9px 9px; border-color: transparent transparent var(--color-accent) transparent; }
 .footer-company { min-width: 0; }
-.footer-company h3 { margin: 0 0 10px; color: var(--color-on-dark); font-size: .9375rem; font-weight: 700; letter-spacing: .02em; text-transform: uppercase; }
+.footer-company h3 { margin: 0 0 10px; color: var(--color-on-dark); font-size: .9375rem; font-weight: var(--fw-strong); letter-spacing: .02em; text-transform: uppercase; }
 .footer-details { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; color: var(--color-muted-on-dark); font-size: .875rem; line-height: 1.75; overflow-wrap: anywhere; }
-.footer-details span { color: var(--color-on-dark); font-weight: 600; }
+.footer-details span { color: var(--color-on-dark); font-weight: var(--fw-medium); }
 .footer-details a, .footer-col a { color: var(--color-muted-on-dark); text-decoration: underline 1px transparent; text-underline-offset: 4px; }
 .footer-details a:hover, .footer-col a:hover { color: var(--color-on-dark); text-decoration-color: currentColor; }
 .footer-col { min-width: 0; }

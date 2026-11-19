@@ -38,7 +38,7 @@ export function Header({ content }: { content: HeaderContent }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
   useEffect(() => {
-    const media = window.matchMedia("(min-width: 1100px)");
+    const media = window.matchMedia("(min-width: 1200px)");
     const onResize = () => { setExpandedMenu(null); if (media.matches) setOpen(false); };
     media.addEventListener("change", onResize);
     return () => media.removeEventListener("change", onResize);

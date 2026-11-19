@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { preload } from "react-dom";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { businessStructuredData } from "@/data/structured-data";
 import { localeInfo, locales } from "@/i18n/config";
 import { getContent } from "@/i18n/content";
 import { alternates } from "@/lib/metadata";
+import "./fonts.css";
 import "./globals.css";
 import "./content.css";
 import "./contact.css";
@@ -16,6 +18,11 @@ const manrope = localFont({
   display: "swap",
   weight: "200 800",
 });
+
+// Noto Sans per CJK language (public/fonts/noto-sans-*.css, ~100 unicode-range slices each); vi/en need none.
+const cjkFonts: Partial<Record<string, string>> = { zh: "/fonts/noto-sans-sc.css", ko: "/fonts/noto-sans-kr.css", ja: "/fonts/noto-sans-jp.css" };
+// The Be Vietnam Pro slices almost every vi/en page needs above the fold (text 400, headings and labels 600).
+const latinPreloads = ["latin-400", "vietnamese-400", "latin-600", "vietnamese-600"];
 
 export function generateStaticParams() {
   return locales.map(lang => ({ lang }));
@@ -46,5 +53,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function RootLayout({ children }: LayoutProps<"/[lang]">) {
   const content = await getContent();
   const { t, locale } = content;
-  return <html lang={localeInfo[locale].htmlLang} className={manrope.variable} data-scroll-behavior="smooth"><body><a className="skip-link" href="#main-content">{t.common.skipLink}</a><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(businessStructuredData(content)).replace(/</g, "\\u003c") }} /><Header content={{ t: { nav: t.nav }, navigation: content.navigation, services: content.services.filter(service => service.hasProjects).map(({ slug, title }) => ({ slug, title })), phone: content.company.phone, phoneHref: content.company.phoneHref, tagline: t.company.tagline }} /><main id="main-content" tabIndex={-1}>{children}</main><Footer /></body></html>;
+  const cjk = cjkFonts[locale];
+  if (!cjk) for (const name of latinPreloads) preload(`/fonts/be-vietnam-pro/${name}.woff2`, { as: "font", type: "font/woff2", crossOrigin: "anonymous" });
+  return <html lang={localeInfo[locale].htmlLang} className={manrope.variable} data-scroll-behavior="smooth"><body>{cjk && <link rel="stylesheet" href={cjk} precedence="fonts" />}<a className="skip-link" href="#main-content">{t.common.skipLink}</a><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(businessStructuredData(content)).replace(/</g, "\\u003c") }} /><Header content={{ t: { nav: t.nav }, navigation: content.navigation, services: content.services.filter(service => service.hasProjects).map(({ slug, title }) => ({ slug, title })), phone: content.company.phone, phoneHref: content.company.phoneHref, tagline: t.company.tagline }} /><main id="main-content" tabIndex={-1}>{children}</main><Footer /></body></html>;
 }

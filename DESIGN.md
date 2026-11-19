@@ -21,14 +21,25 @@ Thông tin doanh nghiệp, dịch vụ, năm thành lập, phạm vi dự án v�
 Theo yêu cầu người dùng, toàn site chuyển dần sang bố cục, cấu trúc trang và chuyển động của [dcons.vn/gioi-thieu](https://dcons.vn/gioi-thieu), làm theo từng giai đoạn, người dùng duyệt sau mỗi giai đoạn: 1) khung chung → 2) Về Lavita → 3) Dự án → 4) Liên hệ → 5) Trang chủ → 6) Dịch vụ, Sản phẩm, Hồ sơ. Giữ màu đỏ–cam và font Manrope của Lavita, không dùng màu nâu–cam, font Roboto, logo, ảnh hay nội dung của dcons. Trang chủ cuộn bình thường (không fullpage). Ở chỗ dcons có nội dung mà Lavita chưa có dữ liệu, dựng khung với nhãn “Đang cập nhật” để bổ sung sau, không bịa số liệu.
 
 Giai đoạn 1 (khung chung):
-- **Header** cố định, cao 84 px (76 px dưới 1100 px, 70 px dưới 480 px), nền trắng với bóng mềm `10px 10px 40px`. Logo trái, menu IN HOA căn giữa (cỡ 13–14 px, đậm 600, giãn .3px, màu phụ; hover chuyển màu chữ chính và phóng nhẹ), cờ ngôn ngữ phải. Dưới 1100 px dùng nút hamburger ba gạch xoay thành dấu X, menu thả xuống ngay dưới header. Trên trang chủ header trong suốt trên banner (chữ menu sáng, logo luôn giữ màu đỏ gốc, có dải tối mờ phía trên banner để giữ tương phản) và chuyển trắng sau khi cuộn 24 px, chuyển động .6s.
+- **Header** cố định, cao 84 px (76 px dưới 1200 px, 70 px dưới 480 px), nền trắng với bóng mềm `10px 10px 40px`. Logo trái, menu IN HOA căn giữa (cỡ 13–14 px, đậm 500, không giãn chữ, khoảng cách mục co theo màn hình 12–44 px, màu phụ; hover chuyển màu chữ chính và phóng nhẹ), cờ ngôn ngữ phải. Dưới 1200 px (từ 19/11/2026, vì menu tiếng Việt bằng Be Vietnam Pro rộng hơn) dùng nút hamburger ba gạch xoay thành dấu X, menu thả xuống ngay dưới header. Trên trang chủ header trong suốt trên banner (chữ menu sáng, logo luôn giữ màu đỏ gốc, có dải tối mờ phía trên banner để giữ tương phản) và chuyển trắng sau khi cuộn 24 px, chuyển động .6s.
 - **Footer** (từ 18/11/2026, theo bố cục tkfire.com.vn): nền warm charcoal `--color-dark`, chữ `--color-on-dark`/`--color-muted-on-dark`; bốn cột: logo + đoạn giới thiệu (căn giữa); tên công ty IN HOA + “Trụ sở” (địa chỉ, hotline, email, website, mã số thuế); “Dịch vụ PCCC” dẫn tới trang chi tiết từng dịch vụ; “Liên kết”. Tiêu đề cột IN HOA kèm tam giác cam nhỏ; đường kẻ mảnh và dòng bản quyền căn giữa. Hai cột dưới 1100 px, một cột dưới 640 px (danh sách link chia hai cột). Không có hiệu ứng trượt vào khi cuộn hay dịch chuyển khi rê chuột, chỉ đổi màu và gạch chân. Chữ logo giữ đỏ thương hiệu trên nền tối (logo được miễn yêu cầu tương phản WCAG 1.4.3).
 - **Tiêu đề trang** (`page-intro`): chữ IN HOA, đậm 800, nền trắng.
 - **Chuyển động**: `app/template.tsx` làm mờ dần trang mới khi chuyển trang (450 ms) và bật lại hiệu ứng cuộn. Phần tử dưới màn hình đầu tiên trượt vào một lần khi cuộn tới (800 ms, `cubic-bezier(.23,1,.32,1)`): mặc định đi lên 40 px; có thể chọn `data-reveal="left|right|down|scale|fade"`. Nội dung luôn hiển thị khi không có JavaScript, khi giảm chuyển động hoặc khi focus bằng bàn phím. `html, body` dùng `overflow-x: clip` vì phần tử chờ trượt vào có thể nằm lệch 80 px ngoài màn hình; thiếu dòng này, trình duyệt mobile nới rộng trang và đẩy nút menu ra khỏi màn hình. Khi kiểm tra tràn ngang phải giả lập thiết bị di động thật (`isMobile`).
 
 ## Typography và token
 
-Manrope được lưu trong `public/fonts/manrope-variable.ttf`, tải bằng `next/font/local` qua biến `--font-manrope` và hỗ trợ dấu tiếng Việt. Giấy phép font nằm tại `public/fonts/OFL-Manrope.txt`. Không phụ thuộc dịch vụ font bên ngoài khi mở trang hoặc build.
+Hệ chữ theo ngôn ngữ (từ 19/11/2026): mỗi ngôn ngữ dùng **một** họ chữ cho cả tiêu đề lẫn nội dung, để một dòng không bao giờ trộn hai font. Tất cả tự host, không phụ thuộc dịch vụ font bên ngoài khi mở trang hoặc build.
+
+| Ngôn ngữ | Font | Nạp |
+| --- | --- | --- |
+| vi, en | Be Vietnam Pro 400/500/600/700 | `src/app/[lang]/fonts.css`, file woff2 tách lát latin / latin-ext / vietnamese trong `public/fonts/be-vietnam-pro/`; preload lát 400 và 600 |
+| zh | Noto Sans SC (variable 400–700) | `public/fonts/noto-sans-sc.css`, chỉ nạp trên trang zh |
+| ko | Noto Sans KR | `public/fonts/noto-sans-kr.css`, chỉ trang ko |
+| ja | Noto Sans JP | `public/fonts/noto-sans-jp.css`, chỉ trang ja |
+
+Bộ Noto được Google tách sẵn khoảng 100–124 lát theo `unicode-range`, trình duyệt chỉ tải lát chứa ký tự có trên trang; Noto có sẵn Latin và tiếng Việt nên địa chỉ, số trên trang CJK cùng một font. Manrope (`public/fonts/manrope-variable.ttf`, `--font-manrope`) chỉ còn dùng cho chữ LAVITA trong logo (`--font-brand`) và ảnh OG. Giấy phép: `public/fonts/OFL-*.txt`.
+
+Token: `--font-body`, `--font-heading` (đổi theo `html:lang`), `--font-brand`. Độ đậm chỉ dùng bốn token: `--fw-regular` 400 (chữ thường), `--fw-medium` 500 (menu, link, đoạn dẫn, meta), `--fw-strong` 600 (nhãn, nút, chip, chữ nhấn, heading mặc định), `--fw-heading` 700 (tiêu đề và số lớn). Không viết số độ đậm trực tiếp trong CSS (trừ logo). Heading giãn chữ âm nhẹ (-.015em, h3 -.01em) để dấu tiếng Việt không chạm nhau; trên trang CJK heading không giãn chữ. Nhãn IN HOA nhỏ giãn .06–.08em.
 
 | Vai trò | Quy tắc |
 | --- | --- |

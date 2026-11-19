@@ -6,7 +6,7 @@ Before changing the landing page, read `DESIGN.md` and the applicable design gui
 
 Preserve Lavita's identity, Vietnamese content, and the facts in the supplied company profile. Keep facts and structure in `src/data/home.ts` and visible text in `src/i18n/dictionaries/` (Vietnamese `vi.ts` is the source; en/zh/ko/ja must keep the same keys), separate from layout and client interactions. Use `@/i18n/link` for internal links so visitors stay in their language. Keep Next.js Server Components as the default; use client components for browser interactions.
 
-Use the established semantic CSS tokens and self-hosted Manrope font. Keep service descriptions, project PCCC scopes, and working contact/PDF links. Do not invent certifications, testimonials, revenue, or backend behavior. Growth plans in the profile are not realized revenue.
+Use the established semantic CSS tokens and the self-hosted per-language fonts (Be Vietnam Pro for vi/en, Noto Sans SC/KR/JP for zh/ko/ja, Manrope only in the LAVITA wordmark; see DESIGN.md). Keep service descriptions, project PCCC scopes, and working contact/PDF links. Do not invent certifications, testimonials, revenue, or backend behavior. Growth plans in the profile are not realized revenue.
 
 For interface changes, verify relevant desktop/mobile behavior, keyboard access, reduced motion, content overflow, and contrast. Run typecheck/build when appropriate. Browser QA tools used during this task live in ignored `.tmp/`; they are not project dependencies. Record verification limits accurately.
 
