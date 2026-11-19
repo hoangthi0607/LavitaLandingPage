@@ -256,7 +256,7 @@ export const ko: Dictionary = {
     cta: "제품 상담하기", allCategories: "전체 분류 보기",
     detailLabel: "제품 정보", detailHeading: "제품 정보", sku: "제품 코드: {sku}", seeCategory: "{category} 분류 보기",
     specsHeading: "기술 사양", bodyHeading: "제품 설명", documentsHeading: "기술 자료",
-    galleryLabel: "{title} 이미지", imageTitle: "{title} – 이미지 {index}", paginationLabel: "제품 페이지 이동",
+    galleryLabel: "{title} 이미지", imageTitle: "{title} – 이미지 {index}", paginationLabel: "제품 페이지 이동", related: "같은 그룹의 제품",
   },
   contactPage: {
     metaTitle: "소방 상담 문의",

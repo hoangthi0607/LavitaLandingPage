@@ -256,7 +256,7 @@ export const ja: Dictionary = {
     cta: "製品について相談する", allCategories: "すべてのカテゴリーを見る",
     detailLabel: "製品情報", detailHeading: "製品情報", sku: "製品コード：{sku}", seeCategory: "{category}を見る",
     specsHeading: "技術仕様", bodyHeading: "製品説明", documentsHeading: "技術資料",
-    galleryLabel: "{title}の画像", imageTitle: "{title} – 画像{index}", paginationLabel: "製品ページ送り",
+    galleryLabel: "{title}の画像", imageTitle: "{title} – 画像{index}", paginationLabel: "製品ページ送り", related: "同じグループの製品",
   },
   contactPage: {
     metaTitle: "消防のご相談・お問い合わせ",

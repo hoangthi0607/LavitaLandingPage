@@ -256,7 +256,7 @@ export const zh: Dictionary = {
     cta: "咨询产品", allCategories: "查看全部类别",
     detailLabel: "产品信息", detailHeading: "产品信息", sku: "产品型号：{sku}", seeCategory: "查看{category}类别",
     specsHeading: "技术参数", bodyHeading: "产品介绍", documentsHeading: "技术资料",
-    galleryLabel: "{title}图片", imageTitle: "{title} – 图片{index}", paginationLabel: "产品分页",
+    galleryLabel: "{title}图片", imageTitle: "{title} – 图片{index}", paginationLabel: "产品分页", related: "同类产品",
   },
   contactPage: {
     metaTitle: "消防咨询联系方式",

@@ -256,7 +256,7 @@ export const en: Dictionary = {
     cta: "Discuss products", allCategories: "View all categories",
     detailLabel: "Product information", detailHeading: "Product information", sku: "Product code: {sku}", seeCategory: "View {category}",
     specsHeading: "Specifications", bodyHeading: "Product description", documentsHeading: "Technical documents",
-    galleryLabel: "{title} images", imageTitle: "{title} – image {index}", paginationLabel: "Product pagination",
+    galleryLabel: "{title} images", imageTitle: "{title} – image {index}", paginationLabel: "Product pagination", related: "More in this group",
   },
   contactPage: {
     metaTitle: "Contact for Fire Protection Advice",

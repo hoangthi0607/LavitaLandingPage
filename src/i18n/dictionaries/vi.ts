@@ -257,7 +257,7 @@ export const vi = {
     cta: "Trao đổi về sản phẩm", allCategories: "Xem tất cả danh mục",
     detailLabel: "Thông tin sản phẩm", detailHeading: "Thông tin sản phẩm", sku: "Mã sản phẩm: {sku}", seeCategory: "Xem nhóm {category}",
     specsHeading: "Thông số kỹ thuật", bodyHeading: "Mô tả sản phẩm", documentsHeading: "Tài liệu kỹ thuật",
-    galleryLabel: "Hình ảnh {title}", imageTitle: "{title} – ảnh {index}", paginationLabel: "Phân trang sản phẩm",
+    galleryLabel: "Hình ảnh {title}", imageTitle: "{title} – ảnh {index}", paginationLabel: "Phân trang sản phẩm", related: "Sản phẩm cùng nhóm",
   },
   contactPage: {
     metaTitle: "Liên hệ tư vấn PCCC",

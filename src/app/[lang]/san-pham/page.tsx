@@ -3,6 +3,7 @@ import type { CSSProperties } from "react";
 import { ArrowRight, LayoutGrid, Package, PackageSearch, Phone, Search } from "lucide-react";
 import { Breadcrumbs } from "@/components/content/breadcrumbs";
 import { Pagination } from "@/components/content/pagination";
+import { ProductCard } from "@/components/content/product-card";
 import { catalogueHref, normalizeProductSearch, productContactHref, productPageSize } from "@/data/products";
 import { format, localizeHref } from "@/i18n/config";
 import { getContent } from "@/i18n/content";
@@ -92,18 +93,7 @@ export default async function ProductsPage({ searchParams }: { searchParams: Pro
       </div>
 
       {items.length > 0 ? <>
-        <div className="prod-grid">{items.map(product => <article className="prod-card" key={product.slug} data-reveal="up">
-          <div className="prod-card-image">
-            {product.images?.[0] ? <Image src={product.images[0].src} alt={product.title} fill sizes="(max-width: 480px) 90vw, (max-width: 1024px) 45vw, 24vw" /> : <Package size={52} strokeWidth={1.4} aria-hidden="true" />}
-            <span className="prod-card-cta" aria-hidden="true">{copy.view}</span>
-          </div>
-          <div className="prod-card-body">
-            {!category && <p className="prod-card-group">{categoryTitle(product.categorySlug)}</p>}
-            <h3><Link href={`/san-pham/${product.slug}`}>{product.title}</Link></h3>
-            {product.sku && <p className="prod-card-sku">{format(copy.sku, { sku: product.sku })}</p>}
-            {product.description && <p className="prod-card-desc">{product.description}</p>}
-          </div>
-        </article>)}</div>
+        <div className="prod-grid">{items.map(product => <ProductCard key={product.slug} product={product} group={category ? undefined : categoryTitle(product.categorySlug)} copy={copy} />)}</div>
         <Pagination page={page} pageCount={pageCount} href={number => toList(catalogueHref(category?.slug, keyword, number))} label={copy.paginationLabel} />
       </> : <div className="catalogue-empty" data-reveal="up">
         <PackageSearch size={46} strokeWidth={1.4} aria-hidden="true" />
