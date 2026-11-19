@@ -46,20 +46,6 @@ span.pagination-arrow { opacity: .3; }
 .content-next p { color: var(--color-muted); margin-bottom: 0; }
 .content-next > .button, .content-next > div > .button { flex-shrink: 0; }
 .content-return { padding-top: 20px; padding-bottom: 48px; }
-.service-directory { padding-top: clamp(48px, 6vw, 80px); }
-.service-group-intro { margin-bottom: clamp(32px, 4vw, 56px); }
-.service-group + .service-group { margin-top: clamp(80px, 9vw, 128px); }
-.service-group-intro p { margin: 0; color: var(--color-muted); max-width: 60ch; }
-.service-cards { display: grid; gap: clamp(56px, 7vw, 96px); }
-.service-card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: clamp(32px, 6vw, 88px); }
-.service-card.is-reverse .service-card-photo { order: 2; }
-.service-card-photo { position: relative; aspect-ratio: 4 / 3; overflow: hidden; border-radius: 11px; box-shadow: 0 18px 40px -24px color-mix(in srgb, var(--color-dark) 55%, transparent); }
-.service-card-photo img { object-fit: cover; transition: transform .55s var(--ease-out); }
-.service-card:hover .service-card-photo img { transform: scale(1.04); }
-.service-card-copy { min-width: 0; }
-.service-card-copy h3 { margin: 0 0 14px; font-size: clamp(1.5rem, 2.4vw, 2rem); font-weight: 800; letter-spacing: .01em; text-transform: uppercase; }
-.service-card-copy > p { margin: 0; max-width: 56ch; color: var(--color-muted); }
-.service-card-copy h4 { margin: 28px 0 0; font-size: 1rem; font-weight: 800; }
 .content-evidence { background: var(--color-surface-soft); }
 .content-project .project-photo { display: block; }
 .content-project .project-photo img { transition: transform .5s var(--ease-out); }
@@ -76,13 +62,8 @@ span.pagination-arrow { opacity: .3; }
 @media (max-width: 1100px) {
   .project-detail { grid-template-columns: 1.2fr 1fr; }
 }
-@media (max-width: 900px) {
-  .service-card { grid-template-columns: 1fr; gap: 24px; }
-  .service-card.is-reverse .service-card-photo { order: 0; }
-}
 @media (max-width: 760px) {
   .project-detail { grid-template-columns: 1fr; gap: 28px; }
-  .service-group-intro p { max-width: 64ch; }
   .project-detail-photo { aspect-ratio: 1.4; }
   .content-next { flex-direction: column; align-items: flex-start; gap: 28px; }
   .content-next h2 { max-width: 24ch; }
@@ -94,7 +75,6 @@ span.pagination-arrow { opacity: .3; }
   .content-actions .button, .content-next > .button { max-width: 100%; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .content-project .project-photo img, .service-card-photo img { transition: none; }
-  .service-card:hover .service-card-photo img { transform: none; }
+  .content-project .project-photo img { transition: none; }
   .content-project .project-photo:hover img { transform: none; }
 }
