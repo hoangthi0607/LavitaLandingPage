@@ -102,3 +102,64 @@
   .contact-remove-reference { margin-left: auto; }
   .contact-compose-action .button { width: 100%; padding-inline: 16px; flex-wrap: wrap; }
 }
+
+/* 19/11/2026 motion pass. Title rises with a red bar; contact blocks are icon cards that arrive in turn. */
+.contact-hero h1 { animation: contact-rise .9s var(--reveal-ease) both; }
+.contact-hero h1::after { content: ""; display: block; width: 72px; height: 5px; margin-top: 20px; border-radius: 3px; background: var(--color-brand); transform-origin: left; animation: contact-bar 1s .35s var(--reveal-ease) both; }
+.contact-blocks { display: grid; gap: 14px; margin-left: 0; }
+.contact-block { position: relative; margin: 0; padding: 22px 24px 22px 84px; border-radius: 16px; background: var(--color-surface); box-shadow: 0 14px 30px -26px color-mix(in srgb, var(--color-dark) 60%, transparent); transition: transform .45s var(--reveal-ease), box-shadow .45s ease; animation: contact-rise .9s var(--reveal-ease) both; }
+.contact-block:nth-child(1) { animation-delay: .12s; }
+.contact-block:nth-child(2) { animation-delay: .2s; }
+.contact-block:nth-child(3) { animation-delay: .28s; }
+.contact-block:hover { transform: translateY(-4px); box-shadow: 0 24px 40px -28px color-mix(in srgb, var(--color-dark) 70%, transparent); }
+.contact-block-icon { position: absolute; left: 22px; top: 22px; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: color-mix(in srgb, var(--color-brand) 10%, transparent); color: var(--color-brand); transition: background .3s ease, color .3s ease, transform .4s var(--reveal-ease); }
+.contact-block:hover .contact-block-icon { background: var(--color-brand); color: white; transform: scale(1.06); }
+.contact-block h2 { margin-bottom: 6px; font-size: 1.125rem; font-weight: 800; }
+.contact-list { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px 24px; }
+.contact-hero-actions { margin-top: 10px; animation: contact-rise .9s .36s var(--reveal-ease) both; }
+@keyframes contact-rise { from { opacity: 0; transform: translateY(24px); } }
+@keyframes contact-bar { from { transform: scaleX(0); } }
+
+/* Map: fades and settles in; the office marker drops onto its spot before the ripples start. */
+.vn-map svg { animation: contact-map-in 1.2s .1s var(--reveal-ease) both; }
+.vn-map-marker .vn-map-logo { animation: contact-drop .8s .8s cubic-bezier(.34, 1.56, .64, 1) both; }
+.vn-map-ripple { animation-delay: 1.4s; }
+.vn-map-ripple-late { animation-delay: 2.6s; }
+.vn-map-label { animation-delay: 1.2s; }
+.vn-map-land { transition: fill .4s ease; }
+.vn-map:hover .vn-map-land { fill: color-mix(in srgb, var(--color-muted) 44%, var(--color-surface)); }
+@keyframes contact-map-in { from { opacity: 0; transform: translateY(24px) scale(.96); } }
+@keyframes contact-drop { from { opacity: 0; transform: translateY(-60px); } 70% { opacity: 1; } }
+
+/* Composer: sticky intro beside the form card; rounded fields with a red focus glow. */
+.contact-compose-intro { position: sticky; top: calc(var(--header-h) + 32px); align-self: start; }
+.contact-composer { padding: clamp(24px, 3.2vw, 44px); border-top: 0; border-radius: 20px; background: var(--color-surface); box-shadow: 0 24px 50px -36px color-mix(in srgb, var(--color-dark) 60%, transparent); }
+.contact-composer > h2:first-child, .contact-composer > h3:first-child { margin-top: 0; }
+.contact-field input,
+.contact-field select,
+.contact-field textarea { border-color: var(--color-line); border-radius: 10px; background: var(--color-surface); transition: border-color .25s ease, box-shadow .25s ease; }
+.contact-field input:hover,
+.contact-field select:hover,
+.contact-field textarea:hover { border-color: color-mix(in srgb, var(--color-muted) 70%, var(--color-line)); }
+.contact-field input:focus,
+.contact-field select:focus,
+.contact-field textarea:focus { border-color: var(--color-brand); box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-brand) 14%, transparent); outline: none; }
+.contact-field input:focus-visible,
+.contact-field select:focus-visible,
+.contact-field textarea:focus-visible { outline: 2px solid var(--color-brand); outline-offset: 2px; }
+.contact-reference { border-radius: 12px; }
+.contact-compose-action .button { transition: background .2s var(--ease-out), transform .3s var(--ease-out), box-shadow .3s ease; }
+.contact-compose-action .button:hover { transform: translateY(-3px); box-shadow: 0 14px 28px -14px color-mix(in srgb, var(--color-brand) 70%, transparent); }
+
+@media (max-width: 900px) {
+  .contact-compose-intro { position: static; }
+}
+@media (max-width: 480px) {
+  .contact-block { padding: 18px 18px 18px 72px; }
+  .contact-block-icon { left: 16px; top: 18px; width: 40px; height: 40px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .contact-hero h1, .contact-hero h1::after, .contact-block, .contact-hero-actions, .vn-map svg, .vn-map-marker .vn-map-logo { animation: none; }
+  .contact-block, .contact-block-icon, .vn-map-land, .contact-field input, .contact-field select, .contact-field textarea, .contact-compose-action .button { transition: none; }
+  .contact-block:hover, .contact-block:hover .contact-block-icon, .contact-compose-action .button:hover { transform: none; }
+}

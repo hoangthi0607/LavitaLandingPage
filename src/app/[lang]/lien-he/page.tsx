@@ -1,4 +1,4 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Building2, MapPin, Phone } from "lucide-react";
 import { ContactComposer } from "@/components/contact/contact-composer";
 import { VietnamMap } from "@/components/contact/vietnam-map";
 import { Breadcrumbs } from "@/components/content/breadcrumbs";
@@ -23,7 +23,9 @@ function singleValue(value: string | string[] | undefined) {
 }
 
 // Structure follows dcons.vn/lien-he: large title, contact blocks and two actions beside a map of Việt Nam.
-// The email composer (Lavita's main contact flow) follows directly below.
+// The email composer (Lavita's main contact flow) follows directly below. 19/11/2026: the title rises, the contact
+// blocks are icon cards that arrive in turn, the map fades in and the office marker drops onto Hồ Chí Minh City;
+// the composer sits in a card beside a sticky intro.
 export default async function ContactPage({
   searchParams,
 }: {
@@ -49,14 +51,17 @@ export default async function ContactPage({
           {hasContext && <p className="contact-context">{copy.contextBefore}<a href="#soan-email">{copy.contextLink}</a>{copy.contextAfter}</p>}
           <div className="contact-blocks">
             <div className="contact-block">
+              <span className="contact-block-icon" aria-hidden="true"><MapPin size={20} /></span>
               <h2>{copy.headOffice}</h2>
               <p><a href={mapsHref} target="_blank" rel="noopener noreferrer" lang="vi">{company.address}<span className="sr-only" lang={content.locale}> {copy.mapsNewTab}</span></a></p>
             </div>
             <div className="contact-block">
+              <span className="contact-block-icon" aria-hidden="true"><Building2 size={20} /></span>
               <h2>{copy.businessInfo}</h2>
               <p>{company.name}<br />{t.common.taxCode}: {company.taxCode}</p>
             </div>
             <div className="contact-block">
+              <span className="contact-block-icon" aria-hidden="true"><Phone size={20} /></span>
               <h2>{copy.contactUs}</h2>
               <dl className="contact-list">
                 <div><dt>{t.common.hotline}</dt><dd><a href={company.phoneHref}>{company.phone}</a></dd></div>
