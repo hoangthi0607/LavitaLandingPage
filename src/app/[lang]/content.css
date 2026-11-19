@@ -45,9 +45,10 @@ span.pagination-arrow { opacity: .3; }
 .content-next h2 { max-width: 22ch; }
 .content-next p { color: var(--color-muted); margin-bottom: 0; }
 .content-next > .button, .content-next > div > .button { flex-shrink: 0; }
-/* Dark contact band closing content pages (/du-an, /san-pham). */
-.cta-band { padding: clamp(56px, 7vw, 96px) max(var(--gutter), calc((100vw - var(--content-width)) / 2)); background: var(--color-dark); color: var(--color-on-dark); }
-.cta-band-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px 48px; }
+/* Contact panel closing content pages (/du-an, /san-pham, /ve-lavita): a rounded warm charcoal panel on the light
+   surface, so it stays apart from the dark footer below. */
+.cta-band { padding: clamp(48px, 6vw, 88px) max(var(--gutter), calc((100vw - var(--content-width)) / 2)); background: var(--color-surface); }
+.cta-band-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px 48px; padding: clamp(32px, 5vw, 64px); border-radius: 20px; background: var(--color-dark); color: var(--color-on-dark); box-shadow: 0 30px 60px -36px color-mix(in srgb, var(--color-dark) 80%, transparent); }
 .cta-band-inner > div:first-child { max-width: 60ch; }
 .cta-band h2 { margin: 0; color: var(--color-on-dark); font-size: clamp(1.75rem, 3.2vw, 2.75rem); font-weight: 800; line-height: 1.2; }
 .cta-band p { margin: 12px 0 0; color: var(--color-muted-on-dark); line-height: 1.7; }

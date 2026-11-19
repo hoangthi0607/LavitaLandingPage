@@ -1,6 +1,6 @@
 import type { CSSProperties } from "react";
 import Image from "next/image";
-import { ArrowRight, Building2, CalendarDays, FileText, MapPin, Phone } from "lucide-react";
+import { ArrowRight, Building2, CalendarDays, Check, FileText, MapPin, Phone, Quote } from "lucide-react";
 import { Breadcrumbs } from "@/components/content/breadcrumbs";
 import { ParallaxBand, TiltCard, TimelineLine } from "@/components/content/about-effects";
 import { Brand } from "@/components/layout/brand";
@@ -16,6 +16,8 @@ export async function generateMetadata() {
 }
 
 // Structure follows dcons.vn/gioi-thieu: intro, parallax photo, company details, purpose, timeline, values.
+// 19/11/2026: intro rises on load, the photo band opens to full width on scroll, purpose photos wipe in, mission
+// points arrive one by one, growth bars rise, and the page closes on the shared dark contact band.
 export default async function AboutPage() {
   const { about, company, site, t } = await getContent();
   const maximum = Math.max(...about.milestones.map(item => item.value));
@@ -46,11 +48,11 @@ export default async function AboutPage() {
       <div className="about-company-logo" data-reveal="left"><Brand link={false} labels={{ tagline: t.company.tagline, home: t.nav.brandHome, logo: t.nav.brandLogo }} /></div>
       <div className="about-company-list">
         {details.map(item => <div className="about-company-item" data-reveal="right" key={item.title}>
-          <item.icon size={26} aria-hidden="true" />
+          <span className="about-company-icon"><item.icon size={22} aria-hidden="true" /></span>
           <div><h3>{item.title}</h3>{item.lines.map(line => <p key={line}>{line}</p>)}</div>
         </div>)}
         <div className="about-company-item" data-reveal="right">
-          <Phone size={26} aria-hidden="true" />
+          <span className="about-company-icon"><Phone size={22} aria-hidden="true" /></span>
           <div><h3>{about.contact}</h3>
             <p>{t.common.hotline}: <a href={company.phoneHref}>{company.phone}</a></p>
             <p>{t.common.email}: <a href={`mailto:${company.email}`}>{company.email}</a></p>
@@ -62,12 +64,12 @@ export default async function AboutPage() {
 
     <section id="tam-nhin-su-menh" className="section about-purpose" aria-label={about.purposeLabel}>
       <div className="about-purpose-row">
-        <figure className="about-purpose-photo" data-reveal="left"><Image src={about.images.overview} alt={about.overviewAlt} fill sizes="(max-width: 900px) 92vw, 45vw" /></figure>
-        <div className="about-purpose-copy" data-reveal="right"><h2 className="about-section-title">{about.visionHeading}</h2><p>{about.vision}</p></div>
+        <figure className="about-purpose-photo" data-reveal="wipe"><Image src={about.images.overview} alt={about.overviewAlt} fill sizes="(max-width: 900px) 92vw, 45vw" /></figure>
+        <div className="about-purpose-copy" data-reveal="right"><h2 className="about-section-title">{about.visionHeading}</h2><blockquote className="about-vision"><Quote className="about-vision-mark" size={40} strokeWidth={1.5} aria-hidden="true" /><p>{about.vision}</p></blockquote></div>
       </div>
       <div className="about-purpose-row about-purpose-row-reverse">
-        <figure className="about-purpose-photo" data-reveal="right"><Image src={about.images.vision.src} alt={about.visionAlt} fill sizes="(max-width: 900px) 92vw, 45vw" /></figure>
-        <div className="about-purpose-copy" data-reveal="left"><h2 className="about-section-title">{about.missionHeading}</h2><ul>{about.mission.map(item => <li key={item}>{item}</li>)}</ul></div>
+        <figure className="about-purpose-photo" data-reveal="wipe"><Image src={about.images.vision.src} alt={about.visionAlt} fill sizes="(max-width: 900px) 92vw, 45vw" /></figure>
+        <div className="about-purpose-copy"><h2 className="about-section-title" data-reveal="left">{about.missionHeading}</h2><ul className="about-mission">{about.mission.map(item => <li key={item} data-reveal="left"><span className="about-mission-check" aria-hidden="true"><Check size={16} strokeWidth={2.5} /></span>{item}</li>)}</ul></div>
       </div>
     </section>
 
@@ -93,7 +95,7 @@ export default async function AboutPage() {
     <section id="ke-hoach-tang-truong" className="section about-growth" aria-labelledby="about-growth-title">
       <div className="about-growth-copy" data-reveal="left"><h2 id="about-growth-title" className="about-section-title">{about.growthHeading}</h2><p>{about.growthDescription}</p><p id="about-growth-note" className="about-growth-note">{about.growthNote}</p></div>
       <ol className="about-growth-chart" aria-label={about.growthChartLabel} aria-describedby="about-growth-note">
-        {about.milestones.map(item => <li key={item.year} data-reveal="up" style={{ "--growth-ratio": item.value / maximum } as CSSProperties}>
+        {about.milestones.map((item, index) => <li key={item.year} data-reveal="up" style={{ "--growth-ratio": item.value / maximum, "--i": index } as CSSProperties}>
           <span className="about-growth-year">{item.year}</span><span className="about-growth-bar" aria-hidden="true" /><span className="about-growth-amount"><strong>{item.value}</strong> {about.growthUnit}</span>
         </li>)}
       </ol>
@@ -111,6 +113,14 @@ export default async function AboutPage() {
       </ul>
     </section>
 
-    <section className="section content-next"><div><h2>{about.nextHeading}</h2><p>{about.nextText}</p></div><Link className="button button-primary" href="/dich-vu">{t.common.findService}<ArrowRight size={18} aria-hidden="true" /></Link></section>
+    <section className="cta-band" aria-labelledby="about-next-title">
+      <div className="cta-band-inner" data-reveal="up">
+        <div><h2 id="about-next-title">{about.nextHeading}</h2><p>{about.nextText}</p></div>
+        <div className="cta-band-actions">
+          <Link className="button button-light" href="/dich-vu">{t.common.findService}<ArrowRight size={18} aria-hidden="true" /></Link>
+          <a className="button cta-band-ghost" href={company.phoneHref}><Phone size={18} aria-hidden="true" />{company.phone}</a>
+        </div>
+      </div>
+    </section>
   </div>;
 }
