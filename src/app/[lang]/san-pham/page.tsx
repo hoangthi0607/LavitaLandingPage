@@ -113,12 +113,12 @@ export default async function ProductsPage({ searchParams }: { searchParams: Pro
       </div>}
     </section>
 
-    <section className="prod-cta" aria-labelledby="products-cta-title">
-      <div className="prod-cta-inner" data-reveal="up">
+    <section className="cta-band" aria-labelledby="products-cta-title">
+      <div className="cta-band-inner" data-reveal="up">
         <h2 id="products-cta-title">{copy.help}</h2>
-        <div className="prod-cta-actions">
+        <div className="cta-band-actions">
           <Link className="button button-light" href={productContactHref(category?.slug)}>{copy.cta}<ArrowRight size={18} aria-hidden="true" /></Link>
-          <a className="button prod-cta-phone" href={company.phoneHref}><Phone size={18} aria-hidden="true" />{company.phone}</a>
+          <a className="button cta-band-ghost" href={company.phoneHref}><Phone size={18} aria-hidden="true" />{company.phone}</a>
         </div>
       </div>
     </section>

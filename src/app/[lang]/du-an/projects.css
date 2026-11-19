@@ -1,23 +1,61 @@
-/* Projects in the dcons.vn/du-an structure: large title, centred text tabs, two-column cards with spec rows. */
+/* /du-an (19/11/2026): split title and intro, a slow reel of project photos, scope tabs with counts, lifting
+   project cards, shared dark contact band (.cta-band in content.css). */
 .projects-page { background: var(--color-surface); }
-.projects-page .projects-head { padding-top: clamp(32px, 4vw, 56px); padding-bottom: 0; }
-.projects-head h1 { margin: clamp(28px, 4vw, 56px) 0 16px; font-size: clamp(2.75rem, 5.6vw, 5rem); font-weight: 800; line-height: 1.1; letter-spacing: -.01em; text-transform: uppercase; }
-.projects-lead { max-width: 60ch; margin: 0; color: var(--color-muted); }
+.prj-hero { padding-top: clamp(32px, 4vw, 56px); padding-bottom: clamp(32px, 4vw, 56px); }
+.prj-hero-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); align-items: end; gap: 20px clamp(32px, 6vw, 96px); margin-top: clamp(24px, 3vw, 40px); }
+.prj-hero h1 { margin: 0; font-size: clamp(2.75rem, 6vw, 5.5rem); font-weight: 800; line-height: 1.02; letter-spacing: -.01em; text-transform: uppercase; animation: prj-rise .9s var(--reveal-ease) both; }
+.prj-hero h1::after { content: ""; display: block; width: 72px; height: 5px; margin-top: 24px; border-radius: 3px; background: var(--color-brand); transform-origin: left; animation: prj-bar 1s .35s var(--reveal-ease) both; }
+.prj-hero-lead { max-width: 46ch; margin: 0; color: var(--color-muted); font-size: clamp(1.0625rem, 1.4vw, 1.25rem); line-height: 1.7; animation: prj-rise .9s .15s var(--reveal-ease) both; }
+@keyframes prj-rise { from { opacity: 0; transform: translateY(28px); } }
+@keyframes prj-bar { from { transform: scaleX(0); } }
 
-/* Category tabs: plain text, current one in ink with a brand underline. */
-.projects-tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px clamp(16px, 3vw, 40px); margin: clamp(48px, 6vw, 88px) 0 0; }
-.projects-tabs a { position: relative; display: inline-flex; align-items: center; min-height: 48px; padding: 8px 16px 6px; font-size: clamp(1.0625rem, 1.5vw, 1.375rem); font-weight: 700; color: var(--color-muted); transition: color .3s ease, transform .3s ease; }
-.projects-tabs a:hover { color: var(--color-ink); transform: translateY(-1px); }
-.projects-tabs a[aria-current="page"] { color: var(--color-ink); }
-.projects-tabs a[aria-current="page"]::after { content: ""; position: absolute; left: 16px; right: 16px; bottom: 2px; height: 3px; border-radius: 3px; background: var(--color-brand); animation: nav-underline .5s var(--ease-nav) both; }
+/* Reel: the list is rendered twice and slides by half its width, so the loop is seamless. */
+.prj-reel { overflow: hidden; padding: 8px 0 clamp(40px, 5vw, 64px); -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); animation: prj-rise 1s .25s var(--reveal-ease) both; }
+.prj-reel-track { display: flex; width: max-content; margin: 0; padding: 0; list-style: none; animation: prj-reel 90s linear infinite; }
+.prj-reel:hover .prj-reel-track { animation-play-state: paused; }
+.prj-reel li { position: relative; flex: 0 0 auto; width: clamp(220px, 22vw, 320px); aspect-ratio: 4 / 3; margin-right: 16px; overflow: hidden; border-radius: 14px; background: var(--color-dark); }
+.prj-reel li:nth-child(even) { transform: translateY(18px); }
+.prj-reel img { object-fit: cover; transition: transform .8s var(--reveal-ease); }
+.prj-reel li::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, color-mix(in srgb, var(--color-dark) 82%, transparent), transparent 55%); }
+.prj-reel span { position: absolute; left: 14px; right: 14px; bottom: 12px; z-index: 1; color: var(--color-on-dark); font-size: .875rem; font-weight: 700; line-height: 1.35; }
+.prj-reel li:hover img { transform: scale(1.06); }
+@keyframes prj-reel { to { transform: translateX(-50%); } }
 
-/* Cards: photo, then label/value rows separated by thin rules. */
-.projects-page .projects-body { padding-top: clamp(40px, 5vw, 72px); }
-.projects-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(48px, 5vw, 64px) clamp(32px, 5vw, 72px); margin: 0; padding: 0; list-style: none; }
-.projects-card { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
-.projects-card-photo { position: relative; display: block; height: clamp(220px, 21vw, 340px); overflow: hidden; border-radius: 11px; background: var(--color-surface-soft); }
-.projects-card-photo img { object-fit: cover; transition: transform .55s var(--ease-out); }
-.projects-card-photo:hover img { transform: scale(1.04); }
+/* Scope tabs: one rounded rail, the current scope filled red, counts in a small badge. */
+.prj-body { background: var(--color-surface-soft); }
+.prj-tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; width: fit-content; max-width: 100%; margin: 0 auto clamp(40px, 5vw, 64px); padding: 6px; border-radius: 999px; background: var(--color-surface); box-shadow: 0 12px 30px -24px color-mix(in srgb, var(--color-dark) 60%, transparent); scroll-margin-top: calc(var(--header-h) + 24px); }
+.prj-tabs a { display: inline-flex; align-items: center; gap: 10px; min-height: 46px; padding: 8px 10px 8px 20px; border-radius: 999px; color: var(--color-muted); font-size: .9375rem; font-weight: 700; transition: background .3s ease, color .3s ease; }
+.prj-tabs a span { display: grid; place-items: center; min-width: 28px; height: 28px; padding: 0 8px; border-radius: 999px; background: var(--color-surface-soft); color: var(--color-ink); font-size: .75rem; font-variant-numeric: tabular-nums; transition: background .3s ease, color .3s ease; }
+.prj-tabs a:hover { color: var(--color-ink); }
+.prj-tabs a[aria-current="page"] { background: var(--color-brand); color: white; box-shadow: 0 8px 18px -10px color-mix(in srgb, var(--color-brand) 80%, transparent); }
+.prj-tabs a[aria-current="page"] span { background: color-mix(in srgb, white 22%, transparent); color: white; }
+
+/* Cards: photo with scope tag, title, compact facts. The title link covers the card. */
+.projects-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(24px, 3vw, 36px); margin: 0; padding: 0; list-style: none; }
+.projects-card { position: relative; display: flex; flex-direction: column; min-width: 0; overflow: hidden; border-radius: 18px; background: var(--color-surface); box-shadow: 0 18px 40px -32px color-mix(in srgb, var(--color-dark) 60%, transparent); transition: transform .5s var(--reveal-ease), box-shadow .5s ease; }
+.projects-card:hover { transform: translateY(-6px); box-shadow: 0 30px 56px -32px color-mix(in srgb, var(--color-dark) 70%, transparent); }
+.projects-card:has(h3 a:focus-visible) { outline: 3px solid var(--color-brand); outline-offset: 4px; }
+.projects-card h3 a:focus-visible { outline: none; }
+.projects-card-photo { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: var(--color-dark); }
+.projects-card-photo img { object-fit: cover; transition: transform .8s var(--reveal-ease); }
+.projects-card:hover .projects-card-photo img { transform: scale(1.06); }
+.projects-card-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, color-mix(in srgb, var(--color-dark) 55%, transparent), transparent 45%); opacity: 0; transition: opacity .5s ease; }
+.projects-card:hover .projects-card-photo::after { opacity: 1; }
+.projects-card-tag { position: absolute; top: 16px; left: 16px; z-index: 1; padding: 6px 14px; border-radius: 999px; background: var(--color-surface); color: var(--color-ink); font-size: .75rem; font-weight: 700; box-shadow: 0 6px 16px -10px color-mix(in srgb, var(--color-dark) 60%, transparent); }
+.projects-card-cta { position: absolute; inset: auto 0 0; z-index: 1; padding: 13px 22px; background: var(--color-brand); color: white; font-size: .8125rem; font-weight: 700; transform: translateY(101%); transition: transform .5s var(--reveal-ease); }
+.projects-card:hover .projects-card-cta, .projects-card:focus-within .projects-card-cta { transform: none; }
+.projects-card-body { display: flex; flex-direction: column; gap: 14px; padding: clamp(20px, 2.4vw, 28px); }
+.projects-card h3 { margin: 0; font-size: clamp(1.25rem, 1.8vw, 1.5rem); font-weight: 800; line-height: 1.3; text-transform: uppercase; letter-spacing: .02em; overflow-wrap: anywhere; transition: color .3s ease; }
+.projects-card h3 a::after { content: ""; position: absolute; inset: 0; z-index: 2; }
+.projects-card:hover h3 { color: var(--color-brand); }
+.projects-card-meta { display: grid; margin: 0; }
+.projects-card-meta > div { display: grid; grid-template-columns: minmax(96px, auto) minmax(0, 1fr); gap: 16px; padding: 9px 0; font-size: .9375rem; }
+.projects-card-meta > div + div { border-top: 1px solid var(--color-line); }
+.projects-card-meta dt { color: var(--color-muted); font-weight: 600; }
+.projects-card-meta dd { margin: 0; font-weight: 600; text-align: right; overflow-wrap: anywhere; }
+.projects-card-meta .is-pending { color: var(--color-muted); font-weight: 500; }
+
+/* Spec rows for the project detail page (ProjectSpecs). */
 .projects-card-specs { margin: 0; }
 .projects-card-specs > div { display: flex; align-items: baseline; justify-content: space-between; gap: 24px clamp(24px, 4vw, 64px); padding: 12px 0; }
 .projects-card-specs > div + div { border-top: 1px solid color-mix(in srgb, var(--color-ink) 35%, transparent); }
@@ -31,22 +69,28 @@
 .projects-empty h2 { font-size: clamp(1.375rem, 2.4vw, 1.875rem); margin-bottom: 12px; }
 .projects-empty p { color: var(--color-muted); }
 
-
-.projects-page .content-next { background: var(--color-surface-soft); }
-.projects-page .content-next .content-actions { margin-top: 0; flex-shrink: 0; }
-
 @media (max-width: 1024px) {
   .projects-grid { grid-template-columns: 1fr; }
-  .projects-card-photo { height: clamp(240px, 52vw, 400px); }
+}
+@media (max-width: 760px) {
+  .prj-hero-grid { grid-template-columns: 1fr; }
+  /* Tabs become one swipeable rail. */
+  .prj-tabs { flex-wrap: nowrap; justify-content: flex-start; width: auto; margin-inline: calc(var(--gutter) * -1); padding: 6px var(--gutter); overflow-x: auto; border-radius: 0; background: none; box-shadow: none; scrollbar-width: none; }
+  .prj-tabs::-webkit-scrollbar { display: none; }
+  .prj-tabs a { flex-shrink: 0; background: var(--color-surface); }
 }
 @media (max-width: 480px) {
-  .projects-tabs { justify-content: flex-start; }
-  .projects-tabs a { padding-inline: 8px; }
-  .projects-tabs a[aria-current="page"]::after { left: 8px; right: 8px; }
+  .projects-card-meta > div { grid-template-columns: 1fr; gap: 2px; }
+  .projects-card-meta dd { text-align: left; }
   .projects-card-specs > div { flex-direction: column; align-items: flex-start; gap: 4px; padding: 10px 0; }
   .projects-card-specs dd { text-align: left; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .projects-card-photo img { transition: none; }
-  .projects-card-photo:hover img { transform: none; }
+  .prj-hero h1, .prj-hero h1::after, .prj-hero-lead, .prj-reel { animation: none; }
+  /* The reel stays still and can be scrolled by hand. */
+  .prj-reel { overflow-x: auto; }
+  .prj-reel-track { animation: none; }
+  .prj-reel-track .is-copy { display: none; }
+  .prj-reel img, .prj-tabs a, .prj-tabs a span, .projects-card, .projects-card-photo img, .projects-card-photo::after, .projects-card-cta, .projects-card h3 { transition: none; }
+  .prj-reel li:hover img, .projects-card:hover, .projects-card:hover .projects-card-photo img { transform: none; }
 }

@@ -21,9 +21,10 @@ export default function Link({ href, ...props }: Omit<ComponentProps<typeof Next
   const locale = useLocale();
   const target = localizeHref(href, locale);
   // Unprefixed Vietnamese URLs are served through next.config rewrites. In production, Next 16's client router does
-  // not fetch the new page when such a link differs only in its query (?danh-muc=…, ?dich-vu=…, ?trang=…): the URL
-  // changes but the list stays the same. These links therefore load the page normally.
-  if (locale === defaultLocale && target.startsWith("/") && target.includes("?")) {
+  // not fetch the new page when such a link differs only in its query (?danh-muc=…, ?dich-vu=…, ?trang=…), including
+  // a link that drops the query ("/du-an#ket-qua" from "/du-an?dich-vu=…"): the URL changes but the list stays the
+  // same. Links with a query or a path plus #hash therefore load the page normally.
+  if (locale === defaultLocale && /^\/[^#]*[?#]/.test(target) && !target.startsWith("//")) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { prefetch, scroll, replace, shallow, locale: _locale, legacyBehavior, passHref, onNavigate, ...anchor } = props;
     return <a href={target} {...anchor} />;
