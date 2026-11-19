@@ -12,8 +12,6 @@ const revealTargets = [
   ".project-grid > .project-card",
   ".content-next > div > *",
   ".content-next > .button",
-  ".contact > div > *",
-  ".contact address > *",
   ".profile-company-photo",
   ".profile-company-copy > *",
   ".profile-legal > h2",

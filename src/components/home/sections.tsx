@@ -1,10 +1,9 @@
 ﻿import Image from "next/image";
-import type { CSSProperties } from "react";
 import { ArrowRight, Mail, MapPin, Phone, Quote } from "lucide-react";
 import { homeClients } from "@/data/home";
 import { getContent } from "@/i18n/content";
 import { LogoMarquee } from "@/components/home/logo-marquee";
-import { ServiceStack } from "@/components/home/service-stack";
+import { ServicePanels } from "@/components/home/service-panels";
 import { TestimonialText } from "@/components/home/testimonial-text";
 import Link from "@/i18n/link";
 import { cdnUrl, formatDate, getNewsPage, itemSlug, newsSource, type NewsItem } from "@/lib/fire-police-news";
@@ -37,29 +36,21 @@ export async function HomeAbout() {
   </section>;
 }
 
+// Services: split intro (title left, intro and need groups right) above expanding photo panels (ServicePanels).
 export async function Services() {
   const { services, serviceGroups, t } = await getContent();
   const copy = t.home.services;
+  const panels = services.map(service => ({ slug: service.slug, title: service.pageTitle, lead: service.detail.lead, image: service.image, topics: service.detail.sections.map(section => section.heading) }));
   return <section id="services" className="section services" aria-labelledby="services-title">
     <div className="services-intro">
-      <h2 id="services-title" className="home-title">{copy.heading}</h2>
-      <p>{copy.intro}</p>
-      <nav className="service-entry" aria-label={copy.entryLabel}>{serviceGroups.map(group => <Link href={`/dich-vu#group-${group.id}`} key={group.id}>{group.title}</Link>)}</nav>
+      <h2 id="services-title" className="home-title" data-reveal="left">{copy.heading}</h2>
+      <div className="services-intro-side" data-reveal="right">
+        <p>{copy.intro}</p>
+        <nav className="service-entry" aria-label={copy.entryLabel}>{serviceGroups.map(group => <Link href={`/dich-vu#group-${group.id}`} key={group.id}>{group.title}</Link>)}</nav>
+      </div>
     </div>
-    <ServiceStack>
-      {services.map((service, index) => <li className={`service-stack-card${index % 2 ? " is-reverse" : ""}`} key={service.slug} style={{ "--i": index } as CSSProperties}>
-        <article className="service-stack-inner" data-reveal="up" aria-labelledby={`service-stack-${service.slug}`}>
-          <div className="service-stack-media"><Image src={service.image} alt="" fill sizes="(max-width: 900px) 92vw, 50vw" /></div>
-          <div className="service-stack-copy">
-            <h3 id={`service-stack-${service.slug}`}>{service.pageTitle}</h3>
-            <p>{service.detail.lead}</p>
-            <ul className="service-stack-topics">{service.detail.sections.map(section => <li key={section.heading}>{section.heading}</li>)}</ul>
-            <Link className="detail-link" href={`/dich-vu/${service.slug}`}>{copy.learn}<span className="sr-only">: {service.pageTitle}</span></Link>
-          </div>
-        </article>
-      </li>)}
-    </ServiceStack>
-    <div className="services-more"><Link className="button button-secondary" href="/dich-vu">{copy.all}</Link></div>
+    <ServicePanels services={panels} learn={copy.learn} />
+    <div className="services-more" data-reveal="up"><Link className="button button-secondary" href="/dich-vu">{copy.all}</Link></div>
   </section>;
 }
 
@@ -116,15 +107,25 @@ export async function News() {
   </section>;
 }
 
+// Contact as one warm charcoal panel: the heading lines rise in turn, the CTA and contact tiles follow, and a technician
+// photo is wiped in from the right as the panel enters the viewport (static with reduced motion).
 export async function Contact() {
   const { company, t } = await getContent();
   const copy = t.home.contact;
-  return <section id="contact" className="section contact" aria-labelledby="contact-title">
-      <div><h2 id="contact-title">{copy.heading}<br /><span>{copy.headingAccent}</span></h2><p>{copy.text}</p><Link className="button button-primary" href="/lien-he">{copy.cta}<ArrowRight size={18} aria-hidden="true" /></Link></div>
-      <address>
-        <a href={company.phoneHref}><Phone aria-hidden="true" /><span>{t.common.hotline}<strong>{company.phone}</strong></span></a>
-        <a href={`mailto:${company.email}`}><Mail aria-hidden="true" /><span>{t.common.email}<strong>{company.email}</strong></span></a>
-        <div><MapPin aria-hidden="true" /><span>{t.common.address}<strong>{company.address}</strong></span></div>
-      </address>
-    </section>;
+  const mapsHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(company.address)}`;
+  return <section id="contact" className="section home-contact" aria-labelledby="contact-title">
+    <div className="home-contact-panel">
+      <div className="home-contact-copy">
+        <h2 id="contact-title"><span data-reveal="up">{copy.heading}</span> <span className="home-contact-accent" data-reveal="up">{copy.headingAccent}</span></h2>
+        <p data-reveal="up">{copy.text}</p>
+        <div className="home-contact-action" data-reveal="up"><Link className="button button-light" href="/lien-he">{copy.cta}<ArrowRight size={18} aria-hidden="true" /></Link></div>
+        <address className="home-contact-tiles">
+          <a className="home-contact-tile is-phone" href={company.phoneHref} data-reveal="up"><span className="home-contact-icon"><Phone size={20} aria-hidden="true" /></span><span>{t.common.hotline}<strong>{company.phone}</strong></span></a>
+          <a className="home-contact-tile" href={`mailto:${company.email}`} data-reveal="up"><span className="home-contact-icon"><Mail size={20} aria-hidden="true" /></span><span>{t.common.email}<strong>{company.email}</strong></span></a>
+          <a className="home-contact-tile is-wide" href={mapsHref} target="_blank" rel="noopener noreferrer" data-reveal="up"><span className="home-contact-icon"><MapPin size={20} aria-hidden="true" /></span><span>{t.common.address}<strong lang="vi">{company.address}</strong><span className="sr-only"> {t.contactPage.mapsNewTab}</span></span></a>
+        </address>
+      </div>
+      <div className="home-contact-photo" data-reveal="wipe"><Image src="/images/profile/ky-thuat-vien-pccc.webp" alt="" fill sizes="(max-width: 900px) 92vw, 36vw" /></div>
+    </div>
+  </section>;
 }
