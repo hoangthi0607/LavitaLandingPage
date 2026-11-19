@@ -117,7 +117,7 @@ export const aboutImages = {
 // Timeline: only the founding year is sourced; later periods are placeholders until real milestones are supplied.
 export const historyPending = [false, true, true, true] as const;
 
-export type ProfileDocument = { src: string; width: number; height: number; title: string; sourcePage: number };
+export type ProfileDocument = { src: string; width: number; height: number; title: string; sourcePage?: number };
 
 export const profileBase = {
   showCredentials: false,
@@ -127,8 +127,10 @@ export const profileBase = {
   sectionIds: ["thong-tin-doanh-nghiep", "phap-ly", "chuyen-mon", "du-an-tieu-bieu"],
   legalDocuments: [
     [
-      { src: "/images/profile/dang-ky-doanh-nghiep-1.webp", width: 643, height: 916, sourcePage: 6 },
-      { src: "/images/profile/dang-ky-doanh-nghiep-2.webp", width: 791, height: 1128, sourcePage: 6 },
+      // Business registration, 3rd amendment (30/09/2026), rendered from the PDF the user supplied; replaces the
+      // first-registration scan from profile page 6.
+      { src: "/images/profile/dang-ky-doanh-nghiep-lan-3-1.webp", width: 1200, height: 1697 },
+      { src: "/images/profile/dang-ky-doanh-nghiep-lan-3-2.webp", width: 1200, height: 1697 },
     ],
     [
       { src: "/images/profile/dieu-kien-kinh-doanh-pccc-1.webp", width: 730, height: 1025, sourcePage: 7 },
