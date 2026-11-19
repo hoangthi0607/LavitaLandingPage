@@ -38,19 +38,6 @@ export function ParallaxBand({ src, alt, className }: { src: string; alt: string
   </div>;
 }
 
-/** Vertical timeline line that grows with scroll progress through its parent. Full length without JS. */
-export function TimelineLine() {
-  const lineRef = useRef<HTMLDivElement>(null);
-  useScrollFrame(() => {
-    const line = lineRef.current, track = line?.parentElement;
-    if (!line || !track) return;
-    const rect = track.getBoundingClientRect();
-    const progress = Math.min(1, Math.max(0, (window.innerHeight * .7 - rect.top) / rect.height));
-    line.style.transform = `scaleY(${progress.toFixed(3)})`;
-  }, always);
-  return <div ref={lineRef} className="timeline-line" aria-hidden="true" />;
-}
-
 /** Card that tilts towards the pointer on hover-capable devices. */
 export function TiltCard({ children, className }: { children: ReactNode; className?: string }) {
   const cardRef = useRef<HTMLDivElement>(null);

@@ -2,7 +2,8 @@ import type { CSSProperties } from "react";
 import Image from "next/image";
 import { ArrowRight, Building2, CalendarDays, Check, FileText, MapPin, Phone, Quote } from "lucide-react";
 import { Breadcrumbs } from "@/components/content/breadcrumbs";
-import { ParallaxBand, TiltCard, TimelineLine } from "@/components/content/about-effects";
+import { ParallaxBand, TiltCard } from "@/components/content/about-effects";
+import { HistoryTimeline } from "@/components/content/history-timeline";
 import { Brand } from "@/components/layout/brand";
 import { format } from "@/i18n/config";
 import { getContent } from "@/i18n/content";
@@ -74,22 +75,7 @@ export default async function AboutPage() {
     </section>
 
     <section id="lich-su-phat-trien" className="section about-history" aria-labelledby="about-history-title">
-      <h2 id="about-history-title" className="about-section-title about-section-title-center" data-reveal="down">{about.historyHeading}</h2>
-      <div className="about-timeline">
-        <TimelineLine />
-        <ol>
-        {about.history.map((item, index) => <li className={`about-timeline-item ${index % 2 ? "is-right" : "is-left"}${item.pending ? " is-pending" : ""}`} key={item.period}>
-          <div className="about-timeline-marker" data-reveal="pop" aria-hidden="true"><span>{String(index + 1).padStart(2, "0")}</span></div>
-          <span className="about-timeline-connector" data-reveal="grow" aria-hidden="true" />
-          <div className="about-timeline-panel" data-reveal={index % 2 ? "left" : "right"}>
-            <p className="about-timeline-period">{item.period}</p>
-            <h3>{item.pending ? <span className="about-pending">{t.common.pending}</span> : item.title}</h3>
-            <p>{item.text}</p>
-          </div>
-          <div className="about-timeline-media" data-reveal="scale"><span>{about.historyPendingMedia}</span></div>
-        </li>)}
-        </ol>
-      </div>
+      <HistoryTimeline heading={about.historyHeading} headingId="about-history-title" items={about.history} pendingLabel={t.common.pending} mediaLabel={about.historyPendingMedia} />
     </section>
 
     <section id="ke-hoach-tang-truong" className="section about-growth" aria-labelledby="about-growth-title">
