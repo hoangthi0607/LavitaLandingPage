@@ -21,7 +21,6 @@ export function ProjectShowcase({ projects, labels, pending }: { projects: Showc
   const [reducedMotion, setReducedMotion] = useState(true);
   const [hidden, setHidden] = useState(false);
   const autoplay = !paused && !reducedMotion && !hidden;
-  const project = projects[active];
   const go = (index: number) => setActive((index + projects.length) % projects.length);
   const thumbsRef = useRef<HTMLUListElement>(null);
   const [mounted, setMounted] = useState(() => new Set([0, 1, projects.length - 1]));
@@ -67,19 +66,23 @@ export function ProjectShowcase({ projects, labels, pending }: { projects: Showc
     </div>
     <div className="home-projects-bar" aria-hidden="true"><span key={active} style={{ animationDuration: `${DELAY}ms`, animationPlayState: autoplay ? "running" : "paused" }} /></div>
     <div className="home-projects-inner">
-      <div className="home-projects-content" key={project.slug} aria-live={autoplay ? "off" : "polite"}>
-        <p className="home-projects-label">{labels.label}</p>
-        <h3>{project.title}</h3>
-        <dl>
-          <div><dt>{labels.location}</dt><dd>{project.location || pending}</dd></div>
-          <div><dt>{labels.scope}</dt><dd>{project.tag}</dd></div>
-          <div><dt>{labels.scale}</dt><dd>{project.scale || pending}</dd></div>
-          <div><dt>{labels.investor}</dt><dd>{project.investor || pending}</dd></div>
-        </dl>
-        <div className="home-projects-actions">
-          <Link className="button button-primary" href={`/du-an/${project.slug}`}>{labels.details}<span className="sr-only">: {project.title}</span></Link>
-          <Link className="home-projects-all" href="/du-an">{labels.all}</Link>
-        </div>
+      {/* Every project's facts share one grid cell and only the active one is shown, so the showcase keeps the
+          height of the longest entry instead of jumping as titles and facts change length. */}
+      <div className="home-projects-stage" aria-live={autoplay ? "off" : "polite"}>
+        {projects.map((item, index) => <div className="home-projects-content" key={item.slug} data-active={index === active ? "true" : undefined} inert={index !== active}>
+          <p className="home-projects-label">{labels.label}</p>
+          <h3>{item.title}</h3>
+          <dl>
+            <div><dt>{labels.location}</dt><dd>{item.location || pending}</dd></div>
+            <div><dt>{labels.scope}</dt><dd>{item.tag}</dd></div>
+            <div><dt>{labels.scale}</dt><dd>{item.scale || pending}</dd></div>
+            <div><dt>{labels.investor}</dt><dd>{item.investor || pending}</dd></div>
+          </dl>
+          <div className="home-projects-actions">
+            <Link className="button button-primary" href={`/du-an/${item.slug}`}>{labels.details}<span className="sr-only">: {item.title}</span></Link>
+            <Link className="home-projects-all" href="/du-an">{labels.all}</Link>
+          </div>
+        </div>)}
       </div>
       <div className="home-projects-nav">
         <ul className="home-projects-thumbs" ref={thumbsRef}>

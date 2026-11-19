@@ -71,7 +71,9 @@
 .home-projects-bar span { display: block; height: 100%; background: var(--color-brand); transform-origin: left center; animation: home-countdown linear both; }
 @keyframes home-countdown { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 .home-projects-inner { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 520px); align-items: end; gap: 48px; width: 100%; padding: clamp(72px, 9vw, 120px) max(var(--gutter), calc((100vw - var(--content-width)) / 2)); }
-.home-projects-content { min-width: 0; max-width: 680px; animation: home-project-in .7s var(--reveal-ease) both; }
+.home-projects-stage { display: grid; min-width: 0; max-width: 680px; }
+.home-projects-content { grid-area: 1 / 1; align-self: end; min-width: 0; visibility: hidden; opacity: 0; }
+.home-projects-content[data-active] { visibility: visible; opacity: 1; animation: home-project-in .7s var(--reveal-ease) both; }
 @keyframes home-project-in { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
 .home-projects-label { margin: 0 0 22px; font-size: .875rem; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; }
 .home-projects-label::after { content: ""; display: block; width: 48px; height: 3px; margin-top: 12px; border-radius: 2px; background: var(--color-brand); }
@@ -164,7 +166,7 @@ a.home-news-card:hover .home-news-image { transform: scale(1.04); }
 }
 @media (prefers-reduced-motion: reduce) {
   .home-projects-photo, .home-projects-thumbs button, .hero-dots button::before, .home-news-image, .home-testimonial-more, .home-testimonial-toggle svg { transition: none; }
-  .home-projects-content, .home-projects-photo[data-active] { animation: none; }
+  .home-projects-content[data-active], .home-projects-photo[data-active] { animation: none; }
   .home-projects-bar span { animation: none; transform: scaleX(0); }
 }
 
