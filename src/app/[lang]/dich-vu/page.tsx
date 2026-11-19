@@ -2,7 +2,7 @@ import Image from "next/image";
 import type { CSSProperties } from "react";
 import { ArrowRight, Phone } from "lucide-react";
 import { Breadcrumbs } from "@/components/content/breadcrumbs";
-import { ServiceGroupNav } from "@/components/content/service-group-nav";
+import { SectionNav } from "@/components/content/section-nav";
 import { contactHref } from "@/data/home";
 import { format } from "@/i18n/config";
 import { getContent } from "@/i18n/content";
@@ -41,7 +41,7 @@ export default async function ServicesPage() {
 
     {/* The group bar only sticks while the groups are on screen. */}
     <div className="svc-body">
-    <ServiceGroupNav groups={serviceGroups.map(({ id, title }) => ({ id, title }))} label={t.home.services.entryLabel} />
+    <SectionNav items={serviceGroups.map(({ id, title }) => ({ target: `group-${id}`, title }))} label={t.home.services.entryLabel} />
 
     <div className="section svc-directory">
       {serviceGroups.map(group => <section key={group.id} className="svc-group" aria-labelledby={`group-${group.id}`}>

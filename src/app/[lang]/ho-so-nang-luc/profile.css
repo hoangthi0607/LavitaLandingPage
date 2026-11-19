@@ -7,10 +7,6 @@
 .profile-hero h1 { margin: 28px 0 24px; max-width: 16ch; white-space: pre-line; font-size: clamp(2.75rem, 5.5vw, 4.75rem); font-weight: 800; line-height: 1.12; letter-spacing: -.01em; text-transform: uppercase; }
 .profile-hero-copy > p { margin: 0; white-space: pre-line; font-size: clamp(1rem, 1.6vw, 1.1875rem); color: var(--color-on-dark); }
 .profile-hero :focus-visible, .profile-credentials :focus-visible { outline-color: var(--color-on-dark); }
-.profile-contents { display: flex; flex-wrap: wrap; gap: 8px 32px; padding-block: 18px; border-bottom: 1px solid var(--color-line); }
-.profile-contents a { text-transform: uppercase; letter-spacing: .03em; display: inline-flex; align-items: center; gap: 12px; min-height: 44px; font-size: .8125rem; font-weight: 600; }
-.profile-contents a:hover { color: var(--color-brand); }
-.profile-contents svg { flex-shrink: 0; color: var(--color-brand); }
 .profile-company { display: grid; grid-template-columns: 1.55fr 1fr; align-items: center; gap: clamp(32px, 4vw, 64px); }
 .profile-company-photo { margin: 0; min-width: 0; }
 .profile-company-photo img { display: block; width: 100%; height: auto; }
@@ -60,28 +56,17 @@
 .profile-project-links a { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; color: var(--color-muted); font-size: .8125rem; }
 .profile-project-links a:hover { color: var(--color-brand); text-decoration: underline; }
 .profile-project-links svg { flex-shrink: 0; }
-.profile-contact { display: flex; align-items: center; justify-content: space-between; gap: 40px; background: var(--color-surface-soft); }
-.profile-contact > div:first-child { max-width: 64ch; min-width: 0; }
-.profile-contact h2 { max-width: 24ch; }
-.profile-contact address { display: flex; flex-wrap: wrap; gap: 8px 24px; font-style: normal; }
-.profile-contact address a { display: inline-flex; align-items: center; min-height: 44px; overflow-wrap: anywhere; }
-.profile-contact address a:hover { color: var(--color-brand); }
-.profile-contact-actions { flex-shrink: 0; }
-.profile-download { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; min-height: 44px; margin-top: 12px; font-size: .8125rem; color: var(--color-muted); }
-.profile-download:hover { color: var(--color-brand); }
 
 @media (max-width: 1000px) {
   .profile-company { grid-template-columns: 1.25fr 1fr; }
   .profile-legal-groups { gap: 24px; }
   .document-gallery-legal { padding: 16px; gap: 12px; }
-  .profile-contact { align-items: flex-start; }
 }
 @media (max-width: 760px) {
   .profile-hero { min-height: 480px; padding-block: 48px; }
   .profile-hero::after { background: color-mix(in srgb, var(--color-dark) 72%, transparent); }
   .profile-hero > img { object-position: 60% center; }
   .profile-hero h1 { font-size: clamp(2.5rem, 10vw, 3.5rem); }
-  .profile-contents { gap: 4px 24px; }
   .profile-company, .profile-legal-groups, .profile-credentials-layout, .profile-project-layout { grid-template-columns: 1fr; }
   .profile-company h2 { max-width: 24ch; }
   .profile-legal > h2, .profile-credentials > h2 { margin-bottom: 28px; }
@@ -97,12 +82,67 @@
   .profile-project-tu-van-thiet-ke .profile-project-photos { aspect-ratio: 1.2; }
   .profile-project-photos { aspect-ratio: 1.5; }
   .profile-project-pair { aspect-ratio: 1.2; }
-  .profile-contact { flex-direction: column; gap: 28px; }
-  .profile-contact-actions { flex-shrink: 1; }
 }
 @media (max-width: 359px) {
   .document-gallery-legal { grid-template-columns: 1fr; }
   .document-gallery-legal .document-thumbnail { aspect-ratio: .75; }
   .document-gallery-credentials { gap: 10px; }
   .document-gallery-credentials .document-thumbnail { padding: 6px; aspect-ratio: 1; }
+}
+
+/* 19/11/2026 motion pass. */
+/* Added to the html scroll padding (header + 16px), so headings land just below the sticky contents bar. */
+.profile-page [id] { scroll-margin-top: 84px; }
+/* Hero: the photo zooms out slowly, the copy rises in turn. */
+.profile-hero { overflow: hidden; }
+.profile-hero > img { animation: profile-zoom 14s ease-out both; }
+.profile-hero-copy > * { animation: profile-rise .9s var(--reveal-ease) both; }
+.profile-hero-copy > :nth-child(2) { animation-delay: .1s; }
+.profile-hero-copy > :nth-child(3) { animation-delay: .22s; }
+.profile-hero h1::after { content: ""; display: block; width: 72px; height: 5px; margin-top: 22px; border-radius: 3px; background: var(--color-brand); transform-origin: left; animation: profile-bar 1s .4s var(--reveal-ease) both; }
+@keyframes profile-zoom { from { transform: scale(1.12); } }
+@keyframes profile-rise { from { opacity: 0; transform: translateY(26px); } }
+@keyframes profile-bar { from { transform: scaleX(0); } }
+
+/* Team photo: wipes in, then settles from a slight zoom; rounded like the other photos. */
+.profile-company-photo { overflow: hidden; border-radius: 16px; box-shadow: 0 24px 50px -34px color-mix(in srgb, var(--color-dark) 60%, transparent); }
+.profile-company-photo img { transform: scale(1.1); transition: transform 1.6s var(--reveal-ease); }
+.profile-company-photo:not([data-scroll-reveal="pending"]) img { transform: scale(1); }
+.profile-facts dd { color: var(--color-brand); font-size: 1.75rem; font-weight: 800; }
+
+/* Legal albums lift on hover. */
+.document-gallery-legal { border-radius: 16px; box-shadow: 0 18px 40px -32px color-mix(in srgb, var(--color-dark) 60%, transparent); transition: transform .45s var(--reveal-ease), box-shadow .45s ease; }
+.profile-legal-album:hover .document-gallery-legal { transform: translateY(-4px); box-shadow: 0 28px 50px -32px color-mix(in srgb, var(--color-dark) 70%, transparent); }
+
+/* Organisation chart: the board pops, the connector draws across (scroll-driven where supported), the three
+   branches rise one after another and lift on hover. */
+.profile-management { border-radius: 12px; }
+.profile-organization-tree > ul > li { border-radius: 14px; transition: transform .45s var(--reveal-ease), background .3s ease; }
+.profile-organization-tree > ul > li:hover { transform: translateY(-4px); background: color-mix(in srgb, var(--color-on-dark) 10%, transparent); }
+.profile-organization-tree > ul > li > ul li { position: relative; padding-left: 14px; }
+.profile-organization-tree > ul > li > ul li::before { content: ""; position: absolute; left: 0; top: .7em; width: 6px; height: 6px; border-radius: 50%; background: var(--color-accent); }
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) and (min-width: 761px) {
+    .profile-organization-tree > ul::before { transform-origin: center; animation: profile-draw linear both; animation-timeline: view(); animation-range: entry 10% cover 40%; }
+    @keyframes profile-draw { from { transform: scaleX(0); } }
+  }
+}
+
+/* Project chapters: photos zoom on hover; project names are chips. */
+.profile-project-photos { border-radius: 16px; }
+.profile-project-photos img { transition: transform .9s var(--reveal-ease); }
+.profile-project-chapter:hover .profile-project-photos img { transform: scale(1.05); }
+.profile-project-links { gap: 8px; margin-top: 12px; }
+.profile-project-links a { min-height: 40px; padding: 6px 14px; border: 1px solid var(--color-line); border-radius: 999px; color: var(--color-ink); font-weight: 600; transition: border-color .25s ease, background .25s ease, color .25s ease, transform .3s var(--reveal-ease); }
+.profile-project-links a:hover { border-color: var(--color-brand); background: var(--color-brand); color: white; text-decoration: none; transform: translateY(-2px); }
+
+/* Contact panel (.cta-band) with phone and email. */
+.profile-contact address { display: flex; flex-wrap: wrap; gap: 4px 24px; margin-top: 12px; font-style: normal; }
+.profile-contact address a { display: inline-flex; align-items: center; min-height: 44px; color: var(--color-on-dark); font-weight: 600; overflow-wrap: anywhere; text-decoration: underline transparent 1px; text-underline-offset: 4px; transition: color .2s ease, text-decoration-color .2s ease; }
+.profile-contact address a:hover { color: #ffc493; text-decoration-color: currentColor; }
+
+@media (prefers-reduced-motion: reduce) {
+  .profile-hero > img, .profile-hero-copy > *, .profile-hero h1::after { animation: none; }
+  .profile-company-photo img, .document-gallery-legal, .profile-organization-tree > ul > li, .profile-project-photos img, .profile-project-links a { transition: none; }
+  .profile-company-photo img, .profile-legal-album:hover .document-gallery-legal, .profile-organization-tree > ul > li:hover, .profile-project-chapter:hover .profile-project-photos img, .profile-project-links a:hover { transform: none; }
 }

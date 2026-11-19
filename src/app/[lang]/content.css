@@ -45,6 +45,22 @@ span.pagination-arrow { opacity: .3; }
 .content-next h2 { max-width: 22ch; }
 .content-next p { color: var(--color-muted); margin-bottom: 0; }
 .content-next > .button, .content-next > div > .button { flex-shrink: 0; }
+/* Sticky in-page bar (SectionNav): /dich-vu groups, /ho-so-nang-luc sections. Pages add scroll margins for it. */
+.section-nav { position: sticky; top: var(--header-h); z-index: 30; display: flex; justify-content: center; padding: 12px var(--gutter); border-block: 1px solid var(--color-line); background: var(--color-surface); }
+.section-nav ul { position: relative; display: flex; gap: 6px; max-width: 100%; margin: 0; padding: 4px; overflow-x: auto; list-style: none; border-radius: 999px; background: var(--color-surface-soft); scrollbar-width: none; }
+.section-nav ul::-webkit-scrollbar { display: none; }
+.section-nav li { flex-shrink: 0; }
+.section-nav a { position: relative; z-index: 1; display: inline-flex; align-items: center; min-height: 44px; padding: 8px 20px; border-radius: 999px; color: var(--color-muted); font-size: .875rem; font-weight: 700; white-space: nowrap; transition: color .35s ease; }
+.section-nav a:hover { color: var(--color-ink); }
+.section-nav a[aria-current] { color: white; }
+.section-nav .section-nav-indicator { position: absolute; top: 4px; bottom: 4px; left: 0; border-radius: 999px; background: var(--color-brand); box-shadow: 0 6px 14px -6px color-mix(in srgb, var(--color-brand) 70%, transparent); transition: transform .5s var(--reveal-ease), width .5s var(--reveal-ease); }
+/* Without the indicator (no JS yet) the current link still shows. */
+.section-nav ul:not(:has(.section-nav-indicator)) a[aria-current] { background: var(--color-brand); }
+@media (max-width: 600px) {
+  .section-nav { justify-content: flex-start; padding-block: 8px; }
+  .section-nav a { padding-inline: 16px; font-size: .8125rem; }
+}
+@media (prefers-reduced-motion: reduce) { .section-nav a, .section-nav .section-nav-indicator { transition: none; } }
 /* Contact panel closing content pages (/du-an, /san-pham, /ve-lavita): a rounded warm charcoal panel on the light
    surface, so it stays apart from the dark footer below. */
 .cta-band { padding: clamp(48px, 6vw, 88px) max(var(--gutter), calc((100vw - var(--content-width)) / 2)); background: var(--color-surface); }

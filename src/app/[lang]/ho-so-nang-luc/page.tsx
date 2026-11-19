@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ArrowRight, Download } from "lucide-react";
+import { SectionNav } from "@/components/content/section-nav";
 import { DocumentGallery } from "@/components/content/document-gallery";
 import { getContent } from "@/i18n/content";
 import Link from "@/i18n/link";
@@ -11,18 +12,23 @@ export async function generateMetadata() {
   return pageMetadata(profile.title, profile.description, "/ho-so-nang-luc");
 }
 
+// 19/11/2026: the hero photo zooms slowly and its copy rises; the contents bar sticks with a pill that follows the
+// section being read (SectionNav); photos wipe in; the organisation chart draws its connectors and lifts its
+// branches; project names are chips; the shared contact panel carries the PDF download.
 export default async function CompanyProfilePage() {
   const content = await getContent();
   const { company, profile, t } = content;
   const gallery = t.gallery;
-  return <>
+  return <div className="profile-page">
     <section className="section profile-hero" aria-labelledby="profile-title">
       <Image src={profile.heroImage.src} alt={profile.heroAlt} fill sizes="100vw" preload />
       <div className="profile-hero-copy"><nav className="breadcrumbs" aria-label={profile.breadcrumbLabel}><ol><li><Link href="/">{t.common.home}</Link></li><li><span aria-current="page">{profile.title}</span></li></ol></nav><h1 id="profile-title">{profile.heroHeading}</h1><p>{profile.introduction}</p></div>
     </section>
-    <nav className="section profile-contents" aria-label={profile.contentsLabel}>{profile.sections.filter(section => profile.showCredentials || section.id !== "chuyen-mon").map(section => <a href={`#${section.id}`} key={section.id}>{section.title}</a>)}</nav>
+    {/* The contents bar only sticks while the sections are on screen. */}
+    <div className="profile-body">
+    <SectionNav label={profile.contentsLabel} items={profile.sections.filter(section => profile.showCredentials || section.id !== "chuyen-mon").map(section => ({ target: section.id, title: section.title }))} />
     <section id="thong-tin-doanh-nghiep" className="section profile-company" aria-labelledby="profile-company-title">
-      <figure className="profile-company-photo" data-reveal="left"><Image src={profile.teamImage.src} alt={profile.teamAlt} width={profile.teamImage.width} height={profile.teamImage.height} sizes="(max-width: 760px) 90vw, 55vw" /></figure>
+      <figure className="profile-company-photo" data-reveal="wipe"><Image src={profile.teamImage.src} alt={profile.teamAlt} width={profile.teamImage.width} height={profile.teamImage.height} sizes="(max-width: 760px) 90vw, 55vw" /></figure>
       <div className="profile-company-copy" data-reveal="right"><h2 id="profile-company-title" className="section-title">{profile.teamTitle}</h2><p>{profile.teamCaption}</p><dl className="profile-facts"><div><dt>{t.common.founded}</dt><dd>{company.founded}</dd></div><div><dt>{t.common.taxCode}</dt><dd>{company.taxCode}</dd></div></dl><p className="profile-company-name">{company.name}</p></div>
     </section>
 
@@ -51,6 +57,16 @@ export default async function CompanyProfilePage() {
       })}</div>
     </section>
 
-    <section className="section profile-contact" aria-labelledby="profile-contact-title"><div><h2 id="profile-contact-title">{profile.contactHeading}</h2><address><a href={company.phoneHref}>{company.phone}</a><a href={`mailto:${company.email}`}>{company.email}</a></address></div><div className="profile-contact-actions"><Link className="button button-primary" href="/lien-he">{profile.contactCta}<ArrowRight size={18} aria-hidden="true" /></Link><a className="profile-download" href={company.profile} download={profile.downloadName} hrefLang="vi" aria-label={profile.downloadLabel}><Download size={17} aria-hidden="true" />{profile.download}</a></div></section>
-  </>;
+    </div>
+
+    <section className="cta-band profile-contact" aria-labelledby="profile-contact-title">
+      <div className="cta-band-inner" data-reveal="up">
+        <div><h2 id="profile-contact-title">{profile.contactHeading}</h2><address><a href={company.phoneHref}>{company.phone}</a><a href={`mailto:${company.email}`}>{company.email}</a></address></div>
+        <div className="cta-band-actions">
+          <Link className="button button-light" href="/lien-he">{profile.contactCta}<ArrowRight size={18} aria-hidden="true" /></Link>
+          <a className="button cta-band-ghost" href={company.profile} download={profile.downloadName} hrefLang="vi" aria-label={profile.downloadLabel}><Download size={18} aria-hidden="true" />{profile.download}</a>
+        </div>
+      </div>
+    </section>
+  </div>;
 }

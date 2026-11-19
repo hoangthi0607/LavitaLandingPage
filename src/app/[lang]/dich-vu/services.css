@@ -1,7 +1,8 @@
-/* /dich-vu: split hero with a photo mosaic, sticky need-group bar (service-group-nav.tsx), sticky group titles beside
+/* /dich-vu: split hero with a photo mosaic, sticky need-group bar (SectionNav, .section-nav in content.css), sticky group titles beside
    service cards, dark contact band (service.css). */
 .svc-page { --groupnav-h: 68px; }
-.svc-page [id] { scroll-margin-top: calc(var(--header-h) + var(--groupnav-h) + 24px); }
+/* Added to the html scroll padding (header + 16px), so headings land just below the sticky group bar. */
+.svc-page [id] { scroll-margin-top: calc(var(--groupnav-h) + 16px); }
 
 /* Hero */
 .svc-hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); align-items: center; gap: clamp(32px, 6vw, 96px); padding-top: clamp(32px, 4vw, 56px); padding-bottom: clamp(48px, 6vw, 88px); background: var(--color-surface); }
@@ -23,17 +24,6 @@
 @keyframes svc-rise { from { opacity: 0; transform: translateY(28px); } }
 @keyframes svc-tile-in { from { opacity: 0; clip-path: inset(100% 0 0 0 round 14px); transform: translateY(40px); } to { opacity: 1; clip-path: inset(0 0 0 0 round 14px); transform: none; } }
 
-/* Sticky need-group bar */
-.svc-groupnav { position: sticky; top: var(--header-h); z-index: 30; display: flex; justify-content: center; padding: 12px var(--gutter); border-block: 1px solid var(--color-line); background: var(--color-surface); }
-.svc-groupnav ul { position: relative; display: flex; gap: 6px; max-width: 100%; margin: 0; padding: 4px; overflow-x: auto; list-style: none; border-radius: 999px; background: var(--color-surface-soft); scrollbar-width: none; }
-.svc-groupnav ul::-webkit-scrollbar { display: none; }
-.svc-groupnav li { flex-shrink: 0; }
-.svc-groupnav a { position: relative; z-index: 1; display: inline-flex; align-items: center; min-height: 44px; padding: 8px 20px; border-radius: 999px; color: var(--color-muted); font-size: .875rem; font-weight: 700; white-space: nowrap; transition: color .35s ease; }
-.svc-groupnav a:hover { color: var(--color-ink); }
-.svc-groupnav a[aria-current] { color: white; }
-.svc-groupnav .svc-groupnav-indicator { position: absolute; top: 4px; bottom: 4px; left: 0; border-radius: 999px; background: var(--color-brand); box-shadow: 0 6px 14px -6px color-mix(in srgb, var(--color-brand) 70%, transparent); transition: transform .5s var(--reveal-ease), width .5s var(--reveal-ease); }
-/* Without the indicator (no JS yet) the current link still shows. */
-.svc-groupnav ul:not(:has(.svc-groupnav-indicator)) a[aria-current] { background: var(--color-brand); }
 
 /* Groups */
 .svc-directory { background: var(--color-surface-soft); }
@@ -85,13 +75,11 @@
 }
 @media (max-width: 600px) {
   .svc-page { --groupnav-h: 60px; }
-  .svc-groupnav { justify-content: flex-start; padding-block: 8px; }
-  .svc-groupnav a { padding-inline: 16px; font-size: .8125rem; }
   .svc-card-body { padding: 22px 20px 24px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .svc-hero h1, .svc-hero .lead, .svc-mosaic a { animation: none; }
-  .svc-mosaic img, .svc-mosaic span, .svc-mosaic span::after, .svc-groupnav a, .svc-groupnav .svc-groupnav-indicator, .svc-group-head .section-title::after, .svc-card, .svc-card-parallax img { transition: none; }
+  .svc-mosaic img, .svc-mosaic span, .svc-mosaic span::after, .svc-group-head .section-title::after, .svc-card, .svc-card-parallax img { transition: none; }
   .svc-mosaic a:hover img, .svc-mosaic a:hover span, .svc-card:hover, .svc-card:hover .svc-card-parallax img { transform: none; }
 }
 /* Short windows: lower photos so a card's title and actions come into view sooner. */
