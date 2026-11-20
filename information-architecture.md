@@ -51,7 +51,7 @@ flowchart TD
     H["Trang chủ /"]
     S["Dịch vụ PCCC /dich-vu"]
     SC["Mô tả ba dịch vụ + liên hệ theo nhu cầu"]
-    P["Dự án PCCC /du-an"]
+    P["Dự án /du-an"]
     PD["Tư vấn thiết kế: /du-an?dich-vu=tu-van-thiet-ke"]
     PI["Thi công: /du-an?dich-vu=thi-cong-he-thong"]
     PM["Bảo trì: /du-an?dich-vu=bao-tri-sua-chua"]
@@ -74,7 +74,7 @@ flowchart TD
     CP -. "Tải PDF theo lựa chọn" .-> F
 ```
 
-“Dịch vụ PCCC” là link tới trang mô tả dịch vụ, không có menu con. Menu “Dự án PCCC” chỉ có các hạng mục dịch vụ, không liệt kê công trình; thêm dự án không làm dài menu. Mỗi hạng mục dẫn tới danh sách công trình đúng `serviceSlug`. Slug chi tiết không nhận diện trả trang 404; 404 là trạng thái hệ thống, không là một mục nội dung trong sitemap.
+“Dịch vụ PCCC” là link tới trang mô tả dịch vụ, không có menu con. Menu “Dự án” chỉ có các hạng mục dịch vụ, không liệt kê công trình; thêm dự án không làm dài menu. Mỗi hạng mục dẫn tới danh sách công trình đúng `serviceSlug`. Slug chi tiết không nhận diện trả trang 404; 404 là trạng thái hệ thống, không là một mục nội dung trong sitemap.
 
 ## URL và canonical
 
@@ -102,7 +102,7 @@ Các anchor trang chủ hiện có như `/#services`, `/#projects`, `/#about`, `
 
 ## Navigation
 
-Primary nav có sáu mục, theo thứ tự: **Về Lavita**, **Dịch vụ PCCC**, **Dự án PCCC**, **Sản phẩm**, **Hồ sơ năng lực**, **Liên hệ**. Logo dẫn về `/`; CTA tư vấn dẫn về `/lien-he` ở mọi trang. Chỉ dự án có menu con theo hạng mục dịch vụ; không đưa danh sách công trình vào header. Sản phẩm có danh mục riêng, không đưa trở lại các dịch vụ đã gỡ.
+Primary nav có sáu mục, theo thứ tự: **Về Lavita**, **Dịch vụ PCCC**, **Dự án**, **Sản phẩm**, **Hồ sơ năng lực**, **Liên hệ**. Logo dẫn về `/`; CTA tư vấn dẫn về `/lien-he` ở mọi trang. Chỉ dự án có menu con theo hạng mục dịch vụ; không đưa danh sách công trình vào header. Sản phẩm có danh mục riêng, không đưa trở lại các dịch vụ đã gỡ.
 
 ```text
 Desktop: [Logo → /] [Về Lavita] [Dịch vụ] [Dự án theo hạng mục ▾] [Sản phẩm] [Hồ sơ năng lực] [Liên hệ] [Tư vấn công trình]
@@ -112,7 +112,7 @@ Menu:    Về Lavita → Dịch vụ → Dự án (hạng mục dịch vụ) →
 
 Header sticky và nav báo section đang xem, kể cả trên trang chi tiết thuộc section. Menu mobile có trạng thái mở/đóng, Escape và focus về nút mở. Chuyển route phải để người đọc tiếp tục tới nội dung, không giữ menu che trang mới.
 
-Secondary nav gồm breadcrumbs, bộ chuyển hạng mục trên danh sách dự án, dịch vụ liên quan và đường quay lại. Breadcrumb dự án có dạng **Trang chủ → Dự án PCCC → Hạng mục dịch vụ → Công trình**; phần hiện tại không phải link, có `BreadcrumbList` schema. Trang chi tiết có đường quay về đúng danh sách hạng mục.
+Secondary nav gồm breadcrumbs, bộ chuyển hạng mục trên danh sách dự án, dịch vụ liên quan và đường quay lại. Breadcrumb dự án có dạng **Trang chủ → Dự án → Hạng mục dịch vụ → Công trình**; phần hiện tại không phải link, có `BreadcrumbList` schema. Trang chi tiết có đường quay về đúng danh sách hạng mục.
 
 Footer gom liên kết vào **Dịch vụ PCCC** (anchor tới ba mô tả trên cùng trang), **Tìm hiểu Lavita** (dự án, doanh nghiệp, liên hệ, hồ sơ) và thông tin công ty/điện thoại/email/địa chỉ. Không tạo mục privacy, tuyển dụng, tài khoản hoặc tìm kiếm khi chưa có nội dung/chức năng đó.
 
@@ -142,7 +142,7 @@ Taxonomy dịch vụ là danh sách nhỏ, có kiểm soát:
 
 Đây là cách nhóm biên tập để tìm nội dung, không là kết quả card sort. Mỗi dự án mẫu đang gắn một `serviceSlug` và một nhãn scope cụ thể; chỉ mở rộng thành nhiều scope khi có bằng chứng cho từng phạm vi. Không thêm tag tự do hoặc taxonomy khách hàng/công trình khi chưa có dữ liệu cần dùng nhất quán.
 
-Nhãn hiện dùng là đề xuất cho triển khai, **chưa được kiểm chứng với khách hàng**. Giữ cách gọi “Dịch vụ PCCC” và “Dự án PCCC” ở các phần điều hướng tương ứng; tên dịch vụ/công trình lấy cùng nguồn để không đổi nghĩa giữa menu, breadcrumb, bộ lọc, trang chi tiết và email.
+Nhãn hiện dùng là đề xuất cho triển khai, **chưa được kiểm chứng với khách hàng**. Giữ cách gọi “Dịch vụ PCCC” và “Dự án” (từ 20/11/2026 bỏ chữ “PCCC” sau “Dự án” trên toàn site theo yêu cầu người dùng) ở các phần điều hướng tương ứng; tên dịch vụ/công trình lấy cùng nguồn để không đổi nghĩa giữa menu, breadcrumb, bộ lọc, trang chi tiết và email.
 
 ## Cross-links và luồng chính
 

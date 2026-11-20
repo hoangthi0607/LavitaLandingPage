@@ -29,13 +29,14 @@ export const vi = {
     call: "gọi {phone}",
   },
   nav: {
-    home: "Trang chủ", about: "Về Lavita", services: "Dịch vụ PCCC", projects: "Dự án PCCC", products: "Sản phẩm",
+    home: "Trang chủ", about: "Về Lavita", services: "Dịch vụ PCCC", projects: "Dự án", products: "Sản phẩm",
     profile: "Hồ sơ năng lực", news: "Tin tức", contact: "Liên hệ",
     mainLabel: "Điều hướng chính", mobileLabel: "Điều hướng di động", openMenu: "Mở menu", closeMenu: "Đóng menu", call: "Gọi {phone}",
-    languages: "Ngôn ngữ", openProjectCategories: "Mở hạng mục dự án PCCC", closeProjectCategories: "Đóng hạng mục dự án PCCC",
+    languages: "Ngôn ngữ", openProjectCategories: "Mở hạng mục dự án", closeProjectCategories: "Đóng hạng mục dự án",
     brandHome: "Lavita trang chủ", brandLogo: "Logo Lavita",
   },
-  footer: { headOffice: "Trụ sở", contact: "Liên hệ", links: "Liên kết", servicesLabel: "Dịch vụ PCCC cuối trang", rights: "Bảo lưu mọi quyền." },
+  // footer.intro: \u00a0 (no-break space) keeps each compound word on one line when the text wraps ("cung cấp", "giải pháp").
+  footer: { intro: "Công\u00a0ty TNHH Xây\u00a0dựng Lavita cung\u00a0cấp giải\u00a0pháp phòng\u00a0cháy chữa\u00a0cháy.", headOffice: "Địa chỉ trụ sở", contact: "Liên hệ", links: "Liên kết", servicesLabel: "Dịch vụ PCCC cuối trang", rights: "Bảo lưu mọi quyền." },
   pagination: { previous: "Trang trước", next: "Trang sau", page: "Trang {page}" },
   services: {
     "tu-van-thiet-ke": { title: "Tư vấn thiết kế", pageTitle: "Tư vấn thiết kế PCCC", description: "Xây dựng giải pháp và thiết kế hệ thống PCCC phù hợp đặc thù công trình.", preparation: ["Loại công trình và địa điểm", "Giai đoạn chuẩn bị hoặc thiết kế hiện tại", "Bản vẽ và nhu cầu PCCC đang có"],
@@ -154,12 +155,12 @@ export const vi = {
   home: {
     heroHeading: "Lavita – giải pháp\nphòng cháy chữa cháy",
     slides: [
-      { title: "An toàn hôm nay.\nGiá trị mai sau.", description: "Giải pháp phòng cháy chữa cháy đồng bộ — từ tư vấn thiết kế, thi công đến bảo trì công trình.", alt: "Hệ thống đường ống PCCC lắp đặt trên trần công trình" },
+      { title: "An toàn hôm nay.\nGiá trị mai sau.", description: "Giải pháp phòng cháy chữa cháy đồng bộ — từ tư vấn thiết kế, thi công đến bảo trì công trình.", alt: "Đội kỹ thuật bên tủ trung tâm báo cháy tại tòa nhà Diamond Lotus" },
       { title: "Thiết kế đúng.\nVững nền an toàn.", description: "Đồng hành cùng công trình dân dụng và công nghiệp với giải pháp phù hợp từng nhu cầu.", alt: "Phối cảnh Chung cư Đại Nhật, dự án thiết kế PCCC" },
       { title: "Chủ động bảo trì.\nBền vững vận hành.", description: "Bảo trì, sửa chữa hệ thống PCCC để công trình vận hành an toàn.", alt: "Kiểm tra thiết bị hệ thống PCCC" },
     ],
     hero: {
-      roleDescription: "băng chuyền", slideLabel: "Giải pháp {{index}} trên {{slidesLength}}", seeProjects: "Xem dự án PCCC", learnService: "Tìm hiểu dịch vụ",
+      roleDescription: "băng chuyền", slideLabel: "Giải pháp {{index}} trên {{slidesLength}}", seeProjects: "Xem dự án", learnService: "Tìm hiểu dịch vụ",
       previous: "Giải pháp trước", next: "Giải pháp tiếp theo", dots: "Chọn slide", dot: "Slide {index}: {title}",
     },
     about: {
@@ -230,9 +231,9 @@ export const vi = {
     cta: "Tư vấn về dịch vụ này", related: "Dịch vụ liên quan", seeProjects: "Xem dự án theo hạng mục dịch vụ này", productsLink: "Xem danh mục sản phẩm", contents: "Nội dung chính",
   },
   projectsPage: {
-    title: "Dự án PCCC",
+    title: "Dự án",
     description: "Khám phá các công trình Lavita tham gia tư vấn thiết kế, thi công hệ thống, bảo trì và sửa chữa PCCC.",
-    all: "Tất cả", tabsLabel: "Hạng mục dự án PCCC", allProjects: "Tất cả dự án", serviceProjects: "Dự án {service}",
+    all: "Tất cả", tabsLabel: "Hạng mục dự án", allProjects: "Tất cả dự án", serviceProjects: "Dự án {service}",
     emptyHeading: "Đang cập nhật công trình trong hạng mục này", emptyText: "Bạn có thể trao đổi trực tiếp với Lavita để tìm hiểu thêm về dịch vụ.",
     paginationLabel: "Phân trang dự án",
     nextHeading: "Công trình của bạn cần giải pháp PCCC?", nextText: "Trao đổi nhu cầu với Lavita hoặc tìm hiểu đội ngũ thi công, hồ sơ pháp lý trong hồ sơ năng lực.",
@@ -245,13 +246,14 @@ export const vi = {
     learnService: "Tìm hiểu dịch vụ {service}", cta: "Tư vấn cho công trình của bạn", related: "Dự án cùng phạm vi", seeMore: "Xem các dự án {scope}",
   },
   productsPage: {
-    title: "Sản phẩm PCCC & HVAC",
+    title: "Sản phẩm PCCC",
     description: "Vật tư, thiết bị phòng cháy chữa cháy và sản phẩm thông gió, điều hòa không khí. Trao đổi với Lavita để chọn sản phẩm phù hợp công trình.",
     emptyTitle: "Danh mục sản phẩm đang được cập nhật",
     emptyDescription: "Thông tin và hình ảnh sản phẩm sẽ được bổ sung tại đây. Bạn có thể liên hệ Lavita để trao đổi về nhóm sản phẩm đang quan tâm.",
     breadcrumb: "Sản phẩm", sectionLabel: "Danh mục sản phẩm", tabsLabel: "Nhóm sản phẩm", all: "Tất cả sản phẩm",
     searchLabel: "Tìm sản phẩm", searchPlaceholder: "Nhập tên hoặc mã sản phẩm", searchButton: "Tìm kiếm",
-    help: "Cần trao đổi về sản phẩm?", resultsFor: "Kết quả tìm kiếm cho “{keyword}”", clearSearch: "Xóa tìm kiếm", count: "{count} sản phẩm",
+    suggestionsLabel: "Gợi ý sản phẩm", suggestKeywords: "Gợi ý tìm kiếm", suggestCategories: "Danh mục", suggestProducts: "Sản phẩm", suggestionsCount: "{count} sản phẩm khớp, dùng phím mũi tên để chọn", seeAllResults: "Xem tất cả “{keyword}” ({count})", noSuggestions: "Chưa có sản phẩm khớp “{keyword}”",
+    help: "Cần trao đổi về sản phẩm?", resultsFor: "Kết quả tìm kiếm cho “{keyword}”", clearSearch: "Xóa tìm kiếm", filtersHeading: "Bộ lọc", groupFilter: "Nhóm sản phẩm", clearFilters: "Xóa bộ lọc", count: "{count} sản phẩm",
     viewLabel: "Xem {title}", view: "Xem sản phẩm",
     noMatchTitle: "Chưa tìm thấy sản phẩm phù hợp", noMatchText: "Thử từ khóa khác hoặc chọn một nhóm sản phẩm khác. Bạn cũng có thể trao đổi trực tiếp với Lavita.",
     cta: "Trao đổi về sản phẩm", allCategories: "Xem tất cả danh mục",
@@ -303,7 +305,7 @@ export const vi = {
       "Thành lập từ năm 2023, Công ty TNHH Xây dựng Lavita hoạt động trong lĩnh vực cung cấp dịch vụ và giải pháp tối ưu cho các dự án, hướng đến những công trình an toàn, bền vững.",
       "Từ tư vấn thiết kế, thi công đến bảo trì, Lavita đồng hành cùng khách hàng để xây dựng giải pháp PCCC phù hợp với công trình, chú trọng hiệu quả và tối ưu chi phí.",
     ],
-    bannerAlt: "Hệ thống đường ống phòng cháy chữa cháy tại công trình",
+    bannerAlt: "Phối cảnh khu đô thị Sycamore CapitaLand, Bình Dương",
     overviewAlt: "Nhân sự kỹ thuật Lavita kiểm tra tủ điện của hệ thống PCCC",
     companyInfo: "Thông tin doanh nghiệp", companyName: "Tên doanh nghiệp", headOffice: "Trụ sở chính", foundedValue: "Năm {year}", contact: "Liên hệ",
     purposeLabel: "Tầm nhìn và sứ mệnh",
@@ -344,10 +346,10 @@ export const vi = {
   },
   profile: {
     title: "Hồ sơ năng lực",
-    description: "Thông tin doanh nghiệp, chuyên môn, đội ngũ và các dự án PCCC của Công ty TNHH Xây dựng Lavita.",
+    description: "Thông tin doanh nghiệp, chuyên môn, đội ngũ và các dự án của Công ty TNHH Xây dựng Lavita.",
     heroHeading: "Hồ sơ năng lực\nLavita.",
     introduction: "Chuyên môn từ con người.\nMinh chứng qua từng công trình.",
-    heroAlt: "Hệ thống đường ống PCCC",
+    heroAlt: "Đội kỹ thuật bên tủ trung tâm báo cháy tại tòa nhà Diamond Lotus",
     breadcrumbLabel: "Đường dẫn", contentsLabel: "Nội dung hồ sơ năng lực",
     sections: ["Đội ngũ thi công", "Hồ sơ pháp lý", "Bằng cấp, chứng chỉ nhân sự", "Dự án tiêu biểu"],
     teamTitle: "Đội ngũ thi công công trình",

@@ -11,7 +11,7 @@ export default async function OpenGraphImage() {
   const [font, logo, photo] = await Promise.all([
     readFile(join(process.cwd(), "public/fonts/manrope-semibold.ttf")),
     readFile(join(process.cwd(), "public/images/lavita-symbol.png")),
-    readFile(join(process.cwd(), "public/images/installation-og.png")),
+    readFile(join(process.cwd(), "public/images/og-photo.png")),
   ]);
   return new ImageResponse(
     <div style={{ display: "flex", width: "100%", height: "100%", background: "#302824", color: "#fff6ec", fontFamily: "Manrope" }}>

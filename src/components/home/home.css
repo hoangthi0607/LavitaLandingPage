@@ -8,6 +8,8 @@
 .hero::before { content: ""; position: absolute; inset: 0 0 auto; z-index: 1; height: calc(var(--header-h) + 96px); background: linear-gradient(180deg, color-mix(in srgb, var(--color-dark) 62%, transparent), transparent); pointer-events: none; }
 .hero-slide { position: relative; height: 100%; overflow: hidden; }
 .hero-image { object-fit: cover; object-position: center; }
+/* Slide 1 (Diamond Lotus team): anchor the photo to its top edge so the people sit below the centred text and buttons. */
+.hero-slide-0 .hero-image { object-position: center top; }
 .hero-slide::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 82% 64% at 50% 50%, color-mix(in srgb, var(--color-dark) 82%, transparent), color-mix(in srgb, var(--color-dark) 54%, transparent)), linear-gradient(0deg, color-mix(in srgb, var(--color-dark) 55%, transparent), transparent 30%); }
 .hero-content { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 1100px; padding: calc(var(--header-h) + 48px) var(--gutter) 120px; text-align: center; pointer-events: none; }
 .hero-content > * { pointer-events: auto; }

@@ -15,7 +15,7 @@ export const navigationKeys = [
 export const projectsHref = "/du-an";
 
 export const slideBase = [
-  { href: "/dich-vu", image: "/images/profile/he-thong-pccc.webp" },
+  { href: "/dich-vu", image: "/images/projects/diamond-lotus.webp" },
   { href: "/dich-vu#tu-van-thiet-ke", image: "/images/dai-nhat.webp" },
   { href: "/dich-vu#bao-tri-sua-chua", image: "/images/maintenance.webp" },
 ] as const;
@@ -24,7 +24,7 @@ export const slideBase = [
 // its detail page links to the product catalogue instead. Detail texts come from the old lavitacons.vn service pages.
 export const serviceBase = [
   { slug: "tu-van-thiet-ke", group: "trien-khai", image: "/images/dai-nhat.webp", relatedServiceSlugs: ["thi-cong-he-thong"], hasProjects: true },
-  { slug: "thi-cong-he-thong", group: "trien-khai", image: "/images/installation.webp", relatedServiceSlugs: ["tu-van-thiet-ke", "bao-tri-sua-chua"], hasProjects: true },
+  { slug: "thi-cong-he-thong", group: "trien-khai", image: "/images/profile/doi-ngu-thi-cong-c2.webp", relatedServiceSlugs: ["tu-van-thiet-ke", "bao-tri-sua-chua"], hasProjects: true },
   { slug: "bao-tri-sua-chua", group: "van-hanh", image: "/images/maintenance.webp", relatedServiceSlugs: ["thi-cong-he-thong"], hasProjects: true },
   { slug: "cung-cap-thiet-bi", group: "cung-ung", image: "/images/vat-tu-thiet-bi.webp", relatedServiceSlugs: ["thi-cong-he-thong", "bao-tri-sua-chua"], hasProjects: false },
 ] as const;
@@ -109,7 +109,7 @@ export const growthMilestones = [
 ] as const;
 
 export const aboutImages = {
-  banner: "/images/profile/he-thong-pccc.webp",
+  banner: "/images/projects/sycamore-capitaland.webp",
   overview: "/images/engineer.webp",
   vision: { src: "/images/profile/doi-ngu-thi-cong-c2.webp", width: 1181, height: 664 },
   coreValues: ["/images/maintenance.webp", "/images/profile/ky-thuat-vien-pccc.webp", "/images/profile/doi-ngu-thi-cong-c2.webp", "/images/engineer.webp", "/images/training.webp"],
@@ -121,7 +121,7 @@ export type ProfileDocument = { src: string; width: number; height: number; titl
 
 export const profileBase = {
   showCredentials: false,
-  heroImage: { src: "/images/profile/he-thong-pccc.webp", sourcePage: 21 },
+  heroImage: { src: "/images/projects/diamond-lotus.webp" },
   teamImage: { src: "/images/profile/doi-ngu-thi-cong-c2.webp", width: 1181, height: 664, sourcePage: 23 },
   technicianImage: { src: "/images/profile/ky-thuat-vien-pccc.webp", width: 720, height: 1020, sourcePage: 10 },
   sectionIds: ["thong-tin-doanh-nghiep", "phap-ly", "chuyen-mon", "du-an-tieu-bieu"],

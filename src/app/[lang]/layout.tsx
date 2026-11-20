@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import { preload } from "react-dom";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { CallButton } from "@/components/layout/call-button";
 import { businessStructuredData } from "@/data/structured-data";
 import { localeInfo, locales } from "@/i18n/config";
 import { getContent } from "@/i18n/content";
@@ -55,5 +56,5 @@ export default async function RootLayout({ children }: LayoutProps<"/[lang]">) {
   const { t, locale } = content;
   const cjk = cjkFonts[locale];
   if (!cjk) for (const name of latinPreloads) preload(`/fonts/be-vietnam-pro/${name}.woff2`, { as: "font", type: "font/woff2", crossOrigin: "anonymous" });
-  return <html lang={localeInfo[locale].htmlLang} className={manrope.variable} data-scroll-behavior="smooth"><body>{cjk && <link rel="stylesheet" href={cjk} precedence="fonts" />}<a className="skip-link" href="#main-content">{t.common.skipLink}</a><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(businessStructuredData(content)).replace(/</g, "\\u003c") }} /><Header content={{ t: { nav: t.nav }, navigation: content.navigation, services: content.services.filter(service => service.hasProjects).map(({ slug, title }) => ({ slug, title })), phone: content.company.phone, phoneHref: content.company.phoneHref, tagline: t.company.tagline }} /><main id="main-content" tabIndex={-1}>{children}</main><Footer /></body></html>;
+  return <html lang={localeInfo[locale].htmlLang} className={manrope.variable} data-scroll-behavior="smooth"><body>{cjk && <link rel="stylesheet" href={cjk} precedence="fonts" />}<a className="skip-link" href="#main-content">{t.common.skipLink}</a><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(businessStructuredData(content)).replace(/</g, "\\u003c") }} /><Header content={{ t: { nav: t.nav }, navigation: content.navigation, services: content.services.filter(service => service.hasProjects).map(({ slug, title }) => ({ slug, title })), phone: content.company.phone, phoneHref: content.company.phoneHref, tagline: t.company.tagline }} /><main id="main-content" tabIndex={-1}>{children}</main><Footer /><CallButton /></body></html>;
 }

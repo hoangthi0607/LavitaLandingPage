@@ -38,11 +38,11 @@ Các node dùng `@id` tuyệt đối và nhất quán với canonical. Không th
 
 ## Ảnh chia sẻ
 
-`src/app/opengraph-image.tsx` tạo ảnh PNG **1200 × 630** tại `/opengraph-image`, dùng logo và ảnh hệ thống PCCC có trong hồ sơ. Next.js cung cấp metadata ảnh Open Graph theo file convention; Twitter Card dùng cùng ảnh.
+`src/app/opengraph-image.tsx` tạo ảnh PNG **1200 × 630** tại `/opengraph-image`, dùng logo và ảnh đội kỹ thuật bên tủ báo cháy tại công trình Diamond Lotus. Next.js cung cấp metadata ảnh Open Graph theo file convention; Twitter Card dùng cùng ảnh.
 
 Ảnh dùng font static Manrope Semibold 600 được lưu tại `public/fonts/manrope-semibold.ttf`. Nguồn là [aaronbell/manrope, file fonts/ttf/manrope-semibold.ttf](https://github.com/aaronbell/manrope/blob/6f81ebecdf65e4463b798cc07b16a4f8d5216917/fonts/ttf/manrope-semibold.ttf), commit `6f81ebecdf65e4463b798cc07b16a4f8d5216917`; giấy phép OFL hiện có tại `public/fonts/OFL-Manrope.txt`. Font variable dùng cho giao diện vẫn nằm tại `public/fonts/manrope-variable.ttf`.
 
-Ảnh công trình được mã hóa lại thành `public/images/installation-og.png` để bộ tạo ảnh đọc đúng, giữ nguyên nội dung và kích thước ảnh nguồn. Bản WebP vẫn dùng cho giao diện. Ảnh chia sẻ được tạo sẵn khi build.
+Ảnh công trình là `public/images/og-photo.png` (PNG 440 × 630, cắt từ `projects/diamond-lotus.webp`, phần đội kỹ thuật và tủ báo cháy) để bộ tạo ảnh đọc đúng. Bản WebP vẫn dùng cho giao diện. Ảnh chia sẻ được tạo sẵn khi build.
 
 Kiểm tra ảnh render thực tế sau khi thay nội dung/font, gồm dấu tiếng Việt, xuống dòng, logo và ảnh. Các nền tảng chia sẻ có cache riêng; metadata trong HTML cần khớp với URL ảnh public.
 

@@ -1,7 +1,7 @@
 // Supported languages, in the order the header flags appear. Vietnamese is the default and keeps the
 // unprefixed URLs (/dich-vu); the others are served under a prefix (/en/dich-vu). Slugs stay Vietnamese
 // in every language so links, anchors and query strings are shared.
-export const locales = ["en", "vi", "zh", "ko", "ja"] as const;
+export const locales = ["vi", "en", "zh", "ko", "ja"] as const;
 export type Locale = (typeof locales)[number];
 export const defaultLocale: Locale = "vi";
 

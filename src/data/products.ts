@@ -47,6 +47,4 @@ export function productContactHref(categorySlug?: string, productSlug?: string) 
   return `/lien-he${query.size ? `?${query}` : ""}`;
 }
 
-export function normalizeProductSearch(value: string) {
-  return value.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/đ/g, "d");
-}
+export { normalizeSearch as normalizeProductSearch } from "@/lib/normalize-search";

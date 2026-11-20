@@ -185,11 +185,10 @@ body:has(.site-header[data-overlay]) main { padding-top: 0; }
 .footer-about { display: flex; flex-direction: column; align-items: center; gap: 24px; min-width: 0; text-align: center; }
 .footer-about .brand { font-size: 2.25rem; }
 .footer-about .brand:hover { transform: none; }
-.footer-about p { max-width: 34ch; margin: 0; color: var(--color-muted-on-dark); font-size: .875rem; line-height: 1.75; }
+.footer-about p { max-width: 34ch; margin: 0; text-align: left; color: var(--color-muted-on-dark); font-size: .875rem; line-height: 1.75; }
 .footer-title { display: flex; align-items: center; gap: 8px; margin: 0 0 18px; color: var(--color-on-dark); font-size: 1.0625rem; font-weight: var(--fw-strong); letter-spacing: .02em; line-height: 1.4; text-transform: uppercase; }
 .footer-title::after { content: ""; flex-shrink: 0; width: 0; height: 0; border-style: solid; border-width: 0 0 9px 9px; border-color: transparent transparent var(--color-accent) transparent; }
 .footer-company { min-width: 0; }
-.footer-company h3 { margin: 0 0 10px; color: var(--color-on-dark); font-size: .9375rem; font-weight: var(--fw-strong); letter-spacing: .02em; text-transform: uppercase; }
 .footer-details { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; color: var(--color-muted-on-dark); font-size: .875rem; line-height: 1.75; overflow-wrap: anywhere; }
 .footer-details span { color: var(--color-on-dark); font-weight: var(--fw-medium); }
 .footer-details a, .footer-col a { color: var(--color-muted-on-dark); text-decoration: underline 1px transparent; text-underline-offset: 4px; }
@@ -229,4 +228,28 @@ body:has(.site-header[data-overlay]) main { padding-top: 0; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+
+/* Floating hotline (call-button.tsx): fixed bottom right above page content, below the header and its mobile menu. */
+.call-float { position: fixed; right: max(20px, env(safe-area-inset-right)); bottom: max(20px, env(safe-area-inset-bottom)); z-index: 35; display: flex; align-items: center; border-radius: 999px; background: var(--color-brand); color: white; text-decoration: none; box-shadow: 0 14px 30px -12px color-mix(in srgb, var(--color-brand) 85%, transparent), 0 4px 12px -4px color-mix(in srgb, var(--color-dark) 35%, transparent); transition: background .25s ease, translate .35s var(--reveal-ease); }
+.call-float::before, .call-float::after { content: ""; position: absolute; left: 0; top: 0; width: 60px; height: 60px; border: 2px solid var(--color-brand); border-radius: 50%; pointer-events: none; animation: call-ring 2.4s ease-out infinite; }
+.call-float::after { animation-delay: 1.2s; }
+.call-float-icon { display: grid; place-items: center; flex-shrink: 0; width: 60px; height: 60px; border-radius: 50%; }
+.call-float-icon svg { animation: call-shake 2.4s ease-in-out infinite; transform-origin: 50% 60%; }
+.call-float-label { display: grid; grid-template-columns: 0fr; transition: grid-template-columns .45s var(--reveal-ease); }
+.call-float-label > span { min-width: 0; overflow: hidden; white-space: nowrap; font-size: 1.0625rem; font-weight: var(--fw-heading); letter-spacing: .02em; font-variant-numeric: tabular-nums; }
+.call-float:hover { background: var(--color-brand-hover); translate: 0 -2px; }
+.call-float:focus-visible { outline-color: var(--color-dark); outline-offset: 4px; }
+@media (hover: hover) and (min-width: 761px) {
+  .call-float:is(:hover, :focus-visible) .call-float-label { grid-template-columns: 1fr; }
+  .call-float:is(:hover, :focus-visible) .call-float-label > span { padding-right: 22px; }
+}
+@media (max-width: 760px) {
+  .call-float::before, .call-float::after, .call-float-icon { width: 54px; height: 54px; }
+}
+@keyframes call-ring { from { opacity: .6; transform: scale(1); } to { opacity: 0; transform: scale(1.6); } }
+@keyframes call-shake { 0%, 60%, 100% { transform: rotate(0); } 64%, 72%, 80% { transform: rotate(-14deg); } 68%, 76% { transform: rotate(14deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .call-float::before, .call-float::after { display: none; }
+  .call-float-icon svg { animation: none; }
 }

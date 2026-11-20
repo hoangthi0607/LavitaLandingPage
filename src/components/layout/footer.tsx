@@ -16,17 +16,16 @@ export async function Footer() {
     <div className="footer-inner">
       <div className="footer-about">
         <Brand labels={{ tagline: t.company.tagline, home: t.nav.brandHome, logo: t.nav.brandLogo }} />
-        <p>{t.meta.description}</p>
+        <p>{t.footer.intro}</p>
       </div>
       <div className="footer-company">
         <h2 className="footer-title">{company.name}</h2>
-        <h3>{t.footer.headOffice}</h3>
         <ul className="footer-details">
-          <li><span>{t.common.address}:</span> {company.address}</li>
+          <li><span>{t.common.taxCode}:</span> {company.taxCode}</li>
+          <li><span>{t.footer.headOffice}:</span> {company.address}</li>
           <li><span>{t.common.hotline}:</span> <a href={company.phoneHref}>{company.phone}</a></li>
           <li><span>{t.common.email}:</span> <a href={`mailto:${company.email}`}>{company.email}</a></li>
           <li><span>{t.common.website}:</span> <a href={site.url}>{website}</a></li>
-          <li><span>{t.common.taxCode}:</span> {company.taxCode}</li>
         </ul>
       </div>
       <nav className="footer-col footer-services" aria-label={t.footer.servicesLabel}>
