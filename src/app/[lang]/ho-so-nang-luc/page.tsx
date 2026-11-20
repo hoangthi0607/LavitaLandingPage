@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { ArrowRight, Download } from "lucide-react";
+import type { CSSProperties } from "react";
+import { ArrowRight, Briefcase, Building2, Download, HardHat, Users } from "lucide-react";
 import { SectionNav } from "@/components/content/section-nav";
 import { DocumentGallery } from "@/components/content/document-gallery";
 import { getContent } from "@/i18n/content";
@@ -13,8 +14,11 @@ export async function generateMetadata() {
 }
 
 // 19/11/2026: the hero photo zooms slowly and its copy rises; the contents bar sticks with a pill that follows the
-// section being read (SectionNav); photos wipe in; the organisation chart draws its connectors and lifts its
-// branches; project names are chips; the shared contact panel carries the PDF download.
+// section being read (SectionNav); photos wipe in; the organisation chart builds from the board down
+// (20/11/2026); project names are chips; the shared contact panel carries the PDF download.
+// Icons for the organisation branches, in the order of profile.organization: office, business, technical.
+const organizationIcons = [Building2, Briefcase, HardHat];
+
 export default async function CompanyProfilePage() {
   const content = await getContent();
   const { company, profile, t } = content;
@@ -42,7 +46,7 @@ export default async function CompanyProfilePage() {
       <h2 id="profile-credentials-title" className="section-title">{profile.credentialsTitle}</h2>
       <div className="profile-credentials-layout"><figure className="profile-technician"><Image src={profile.technicianImage.src} alt={profile.technicianAlt} width={profile.technicianImage.width} height={profile.technicianImage.height} sizes="(max-width: 760px) 90vw, 35vw" /></figure><div><DocumentGallery title={profile.credentialsTitle} items={profile.credentials} labels={gallery} variant="credentials" /></div></div>
       </div>}
-      <div className={`profile-organization${profile.showCredentials ? "" : " profile-organization-only"}`}>{profile.showCredentials ? <h3>{profile.organizationHeading}</h3> : <h2 id="profile-organization-title" className="section-title">{profile.organizationHeading}</h2>}<div className="profile-organization-tree"><p className="profile-management">{profile.management}</p><ul>{profile.organization.map(group => <li key={group.title}>{profile.showCredentials ? <h4>{group.title}</h4> : <h3>{group.title}</h3>}<ul>{group.roles.map(role => <li key={role}>{role}</li>)}</ul></li>)}</ul></div></div>
+      <div className={`profile-organization${profile.showCredentials ? "" : " profile-organization-only"}`}>{profile.showCredentials ? <h3>{profile.organizationHeading}</h3> : <h2 id="profile-organization-title" className="section-title">{profile.organizationHeading}</h2>}<div className="profile-organization-tree" data-reveal="fade"><p className="profile-management"><span className="profile-org-icon" aria-hidden="true"><Users size={20} /></span>{profile.management}</p><ul>{profile.organization.map((group, index) => { const Icon = organizationIcons[index] ?? Building2; return <li key={group.title} style={{ "--org-index": index } as CSSProperties}><div className="profile-org-card"><div className="profile-org-head"><span className="profile-org-icon" aria-hidden="true"><Icon size={20} /></span>{profile.showCredentials ? <h4>{group.title}</h4> : <h3>{group.title}</h3>}</div><ul>{group.roles.map((role, roleIndex) => <li key={role} style={{ "--org-role": roleIndex } as CSSProperties}>{role}</li>)}</ul></div></li>; })}</ul></div></div>
     </section>
 
     <section id="du-an-tieu-bieu" className="section profile-projects" aria-labelledby="profile-projects-title">

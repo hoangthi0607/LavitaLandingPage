@@ -19,8 +19,6 @@ const revealTargets = [
   "#chuyen-mon > h2",
   ".profile-credentials-layout > *",
   ".profile-organization > h2, .profile-organization > h3",
-  ".profile-management",
-  ".profile-organization-tree > ul > li",
   ".profile-project-layout > .profile-project-chapter",
   ".profile-contact > div > *",
 ].join(", ");

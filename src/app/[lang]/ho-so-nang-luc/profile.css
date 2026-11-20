@@ -32,16 +32,6 @@
 .profile-organization { margin-top: 48px; padding-top: 32px; border-top: 1px solid color-mix(in srgb, var(--color-muted-on-dark) 30%, transparent); }
 .profile-organization > h3 { margin-bottom: 28px; }
 .profile-organization-only { margin-top: 0; padding-top: 0; border-top: 0; }
-.profile-organization-tree { min-width: 0; }
-.profile-management { position: relative; width: fit-content; max-width: 100%; min-width: 200px; margin: 0 auto 32px; padding: 16px 24px; background: color-mix(in srgb, var(--color-on-dark) 7%, transparent); text-align: center; font-weight: var(--fw-strong); }
-.profile-management::after { content: ""; position: absolute; left: 50%; top: 100%; height: 32px; border-left: 1px solid var(--color-muted-on-dark); }
-.profile-organization-tree ul { list-style: none; margin: 0; padding: 0; }
-.profile-organization-tree > ul { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; padding-top: 28px; }
-.profile-organization-tree > ul::before { content: ""; position: absolute; top: 0; left: calc((100% - 48px) / 6); right: calc((100% - 48px) / 6); border-top: 1px solid var(--color-muted-on-dark); }
-.profile-organization-tree > ul > li { position: relative; min-width: 0; padding: 20px; background: color-mix(in srgb, var(--color-on-dark) 5%, transparent); }
-.profile-organization-tree > ul > li::before { content: ""; position: absolute; left: 50%; top: -28px; height: 28px; border-left: 1px solid var(--color-muted-on-dark); }
-.profile-organization h4, .profile-organization-tree > ul > li > h3 { font-size: .9375rem; font-weight: var(--fw-medium); margin: 0 0 12px; }
-.profile-organization-tree > ul > li > ul { color: var(--color-muted-on-dark); font-size: .8125rem; }
 .profile-projects .section-heading h2 { white-space: pre-line; }
 .profile-project-layout { display: grid; grid-template-columns: 1.2fr 1fr; gap: 36px; }
 .profile-project-chapter { min-width: 0; }
@@ -73,11 +63,6 @@
   .profile-legal-groups { gap: 36px; }
   .document-gallery-legal { padding: 16px; }
   .profile-technician > img { width: min(100%, 420px); margin-inline: auto; }
-  .profile-organization-tree > ul { grid-template-columns: 1fr; gap: 12px; padding: 0 0 0 32px; }
-  .profile-management { width: 100%; margin-bottom: 24px; text-align: left; }
-  .profile-management::after { left: 12px; height: 24px; }
-  .profile-organization-tree > ul::before { left: 12px; top: 0; bottom: 0; right: auto; border-top: 0; border-left: 1px solid var(--color-muted-on-dark); }
-  .profile-organization-tree > ul > li::before { top: 28px; left: -20px; width: 20px; height: 0; border-left: 0; border-top: 1px solid var(--color-muted-on-dark); }
   .profile-project-tu-van-thiet-ke { grid-row: auto; display: block; }
   .profile-project-tu-van-thiet-ke .profile-project-photos { aspect-ratio: 1.2; }
   .profile-project-photos { aspect-ratio: 1.5; }
@@ -114,19 +99,6 @@
 .document-gallery-legal { border-radius: 16px; box-shadow: 0 18px 40px -32px color-mix(in srgb, var(--color-dark) 60%, transparent); transition: transform .45s var(--reveal-ease), box-shadow .45s ease; }
 .profile-legal-album:hover .document-gallery-legal { transform: translateY(-4px); box-shadow: 0 28px 50px -32px color-mix(in srgb, var(--color-dark) 70%, transparent); }
 
-/* Organisation chart: the board pops, the connector draws across (scroll-driven where supported), the three
-   branches rise one after another and lift on hover. */
-.profile-management { border-radius: 12px; }
-.profile-organization-tree > ul > li { border-radius: 14px; transition: transform .45s var(--reveal-ease), background .3s ease; }
-.profile-organization-tree > ul > li:hover { transform: translateY(-4px); background: color-mix(in srgb, var(--color-on-dark) 10%, transparent); }
-.profile-organization-tree > ul > li > ul li { position: relative; padding-left: 14px; }
-.profile-organization-tree > ul > li > ul li::before { content: ""; position: absolute; left: 0; top: .7em; width: 6px; height: 6px; border-radius: 50%; background: var(--color-accent); }
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) and (min-width: 761px) {
-    .profile-organization-tree > ul::before { transform-origin: center; animation: profile-draw linear both; animation-timeline: view(); animation-range: entry 10% cover 40%; }
-    @keyframes profile-draw { from { transform: scaleX(0); } }
-  }
-}
 
 /* Project chapters: photos zoom on hover; project names are chips. */
 .profile-project-photos { border-radius: 16px; }
@@ -143,6 +115,78 @@
 
 @media (prefers-reduced-motion: reduce) {
   .profile-hero > img, .profile-hero-copy > *, .profile-hero h1::after { animation: none; }
-  .profile-company-photo img, .document-gallery-legal, .profile-organization-tree > ul > li, .profile-project-photos img, .profile-project-links a { transition: none; }
-  .profile-company-photo img, .profile-legal-album:hover .document-gallery-legal, .profile-organization-tree > ul > li:hover, .profile-project-chapter:hover .profile-project-photos img, .profile-project-links a:hover { transform: none; }
+  .profile-company-photo img, .document-gallery-legal, .profile-project-photos img, .profile-project-links a { transition: none; }
+  .profile-company-photo img, .profile-legal-album:hover .document-gallery-legal, .profile-project-chapter:hover .profile-project-photos img, .profile-project-links a:hover { transform: none; }
+}
+
+/* Organisation chart (20/11/2026): the board is a red node, branches are cards with a round icon and role chips,
+   joined by orange connectors with a dot at each junction. When the chart scrolls into view it builds from the top:
+   the board pops, the stem and bar draw, the drops fall, then the cards and their chips rise in turn. Without
+   JavaScript, in the first viewport or with reduced motion everything is simply shown. */
+.profile-organization-tree { --org-line: color-mix(in srgb, var(--color-accent) 70%, var(--color-on-dark)); --org-gap: 32px; min-width: 0; }
+.profile-organization-tree ul { list-style: none; margin: 0; padding: 0; }
+.profile-management { position: relative; display: flex; align-items: center; gap: 12px; width: fit-content; max-width: 100%; margin: 0 auto var(--org-gap); padding: 8px 24px 8px 8px; border-radius: 999px; background: var(--color-brand); color: white; font-size: 1.0625rem; font-weight: var(--fw-strong); box-shadow: 0 18px 36px -18px color-mix(in srgb, var(--color-brand) 80%, transparent); }
+.profile-management::after { content: ""; position: absolute; left: calc(50% - 1px); top: 100%; width: 2px; height: var(--org-gap); background: var(--org-line); transform-origin: top; }
+.profile-management .profile-org-icon { background: color-mix(in srgb, white 18%, transparent); color: white; }
+.profile-org-icon { display: grid; place-items: center; flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; background: color-mix(in srgb, var(--color-on-dark) 10%, transparent); color: #ffc493; transition: background .3s ease, color .3s ease, transform .45s var(--reveal-ease); }
+.profile-organization-tree > ul { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; padding-top: var(--org-gap); }
+.profile-organization-tree > ul::before { content: ""; position: absolute; top: 0; left: calc((100% - 48px) / 6); right: calc((100% - 48px) / 6); height: 2px; background: var(--org-line); }
+.profile-organization-tree > ul > li { position: relative; display: flex; min-width: 0; }
+.profile-organization-tree > ul > li::before { content: ""; position: absolute; left: calc(50% - 1px); top: calc(-1 * var(--org-gap)); width: 2px; height: var(--org-gap); background: var(--org-line); transform-origin: top; }
+.profile-organization-tree > ul > li::after { content: ""; position: absolute; left: calc(50% - 5px); top: calc(-1 * var(--org-gap) - 4px); width: 10px; height: 10px; border-radius: 50%; background: #ffc493; box-shadow: 0 0 0 4px var(--color-dark); }
+.profile-org-card { flex: 1; min-width: 0; padding: 22px; border: 1px solid color-mix(in srgb, var(--color-on-dark) 12%, transparent); border-radius: 16px; background: color-mix(in srgb, var(--color-on-dark) 4%, transparent); transition: translate .45s var(--reveal-ease), background .3s ease, border-color .3s ease; }
+.profile-org-head { display: flex; align-items: center; gap: 14px; }
+.profile-org-head :is(h3, h4) { margin: 0; font-size: 1.0625rem; font-weight: var(--fw-strong); line-height: 1.35; }
+.profile-org-card > ul { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; padding-top: 18px; border-top: 1px solid color-mix(in srgb, var(--color-on-dark) 10%, transparent); }
+.profile-org-card > ul > li { padding: 6px 12px; border: 1px solid color-mix(in srgb, var(--color-on-dark) 18%, transparent); border-radius: 999px; color: var(--color-on-dark); font-size: .8125rem; line-height: 1.4; transition: border-color .3s ease; }
+.profile-organization-tree > ul > li:hover .profile-org-card { translate: 0 -4px; border-color: color-mix(in srgb, var(--color-accent) 70%, transparent); background: color-mix(in srgb, var(--color-on-dark) 8%, transparent); }
+.profile-organization-tree > ul > li:hover .profile-org-icon { background: var(--color-brand); color: white; transform: scale(1.06); }
+.profile-organization-tree > ul > li:hover .profile-org-card > ul > li { border-color: color-mix(in srgb, #ffc493 45%, transparent); }
+
+@media (max-width: 760px) {
+  /* A spine down the left from the board: a branch to each card, the last one turning in a rounded elbow. */
+  .profile-organization-tree { --org-gap: 24px; --org-indent: 52px; --org-spine: 29px; --org-branch: 40px; }
+  .profile-management { margin-left: 0; }
+  .profile-management::after { left: var(--org-spine); }
+  .profile-organization-tree > ul { grid-template-columns: 1fr; gap: 12px; padding: 0 0 0 var(--org-indent); }
+  .profile-organization-tree > ul::before { display: none; }
+  .profile-organization-tree > ul > li::before { left: calc(var(--org-spine) - var(--org-indent)); top: -12px; bottom: 0; height: auto; }
+  .profile-organization-tree > ul > li:first-child::before { top: calc(-1 * var(--org-gap)); }
+  .profile-organization-tree > ul > li:last-child::before { bottom: auto; height: calc(var(--org-branch) + 13px); width: calc(var(--org-indent) - var(--org-spine)); border: solid var(--org-line); border-width: 0 0 2px 2px; border-bottom-left-radius: 12px; background: none; }
+  .profile-organization-tree > ul > li:first-child:last-child::before { height: calc(var(--org-branch) + var(--org-gap) + 1px); }
+  .profile-organization-tree > ul > li::after { left: calc(var(--org-spine) - var(--org-indent)); top: calc(var(--org-branch) - 1px); width: calc(var(--org-indent) - var(--org-spine)); height: 2px; border-radius: 0; background: var(--org-line); box-shadow: none; transform-origin: left; }
+  .profile-organization-tree > ul > li:last-child::after { display: none; }
+  .profile-org-card { padding: 18px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .profile-organization-tree { --org-start: 1.1s; --org-step: .12s; }
+  .profile-organization .profile-organization-tree[data-scroll-reveal] { opacity: 1; transform: none; transition: none; }
+  .profile-organization-tree[data-scroll-reveal="pending"] :is(.profile-management, .profile-org-card, .profile-org-card > ul > li),
+  .profile-organization-tree[data-scroll-reveal="pending"] > ul > li::after { opacity: 0; }
+  .profile-organization-tree[data-scroll-reveal="pending"] > ul::before,
+  .profile-organization-tree[data-scroll-reveal="pending"] > ul > li::before,
+  .profile-organization-tree[data-scroll-reveal="pending"] .profile-management::after { opacity: 0; }
+  .profile-organization-tree[data-scroll-reveal="visible"] .profile-management { animation: org-pop .7s var(--reveal-ease) both; }
+  .profile-organization-tree[data-scroll-reveal="visible"] .profile-management::after { animation: org-drop .35s .35s ease-out both; }
+  .profile-organization-tree[data-scroll-reveal="visible"] > ul::before { animation: org-draw .5s .65s var(--reveal-ease) both; }
+  .profile-organization-tree[data-scroll-reveal="visible"] > ul > li::before { animation: org-drop .35s calc(var(--org-start) - .15s + var(--org-index) * var(--org-step)) ease-out both; }
+  .profile-organization-tree[data-scroll-reveal="visible"] > ul > li::after { animation: org-pop .4s calc(var(--org-start) - .2s + var(--org-index) * var(--org-step)) var(--reveal-ease) both; }
+  .profile-organization-tree[data-scroll-reveal="visible"] .profile-org-card { animation: org-rise .75s calc(var(--org-start) + var(--org-index) * var(--org-step)) var(--reveal-ease) both; }
+  .profile-organization-tree[data-scroll-reveal="visible"] .profile-org-card > ul > li { animation: org-chip .5s calc(var(--org-start) + .3s + var(--org-index) * var(--org-step) + var(--org-role) * 60ms) var(--reveal-ease) both; }
+  @media (max-width: 760px) {
+    .profile-organization-tree { --org-start: .7s; --org-step: .2s; }
+    .profile-organization-tree[data-scroll-reveal="visible"] > ul > li::after { animation-name: org-draw; }
+  }
+}
+@keyframes org-pop { from { opacity: 0; transform: scale(.6); } }
+@keyframes org-drop { from { transform: scaleY(0); } }
+@keyframes org-draw { from { transform: scaleX(0); } }
+@keyframes org-rise { from { opacity: 0; transform: translateY(28px); filter: blur(4px); } }
+@keyframes org-chip { from { opacity: 0; transform: translateY(10px) scale(.9); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .profile-org-card, .profile-org-icon { transition: none; }
+  .profile-organization-tree > ul > li:hover .profile-org-card { translate: none; }
+  .profile-organization-tree > ul > li:hover .profile-org-icon { transform: none; }
 }
