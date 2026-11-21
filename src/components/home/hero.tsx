@@ -1,73 +1,28 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import type { Swiper as SwiperInstance } from "swiper";
-import { A11y, Autoplay, EffectFade } from "swiper/modules";
-import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
+import { ArrowRight, Phone } from "lucide-react";
 import { format } from "@/i18n/config";
-import type { Dictionary } from "@/i18n/dictionaries/vi";
+import { getContent } from "@/i18n/content";
 import Link from "@/i18n/link";
-import "swiper/css";
-import "swiper/css/effect-fade";
 
-// Full-height carousel in the dcons.vn home style: centred heading, large side chevrons, pill dots.
-// The H1 and actions stay outside the slides so they are always present.
-type Slide = { href: string; image: string; title: string; description: string; alt: string };
-
-export function Hero({ heading, slides, labels }: { heading: string; slides: Slide[]; labels: Dictionary["home"]["hero"] & { findService: string } }) {
-  const [active, setActive] = useState(0);
-  const [reducedMotion, setReducedMotion] = useState(true);
-  const [focused, setFocused] = useState(false);
-  const [hovered, setHovered] = useState(false);
-  const [swiper, setSwiper] = useState<SwiperInstance | null>(null);
-  const shouldAutoplay = !reducedMotion && !focused && !hovered;
-  useEffect(() => {
-    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const update = () => setReducedMotion(media.matches);
-    update();
-    media.addEventListener("change", update);
-    return () => media.removeEventListener("change", update);
-  }, []);
-
-  useEffect(() => {
-    if (!swiper || swiper.destroyed) return;
-    if (shouldAutoplay) swiper.autoplay.start();
-    else swiper.autoplay.stop();
-    return () => { if (!swiper.destroyed) swiper.autoplay.stop(); };
-  }, [swiper, shouldAutoplay]);
-
-  const slide = slides[active];
-  return (
-    <section className="hero" aria-labelledby="hero-title" aria-roledescription={labels.roleDescription}
-      onPointerEnter={event => { if (event.pointerType === "mouse") setHovered(true); }}
-      onPointerLeave={() => setHovered(false)}
-      onFocusCapture={() => setFocused(true)}
-      onBlurCapture={event => { if (!event.currentTarget.contains(event.relatedTarget)) setFocused(false); }}>
-      <Swiper modules={[A11y, Autoplay, EffectFade]} effect="fade" fadeEffect={{ crossFade: true }} autoplay={{ delay: 3000, disableOnInteraction: false }} speed={reducedMotion ? 0 : 1000} loop a11y={{ slideLabelMessage: labels.slideLabel, itemRoleDescriptionMessage: "slide" }} onSwiper={setSwiper} onSlideChange={instance => setActive(instance.realIndex)}>
-        {slides.map((item, index) => (
-          <SwiperSlide key={item.title}>
-            <div className={`hero-slide hero-slide-${index}`} inert={index !== active}>
-              <Image className="hero-image" src={item.image} alt={item.alt} fill priority={index === 0} sizes="100vw" />
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-      <div className="hero-content">
-        <h1 id="hero-title">{heading}</h1>
-        <p className="hero-tagline" aria-live={shouldAutoplay ? "off" : "polite"}>{slide.title.replace("\n", " ")}</p>
-        <p className="hero-description">{slide.description}</p>
-        <div className="hero-actions">
-          <Link className="button button-primary" href="/dich-vu">{labels.findService}<ArrowUpRight size={18} aria-hidden="true" /></Link>
-          <Link className="hero-secondary" href={slide.href === "/dich-vu" ? "/du-an" : slide.href}>{slide.href === "/dich-vu" ? labels.seeProjects : labels.learnService}</Link>
-        </div>
+// Home hero (21/11/2026): a white block that reads at a glance: the heading, one short sentence, and two large
+// actions: find a service, and call the hotline with the number written out. One real project photo sits beside the
+// text (never behind it) and nothing moves on its own, so readers with weaker eyesight get dark text on white at a
+// large size. The logo stays in the header only.
+export async function Hero() {
+  const { company, slides, t } = await getContent();
+  const [photo] = slides;
+  return <section className="hero" aria-labelledby="hero-title">
+    <div className="hero-copy">
+      <h1 id="hero-title">{t.home.heroHeading}</h1>
+      <p className="hero-lead">{photo.description}</p>
+      <div className="hero-actions">
+        <Link className="button button-primary hero-button" href="/dich-vu">{t.common.findService}<ArrowRight size={22} aria-hidden="true" /></Link>
+        <a className="button hero-call" href={company.phoneHref}><Phone size={22} aria-hidden="true" /><span>{format(t.nav.call, { phone: company.phone })}</span></a>
       </div>
-      <button type="button" className="hero-arrow hero-arrow-prev" onClick={() => swiper?.slidePrev()} aria-label={labels.previous}><ChevronLeft size={44} strokeWidth={1.75} aria-hidden="true" /></button>
-      <button type="button" className="hero-arrow hero-arrow-next" onClick={() => swiper?.slideNext()} aria-label={labels.next}><ChevronRight size={44} strokeWidth={1.75} aria-hidden="true" /></button>
-      <div className="hero-dots" role="group" aria-label={labels.dots}>
-        {slides.map((item, index) => <button type="button" key={item.title} aria-label={format(labels.dot, { index: index + 1, title: item.title.replace("\n", " ") })} aria-current={index === active ? "true" : undefined} onClick={() => swiper?.slideToLoop(index)} />)}
-      </div>
-    </section>
-  );
+      <Link className="hero-more" href="/du-an">{t.home.hero.seeProjects}</Link>
+    </div>
+    <div className="hero-media">
+      <Image src={photo.image} alt={photo.alt} fill priority sizes="(max-width: 900px) 92vw, 46vw" />
+    </div>
+  </section>;
 }

@@ -23,8 +23,13 @@ export async function Footer() {
         <ul className="footer-details">
           <li><span>{t.common.taxCode}:</span> {company.taxCode}</li>
           <li><span>{t.footer.headOffice}:</span> {company.address}</li>
-          <li><span>{t.common.hotline}:</span> <a href={company.phoneHref}>{company.phone}</a></li>
-          <li><span>{t.common.email}:</span> <a href={`mailto:${company.email}`}>{company.email}</a></li>
+          {company.departments.map(department => <li className="footer-department" key={department.key}>
+            <h3>{t.footer.departmentContact.replace("{department}", t.footer.departments[department.key])}:</h3>
+            <ul className="footer-details">
+              <li><span>{t.footer.phone}:</span> <a href={department.phoneHref}>{department.phone}</a></li>
+              <li><span>{t.common.email}:</span> <a href={`mailto:${department.email}`}>{department.email}</a></li>
+            </ul>
+          </li>)}
           <li><span>{t.common.website}:</span> <a href={site.url}>{website}</a></li>
         </ul>
       </div>

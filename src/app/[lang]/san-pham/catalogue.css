@@ -70,10 +70,9 @@
 .prod-float li:nth-child(1) { top: 0; left: 4%; width: 52%; }
 .prod-float li:nth-child(2) { top: 10%; right: 0; width: 38%; }
 .prod-float li:nth-child(3) { bottom: 0; left: 34%; width: 42%; }
-.prod-float a { position: relative; display: block; aspect-ratio: 1; overflow: hidden; border-radius: 22px; background: var(--color-surface-soft); box-shadow: 0 26px 50px -32px color-mix(in srgb, var(--color-dark) 60%, transparent); animation: prod-drift 7s calc(var(--i) * -2.3s) ease-in-out infinite; }
+.prod-float a { position: relative; display: block; aspect-ratio: 1; overflow: hidden; border-radius: 22px; background: var(--color-surface-soft); box-shadow: 0 26px 50px -32px color-mix(in srgb, var(--color-dark) 60%, transparent); }
 .prod-float img { object-fit: cover; transition: transform .8s var(--reveal-ease); }
 .prod-float span { position: absolute; left: 12px; top: 12px; max-width: calc(100% - 24px); padding: 6px 12px; border-radius: 999px; background: var(--color-surface); font-size: .75rem; font-weight: var(--fw-strong); line-height: 1.4; box-shadow: 0 6px 16px -10px color-mix(in srgb, var(--color-dark) 60%, transparent); transition: background .3s ease, color .3s ease; }
-.prod-float a:hover, .prod-float a:focus-visible { animation-play-state: paused; }
 .prod-float a:hover img { transform: scale(1.08); }
 .prod-float a:hover span { background: var(--color-brand); color: white; }
 @keyframes prod-rise { from { opacity: 0; transform: translateY(26px); } }

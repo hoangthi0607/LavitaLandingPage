@@ -36,7 +36,7 @@ export const zh: Dictionary = {
     languages: "语言", openProjectCategories: "展开项目类别", closeProjectCategories: "收起项目类别",
     brandHome: "Lavita首页", brandLogo: "Lavita标志",
   },
-  footer: { intro: "Lavita建设有限责任公司提供消防解决方案。", headOffice: "总部地址", contact: "联系方式", links: "链接", servicesLabel: "页脚消防服务", rights: "版权所有。" },
+  footer: { departmentContact: "{department}联系方式", phone: "电话", departments: { sales: "销售部", hr: "人事部", technical: "技术部" }, intro: "Lavita建设有限责任公司提供消防解决方案。", headOffice: "总部地址", contact: "联系方式", links: "链接", servicesLabel: "页脚消防服务", rights: "版权所有。" },
   pagination: { previous: "上一页", next: "下一页", page: "第 {page} 页" },
   services: {
     "tu-van-thiet-ke": { title: "设计咨询", pageTitle: "消防设计咨询", description: "根据建筑的具体特点制定消防解决方案并进行系统设计。", preparation: ["建筑类型与地点", "目前所处的筹备或设计阶段", "现有图纸与消防需求"],

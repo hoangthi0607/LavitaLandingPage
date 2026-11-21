@@ -25,18 +25,10 @@ export function Header({ content }: { content: HeaderContent }) {
   const { nav } = content.t;
   const pathname = useLocalePath();
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const [expandedMenu, setExpandedMenu] = useState<string | null>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
-  const overlay = pathname === "/";
 
   useEffect(() => { setOpen(false); setExpandedMenu(null); }, [pathname]);
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
   useEffect(() => {
     const media = window.matchMedia("(min-width: 1200px)");
     const onResize = () => { setExpandedMenu(null); if (media.matches) setOpen(false); };
@@ -65,11 +57,10 @@ export function Header({ content }: { content: HeaderContent }) {
       onExpandedChange={value => setExpandedMenu(current => value ? key : current === key ? null : current)}
       onNavigate={() => { setOpen(false); setExpandedMenu(null); }} />;
   };
-  const solid = !overlay || scrolled || open;
   const brand = { tagline: content.tagline, home: nav.brandHome, logo: nav.brandLogo };
 
   return (
-    <header className="site-header" data-overlay={overlay ? "true" : undefined} data-solid={solid ? "true" : "false"}>
+    <header className="site-header">
       <div className="navigation">
         <Brand labels={brand} />
         <nav className="desktop-nav" aria-label={nav.mainLabel}>{content.navigation.map(item => item.href === projectsHref ? dropdown(item.label) : <Link key={item.href} href={item.href} aria-current={isCurrent(item.href) ? "page" : undefined}>{item.label}</Link>)}</nav>

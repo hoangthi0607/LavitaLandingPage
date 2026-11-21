@@ -36,7 +36,7 @@ export const vi = {
     brandHome: "Lavita trang chủ", brandLogo: "Logo Lavita",
   },
   // footer.intro: \u00a0 (no-break space) keeps each compound word on one line when the text wraps ("cung cấp", "giải pháp").
-  footer: { intro: "Công\u00a0ty TNHH Xây\u00a0dựng Lavita cung\u00a0cấp giải\u00a0pháp phòng\u00a0cháy chữa\u00a0cháy.", headOffice: "Địa chỉ trụ sở", contact: "Liên hệ", links: "Liên kết", servicesLabel: "Dịch vụ PCCC cuối trang", rights: "Bảo lưu mọi quyền." },
+  footer: { departmentContact: "Thông tin liên lạc {department}", phone: "SĐT", departments: { sales: "Phòng Kinh doanh", hr: "Phòng Nhân sự", technical: "Phòng Kỹ thuật" }, intro: "Công\u00a0ty TNHH Xây\u00a0dựng Lavita cung\u00a0cấp giải\u00a0pháp phòng\u00a0cháy chữa\u00a0cháy.", headOffice: "Địa chỉ trụ sở", contact: "Liên hệ", links: "Liên kết", servicesLabel: "Dịch vụ PCCC cuối trang", rights: "Bảo lưu mọi quyền." },
   pagination: { previous: "Trang trước", next: "Trang sau", page: "Trang {page}" },
   services: {
     "tu-van-thiet-ke": { title: "Tư vấn thiết kế", pageTitle: "Tư vấn thiết kế PCCC", description: "Xây dựng giải pháp và thiết kế hệ thống PCCC phù hợp đặc thù công trình.", preparation: ["Loại công trình và địa điểm", "Giai đoạn chuẩn bị hoặc thiết kế hiện tại", "Bản vẽ và nhu cầu PCCC đang có"],
@@ -153,7 +153,8 @@ export const vi = {
     "tu-dien-mang-cap": { title: "Tủ điện, máng cáp & giá treo", description: "Tủ điện, máng cáp trunking và hệ giá treo Unistar." },
   },
   home: {
-    heroHeading: "Lavita – giải pháp\nphòng cháy chữa cháy",
+    // heroHeading: \u00a0 keeps each compound word whole when the heading wraps on phones.
+    heroHeading: "Lavita – giải\u00a0pháp\nphòng\u00a0cháy chữa\u00a0cháy",
     slides: [
       { title: "An toàn hôm nay.\nGiá trị mai sau.", description: "Giải pháp phòng cháy chữa cháy đồng bộ — từ tư vấn thiết kế, thi công đến bảo trì công trình.", alt: "Đội kỹ thuật bên tủ trung tâm báo cháy tại tòa nhà Diamond Lotus" },
       { title: "Thiết kế đúng.\nVững nền an toàn.", description: "Đồng hành cùng công trình dân dụng và công nghiệp với giải pháp phù hợp từng nhu cầu.", alt: "Phối cảnh Chung cư Đại Nhật, dự án thiết kế PCCC" },

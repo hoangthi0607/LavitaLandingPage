@@ -8,20 +8,16 @@ import { TestimonialText } from "@/components/home/testimonial-text";
 import Link from "@/i18n/link";
 import { cdnUrl, formatDate, getNewsPage, itemSlug, newsSource, type NewsItem } from "@/lib/fire-police-news";
 
-// Company intro in the dcons.vn "about-home" layout: heading, copy, large figures, overlapping photos, client logo band.
-// #capabilities is kept on the figures so older shared links still land on this section.
+// Company intro: heading, copy, overlapping photos and client logo band.
+// #capabilities stays on the intro so older shared links still land on this section.
 export async function HomeAbout() {
-  const { company, services, t } = await getContent();
+  const { t } = await getContent();
   const about = t.home.about;
   return <section id="about" className="section home-about" aria-labelledby="home-about-title">
-    <div className="home-about-inner">
+    <div id="capabilities" className="home-about-inner">
       <div className="home-about-copy">
         <h2 id="home-about-title" data-reveal="up">{about.heading}</h2>
         <p className="home-about-desc" data-reveal="up">{about.lead}</p>
-        <div id="capabilities" className="home-about-stats" data-reveal="up">
-          <div><strong>{company.founded}</strong><span>{about.foundedLabel[0]}<br />{about.foundedLabel[1]}</span></div>
-          <div><strong>{services.length}</strong><span>{about.servicesLabel[0]}<br />{about.servicesLabel[1]}</span></div>
-        </div>
         <Link className="detail-link" href="/ve-lavita" data-reveal="up">{about.learnMore}</Link>
       </div>
       <div className="home-about-media" data-reveal="right">
@@ -56,14 +52,17 @@ export async function Services() {
 
 const newsHref = (item: NewsItem) => `/tin-tuc/bai-viet/${item.categorySlug}/${itemSlug(item)}`;
 
-// Lead article: photo card with category and date chips; the photo zooms slowly on hover.
+// Lead article: white card, photo on top with the category and date chips, title and summary in dark text below
+// (21/11/2026: no text over the photo). The photo zooms slowly on hover.
 // Agency articles are published in Vietnamese only, hence lang="vi".
 function NewsFeature({ item, intl }: { item: NewsItem; intl: string }) {
   const image = cdnUrl(item.filePreview);
   const date = formatDate(item.publishedDate, intl);
   return <Link className="home-news-feature" href={newsHref(item)} lang="vi" data-reveal="wipe">
-    {image ? <Image className="home-news-image" src={image} alt="" fill unoptimized /> : <Newspaper className="home-news-placeholder-icon" size={48} strokeWidth={1.3} aria-hidden="true" />}
-    <span className="home-news-chips"><span className="home-news-chip">{item.categoryName}</span>{date && <span className="home-news-chip is-date">{date}</span>}</span>
+    <span className="home-news-media">
+      {image ? <Image className="home-news-image" src={image} alt="" fill unoptimized /> : <Newspaper className="home-news-placeholder-icon" size={48} strokeWidth={1.3} aria-hidden="true" />}
+      <span className="home-news-chips"><span className="home-news-chip">{item.categoryName}</span>{date && <span className="home-news-chip is-date">{date}</span>}</span>
+    </span>
     <span className="home-news-feature-copy"><h3>{item.title}</h3>{item.description && <p>{item.description}</p>}</span>
   </Link>;
 }
@@ -123,7 +122,7 @@ export async function News() {
   </section>;
 }
 
-// Contact as one warm charcoal panel: the heading lines rise in turn, the CTA and contact tiles follow, and a technician
+// Contact as one light ivory panel (21/11/2026, was warm charcoal): the heading lines rise in turn, the CTA and contact tiles follow, and a technician
 // photo is wiped in from the right as the panel enters the viewport (static with reduced motion).
 export async function Contact() {
   const { company, t } = await getContent();
@@ -134,7 +133,7 @@ export async function Contact() {
       <div className="home-contact-copy">
         <h2 id="contact-title"><span data-reveal="up">{copy.heading}</span> <span className="home-contact-accent" data-reveal="up">{copy.headingAccent}</span></h2>
         <p data-reveal="up">{copy.text}</p>
-        <div className="home-contact-action" data-reveal="up"><Link className="button button-light" href="/lien-he">{copy.cta}<ArrowRight size={18} aria-hidden="true" /></Link></div>
+        <div className="home-contact-action" data-reveal="up"><Link className="button button-primary" href="/lien-he">{copy.cta}<ArrowRight size={18} aria-hidden="true" /></Link></div>
         <address className="home-contact-tiles">
           <a className="home-contact-tile is-phone" href={company.phoneHref} data-reveal="up"><span className="home-contact-icon"><Phone size={20} aria-hidden="true" /></span><span>{t.common.hotline}<strong>{company.phone}</strong></span></a>
           <a className="home-contact-tile" href={`mailto:${company.email}`} data-reveal="up"><span className="home-contact-icon"><Mail size={20} aria-hidden="true" /></span><span>{t.common.email}<strong>{company.email}</strong></span></a>

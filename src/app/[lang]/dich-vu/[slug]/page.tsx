@@ -54,8 +54,7 @@ export default async function ServicePage({ params }: Props) {
   ];
 
   return <div className="service-page">
-    <section className="service-hero">
-      <Image className="service-hero-photo" src={service.image} alt="" fill sizes="100vw" priority />
+    <section className="service-hero split-hero">
       <div className="service-hero-copy">
         <Breadcrumbs items={[{ label: t.common.home, href: "/" }, { label: t.nav.services, href: "/dich-vu" }, { label: service.title }]} />
         <h1>{service.pageTitle}</h1>
@@ -65,6 +64,7 @@ export default async function ServicePage({ params }: Props) {
           <a href={company.phoneHref} className="button service-button-ghost"><Phone size={17} aria-hidden="true" />{format(t.nav.call, { phone: company.phone })}</a>
         </div>
       </div>
+      <div className="split-hero-media"><Image className="service-hero-photo" src={service.image} alt="" fill sizes="(max-width: 900px) 92vw, 46vw" priority /></div>
     </section>
 
     <section className="section service-intro" aria-label={copy.heading}>

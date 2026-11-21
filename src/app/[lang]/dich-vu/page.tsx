@@ -31,7 +31,7 @@ export default async function ServicesPage() {
       <ul className="svc-mosaic">
         {services.map((service, index) => <li key={service.slug} style={{ "--i": index } as CSSProperties}>
           <a href={`#${service.slug}`}>
-            <Image src={service.image} alt="" fill sizes="(max-width: 900px) 46vw, 22vw" priority={index < 2} />
+            <span className="svc-mosaic-photo"><Image src={service.image} alt="" fill sizes="(max-width: 900px) 46vw, 22vw" priority={index < 2} /></span>
             <span>{service.title}</span>
           </a>
         </li>)}

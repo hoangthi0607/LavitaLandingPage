@@ -106,7 +106,7 @@ export default async function AboutPage() {
       <ul className="about-values-list">
         {about.coreValues.map(item => <li key={item.title} data-reveal="up">
           <TiltCard className="about-value-card">
-            <Image className="about-value-image" src={item.image} alt="" fill sizes="(max-width: 600px) 86vw, (max-width: 1100px) 44vw, 260px" />
+            <div className="about-value-photo"><Image className="about-value-image" src={item.image} alt="" fill sizes="(max-width: 600px) 86vw, (max-width: 1100px) 44vw, 260px" /></div>
             <div className="about-value-info"><h3>{item.title}</h3><p>{item.text}</p></div>
           </TiltCard>
         </li>)}

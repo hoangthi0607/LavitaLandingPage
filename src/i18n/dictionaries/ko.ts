@@ -36,7 +36,7 @@ export const ko: Dictionary = {
     languages: "언어", openProjectCategories: "프로젝트 분류 열기", closeProjectCategories: "프로젝트 분류 닫기",
     brandHome: "Lavita 홈", brandLogo: "Lavita 로고",
   },
-  footer: { intro: "Lavita 건설 유한책임회사는 소방 솔루션을 제공합니다.", headOffice: "본사 주소", contact: "연락처", links: "바로가기", servicesLabel: "하단 소방 서비스 메뉴", rights: "모든 권리 보유." },
+  footer: { departmentContact: "{department} 연락처", phone: "전화", departments: { sales: "영업부", hr: "인사부", technical: "기술부" }, intro: "Lavita 건설 유한책임회사는 소방 솔루션을 제공합니다.", headOffice: "본사 주소", contact: "연락처", links: "바로가기", servicesLabel: "하단 소방 서비스 메뉴", rights: "모든 권리 보유." },
   pagination: { previous: "이전 페이지", next: "다음 페이지", page: "{page}페이지" },
   services: {
     "tu-van-thiet-ke": { title: "설계 컨설팅", pageTitle: "소방 설계 컨설팅", description: "건축물의 특성에 맞는 소방 솔루션을 수립하고 시스템을 설계합니다.", preparation: ["건축물 유형 및 위치", "현재 준비 또는 설계 단계", "보유 도면 및 소방 요구 사항"],

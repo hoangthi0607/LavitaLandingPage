@@ -7,20 +7,15 @@ import { format } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries/vi";
 import Link from "@/i18n/link";
 
-const DELAY = 6000;
-
 // Full-width project showcase in the dcons.vn home style: photo background, project facts on the left,
-// thumbnails and arrows on the right, a countdown bar on top. Pauses on hover, focus, hidden tab or reduced motion.
+// thumbnails and arrows on the right. It never advances on its own (21/11/2026, large-print home page): readers move
+// through the projects with the thumbnails or arrows, at their own pace.
 // All projects are shown: thumbnails scroll horizontally and follow the active project; full-size backdrops are only
 // mounted for the active project, its neighbours and the ones already shown, so the page does not load every photo.
 type ShowcaseProject = { slug: string; title: string; location: string; tag: string; scale: string; investor: string; image: string };
 
 export function ProjectShowcase({ projects, labels, pending }: { projects: ShowcaseProject[]; labels: Dictionary["home"]["projects"]; pending: string }) {
   const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const [reducedMotion, setReducedMotion] = useState(true);
-  const [hidden, setHidden] = useState(false);
-  const autoplay = !paused && !reducedMotion && !hidden;
   const go = (index: number) => setActive((index + projects.length) % projects.length);
   const thumbsRef = useRef<HTMLUListElement>(null);
   const [mounted, setMounted] = useState(() => new Set([0, 1, projects.length - 1]));
@@ -40,35 +35,16 @@ export function ProjectShowcase({ projects, labels, pending }: { projects: Showc
     }
   }, [active, projects.length]);
 
-  useEffect(() => {
-    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const update = () => setReducedMotion(media.matches);
-    const visibility = () => setHidden(document.hidden);
-    update(); visibility();
-    media.addEventListener("change", update);
-    document.addEventListener("visibilitychange", visibility);
-    return () => { media.removeEventListener("change", update); document.removeEventListener("visibilitychange", visibility); };
-  }, []);
-  useEffect(() => {
-    if (!autoplay) return;
-    const timer = window.setTimeout(() => setActive(index => (index + 1) % projects.length), DELAY);
-    return () => window.clearTimeout(timer);
-  }, [autoplay, active, projects.length]);
 
-  return <section id="projects" className="home-projects" aria-labelledby="home-projects-title" aria-roledescription={labels.roleDescription}
-    onPointerEnter={event => { if (event.pointerType === "mouse") setPaused(true); }}
-    onPointerLeave={() => setPaused(false)}
-    onFocusCapture={() => setPaused(true)}
-    onBlurCapture={event => { if (!event.currentTarget.contains(event.relatedTarget)) setPaused(false); }}>
+  return <section id="projects" className="home-projects" aria-labelledby="home-projects-title" aria-roledescription={labels.roleDescription}>
     <h2 id="home-projects-title" className="sr-only">{labels.heading}</h2>
     <div className="home-projects-backdrop" aria-hidden="true">
       {projects.map((item, index) => mounted.has(index) && <div key={item.slug} className="home-projects-photo" data-active={index === active ? "true" : undefined}><Image src={item.image} alt="" fill sizes="100vw" /></div>)}
     </div>
-    <div className="home-projects-bar" aria-hidden="true"><span key={active} style={{ animationDuration: `${DELAY}ms`, animationPlayState: autoplay ? "running" : "paused" }} /></div>
     <div className="home-projects-inner">
       {/* Every project's facts share one grid cell and only the active one is shown, so the showcase keeps the
           height of the longest entry instead of jumping as titles and facts change length. */}
-      <div className="home-projects-stage" aria-live={autoplay ? "off" : "polite"}>
+      <div className="home-projects-stage" aria-live="polite">
         {projects.map((item, index) => <div className="home-projects-content" key={item.slug} data-active={index === active ? "true" : undefined} inert={index !== active}>
           <p className="home-projects-label">{labels.label}</p>
           <h3>{item.title}</h3>

@@ -1,12 +1,7 @@
-.profile-hero { position: relative; isolation: isolate; min-height: 600px; display: flex; align-items: center; color: var(--color-on-dark); background: var(--color-dark); }
-.profile-hero > img { object-fit: cover; object-position: center 60%; z-index: -2; }
-.profile-hero::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, color-mix(in srgb, var(--color-dark) 94%, transparent), color-mix(in srgb, var(--color-dark) 68%, transparent) 45%, color-mix(in srgb, var(--color-dark) 10%, transparent)); }
+.profile-hero .split-hero-media img { object-position: center 60%; }
 .profile-hero-copy { min-width: 0; }
-.profile-hero .breadcrumbs ol, .profile-hero .breadcrumbs li + li::before { color: var(--color-muted-on-dark); }
-.profile-hero .breadcrumbs a:hover, .profile-hero .breadcrumbs [aria-current="page"] { color: var(--color-on-dark); }
 .profile-hero h1 { margin: 28px 0 24px; max-width: 16ch; white-space: pre-line; font-size: clamp(2.75rem, 5.5vw, 4.75rem); font-weight: var(--fw-heading); line-height: 1.12; letter-spacing: -.01em; text-transform: uppercase; }
-.profile-hero-copy > p { margin: 0; white-space: pre-line; font-size: clamp(1rem, 1.6vw, 1.1875rem); color: var(--color-on-dark); }
-.profile-hero :focus-visible, .profile-credentials :focus-visible { outline-color: var(--color-on-dark); }
+.profile-hero-copy > p { margin: 0; white-space: pre-line; font-size: clamp(1.0625rem, 1.6vw, 1.25rem); color: var(--color-ink); }
 .profile-company { display: grid; grid-template-columns: 1.55fr 1fr; align-items: center; gap: clamp(32px, 4vw, 64px); }
 .profile-company-photo { margin: 0; min-width: 0; }
 .profile-company-photo img { display: block; width: 100%; height: auto; }
@@ -23,7 +18,7 @@
 .profile-legal-album { min-width: 0; }
 .profile-legal-album > h3 { font-size: 1.0625rem; margin-top: 20px; }
 .document-gallery-legal { padding: 24px; background: var(--color-surface); }
-.profile-credentials, .profile-people { background: var(--color-dark); color: var(--color-on-dark); }
+.profile-credentials, .profile-people { --color-on-dark: var(--color-ink); --color-muted-on-dark: var(--color-muted); background: var(--color-surface-soft); color: var(--color-ink); }
 .profile-credentials-layout { display: grid; grid-template-columns: .75fr 1.25fr; gap: 32px; align-items: start; }
 .profile-credentials-layout > div { min-width: 0; }
 .profile-technician { min-width: 0; margin: 0; }
@@ -53,9 +48,6 @@
   .document-gallery-legal { padding: 16px; gap: 12px; }
 }
 @media (max-width: 760px) {
-  .profile-hero { min-height: 480px; padding-block: 48px; }
-  .profile-hero::after { background: color-mix(in srgb, var(--color-dark) 72%, transparent); }
-  .profile-hero > img { object-position: 60% center; }
   .profile-hero h1 { font-size: clamp(2.5rem, 10vw, 3.5rem); }
   .profile-company, .profile-legal-groups, .profile-credentials-layout, .profile-project-layout { grid-template-columns: 1fr; }
   .profile-company h2 { max-width: 24ch; }
@@ -79,8 +71,7 @@
 /* Added to the html scroll padding (header + 16px), so headings land just below the sticky contents bar. */
 .profile-page [id] { scroll-margin-top: 84px; }
 /* Hero: the photo zooms out slowly, the copy rises in turn. */
-.profile-hero { overflow: hidden; }
-.profile-hero > img { animation: profile-zoom 14s ease-out both; }
+.profile-hero .split-hero-media img { object-position: center 60%; }
 .profile-hero-copy > * { animation: profile-rise .9s var(--reveal-ease) both; }
 .profile-hero-copy > :nth-child(2) { animation-delay: .1s; }
 .profile-hero-copy > :nth-child(3) { animation-delay: .22s; }
@@ -110,8 +101,8 @@
 
 /* Contact panel (.cta-band) with phone and email. */
 .profile-contact address { display: flex; flex-wrap: wrap; gap: 4px 24px; margin-top: 12px; font-style: normal; }
-.profile-contact address a { display: inline-flex; align-items: center; min-height: 44px; color: var(--color-on-dark); font-weight: var(--fw-medium); overflow-wrap: anywhere; text-decoration: underline transparent 1px; text-underline-offset: 4px; transition: color .2s ease, text-decoration-color .2s ease; }
-.profile-contact address a:hover { color: #ffc493; text-decoration-color: currentColor; }
+.profile-contact address a { display: inline-flex; align-items: center; min-height: 44px; color: var(--color-ink); font-weight: var(--fw-medium); overflow-wrap: anywhere; text-decoration: underline transparent 1px; text-underline-offset: 4px; transition: color .2s ease, text-decoration-color .2s ease; }
+.profile-contact address a:hover { color: var(--color-brand); text-decoration-color: currentColor; }
 
 @media (prefers-reduced-motion: reduce) {
   .profile-hero > img, .profile-hero-copy > *, .profile-hero h1::after { animation: none; }
@@ -128,20 +119,20 @@
 .profile-management { position: relative; display: flex; align-items: center; gap: 12px; width: fit-content; max-width: 100%; margin: 0 auto var(--org-gap); padding: 8px 24px 8px 8px; border-radius: 999px; background: var(--color-brand); color: white; font-size: 1.0625rem; font-weight: var(--fw-strong); box-shadow: 0 18px 36px -18px color-mix(in srgb, var(--color-brand) 80%, transparent); }
 .profile-management::after { content: ""; position: absolute; left: calc(50% - 1px); top: 100%; width: 2px; height: var(--org-gap); background: var(--org-line); transform-origin: top; }
 .profile-management .profile-org-icon { background: color-mix(in srgb, white 18%, transparent); color: white; }
-.profile-org-icon { display: grid; place-items: center; flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; background: color-mix(in srgb, var(--color-on-dark) 10%, transparent); color: #ffc493; transition: background .3s ease, color .3s ease, transform .45s var(--reveal-ease); }
+.profile-org-icon { display: grid; place-items: center; flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; background: color-mix(in srgb, var(--color-brand) 10%, transparent); color: var(--color-brand); transition: background .3s ease, color .3s ease, transform .45s var(--reveal-ease); }
 .profile-organization-tree > ul { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; padding-top: var(--org-gap); }
 .profile-organization-tree > ul::before { content: ""; position: absolute; top: 0; left: calc((100% - 48px) / 6); right: calc((100% - 48px) / 6); height: 2px; background: var(--org-line); }
 .profile-organization-tree > ul > li { position: relative; display: flex; min-width: 0; }
 .profile-organization-tree > ul > li::before { content: ""; position: absolute; left: calc(50% - 1px); top: calc(-1 * var(--org-gap)); width: 2px; height: var(--org-gap); background: var(--org-line); transform-origin: top; }
-.profile-organization-tree > ul > li::after { content: ""; position: absolute; left: calc(50% - 5px); top: calc(-1 * var(--org-gap) - 4px); width: 10px; height: 10px; border-radius: 50%; background: #ffc493; box-shadow: 0 0 0 4px var(--color-dark); }
-.profile-org-card { flex: 1; min-width: 0; padding: 22px; border: 1px solid color-mix(in srgb, var(--color-on-dark) 12%, transparent); border-radius: 16px; background: color-mix(in srgb, var(--color-on-dark) 4%, transparent); transition: translate .45s var(--reveal-ease), background .3s ease, border-color .3s ease; }
+.profile-organization-tree > ul > li::after { content: ""; position: absolute; left: calc(50% - 5px); top: calc(-1 * var(--org-gap) - 4px); width: 10px; height: 10px; border-radius: 50%; background: var(--color-accent); box-shadow: 0 0 0 4px var(--color-surface-soft); }
+.profile-org-card { flex: 1; min-width: 0; padding: 22px; border: 1px solid color-mix(in srgb, var(--color-on-dark) 12%, transparent); border-radius: 16px; background: var(--color-surface); transition: translate .45s var(--reveal-ease), background .3s ease, border-color .3s ease; }
 .profile-org-head { display: flex; align-items: center; gap: 14px; }
 .profile-org-head :is(h3, h4) { margin: 0; font-size: 1.0625rem; font-weight: var(--fw-strong); line-height: 1.35; }
 .profile-org-card > ul { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; padding-top: 18px; border-top: 1px solid color-mix(in srgb, var(--color-on-dark) 10%, transparent); }
 .profile-org-card > ul > li { padding: 6px 12px; border: 1px solid color-mix(in srgb, var(--color-on-dark) 18%, transparent); border-radius: 999px; color: var(--color-on-dark); font-size: .8125rem; line-height: 1.4; transition: border-color .3s ease; }
 .profile-organization-tree > ul > li:hover .profile-org-card { translate: 0 -4px; border-color: color-mix(in srgb, var(--color-accent) 70%, transparent); background: color-mix(in srgb, var(--color-on-dark) 8%, transparent); }
 .profile-organization-tree > ul > li:hover .profile-org-icon { background: var(--color-brand); color: white; transform: scale(1.06); }
-.profile-organization-tree > ul > li:hover .profile-org-card > ul > li { border-color: color-mix(in srgb, #ffc493 45%, transparent); }
+.profile-organization-tree > ul > li:hover .profile-org-card > ul > li { border-color: color-mix(in srgb, var(--color-accent) 45%, transparent); }
 
 @media (max-width: 760px) {
   /* A spine down the left from the board: a branch to each card, the last one turning in a rounded elbow. */

@@ -24,9 +24,9 @@ export default async function CompanyProfilePage() {
   const { company, profile, t } = content;
   const gallery = t.gallery;
   return <div className="profile-page">
-    <section className="section profile-hero" aria-labelledby="profile-title">
-      <Image src={profile.heroImage.src} alt={profile.heroAlt} fill sizes="100vw" preload />
+    <section className="section profile-hero split-hero" aria-labelledby="profile-title">
       <div className="profile-hero-copy"><nav className="breadcrumbs" aria-label={profile.breadcrumbLabel}><ol><li><Link href="/">{t.common.home}</Link></li><li><span aria-current="page">{profile.title}</span></li></ol></nav><h1 id="profile-title">{profile.heroHeading}</h1><p>{profile.introduction}</p></div>
+      <div className="split-hero-media"><Image src={profile.heroImage.src} alt={profile.heroAlt} fill sizes="(max-width: 900px) 92vw, 46vw" preload /></div>
     </section>
     {/* The contents bar only sticks while the sections are on screen. */}
     <div className="profile-body">

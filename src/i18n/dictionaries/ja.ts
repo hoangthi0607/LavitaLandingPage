@@ -36,7 +36,7 @@ export const ja: Dictionary = {
     languages: "言語", openProjectCategories: "プロジェクトの分類を開く", closeProjectCategories: "プロジェクトの分類を閉じる",
     brandHome: "Lavitaホーム", brandLogo: "Lavitaロゴ",
   },
-  footer: { intro: "Lavita建設有限会社は消防ソリューションを提供しています。", headOffice: "本社所在地", contact: "連絡先", links: "リンク", servicesLabel: "フッターの消防サービス", rights: "無断転載を禁じます。" },
+  footer: { departmentContact: "{department}の連絡先", phone: "電話", departments: { sales: "営業部", hr: "人事部", technical: "技術部" }, intro: "Lavita建設有限会社は消防ソリューションを提供しています。", headOffice: "本社所在地", contact: "連絡先", links: "リンク", servicesLabel: "フッターの消防サービス", rights: "無断転載を禁じます。" },
   pagination: { previous: "前のページ", next: "次のページ", page: "{page}ページ" },
   services: {
     "tu-van-thiet-ke": { title: "設計コンサルティング", pageTitle: "消防設計コンサルティング", description: "建物の特性に合わせた消防ソリューションの策定とシステム設計を行います。", preparation: ["建物の種類と所在地", "現在の準備段階または設計段階", "既存の図面と消防に関するご要望"],

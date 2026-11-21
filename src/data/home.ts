@@ -3,8 +3,13 @@
 export const site = { url: "https://lavitacons.vn", name: "Lavita" };
 
 export const company = {
-  phone: "0962 381 114", phoneHref: "tel:+84962381114",
-  email: "sales@lavitacons.vn", address: "Số 26 - 28 Nguyễn Hoàng, Khu phố 1, Phường Bình Trưng, Thành phố Hồ Chí Minh, Việt Nam",
+  phone: "0966 134 114", phoneHref: "tel:+84966134114",
+  departments: [
+    { key: "sales", phone: "0962 381 114", phoneHref: "tel:+84962381114", email: "sales@lavitacons.vn" },
+    { key: "hr", phone: "0966 134 114", phoneHref: "tel:+84966134114", email: "hr@lavitacons.vn" },
+    { key: "technical", phone: "0987 280 114", phoneHref: "tel:+84987280114", email: "design@lavitacons.vn" },
+  ] as const,
+  email: "hr@lavitacons.vn", address: "Số 26 - 28 Nguyễn Hoàng, Khu phố 1, Phường Bình Trưng, Thành phố Hồ Chí Minh, Việt Nam",
   taxCode: "0318182111", founded: "2023", profile: "/documents/ho-so-nang-luc-lavita.pdf",
 };
 

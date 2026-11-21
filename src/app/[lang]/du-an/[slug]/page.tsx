@@ -46,14 +46,14 @@ export default async function ProjectPage({ params }: Props) {
   ];
 
   return <div className="prj-detail">
-    <section className="prj-detail-hero" aria-labelledby="project-title">
-      <Image className="prj-detail-hero-image" src={project.image} alt={format(copy.imageAlt, { title: project.title, tag: project.tag })} fill sizes="100vw" priority />
+    <section className="prj-detail-hero split-hero" aria-labelledby="project-title">
       <div className="prj-detail-hero-copy">
         <Breadcrumbs items={[{ label: t.common.home, href: "/" }, { label: t.nav.projects, href: "/du-an" }, ...(service ? [{ label: service.title, href: projectCategoryHref(service.slug) }] : []), { label: project.title }]} />
         <Link className="prj-detail-tag" href={projectCategoryHref(project.serviceSlug)}>{project.tag}</Link>
         <h1 id="project-title">{project.title}</h1>
         {project.description && <p>{project.description}</p>}
       </div>
+      <div className="split-hero-media"><Image className="prj-detail-hero-image" src={project.image} alt={format(copy.imageAlt, { title: project.title, tag: project.tag })} fill sizes="(max-width: 900px) 92vw, 46vw" priority /></div>
     </section>
 
     <section className="prj-detail-facts" aria-label={copy.infoHeading}>
@@ -83,7 +83,7 @@ export default async function ProjectPage({ params }: Props) {
 
     <nav className="section prj-detail-pager" aria-label={t.nav.projects}>
       {[{ item: previous, label: t.home.projects.previous, icon: ArrowLeft, side: "prev" }, { item: next, label: t.home.projects.next, icon: ArrowRight, side: "next" }].map(({ item, label: text, icon: Icon, side }) => <Link key={side} className={`prj-detail-pager-link is-${side}`} href={`/du-an/${item.slug}`} data-reveal={side === "prev" ? "left" : "right"}>
-        <Image src={item.image} alt="" fill sizes="(max-width: 760px) 92vw, 46vw" />
+        <span className="prj-detail-pager-media"><Image src={item.image} alt="" fill sizes="(max-width: 760px) 92vw, 46vw" /></span>
         <span className="prj-detail-pager-copy"><span className="prj-detail-pager-label"><Icon size={16} aria-hidden="true" />{text}</span><strong>{item.title}</strong><span className="prj-detail-pager-tag">{item.tag}</span></span>
       </Link>)}
     </nav>

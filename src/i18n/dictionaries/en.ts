@@ -36,7 +36,7 @@ export const en: Dictionary = {
     languages: "Languages", openProjectCategories: "Open project categories", closeProjectCategories: "Close project categories",
     brandHome: "Lavita home page", brandLogo: "Lavita logo",
   },
-  footer: { intro: "Lavita Construction Company Limited provides fire protection solutions.", headOffice: "Head office address", contact: "Contact", links: "Links", servicesLabel: "Fire protection services (footer)", rights: "All rights reserved." },
+  footer: { departmentContact: "{department} contact information", phone: "Phone", departments: { sales: "Sales Department", hr: "Human Resources Department", technical: "Technical Department" }, intro: "Lavita Construction Company Limited provides fire protection solutions.", headOffice: "Head office address", contact: "Contact", links: "Links", servicesLabel: "Fire protection services (footer)", rights: "All rights reserved." },
   pagination: { previous: "Previous page", next: "Next page", page: "Page {page}" },
   services: {
     "tu-van-thiet-ke": { title: "Design consulting", pageTitle: "Fire Protection Design Consulting", description: "Developing fire protection solutions and system designs tailored to each building.", preparation: ["Building type and location", "Current preparation or design stage", "Existing drawings and fire protection requirements"],

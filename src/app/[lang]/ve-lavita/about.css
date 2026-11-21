@@ -84,16 +84,15 @@
 /* Core values: tall photo cards that tilt towards the pointer; the explanation opens on hover. */
 .about-values-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; margin: 16px 0 0; padding: 0; list-style: none; }
 .about-values-list > li { flex: 0 1 calc((100% - 4 * 24px) / 5); min-width: 0; }
-.about-value-card { position: relative; aspect-ratio: 3 / 4; overflow: hidden; border-radius: 15px; background: var(--color-dark); box-shadow: 0 10px 25px color-mix(in srgb, var(--color-dark) 22%, transparent); transition: transform .3s ease-out, box-shadow .4s var(--reveal-ease); will-change: transform; }
+.about-value-card { position: relative; display: flex; flex-direction: column; height: 100%; overflow: hidden; border-radius: 15px; background: var(--color-surface); box-shadow: 0 10px 25px color-mix(in srgb, var(--color-dark) 14%, transparent); transition: transform .3s ease-out, box-shadow .3s ease-out; }
+.about-value-photo { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: var(--color-surface-soft); }
 .about-value-image { object-fit: cover; transition: transform .4s var(--reveal-ease); }
-.about-value-info { position: absolute; inset: auto 0 0; padding: 64px 20px 20px; color: var(--color-on-dark); background: linear-gradient(to top, color-mix(in srgb, var(--color-dark) 92%, transparent) 0%, color-mix(in srgb, var(--color-dark) 70%, transparent) 55%, transparent 100%); }
-.about-value-info h3 { margin: 0; font-size: 1.0625rem; font-weight: var(--fw-heading); line-height: 1.35; letter-spacing: .3px; text-transform: uppercase; text-shadow: 0 2px 8px color-mix(in srgb, var(--color-dark) 70%, transparent); }
-.about-value-info p { max-height: 0; margin: 0; overflow: hidden; opacity: 0; font-size: .9375rem; line-height: 1.55; transition: max-height .4s var(--reveal-ease), opacity .4s var(--reveal-ease), margin .4s var(--reveal-ease); }
+.about-value-info { padding: 18px 20px 22px; color: var(--color-ink); }
+.about-value-info h3 { margin: 0; font-size: 1.0625rem; font-weight: var(--fw-heading); line-height: 1.35; letter-spacing: .3px; text-transform: uppercase; }
+.about-value-info p { margin: 10px 0 0; color: var(--color-muted); font-size: .9375rem; line-height: 1.6; }
 .about-value-card:hover { box-shadow: 0 15px 35px color-mix(in srgb, var(--color-dark) 32%, transparent); }
 .about-value-card:hover .about-value-image { transform: scale(1.05); }
-.about-value-card:hover .about-value-info p { max-height: 10em; margin-top: 10px; opacity: 1; }
 @media (hover: none) {
-  .about-value-info p { max-height: none; margin-top: 10px; opacity: 1; }
 }
 
 @media (max-width: 1100px) {
